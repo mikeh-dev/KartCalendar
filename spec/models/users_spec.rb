@@ -15,4 +15,24 @@ RSpec.describe User, type: :model do
     expect(user).not_to be_valid
   end
 
+  it "should reject short passwords" do
+    user = build(:user, password: "short", password_confirmation: "short")
+    expect(user).not_to be_valid
+  end
+
+  it "should accept long passwords" do
+    user = build(:user, password: "longpassword", password_confirmation: "longpassword")
+    expect(user).to be_valid
+  end
+
+  it "should have reject and invalid email" do
+    user = build(:user, email: "invalidemail")
+    expect(user).not_to be_valid
+  end
+
+  it "should have a valid email" do
+    user = build(:user, email: "mail@test.com")
+    expect(user).to be_valid
+  end
+
 end
