@@ -1,0 +1,45 @@
+<% content_for :header do %>
+  <header class="bg-cover bg-center relative bg-no-repeat" style="background-image: url(<%= asset_url("") %>);">
+    <div class="dark:bg-slate-900">
+      <%= render "shared/nav_menu" %>
+    </div>
+    <div class="container mx-auto sm:py-24 pb-10 px-4 relative z-10 flex flex-wrap items-center justify-between">
+      <div class="xl:w-2/5 w-full xl:text-left text-center xl:pr-16">
+        <p class="text-indigo-600 font-medium mb-6 lg:mt-0 mt-2 dark:text-indigo-500">Upcoming Events</p>
+        <h1 class="sm:text-6xl text-4xl font-extrabold">Discover Exciting Events <br class="sm:hidden block" />Near You</h1>
+        <p class="my-6 text-slate-700 dark:text-slate-400 text-lg">Explore a variety of events happening in your area. Join the fun!</p>
+        <div class="xl:flex grid grid-cols-1 gap-4">
+          <%= link_to "Explore Events", "#", class: "btn btn-primary btn-lg" %>
+          <%= link_to "Submit Your Event", "#", class: "btn btn-lg  btn-transparent" %>
+        </div>
+      </div>
+      <div class="xl:w-3/5 w-full xl:my-0 mt-6 mb-10">
+        <div class="flex justify-center relative">
+          <%= image_tag "DSC_4486.JPG", alt: "Events", class: "max-w-full xl:max-w-2xl 2xl:max-w-3xl object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-500/20" %>
+          <!-- You can add additional decorative elements here if needed -->
+        </div>
+      </div>
+    </div>
+  </header>
+<% end %>
+
+<div class="container mx-auto mt-8">
+  <h1 class="text-3xl font-semibold mb-4">Upcoming Events</h1>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <% @events.each do |event| %>
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <!-- Replace 'event.image.url' with the actual image URL for each event -->
+        <%= image_tag "DSC_4486.JPG", alt: "Events", class: "w-full h-36 object-cover object-center" %>
+        <div class="p-4">
+          <h2 class="text-xl font-semibold mb-2"><%= event.title %></h2>
+          <p class="text-gray-600 mb-2"><%= event.date.strftime('%B %d, %Y') %></p>
+          <p class="text-gray-800"><%= event.description.truncate(150, omission: '...') %></p>
+        </div>
+        <div class="bg-gray-100 p-4">
+          <%= link_to "View Details", "#", class: "text-blue-500 hover:underline" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
