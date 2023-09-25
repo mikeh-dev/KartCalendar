@@ -32,5 +32,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
-	get 'events', to: 'event#index'
+	resources :events do
+		
+	end
 end
