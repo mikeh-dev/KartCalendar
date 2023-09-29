@@ -6,11 +6,13 @@
     <div class="container mx-auto sm:py-24 pb-10 px-4 relative z-10 flex flex-wrap items-center justify-between">
       <div class="xl:w-2/5 w-full xl:text-left text-center xl:pr-16">
         <p class="text-indigo-600 font-medium mb-6 lg:mt-0 mt-2 dark:text-indigo-500">Upcoming Events</p>
-        <h1 class="sm:text-6xl text-4xl font-extrabold">Discover Exciting Events <br class="sm:hidden block" />Near You</h1>
-        <p class="my-6 text-slate-700 dark:text-slate-400 text-lg">Explore a variety of events happening in your area. Join the fun!</p>
+        <h1 class="sm:text-6xl text-4xl font-extrabold">The Next Big Race <br class="sm:hidden block" />Near You</h1>
+        <p class="my-6 text-slate-700 dark:text-slate-400 text-lg">Explore test days and race weekends near you. Join the Grid!</p>
         <div class="xl:flex grid grid-cols-1 gap-4">
           <%= link_to "Explore Events", "#", class: "btn btn-primary btn-lg" %>
-          <%= link_to "Submit Your Event", "#", class: "btn btn-lg  btn-transparent" %>
+          <% if user_signed_in? %>
+            <%= link_to "Submit Your Event", new_event_path, class: "btn btn-lg  btn-transparent" %>
+          <% end %>
         </div>
       </div>
       <div class="xl:w-3/5 w-full xl:my-0 mt-6 mb-10">

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 	get 'admin/integrations', to: 'page#integrations'
-	get 'admin/team', to: 'page#team'
+	get 'team', to: 'page#team'
 	get 'admin/billing', to: 'page#billing'
 	get 'admin/notifications', to: 'page#notifications'
 	get 'admin/settings', to: 'page#settings'
@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 	get 'admin/dashboard', to: 'page#dashboard'
 	get 'pricing', to: 'page#pricing'
 	get 'about', to: 'page#about'
+
 	
   if Rails.env.development? || Rails.env.test?
     mount Railsui::Engine, at: "/railsui"
@@ -24,7 +25,7 @@ Rails.application.routes.draw do
   # Inherits from Railsui::PageController#index
   # To overide, add your own page#index view or change to a new root
   # Visit the start page for Rails UI any time at /railsui/start
-  root action: :index, controller: "railsui/page"
+  root action: :about, controller: "page"
 
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

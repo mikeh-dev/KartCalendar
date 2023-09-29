@@ -4,6 +4,10 @@ class PageController < ApplicationController
 		render layout: 'admin'
 	end
 
+	def home
+		
+	end
+
 	def team
 		render layout: 'admin'
 	end
