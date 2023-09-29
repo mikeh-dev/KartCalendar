@@ -1,7 +1,16 @@
-
+<li >
+  <%= nav_link_to "Home", send("about_path"), class: "nav-link" %>
+</li>
 <li >
   <%= nav_link_to "About", send("about_path"), class: "nav-link" %>
 </li>
 <li >
-  <%= nav_link_to "Events", send("events_path"), class: "nav-link" %>
+  <%= nav_link_to "Races", send("events_path"), class: "nav-link" %>
 </li>
+<li >
+  <%= nav_link_to "Test Days", send("events_path"), class: "nav-link" %>
+</li>
+<li >
+  <%= nav_link_to "Championships", send("events_path"), class: "nav-link" %>
+</li>
+
