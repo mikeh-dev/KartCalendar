@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 	get 'admin/dashboard', to: 'page#dashboard'
 	get 'pricing', to: 'page#pricing'
 	get 'about', to: 'page#about'
+	get 'contact', to: 'page#contact'
 
 	
   if Rails.env.development? || Rails.env.test?
