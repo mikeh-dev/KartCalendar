@@ -9,7 +9,8 @@
         <h1 class="sm:text-6xl text-4xl font-extrabold">The Next Big Race <br class="sm:hidden block" />Near You</h1>
         <p class="my-6 text-slate-700 dark:text-slate-400 text-lg">Explore test days and race weekends near you. Join the Grid!</p>
         <div class="xl:flex grid grid-cols-1 gap-4">
-          <%= link_to "Explore Events", "#", class: "btn btn-primary btn-lg" %>
+        <p class="my-6 text-slate-700 dark:text-slate-400 text-lg"><%= @events.first.title %></p>
+
           <% if user_signed_in? %>
             <%= link_to "Submit Your Event", new_event_path, class: "btn btn-lg  btn-transparent" %>
           <% end %>
