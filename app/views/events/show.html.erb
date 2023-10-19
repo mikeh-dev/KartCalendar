@@ -6,18 +6,22 @@
     <div class="container mx-auto sm:py-24 pb-10 px-4 relative z-10 flex flex-wrap items-center justify-between">
       <div class="xl:w-2/5 w-full xl:text-left text-center xl:pr-16">
         <p class="text-indigo-600 font-medium mb-6 lg:mt-0 mt-2 dark:text-indigo-500">Event Name</p>
-        <h1 class="sm:text-6xl text-4xl font-extrabold">Event Name  <br class="sm:hidden block" />Event Name </h1>
+        <h1 class="sm:text-6xl text-4xl font-extrabold">Event Name </h1>
         <p class="my-6 text-slate-700 dark:text-slate-400 text-lg">Event Description</p>
         <div class="xl:flex grid grid-cols-1 gap-4">
-          <%= link_to "Explore Events", "#", class: "btn btn-primary btn-lg" %>
-          <%= link_to "Submit Your Event", "#", class: "btn btn-lg  btn-transparent" %>
+          <%= link_to "Explore Events", events_path, class: "btn btn-primary btn-lg" %>
         </div>
       </div>
       <div class="xl:w-3/5 w-full xl:my-0 mt-6 mb-10">
+      <% if @event.image.attached? %>
+        <div class="flex justify-center relative">
+          <%= image_tag @event.image, alt: "Events", class: "max-w-full xl:max-w-2xl 2xl:max-w-3xl object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-500/20" %>
+        </div>
+      <% else %>
         <div class="flex justify-center relative">
           <%= image_tag "DSC_4486.JPG", alt: "Events", class: "max-w-full xl:max-w-2xl 2xl:max-w-3xl object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-500/20" %>
-          <!-- You can add additional decorative elements here if needed -->
         </div>
+      <% end %>
         <div class="container mx-auto py-8">
           <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-6">
             <h1 class="text-3xl font-semibold text-indigo-600 mb-4"><%= @event.title %></h1>
@@ -51,14 +55,18 @@
     <% @events.each do |event| %>
       <div class="bg-white shadow-lg rounded-lg overflow-hidden">
         <!-- Replace 'event.image.url' with the actual image URL for each event -->
+      <% if event.image.attached? %>
+        <%= image_tag event.image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
+      <% else %>
         <%= image_tag "DSC_4486.JPG", alt: "Events", class: "w-full h-36 object-cover object-center" %>
+      <% end %>
         <div class="p-4">
           <h2 class="text-xl font-semibold mb-2"><%= event.title %></h2>
           <p class="text-gray-600 mb-2"><%= event.date.strftime('%B %d, %Y') %></p>
           <p class="text-gray-800"><%= event.description.truncate(150, omission: '...') %></p>
         </div>
         <div class="bg-gray-100 p-4">
-          <%= link_to "View Details", "#", class: "text-blue-500 hover:underline" %>
+          <%= link_to "View Details", event_path(event), class: "text-blue-500 hover:underline" %>
         </div>
       </div>
     <% end %>

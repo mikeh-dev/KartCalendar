@@ -3,6 +3,7 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
+    @next_event = Event.where('date >= ?', Date.today).order(date: :asc).first
   end
 
   def show
@@ -16,7 +17,8 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-
+    @event.image = params[:event][:image]
+    
     if @event.save
       redirect_to @event, notice: 'Event was successfully created.'
     else
@@ -42,7 +44,7 @@ def set_event
 end
 
 def event_params
-  params.require(:event).permit(:title, :description, :date, :price, :event_type)
+  params.require(:event).permit(:title, :description, :date, :price, :event_type, :image)
 end
   
 end

@@ -8,9 +8,11 @@
       <p class="text-indigo-600 font-medium mb-6 lg:mt-0 mt-2 dark:text-indigo-500">A KartBase Project</p>
       <h1 class="sm:text-6xl text-4xl font-extrabold">Kart<br class="sm:hidden block" />Calendar</h1>
       <p class="my-6 text-slate-700 dark:text-slate-400 text-lg">Giving Teams, Mechanics, Parents and Drivers visibility of UK Karting in one place.</p>
-      <div class="xl:flex grid grid-cols-1 gap-4">
-        <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary btn-lg" %>
-      </div>
+      <% if !user_signed_in? %>
+        <div class="xl:flex grid grid-cols-1 gap-4">
+          <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary btn-lg" %>
+        </div>
+      <% end %>
     </div>
     <div class="xl:w-3/5 w-full xl:my-0 mt-6 mb-10">
       <div class="flex justify-center relative">
