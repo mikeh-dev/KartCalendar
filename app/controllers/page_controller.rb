@@ -5,6 +5,7 @@ class PageController < ApplicationController
 	end
 
 	def home
+		
 	end
 
 	def contact

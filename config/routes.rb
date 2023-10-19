@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 	get 'pricing', to: 'page#pricing'
 	get 'about', to: 'page#about'
 	get 'contact', to: 'page#contact'
+	get 'home', to: 'page#home'
 
 	
   if Rails.env.development? || Rails.env.test?
@@ -26,7 +27,7 @@ Rails.application.routes.draw do
   # Inherits from Railsui::PageController#index
   # To overide, add your own page#index view or change to a new root
   # Visit the start page for Rails UI any time at /railsui/start
-  root action: :about, controller: "page"
+  root action: :home, controller: "page"
 
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

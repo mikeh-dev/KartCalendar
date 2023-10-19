@@ -9,7 +9,7 @@ def generate_sample_tracks(count = 10)
       name: Faker::Company.unique.name,            
       address: Faker::Address.full_address,        
       contact_number: Faker::PhoneNumber.phone_number,  
-      main_image: 'sample_image.jpg',              
+      main_image: 'JHPhoto-3090.jpg',              
       length: Faker::Number.decimal(l_digits: 2),
       email: Faker::Internet.unique.email         
     }
