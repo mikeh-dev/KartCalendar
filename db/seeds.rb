@@ -1,7 +1,22 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+require 'faker'
+
+# Defin a method to generate sample tracks
+def generate_sample_tracks(count = 10)
+  sample_tracks = []
+
+  count.times do
+    track = {
+      name: Faker::Company.unique.name,            
+      address: Faker::Address.full_address,        
+      contact_number: Faker::PhoneNumber.phone_number,  
+      main_image: 'sample_image.jpg',              
+      length: Faker::Number.decimal(l_digits: 2),
+      email: Faker::Internet.unique.email         
+    }
+    sample_tracks << track
+  end
+
+  sample_tracks
+end
+
+Track.create(generate_sample_tracks)

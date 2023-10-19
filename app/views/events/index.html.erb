@@ -9,17 +9,14 @@
         <h1 class="sm:text-6xl text-4xl font-extrabold">The Next Big Race <br class="sm:hidden block" />Near You</h1>
         <p class="my-6 text-slate-700 dark:text-slate-400 text-lg">Explore test days and race weekends near you. Join the Grid!</p>
         <div class="xl:flex grid grid-cols-1 gap-4">
-        <p class="my-6 text-slate-700 dark:text-slate-400 text-lg"><%= @events.first.title %></p>
-
           <% if user_signed_in? %>
-            <%= link_to "Submit Your Event", new_event_path, class: "btn btn-lg  btn-transparent" %>
+            <%= link_to "Submit Your Event", new_event_path, class: "btn btn-primary btn-lg" %>
           <% end %>
         </div>
       </div>
       <div class="xl:w-3/5 w-full xl:my-0 mt-6 mb-10">
         <div class="flex justify-center relative">
           <%= image_tag "DSC_4486.JPG", alt: "Events", class: "max-w-full xl:max-w-2xl 2xl:max-w-3xl object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-500/20" %>
-          <!-- You can add additional decorative elements here if needed -->
         </div>
       </div>
     </div>
