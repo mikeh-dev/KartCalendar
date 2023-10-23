@@ -1,2 +1,6 @@
-<h1>Edit Track</h1>
+<h1 class="px-4 text-center mx-auto mb-5 mt-5">Edit Track</h1>
 <%= render 'form' %>
+<div class="container mx-auto px-4">
+  <%= link_to 'Back', tracks_path, class: "btn btn-primary" %>
+  <%= link_to 'Delete Track', track_path(@track), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn bg-red-700" %>
+</div>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
 	get 'admin/integrations', to: 'page#integrations'
 	get 'team', to: 'page#team'
 	get 'admin/billing', to: 'page#billing'
@@ -24,19 +25,23 @@ Rails.application.routes.draw do
     mount Railsui::Engine, at: "/railsui"
   end
 
-  # Inherits from Railsui::PageController#index
-  # To overide, add your own page#index view or change to a new root
-  # Visit the start page for Rails UI any time at /railsui/start
   root action: :home, controller: "page"
 
   devise_for :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+	resources :events
 
-	resources :events do
+	resources :tracks do
+		member do
+			post 'follow', to: 'follows#create'
+			delete 'unfollow', to: 'follows#destroy'
+		end
 	end
+	
 
-	resources :tracks
+	resources :championships
+
+	get 'test_events', to: 'events#test_events', as: 'test_events'
+
+	get 'race_events', to: 'events#race_events', as: 'race_events'
 end

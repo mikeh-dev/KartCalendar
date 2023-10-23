@@ -1,18 +1,22 @@
 <div class="container mx-auto px-4 py-8">
   <h1 class="text-3xl font-semibold mb-8">Tracks</h1>
-
-  <div class="">
     <% @tracks.each do |track| %>
         <% if track.main_image.attached? %>
-          <div class="bg-cover bg-center h-48 mb-4" style="background-image: url('<%= url_for(track.main_image) %>')">
+          <div class="bg-cover bg-center h-48 my-4" style="background-image: url('<%= url_for(track.main_image) %>')">
+            <div class="bg-[hsla(0,0%,0%,0.6)]">
         <% else %>
-          <div class="bg-cover bg-center h-48 mb-4" style="background-image: url('<%= asset_url('placeholder.jpg') %>')">
+          <div class="bg-cover bg-center h-48 my-4" style="background-image: url('<%= asset_url('placeholder.jpg') %>')">
+            <div class="bg-[hsla(0,0%,0%,0.6)]">
         <% end %>
-        <div class="px-10 py-10">
-          <h2 class=" text-xl font-semibold mb-6"><%= track.name %></h2>
-          <%= link_to "View Track", track, class: "btn btn-primary" %>
-        </div>
-      </div>
+              <div class="px-10 py-10" mb-4"">
+                <h2 class=" text-4xl font-bold mb-2"><%= track.name %></h2>
+                <p class="mb-4"><%= track.description %> - Next Race Meeting </p>
+                <%= link_to "View Track", track, class: "btn btn-primary" %>
+                <% if current_user %>
+                  <%= link_to "Edit Track", edit_track_path(track), class: "btn btn-alert" %>
+                <% end %>
+              </div>
+            </div>
+          </div>
     <% end %>
-  </div>
 </div>

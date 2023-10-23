@@ -1,0 +1,35 @@
+<div class="container mx-auto sm:py-24 pb-10 px-4 relative z-10 flex flex-wrap items-center justify-between">
+  <div class=" w-full text-center">
+    <p class="text-indigo-600 font-medium mb-6 lg:mt-0 mt-2 dark:text-indigo-500">All the UK's</p>
+    <h1 class="sm:text-6xl text-4xl font-extrabold">Championships </h1>
+    <p class="my-6 text-slate-700 dark:text-slate-400 text-lg">Explore race weekends near you. Get on the grid!</p>
+  </div>
+  <div class=" w-full mt-6 mb-10">
+    <div class="flex justify-center relative">
+      <%= image_tag "JHPhoto-3083.jpg", alt: "Events", class: "max-w-full xl:max-w-2xl 2xl:max-w-3xl object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
+    </div>
+  </div>
+  <div class="w-full text-center mt-6">
+    <h1 class="text-4xl"><%= @championships.first.name %></h1>
+  </div>
+</div>
+
+<div class="container mx-auto mt-8 px-4">
+  <h1 class="text-3xl font-semibold mb-4 text-center">Upcoming Events</h1>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
+    <% @championships.each do |championship| %>
+      <div class="bg-gray-500 shadow-lg rounded-lg overflow-hidden">
+        <%= image_tag "JHPhoto-3095.jpg", alt: "Events", class: "w-full h-36 object-cover object-center" %>
+        <div class="p-4">
+          <h2 class="text-xl font-semibold mb-2"><%=championship.name %></h2>
+          <p class="text-gray-600 mb-2">Dates</p>
+          <p class="text-gray-800">Championship Description</p>
+        </div>
+        <div class="bg-gray-100 p-4">
+          <%= link_to "View Details", (championship_path(championship)), class: "text-blue-500 hover:underline" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

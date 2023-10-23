@@ -1,6 +1,14 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
+  def test_events
+    @test_events = Event.where(event_type: 'Test')
+  end
+
+  def race_events
+    @race_events = Event.where(event_type: 'Race')
+  end
+
   def index
     @events = Event.all
     @next_event = Event.where('date >= ?', Date.today).order(date: :asc).first
