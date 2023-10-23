@@ -3,7 +3,11 @@
 
   <div class="">
     <% @tracks.each do |track| %>
-      <div class="bg-cover bg-center h-48 mb-4" style="background-image: url('<%= track.main_image %>')">
+        <% if track.main_image.attached? %>
+          <div class="bg-cover bg-center h-48 mb-4" style="background-image: url('<%= url_for(track.main_image) %>')">
+        <% else %>
+          <div class="bg-cover bg-center h-48 mb-4" style="background-image: url('<%= asset_url('placeholder.jpg') %>')">
+        <% end %>
         <div class="px-10 py-10">
           <h2 class=" text-xl font-semibold mb-6"><%= track.name %></h2>
           <%= link_to "View Track", track, class: "btn btn-primary" %>

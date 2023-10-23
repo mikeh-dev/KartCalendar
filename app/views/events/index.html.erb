@@ -29,7 +29,6 @@
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
     <% @events.each do |event| %>
       <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-        <!-- Replace 'event.image.url' with the actual image URL for each event -->
         <%= image_tag "JHPhoto-3095.jpg", alt: "Events", class: "w-full h-36 object-cover object-center" %>
         <div class="p-4">
           <h2 class="text-xl font-semibold mb-2"><%= event.title %></h2>

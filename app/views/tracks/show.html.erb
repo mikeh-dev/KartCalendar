@@ -1,19 +1,134 @@
-<div class="container mx-auto px-4 py-8">
-  <div class="bg-white shadow-md rounded-lg overflow-hidden">
-    <div class="bg-cover bg-center h-64" style="background-image: url(<%= asset_url(@track.main_image) %>);"></div>
-    <div class="px-6 py-4">
-      <h1 class="text-3xl font-semibold mb-2"><%= @track.name %></h1>
-      <p class="text-gray-700 text-sm mb-2"><%= @track.address %></p>
-      <p class="text-gray-700 text-sm mb-2"><%= @track.contact_number %></p>
-      <p class="text-gray-700 text-sm mb-2">Length: <%= @track.length %> miles</p>
-      <p class="text-gray-700 text-sm">Email: <%= @track.email %></p>
-    </div>
-    <div class="px-6 py-2">
-      <%= link_to "Back", tracks_path, class: "btn btn-secondary" %>
+<section
+    <% if @track.main_image.attached? %>
+       class="bg-cover bg-center bg-no-repeat" style="background-image: url('<%= url_for(@track.main_image) %>');"
+    <% else %>
+      class="bg-cover bg-center bg-no-repeat" style="background-image: url('<%= asset_url('placeholder.jpg') %>');"
+    <% end %>
+>
+  <div class="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8">
+    <div class="max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
+      <h1 class="text-3xl font-extrabold sm:text-5xl">
+        <%= @track.name %>
+        <strong class="block font-extrabold text-rose-700">
+          <%= @track.location %>
+        </strong>
+      </h1>
+      <p class="mt-4 max-w-lg sm:text-xl/relaxed">
+        <%= @track.description %>
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4 text-center">
+        <a href="#" class="block w-full rounded bg-rose-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto">
+          Race Calendar
+        </a>
+        <a href="#" class="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-rose-600 shadow hover:text-rose-700 focus:outline-none focus:ring active:text-rose-500 sm:w-auto" >
+          Contact
+        </a>
+      </div>
     </div>
   </div>
-  <%= link_to "Edit", edit_track_path(@track), class: "btn btn-primary" %>
-  <%= link_to "Back", tracks_path, class: "btn btn-danger" %>
+</section>
 
-  
+<div class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
+  <div class="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl" aria-hidden="true">
+  </div>
+  <div class="absolute -top-52 left-1/2 -z-10 -translate-x-1/2 transform-gpu blur-3xl sm:top-[-28rem] sm:ml-16 sm:translate-x-0 sm:transform-gpu" aria-hidden="true">
+    <div class="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-20" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+  </div>
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl lg:mx-0">
+      <h2 class="text-4xl font-bold tracking-tight text-white sm:text-6xl"><%= @track.name %></h2>
+      <p class="text-4xl font-bold mt-6 mb-6 text-lg leading-8 text-gray-300 sm:text-4xl"><%= @track.description %></p>
+    </div>
+     <div class="mx-auto max-w-2xl lg:mx-0">
+      <p class="mt-6 text-lg leading-8 text-gray-300"><%= @track.address %></p>
+    </div>
+    <div class="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
+      <dl class="mb-16 grid grid-cols-2 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="flex flex-col-reverse">
+          <dt class="text-base leading-7 text-gray-300">Track Length</dt>
+          <dd class="text-2xl font-bold leading-9 tracking-tight text-white"><%= @track.length %>m</dd>
+        </div>
+        <div class="flex flex-col-reverse">
+          <dt class="text-base leading-7 text-gray-300">Current Weather</dt>
+          <dd class="text-2xl font-bold leading-9 tracking-tight text-white">Rainy & Overcast</dd>
+        </div>
+        <div class="flex flex-col-reverse">
+          <dt class="text-base leading-7 text-gray-300">Next Test Day</dt>
+          <dd class="text-2xl font-bold leading-9 tracking-tight text-white">13/2/23</dd>
+        </div>
+        <div class="flex flex-col-reverse">
+          <dt class="text-base leading-7 text-gray-300">Next Race Day</dt>
+          <dd class="text-2xl font-bold leading-9 tracking-tight text-white">12/2/23</dd>
+        </div>
+      </dl>
+      <div class="grid grid-cols-2 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
+          <div class="md:col-span-2 lg:col-span-1">
+            <a href="#">Toilets & Cafe On-Site</a>
+          </div>
+          <div class="md:col-span-2 lg:col-span-1">
+            <a href="#">Facility 2</a>
+          </div>
+          <div class="md:col-span-2 lg:col-span-1">
+            <a href="#">Facility 3 <span aria-hidden="true">&rarr;</span></a>
+          </div>
+          <div class="md:col-span-2 lg:col-span-1">
+            <a href="#">Facility 4 <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="max-w-screen-xl px-4 py-8 mx-auto sm:px-6 sm:py-12 lg:px-8">
+    <header class="text-center">
+      <h2 class="text-3xl font-bold sm:text-4xl">
+        Racing and Testing at <%= @track.name %>
+      </h2>
+
+      <p class="max-w-md mx-auto mt-4 text-gray-500">
+        Some text about race days and tracks days
+      </p>
+    </header>
+
+    <ul class="grid grid-cols-1 gap-4 mt-8 lg:grid-cols-2">
+      <li>
+        <a href="#" class="relative block group">
+          <%= image_tag "JHPhoto-3087.jpg", alt: "about photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
+          <div
+            class="absolute inset-0 flex flex-col items-start justify-end p-6"
+          >
+
+            <span
+              class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"
+            >
+               Next Test Day - 13/2/23
+            </span>
+          </div>
+        </a>
+      </li>
+
+      <li>
+        <a href="#" class="relative block group">
+          <%= image_tag "JHPhoto-3090.jpg", alt: "about photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
+          <div
+            class="absolute inset-0 flex flex-col items-start justify-end p-6"
+          >
+            <span
+              class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"
+            >
+              Next Race Day - 12/2/23
+            </span>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<div class="relative w-full h-96">
+    <iframe class="absolute top-0 left-0 w-full h-full"
+        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9535.354945862806!2d-2.9416328!3d53.3103343!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487adefa53aa7143%3A0x2d37a59a97a86742!2sHooton%20Park%20Circuit!5e0!3m2!1sen!2suk!4v1697815886011!5m2!1sen!2suk"
+        frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0">
+    </iframe>
 </div>
