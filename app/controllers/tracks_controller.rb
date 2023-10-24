@@ -1,12 +1,12 @@
 class TracksController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_track, only: [:show, :edit, :update, :destroy]
 
   def index
     @tracks = Track.all
   end
 
   def show
-    @track = Track.find(params[:id])
   end
 
   def new
@@ -23,11 +23,9 @@ class TracksController < ApplicationController
   end
 
   def edit
-    @track = Track.find(params[:id])
   end
 
   def update
-    @track = Track.find(params[:id])
     if @track.update(track_params)
       redirect_to @track, notice: 'Track was successfully updated.'
     else
@@ -36,12 +34,15 @@ class TracksController < ApplicationController
   end
 
   def destroy
-    @track = Track.find(params[:id])
     @track.destroy
     redirect_to tracks_url, notice: 'Track was successfully destroyed.'
   end
 
   private
+
+  def set_track
+    @track = Track.find(params[:id])
+  end
 
   def track_params
     params.require(:track).permit(:name, :address, :contact_number, :main_image, :length, :email, :image, :description, :location)
