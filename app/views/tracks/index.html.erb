@@ -10,10 +10,17 @@
         <% end %>
               <div class="px-10 py-10" mb-4"">
                 <h2 class=" text-4xl font-bold mb-2"><%= track.name %></h2>
-                <p class="mb-4"><%= track.description %> - Next Race Meeting </p>
+                <% if track.events.present? %>
+                  <p class="mb-4"><%= track.description %> - Next Race Meeting -
+                  <%= track.events.first.date.strftime("%A #{track.events.first.date.day.ordinalize} %B %Y") %></p>
+                <% else %>
+                  <p class="mb-4"><%= track.description %></p>
+                <% end %>
                 <%= link_to "View Track", track, class: "btn btn-primary" %>
-                <% if current_user.admin? %>
+                <% if current_user && current_user.admin? %>
                   <%= link_to "Edit Track", edit_track_path(track), class: "text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" %>
+                <% else %>
+
                 <% end %>
               </div>
             </div>

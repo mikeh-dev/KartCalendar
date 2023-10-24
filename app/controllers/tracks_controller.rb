@@ -3,11 +3,13 @@ class TracksController < ApplicationController
   before_action :set_track, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tracks = Track.all
+    @tracks = Track.includes(:events).all
   end
 
   def show
-    @track_events = @track.events.order(date: :asc)  # Sort events by date in ascending order
+    @track_events = @track.events.order(date: :asc)
+    @track_race_events = @track.events.where(event_type: "Race")
+    @track_test_events = @track.events.where(event_type: "Test")
   end
 
   def new
