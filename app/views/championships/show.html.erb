@@ -1,19 +1,22 @@
-<div class="container mx-auto sm:py-24 pb-10 px-4 relative z-10 flex flex-wrap items-center justify-between">
-  <div class="xl:w-2/5 w-full xl:text-left text-center xl:pr-16">
-    <p class="text-indigo-600 font-medium mb-6 lg:mt-0 dark:text-indigo-500">Championship</p>
-    <h1 class="sm:text-5xl text-4xl font-extrabold">Championship Name</h1>
-    <p class="my-6 text-slate-700 dark:text-slate-400 text-lg"><%= @championship.description %></p>
-    <div class="xl:flex grid grid-cols-1 gap-4">
-      <%= link_to "View the Calendar", championships_path, class: "btn btn-primary btn-lg" %>
-    </div>
-  </div>
-  <div class="xl:w-3/5 w-full xl:my-0 mt-6 mb-10">
-   <% if @championship.logo.attached? %>
+<div class=" container mx-auto my-10" >
+  <% if @championship.logo.attached? %>
     <div class="flex justify-center relative">
       <%= image_tag @championship.logo, alt: "Events", class: "max-w-full xl:max-w-2xl 2xl:max-w-3xl object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-500/20" %>
     </div>
   <% else %>
   <% end %>
+</div>
+
+<div class="container mx-auto sm:py-24 pb-10 px-4 relative z-10 flex flex-wrap items-center justify-between">
+  <div class="xl:w-2/5 w-full xl:text-left text-center xl:pr-16">
+    <p class="text-indigo-600 font-medium mb-6 lg:mt-0 dark:text-indigo-500">Championship</p>
+    <h1 class="sm:text-5xl text-4xl font-extrabold"><%= @championship.name %></h1>
+    <p class="my-6 text-slate-700 dark:text-slate-400 text-lg"><%= @championship.description %></p>
+    <div class="xl:flex grid grid-cols-1 gap-4">
+      <%= link_to "View the Calendar", "#champ-calendar", class: "btn btn-primary btn-lg" %>
+    </div>
+  </div>
+  <div class="xl:w-3/5 w-full xl:my-0 mt-6 mb-10">
   <% if @championship.image.attached? %>
     <div class="flex justify-center relative">
       <%= image_tag @championship.image, alt: "Events", class: "max-w-full xl:max-w-2xl 2xl:max-w-3xl object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-500/20" %>
@@ -49,7 +52,7 @@
   </div>
 </div>
 
-<div class="container mx-auto px-4">
+<div class="container mx-auto px-4" id="champ-calendar">
   <h1 class="text-3xl font-semibold mb-4 text-center mb-5"><%= @championship.name %> Calendar</h1>
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
