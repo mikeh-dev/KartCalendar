@@ -4,6 +4,10 @@ class ChampionshipsController < ApplicationController
 
   def index
     @championships = Championship.all
+    @next_championships = Championship.joins(:events)
+                            .where(events: { event_type: "Race" })
+                            .where(events: { date: Date.today..(Date.today + 6.days) })
+                            .distinct
   end
 
   def new

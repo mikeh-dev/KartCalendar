@@ -1,10 +1,16 @@
 <div class="container mx-auto sm:py-24 pb-10 px-4 relative z-10 flex flex-wrap items-center justify-between">
   <div class="xl:w-2/5 w-full xl:text-left text-center xl:pr-16">
-    <p class="text-indigo-600 font-medium mb-6 lg:mt-0 mt-2 dark:text-indigo-500">Event Name</p>
-    <h1 class="sm:text-6xl text-4xl font-extrabold">Event Name </h1>
-    <p class="my-6 text-slate-700 dark:text-slate-400 text-lg">Event Description</p>
-    <div class="xl:flex grid grid-cols-2 gap-4">
-      <%= link_to "View Championship", race_events_path, class: "btn btn-primary btn-lg" %>
+    <% if @championship.present? %>
+      <p class="text-indigo-600 text-2xl mb-6 lg:mt-0 mt-2 dark:text-indigo-500"><%= @event.championship.name %></p>
+    <% else %>
+      <p class="text-indigo-600 font-medium mb-6 lg:mt-0 mt-2 dark:text-indigo-500">Something Here</p>
+    <% end %>
+    <h1 class="sm:text-6xl text-4xl font-extrabold"><%= @event.title %></h1>
+    <p class="my-6 text-slate-700 dark:text-slate-400 text-lg"><%= @event.description %></p>
+    <div class="xl:flex grid grid-cols-1 gap-4">
+      <% if @championship.present? %>
+        <%= link_to "View Championship", championship_path(@event.championship), class: "btn btn-primary btn-lg" %>
+      <% end %>
       <% if @event.track.present? %>
         <%= link_to "View Track Info", track_path(@event.track), class: "btn btn-primary btn-lg" %>
       <% end %>
@@ -22,7 +28,7 @@
   <% end %>
     <div class="container mx-auto py-8">
       <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-6">
-        <h1 class="text-3xl font-semibold text-indigo-600 mb-4"><%= @event.title %></h1>
+        <h1 class="text-3xl font-semibold text-indigo-600 mb-4"><% if @championship.present? %><%= @event.championship.name %> - <% end %><%= @event.title %></h1>
         
         <div class="text-gray-600 mb-1">
           <p class="mb-2"><strong>Date:</strong> <%= @event.date.strftime("%B %d, %Y") %></p>
@@ -43,7 +49,7 @@
             <p class="text-gray-700">Track record information not available for this event.</p>
         </div>
         <%= link_to "Back to Events", events_path, class: "btn btn-primary" %>
-        <% if current_user.admin? %>
+        <% if current_user && current_user.admin? %>
           <%= link_to "Edit Event", edit_event_path(@event), class: "btn btn-dark" %> 
         <% end %>
       </div>
@@ -52,7 +58,7 @@
 </div>
 
 <div class="container mx-auto px-4">
-  <h1 class="text-3xl font-semibold mb-4">Rest of the season..</h1>
+  <h1 class="text-3xl font-semibold mb-4">Other events in this Championship</h1>
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
     <% @events.each do |event| %>
@@ -69,7 +75,7 @@
         </div>
         <div class="bg-gray-100 p-4">
           <%= link_to "View Event", event_path(event), class: "text-white-500 hover:underline btn btn-primary" %>
-          <% if current_user.admin? %>
+          <% if current_user && current_user.admin? %>
             <%= link_to "Edit Event", edit_event_path(@event), class: "btn btn-dark" %> 
           <% end %>
         </div>

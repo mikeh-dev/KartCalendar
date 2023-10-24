@@ -24,7 +24,7 @@
   </div>
 </section>
 
-<div class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
+<div class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32" id="track_info">
   <div class="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl" aria-hidden="true">
   </div>
   <div class="absolute -top-52 left-1/2 -z-10 -translate-x-1/2 transform-gpu blur-3xl sm:top-[-28rem] sm:ml-16 sm:translate-x-0 sm:transform-gpu" aria-hidden="true">
@@ -75,7 +75,7 @@
   </div>
 </div>
 
-<section>
+<section id="events">
   <div class="max-w-screen-xl px-4 py-8 mx-auto sm:px-6 sm:py-12 lg:px-8">
     <header class="text-center">
       <h2 class="text-3xl font-bold sm:text-4xl">
@@ -94,7 +94,7 @@
         <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
           <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white">
             <% if @track_test_events.present? %>
-              Next Test Day - <%= @track_test_events.last.date.day.strftime("%A #{track_event.date.day.ordinalize} %B %Y") %>
+              Next Test Day - <%= @track_test_events.last.date.day.strftime("%A #{@track_test_events.date.day.ordinalize} %B %Y") %>
             <% else %>
               Currently No Test Days Planned 
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4">
@@ -112,7 +112,7 @@
         <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
           <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white">
             <% if @track_race_events.present? %>
-              Next Race Day - <%= @track_race_events.last.date.day.strftime("%A #{track_event.date.day.ordinalize} %B %Y") %>
+                  Next Race Day - <%= @track_race_events.last.date.strftime("%A #{ @track_race_events.last.date.day.ordinalize } %B %Y") %>
             <% else %>
               Currently No Race Days Scheduled
               <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4">

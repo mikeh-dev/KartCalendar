@@ -1,8 +1,20 @@
 <%= content_for :title, 'New Event' %>
 
 <div class="max-w-screen-lg mx-auto">
-
   <%= form_with(model: @event, local: true, html: { enctype: 'multipart/form-data' }) do |form| %>
+    <% if @event.errors.any? %>
+      <div id="error_explanation" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative my-5" role="alert">
+        <strong class="font-bold">Oops!</strong>
+        <span class="block sm:inline"> <%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</span>
+
+        <ul class="list-disc list-inside">
+        <% @event.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
     <div class="mb-4">
       <%= form.label :title, class: "block text-gray-700 text-sm font-bold mb-2" %>
       <%= form.text_field :title, class: "form-input" %>

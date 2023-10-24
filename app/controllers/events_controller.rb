@@ -17,6 +17,7 @@ class EventsController < ApplicationController
 
   def show
     @events = Event.all
+    @championship = @event.championship
   end
 
   def new

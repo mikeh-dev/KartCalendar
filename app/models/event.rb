@@ -3,6 +3,7 @@ class Event < ApplicationRecord
   belongs_to :championship, optional: true
   belongs_to :track
 
+  validates :title, :description, :date, :price, :event_type, :track_id, presence: true
   has_one_attached :image
 
   def random_image_url
