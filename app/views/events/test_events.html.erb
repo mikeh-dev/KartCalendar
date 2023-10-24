@@ -22,12 +22,15 @@
       <div class="bg-white shadow-lg rounded-lg overflow-hidden">
         <%= image_tag "JHPhoto-3095.jpg", alt: "Events", class: "w-full h-36 object-cover object-center" %>
         <div class="p-4">
-          <h2 class="text-xl font-semibold mb-2"><%= test_event.title %></h2>
+          <h2 class="text-gray-800 text-xl font-semibold mb-2"><%= test_event.title %></h2>
           <p class="text-gray-600 mb-2"><%= test_event.date.strftime('%B %d, %Y') %></p>
           <p class="text-gray-800"><%= test_event.description.truncate(150, omission: '...') %></p>
         </div>
         <div class="bg-gray-100 p-4">
           <%= link_to "View Details", event_path(test_event), class: "text-blue-500 hover:underline" %>
+          <% if current_user.admin? %>
+            <%= link_to "Edit Event", edit_event_path(test_event), class: "btn btn-dark" %> 
+          <% end %>
         </div>
       </div>
     <% end %>

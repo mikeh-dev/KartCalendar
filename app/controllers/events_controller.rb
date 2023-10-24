@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: %i[index show test_events race_events]
 
   def test_events
     @test_events = Event.where(event_type: 'Test')
@@ -15,7 +16,6 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find_by_id(params[:id])
     @events = Event.all
   end
 
@@ -43,6 +43,11 @@ class EventsController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @event.destroy
+    redirect_to events_url, notice: 'Event was successfully destroyed.'
   end
 
 private
