@@ -1,1 +1,76 @@
-<h1>This is the championships show</h1>
+<div class="container mx-auto sm:py-24 pb-10 px-4 relative z-10 flex flex-wrap items-center justify-between">
+  <div class="xl:w-2/5 w-full xl:text-left text-center xl:pr-16">
+    <p class="text-indigo-600 font-medium mb-6 lg:mt-0 dark:text-indigo-500">Championship</p>
+    <h1 class="sm:text-5xl text-4xl font-extrabold">Championship Name</h1>
+    <p class="my-6 text-slate-700 dark:text-slate-400 text-lg"><%= @championship.description %></p>
+    <div class="xl:flex grid grid-cols-1 gap-4">
+      <%= link_to "View the Calendar", championships_path, class: "btn btn-primary btn-lg" %>
+    </div>
+  </div>
+  <div class="xl:w-3/5 w-full xl:my-0 mt-6 mb-10">
+   <% if @championship.logo.attached? %>
+    <div class="flex justify-center relative">
+      <%= image_tag @championship.logo, alt: "Events", class: "max-w-full xl:max-w-2xl 2xl:max-w-3xl object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-500/20" %>
+    </div>
+  <% else %>
+  <% end %>
+  <% if @championship.image.attached? %>
+    <div class="flex justify-center relative">
+      <%= image_tag @championship.image, alt: "Events", class: "max-w-full xl:max-w-2xl 2xl:max-w-3xl object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-500/20" %>
+    </div>
+  <% else %>
+    <div class="flex justify-center relative">
+      <%= image_tag "JHPhoto-3090.jpg", alt: "Events", class: "max-w-full xl:max-w-2xl 2xl:max-w-3xl object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-50020"%>
+    </div>
+  <% end %>
+    <div class="container mx-auto py-8">
+      <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-6">
+        <h1 class="text-3xl font-semibold text-indigo-600 mb-4"><%= @championship.name %></h1>
+        
+        <div class="text-gray-600 mb-1">
+          <p class="mb-2"><strong>Dates:</strong></p>
+          <p><strong>Championship Entry Fee:</strong> <%= number_to_currency(@championship.price) %></p>
+          <p><strong>Race Fee:</strong> Race Price Here </p>
+        </div>
+        <div class="mb-8">
+          <h2 class="text-xl font-semibold text-indigo-600 mb-2">Description</h2>
+          <p class="text-gray-700"><%= @championship.description %></p>
+        </div>
+        <div class="mb-8">
+          <h2 class="text-xl font-semibold text-indigo-600 mb-2">Track Record</h2>
+            <p class="text-gray-700">Track record information not available for this event.</p>
+        </div>
+        <%= link_to "Back to Events", championships_path, class: "btn btn-primary" %>
+        <% if current_user.admin? %>
+          <%= link_to "Edit Championship", edit_championship_path(@championship), class: "btn btn-dark" %> 
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mx-auto px-4">
+  <h1 class="text-3xl font-semibold mb-4 text-center mb-5"><%= @championship.name %> Calendar</h1>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <% @championships.each do |championship| %>
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+      <% if championship.image.attached? %>
+        <%= image_tag championship.image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
+      <% else %>
+        <%= image_tag "DSC_4486.JPG", alt: "Events", class: "w-full h-36 object-cover object-center" %>
+      <% end %>
+        <div class="p-4">
+          <h2 class="text-gray-800 text-xl font-semibold mb-2"><%= championship.name %></h2>
+          <p class="text-gray-800"><%= championship.description %></p>
+        </div>
+        <div class="bg-gray-100 p-4">
+          <%= link_to "View Event", championships_path(championship), class: "text-white-500 hover:underline btn btn-primary" %>
+          <% if current_user.admin? %>
+            <%= link_to "Edit Event", edit_championship_path(@championship), class: "btn btn-dark" %> 
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

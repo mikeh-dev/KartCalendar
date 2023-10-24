@@ -11,6 +11,7 @@ class ChampionshipsController < ApplicationController
   end
 
   def show
+    @championships = Championship.all
   end
 
   def create
@@ -44,6 +45,10 @@ class ChampionshipsController < ApplicationController
 
   def set_championship
     @championship = Championship.find(params[:id])
+  end
+
+  def championship_params
+    params.require(:championship).permit(:name, :description, :image, :logo, :price, :type)
   end
 
 end
