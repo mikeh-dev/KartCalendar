@@ -3,7 +3,7 @@ class TracksController < ApplicationController
   before_action :set_track, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tracks = Track.includes(:events).all
+    @tracks = Track.includes(:events).order(:name)
   end
 
   def show

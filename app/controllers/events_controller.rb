@@ -16,7 +16,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @events = Event.all
+    @events = Event.where("track_id = ? AND date >= ?", @event.track_id, Date.today)
     @championship = @event.championship
   end
 
