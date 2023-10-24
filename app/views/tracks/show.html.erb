@@ -28,10 +28,6 @@
   </div>
 </section>
 
-<div>
-
-</div>
-
 <div class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
   <div class="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl" aria-hidden="true">
   </div>
@@ -130,9 +126,39 @@
   </div>
 </section>
 
-<div class="relative w-full h-96">
-    <iframe class="absolute top-0 left-0 w-full h-full"
-        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9535.354945862806!2d-2.9416328!3d53.3103343!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487adefa53aa7143%3A0x2d37a59a97a86742!2sHooton%20Park%20Circuit!5e0!3m2!1sen!2suk!4v1697815886011!5m2!1sen!2suk"
-        frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0">
-    </iframe>
+
+<section id="map">
+  <h1 class="text-3xl font-semibold mb-4 text-center mb-5">Find us on Google</h1>
+  <div class="relative w-full h-96 mb-10">
+      <iframe class="absolute top-0 left-0 w-full h-full"
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9535.354945862806!2d-2.9416328!3d53.3103343!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487adefa53aa7143%3A0x2d37a59a97a86742!2sHooton%20Park%20Circuit!5e0!3m2!1sen!2suk!4v1697815886011!5m2!1sen!2suk"
+          frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0">
+      </iframe>
+  </div>
+</section>
+
+<div class="container mx-auto px-4" id="champ-calendar">
+  <h1 class="text-3xl font-semibold mb-4 text-center mb-5"> Calendar</h1>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <% @track_events.each do |track_event| %>
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+      <% if track_event.image.attached? %>
+        <%= image_tag track_event.image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
+      <% else %>
+        <%= image_tag "DSC_4486.JPG", alt: "Events", class: "w-full h-36 object-cover object-center" %>
+      <% end %>
+        <div class="p-4">
+          <h2 class="text-gray-800 text-xl font-semibold mb-2"><%= track_event.title %></h2>
+          <p class="text-gray-800"><%= track_event.description %></p>
+        </div>
+        <div class="bg-gray-100 p-4">
+          <%= link_to "View Event", events_path(track_event), class: "text-white-500 hover:underline btn btn-primary" %>
+          <% if current_user.admin? %>
+            <%= link_to "Edit Event", edit_event_path(track_event), class: "btn btn-dark" %> 
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

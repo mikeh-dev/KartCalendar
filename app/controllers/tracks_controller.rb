@@ -7,6 +7,7 @@ class TracksController < ApplicationController
   end
 
   def show
+    @track_events = @track.events.order(date: :asc)  # Sort events by date in ascending order
   end
 
   def new

@@ -4,8 +4,10 @@
     <h1 class="sm:text-6xl text-4xl font-extrabold">Event Name </h1>
     <p class="my-6 text-slate-700 dark:text-slate-400 text-lg">Event Description</p>
     <div class="xl:flex grid grid-cols-2 gap-4">
-      <%= link_to "Explore Race Weekends", race_events_path, class: "btn btn-primary btn-lg" %>
-      <%= link_to "Explore Test Days", test_events_path, class: "btn btn-primary btn-lg" %>
+      <%= link_to "View Championship", race_events_path, class: "btn btn-primary btn-lg" %>
+      <% if @event.track.present? %>
+        <%= link_to "View Track Info", track_path(@event.track), class: "btn btn-primary btn-lg" %>
+      <% end %>
     </div>
   </div>
   <div class="xl:w-3/5 w-full xl:my-0 mt-6 mb-10">
@@ -32,7 +34,9 @@
         </div>
         <div class="mb-8">
           <h2 class="text-xl font-semibold text-indigo-600 mb-2">Track</h2>
-          <p class="text-gray-700"><%= @event.track.name %></p>
+          <% if @event.track.present? %>
+            <p class="text-gray-700"><%= @event.track.name %></p>
+          <% end %>
         </div>
         <div class="mb-8">
           <h2 class="text-xl font-semibold text-indigo-600 mb-2">Track Record</h2>
