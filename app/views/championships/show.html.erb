@@ -56,21 +56,21 @@
   <h1 class="text-3xl font-semibold mb-4 text-center mb-5"><%= @championship.name %> Calendar</h1>
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-    <% @championships.each do |championship| %>
+    <% @champ_events.each do |champ_event| %>
       <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-      <% if championship.image.attached? %>
-        <%= image_tag championship.image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
+      <% if champ_event.image.attached? %>
+        <%= image_tag champ_event.image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
       <% else %>
         <%= image_tag "DSC_4486.JPG", alt: "Events", class: "w-full h-36 object-cover object-center" %>
       <% end %>
         <div class="p-4">
-          <h2 class="text-gray-800 text-xl font-semibold mb-2"><%= championship.name %></h2>
-          <p class="text-gray-800"><%= championship.description %></p>
+          <h2 class="text-gray-800 text-xl font-semibold mb-2"><%= champ_event.title %></h2>
+          <p class="text-gray-800"><%= champ_event.description %></p>
         </div>
         <div class="bg-gray-100 p-4">
-          <%= link_to "View Event", championships_path(championship), class: "text-white-500 hover:underline btn btn-primary" %>
+          <%= link_to "View Event", events_path(champ_event), class: "text-white-500 hover:underline btn btn-primary" %>
           <% if current_user.admin? %>
-            <%= link_to "Edit Event", edit_championship_path(@championship), class: "btn btn-dark" %> 
+            <%= link_to "Edit Event", edit_event_path(champ_event), class: "btn btn-dark" %> 
           <% end %>
         </div>
       </div>

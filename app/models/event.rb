@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
   has_and_belongs_to_many :users, join_table: 'event_users'
   belongs_to :championship, optional: true
-  has_one :track
+  belongs_to :track
 
   has_one_attached :image
 

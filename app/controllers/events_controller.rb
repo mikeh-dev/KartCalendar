@@ -57,7 +57,7 @@ def set_event
 end
 
 def event_params
-  params.require(:event).permit(:title, :description, :date, :price, :event_type, :image)
+  params.require(:event).permit(:title, :description, :date, :price, :event_type, :image, :championship_id, :track_id)
 end
   
 end

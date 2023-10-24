@@ -12,6 +12,7 @@ class ChampionshipsController < ApplicationController
 
   def show
     @championships = Championship.all
+    @champ_events = @championship.events
   end
 
   def create

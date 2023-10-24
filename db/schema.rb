@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_24_132541) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_24_150454) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,6 +61,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_24_132541) do
     t.string "logo"
     t.string "price"
     t.string "type"
+    t.bigint "event_id"
+    t.index ["event_id"], name: "index_championships_on_event_id"
   end
 
   create_table "event_users", force: :cascade do |t|
@@ -82,7 +84,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_24_132541) do
     t.string "event_type"
     t.string "image"
     t.bigint "championship_id"
+    t.bigint "track_id"
     t.index ["championship_id"], name: "index_events_on_championship_id"
+    t.index ["track_id"], name: "index_events_on_track_id"
   end
 
   create_table "tracks", force: :cascade do |t|
@@ -114,7 +118,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_24_132541) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "championships", "events"
   add_foreign_key "event_users", "events"
   add_foreign_key "event_users", "users"
   add_foreign_key "events", "championships"
+  add_foreign_key "events", "tracks"
 end
