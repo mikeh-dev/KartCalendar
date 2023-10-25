@@ -28,7 +28,8 @@
         </div>
         <div class="bg-gray-100 p-4">
           <%= link_to "View Details", event_path(race_event), class: "text-blue-500 hover:underline" %>
-          <% if current_user && current_user.admin? %>
+          <% if current_user&.admin? %>
+
             <%= link_to "Edit Event", edit_event_path(race_event), class: "btn btn-dark" %> 
           <% end %>
         </div>
