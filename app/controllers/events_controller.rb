@@ -3,16 +3,22 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show test_events race_events]
 
   def test_events
-    @test_events = Event.where(event_type: 'Test')
+    @test_events = Event.where(event_type: 'Test').order(date: :asc)
+    @next_test_events = Event.where(events: { event_type: "Test" })
+                            .where(events: { date: Date.today..(Date.today + 6.days) })
+                            .distinct
   end
 
   def race_events
-    @race_events = Event.where(event_type: 'Race')
+    @race_events = Event.where(event_type: 'Race').order(date: :asc)
+    @next_race_events = Event.where(events: { event_type: "Race" })
+                            .where(events: { date: Date.today..(Date.today + 6.days) })
+                            .distinct
   end
 
   def index
-    @events = Event.all
-    @next_event = Event.where('date >= ?', Date.today).order(date: :asc).first
+    @events = Event.all.order(date: :asc)
+    @next_events = Event.where('date >= ?', Date.today).order(date: :asc).first
   end
 
   def show

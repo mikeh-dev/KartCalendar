@@ -2,25 +2,25 @@
   <div class="w-full text-center">
     <p class="text-indigo-600 font-medium mb-6 lg:mt-0 mt-2 dark:text-indigo-500">Next Up</p>
     <h1 class="sm:text-6xl text-4xl font-extrabold">This Weekend.. </h1>
-    <p class="my-6 text-slate-700 dark:text-slate-400 text-lg">Explore race weekends near you. Get on the grid!</p>
+    <p class="my-6 text-slate-700 dark:text-slate-400 text-lg">Explore Championships running events this weekend. Get on the grid!</p>
   </div>
   
   <div class="w-full grid lg:grid-cols-2">
-    <% @next_championships.each do |championship| %>
+    <% @next_championships.each do |champ| %>
+      <% next_event = champ.events.where(event_type: "Race").where(date: Date.today..(Date.today + 6.days)).first %>
       <div class="flex flex-col items-center text-center mt-6">
         <div class="flex justify-center relative mt-6 mx-4">
-          <% if championship.image.attached? %>
-            <%= image_tag championship.image, alt: "Events", class: "max-w-full object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
+          <% if next_event.image.attached? %>
+            <%= image_tag next_event.image, alt: "Events", class: "max-w-full object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
           <% else %>
             <%= image_tag "JHPhoto-3083.jpg", alt: "Events", class: "max-w-full object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
           <% end %>
         </div>
-        <div class="w-full text-center mt-6">
-          <h1 class="text-4xl"><%= championship.name %></h1>
-          <% next_event = championship.events.where(event_type: "Race").where(date: Date.today..(Date.today + 6.days)).first %>
+        <div class="w-full text-center mt-6 space-y-2">
+          <h1 class="text-4xl"><%= champ.name %></h1>
           <% if next_event %>
-            <p class="text-xl"><%= next_event.date.strftime("%A, %B %e") %></p>
             <p class="text-xl"><%= next_event.title %></p>
+            <p class="text-xl"><%= next_event.date.strftime("%A, %B %e") %></p>
             <p class="text-xl"><%= next_event.track.name %></p>
             <%= link_to "View Details", (event_path(next_event)), class: "btn btn-primary text-white-500 mt-2" %>
           <% else %>

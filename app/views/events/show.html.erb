@@ -48,7 +48,14 @@
           <h2 class="text-xl font-semibold text-indigo-600 mb-2">Track Record</h2>
             <p class="text-gray-700">Track record information not available for this event.</p>
         </div>
-        <%= link_to "Back to Events", events_path, class: "btn btn-primary" %>
+
+        <% if @event.event_type == "Test" %>
+            <%= link_to "Back to Test Days", test_events_path, class: "btn btn-primary" %>
+        <% else %>
+            <%= link_to "Back to Race Days", race_events_path, class: "btn btn-primary" %>
+        <% end %>
+        
+        <%= link_to "Back to All Events", events_path, class: "btn btn-primary" %>
         <% if current_user&.admin? %>
           <%= link_to "Edit Event", edit_event_path(@event), class: "btn btn-dark" %> 
         <% end %>
@@ -57,29 +64,58 @@
   </div>
 </div>
 
-<div class="container mx-auto px-4">
-  <h1 class="text-3xl font-semibold mb-4">Other events at <%= @event.track.name %></h1>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-    <% @events.each do |event| %>
-      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-      <% if event.image.attached? %>
-        <%= image_tag event.image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
-      <% else %>
-        <%= image_tag "DSC_4486.JPG", alt: "Events", class: "w-full h-36 object-cover object-center" %>
+<% if @championship.present? %>
+  <div class="container mx-auto px-4">
+    <h1 class="text-3xl font-semibold mb-4">Other events in <%= @championship.name %></h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <% @championship.events.each do |event| %>
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <% if event.image.attached? %>
+          <%= image_tag event.image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
+        <% else %>
+          <%= image_tag "DSC_4486.JPG", alt: "Events", class: "w-full h-36 object-cover object-center" %>
+        <% end %>
+          <div class="p-4">
+            <h2 class="text-gray-800 text-xl font-semibold mb-2"><%= event.title %> <% if @championship.present? %>- <%= event.championship.name %><% end %></h2>
+            <p class="text-gray-600 mb-2"><%= event.track.name %></p>
+            <p class="text-gray-600 mb-2"><%= event.date.strftime('%B %d, %Y') %></p>
+            <p class="text-gray-800"><%= event.description.truncate(150, omission: '...') %></p>
+          </div>
+          <div class="bg-gray-100 p-4">
+            <%= link_to "View Event", event_path(event), class: "text-white-500 hover:underline btn btn-primary" %>
+            <% if current_user&.admin? %>
+              <%= link_to "Edit Event", edit_event_path(event), class: "btn btn-dark" %> 
+            <% end %>
+          </div>
+        </div>
       <% end %>
-        <div class="p-4">
-          <h2 class="text-gray-800 text-xl font-semibold mb-2"><%= event.title %> <% if @championship.present? %>- <%= event.championship.name %><% end %></h2>
-          <p class="text-gray-600 mb-2"><%= event.track.name %></p>
-          <p class="text-gray-600 mb-2"><%= event.date.strftime('%B %d, %Y') %></p>
-          <p class="text-gray-800"><%= event.description.truncate(150, omission: '...') %></p>
-        </div>
-        <div class="bg-gray-100 p-4">
-          <%= link_to "View Event", event_path(event), class: "text-white-500 hover:underline btn btn-primary" %>
-          <% if current_user&.admin? %>
-            <%= link_to "Edit Event", edit_event_path(event), class: "btn btn-dark" %> 
-          <% end %>
-        </div>
-      </div>
-    <% end %>
+    </div>
   </div>
-</div>
+  <% else %>
+    <div class="container mx-auto px-4">
+      <h1 class="text-3xl font-semibold mb-4">Other Test Days at <%= @event.track.name %></h1>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <% @events.each do |event| %>
+          <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+          <% if event.image.attached? %>
+            <%= image_tag event.image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
+          <% else %>
+            <%= image_tag "DSC_4486.JPG", alt: "Events", class: "w-full h-36 object-cover object-center" %>
+          <% end %>
+            <div class="p-4">
+              <h2 class="text-gray-800 text-xl font-semibold mb-2"><%= event.title %> <% if @championship.present? %>- <%= event.championship.name %><% end %></h2>
+              <p class="text-gray-600 mb-2"><%= event.track.name %></p>
+              <p class="text-gray-600 mb-2"><%= event.date.strftime('%B %d, %Y') %></p>
+              <p class="text-gray-800"><%= event.description.truncate(150, omission: '...') %></p>
+            </div>
+            <div class="bg-gray-100 p-4">
+              <%= link_to "View Event", event_path(event), class: "text-white-500 hover:underline btn btn-primary" %>
+              <% if current_user&.admin? %>
+                <%= link_to "Edit Event", edit_event_path(event), class: "btn btn-dark" %> 
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>

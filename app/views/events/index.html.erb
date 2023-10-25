@@ -1,42 +1,53 @@
-<% content_for :header do %>
-  <header class="bg-cover bg-center relative bg-no-repeat" style="background-image: url(<%= asset_url("") %>);">
-    <div class="dark:bg-slate-900">
-      <%= render "shared/nav_menu" %>
-    </div>
-    <div class="container mx-auto sm:py-24 pb-10 px-4 relative z-10 flex flex-wrap items-center justify-between">
-      <div class="xl:w-2/5 w-full xl:text-left text-center xl:pr-16">
-        <p class="text-indigo-600 font-medium mb-6 lg:mt-0 mt-2 dark:text-indigo-500">Upcoming Events</p>
-        <h1 class="sm:text-6xl text-4xl font-extrabold">The Next Race <br class="sm:hidden block" />Near You</h1>
-        <p class="my-6 text-slate-700 dark:text-slate-400 text-lg">Explore test days and race weekends near you. Join the Grid!</p>
+<div class="container mx-auto sm:py-24 pb-10 px-4 relative z-10 flex flex-wrap items-center justify-between">
+  <div class="w-full text-center">
+    <p class="text-indigo-600 font-medium mb-6 lg:mt-0 mt-2 dark:text-indigo-500">Next Up</p>
+    <h1 class="sm:text-6xl text-4xl font-extrabold">This Weekends Races and Test Days</h1>
+    <p class="my-6 text-slate-700 dark:text-slate-400 text-lg">All Events in one place...</p>
+  </div>
+  
+    <div class="w-full grid <%= @events.size > 1 ? 'lg:grid-cols-2' : 'lg:grid-cols-1' %>">
+      <% @events.each do |event| %>
+        <div class="flex flex-col items-center text-center mt-6">
+          <div class="flex justify-center relative mt-6 mx-4">
+            <% if event.image.attached? %>
+              <%= image_tag event.image, alt: "Events", class: "max-w-full object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
+            <% else %>
+              <%= image_tag "JHPhoto-3083.jpg", alt: "Events", class: "max-w-full object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
+            <% end %>
+          </div>
+          <div class="w-full text-center mt-6 space-y-2">
+            <h1 class="text-4xl"><%= event.title %></h1>
+              <p class="text-xl"><%= event.date.strftime("%A, %B %e") %></p>
+              <p class="text-xl"><%= event.title %></p>
+              <p class="text-xl"><%= event.track.name %></p>
+              <%= link_to "View Details", (event_path(event)), class: "btn btn-primary text-white-500 mt-2" %>
+          </div>
       </div>
-      <div class="xl:w-3/5 w-full xl:my-0 mt-6 mb-10">
-        <div class="flex justify-center relative">
-          <%= image_tag "JHPhoto-3083.jpg", alt: "Events", class: "max-w-full xl:max-w-2xl 2xl:max-w-3xl object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-500/20" %>
-        </div>
-      </div>
-      <div class="xl:w-2/5 w-full xl:text-left text-center xl:pr-16">
+    <% end %>
+  </div>
+</div>
 
-        <h1 class="sm:text-6xl text-4xl font-extrabold"><%= @next_event.title %></h1>
-        <p class="my-6 text-slate-700 dark:text-slate-400 text-lg"><%= @events.first.date.strftime('%m/%d/%Y') %></p>
-      </div>
-    </div>
-  </header>
-<% end %>
-
-<div class="container mx-auto mt-8">
-  <h1 class="text-3xl font-semibold mb-4">Upcoming Events</h1>
-
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+<div class="container mx-auto mt-8 px-4">
+  <h1 class="text-3xl font-semibold mb-4 text-center">Upcoming Events</h1>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
     <% @events.each do |event| %>
       <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-        <%= image_tag "JHPhoto-3095.jpg", alt: "Events", class: "w-full h-36 object-cover object-center" %>
+        <% if event.image.present? %>
+          <%= image_tag event.image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
+        <% else %>
+          <%= image_tag "JHPhoto-3095.jpg", alt: "Events", class: "w-full h-36 object-cover object-center" %>
+        <% end %>
         <div class="p-4">
-          <h2 class="text-xl font-semibold mb-2"><%= event.title %></h2>
+          <h2 class="text-xl text-gray-800 font-semibold mb-2"><%= event.title %></h2>
           <p class="text-gray-600 mb-2"><%= event.date.strftime('%B %d, %Y') %></p>
           <p class="text-gray-800"><%= event.description.truncate(150, omission: '...') %></p>
         </div>
         <div class="bg-gray-100 p-4">
           <%= link_to "View Details", event_path(event), class: "text-blue-500 hover:underline" %>
+          <% if current_user&.admin? %>
+
+            <%= link_to "Edit Event", edit_event_path(event), class: "btn btn-dark" %> 
+          <% end %>
         </div>
       </div>
     <% end %>

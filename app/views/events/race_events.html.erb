@@ -1,26 +1,42 @@
 <div class="container mx-auto sm:py-24 pb-10 px-4 relative z-10 flex flex-wrap items-center justify-between">
-  <div class=" w-full text-center">
-    <p class="text-indigo-600 font-medium mb-6 lg:mt-0 mt-2 dark:text-indigo-500">Upcoming Races</p>
-    <h1 class="sm:text-6xl text-4xl font-extrabold">Race Weekends </h1>
+  <div class="w-full text-center">
+    <p class="text-indigo-600 font-medium mb-6 lg:mt-0 mt-2 dark:text-indigo-500">Next Up</p>
+    <h1 class="sm:text-6xl text-4xl font-extrabold">This Weekends Racing.. </h1>
     <p class="my-6 text-slate-700 dark:text-slate-400 text-lg">Explore race weekends near you. Get on the grid!</p>
   </div>
-  <div class=" w-full mt-6 mb-10">
-    <div class="flex justify-center relative">
-      <%= image_tag "JHPhoto-3083.jpg", alt: "Events", class: "max-w-full xl:max-w-2xl 2xl:max-w-3xl object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
-    </div>
-  </div>
-  <div class="w-full text-center mt-6">
-    <h1 class="text-4xl"><%= @race_events.first.title %></h1>
+  
+  <div class="w-full grid <%= @next_race_events.size > 1 ? 'lg:grid-cols-2' : 'lg:grid-cols-1' %>">
+      <% @next_race_events.each do |race| %>
+        <div class="flex flex-col items-center text-center mt-6">
+          <div class="flex justify-center relative mt-6 mx-4">
+            <% if race.image.attached? %>
+              <%= image_tag race.image, alt: "Events", class: "lg:max-h-fit max-w-full object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
+            <% else %>
+              <%= image_tag "JHPhoto-3083.jpg", alt: "Events", class: "max-w-full object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
+            <% end %>
+          </div>
+          <div class="w-full text-center mt-6 space-y-2">
+            <h1 class="text-4xl"><%= race.title %></h1>
+              <p class="text-xl"><%= race.date.strftime("%A, %B %e") %></p>
+              <p class="text-xl"><%= race.title %></p>
+              <p class="text-xl"><%= race.track.name %></p>
+              <%= link_to "View Details", (event_path(race)), class: "btn btn-primary text-white-500 mt-2" %>
+          </div>
+      </div>
+    <% end %>
   </div>
 </div>
 
 <div class="container mx-auto mt-8 px-4">
   <h1 class="text-3xl font-semibold mb-4 text-center">Upcoming Events</h1>
-
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
     <% @race_events.each do |race_event| %>
       <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-        <%= image_tag "JHPhoto-3095.jpg", alt: "Events", class: "w-full h-36 object-cover object-center" %>
+        <% if race_event.image.present? %>
+          <%= image_tag race_event.image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
+        <% else %>
+          <%= image_tag "JHPhoto-3095.jpg", alt: "Events", class: "w-full h-36 object-cover object-center" %>
+        <% end %>
         <div class="p-4">
           <h2 class="text-xl text-gray-800 font-semibold mb-2"><%= race_event.title %></h2>
           <p class="text-gray-600 mb-2"><%= race_event.date.strftime('%B %d, %Y') %></p>

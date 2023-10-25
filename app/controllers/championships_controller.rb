@@ -3,7 +3,7 @@ class ChampionshipsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
 
   def index
-    @championships = Championship.all
+    @championships = Championship.all.order(name: :asc)
     @next_championships = Championship.joins(:events)
                             .where(events: { event_type: "Race" })
                             .where(events: { date: Date.today..(Date.today + 6.days) })

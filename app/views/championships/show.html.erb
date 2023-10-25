@@ -26,9 +26,8 @@
       <%= image_tag "JHPhoto-3090.jpg", alt: "Events", class: "max-w-full xl:max-w-2xl 2xl:max-w-3xl object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-50020"%>
     </div>
   <% end %>
-    <div class="container mx-auto py-8 max-w-full xl:max-w-2xl 2xl:max-w-3xl object-cover rounded-3xl relative z-20 shadow-2xl">
-      <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-6">
-        <h1 class="text-3xl font-semibold text-indigo-600 mb-4"><%= @championship.name %></h1>
+    <div class="container mx-auto py-8 max-w-full xl:max-w-2xl 2xl:max-w-3xl object-cover rounded-3xl relative z-20 shadow-2xl p-6">
+        <h1 class="text-3xl font-semibold text-indigo-600 mb-4 text-center"><%= @championship.name %></h1>
         
         <div class="text-gray-600 mb-1">
           <p class="mb-2"><strong>Dates:</strong></p>
@@ -48,7 +47,7 @@
 
           <%= link_to "Edit Championship", edit_championship_path(@championship), class: "btn btn-dark" %> 
         <% end %>
-      </div>
+      
     </div>
   </div>
 </div>

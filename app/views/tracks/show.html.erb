@@ -189,8 +189,8 @@
           <p class="text-gray-800"><%= track_event.description %></p>
         </div>
         <div class="bg-gray-100 p-4">
-          <%= link_to "View Event", events_path(track_event), class: "text-white-500 hover:underline btn btn-primary" %>
-          <% if current_user.admin? %>
+          <%= link_to "View Event", event_path(track_event), class: "text-white-500 hover:underline btn btn-primary" %>
+          <% if current_user&.admin? %>
             <%= link_to "Edit Event", edit_event_path(track_event), class: "btn btn-dark" %> 
           <% end %>
         </div>
