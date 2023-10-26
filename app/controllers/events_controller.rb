@@ -10,10 +10,9 @@ class EventsController < ApplicationController
   end
 
   def race_events
-    @race_events = Event.where(event_type: 'Race').order(date: :asc)
-    @next_race_events = Event.where(events: { event_type: "Race" })
-                            .where(events: { date: Date.today..(Date.today + 6.days) })
-                            .distinct
+    @race_events = Event.where(event_type: 'Race')
+                      .where("date >= ?", Date.today)
+                      .order(date: :asc)
   end
 
   def index
@@ -22,8 +21,10 @@ class EventsController < ApplicationController
   end
 
   def show
-    @events = Event.where("track_id = ? AND date >= ?", @event.track_id, Date.today)
     @championship = @event.championship
+    @events = Event.where(championship: @championship)
+                 .where('date >= ? AND id != ?', Date.today, @event.id)
+                 .order(date: :asc)
   end
 
   def new
