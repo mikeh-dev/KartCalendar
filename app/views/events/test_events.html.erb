@@ -5,24 +5,26 @@
     <p class="my-6 text-slate-700 dark:text-slate-400 text-lg">Check out some test days running this weekend to get some practice in.</p>
   </div>
   
-    <div class="w-full grid <%= @next_test_events.size > 1 ? 'lg:grid-cols-2' : 'lg:grid-cols-1' %>">
-      <% @next_test_events.each do |test_day| %>
+    <div class="w-full grid <%= @test_events.size > 1 ? 'lg:grid-cols-2' : 'lg:grid-cols-1' %>">
+      <% @test_events.each do |test_event| %>
+      <% if test_event.date >= Date.today && test_event.date <= Date.today + 6.days %>
         <div class="flex flex-col items-center text-center mt-6">
           <div class="flex justify-center relative mt-6 mx-4">
-            <% if test_day.image.attached? %>
-              <%= image_tag test_day.image, alt: "Events", class: "lg:max-h-fit max-w-full object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
+            <% if test_event.image.attached? %>
+              <%= image_tag test_event.image, alt: "Events", class: "lg:max-h-fit max-w-full object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
             <% else %>
               <%= image_tag "JHPhoto-3083.jpg", alt: "Events", class: "max-w-full object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
             <% end %>
           </div>
           <div class="w-full text-center mt-6 space-y-2">
-            <h1 class="text-4xl"><%= test_day.title %></h1>
-              <p class="text-xl"><%= test_day.date.strftime("%A, %B %e") %></p>
-              <p class="text-xl"><%= test_day.title %></p>
-              <p class="text-xl"><%= test_day.track.name %></p>
-              <%= link_to "View Details", (event_path(test_day)), class: "btn btn-primary text-white-500 mt-2" %>
+            <h1 class="text-4xl"><%= test_event.title %></h1>
+              <p class="text-xl"><%= test_event.date.strftime("%A, %B %e") %></p>
+              <p class="text-xl"><%= test_event.title %></p>
+              <p class="text-xl"><%= test_event.track.name %></p>
+              <%= link_to "View Details", (event_path(test_event)), class: "btn btn-primary text-white-500 mt-2" %>
           </div>
       </div>
+      <% end %>
     <% end %>
   </div>
 </div>
@@ -31,6 +33,7 @@
   <h1 class="text-3xl font-semibold mb-4 text-center">Upcoming Events</h1>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
     <% @test_events.each do |test_event| %>
+      <% if test_event.date > Date.today + 6.days %>
       <div class="bg-white shadow-lg rounded-lg overflow-hidden">
         <% if test_event.image.present? %>
           <%= image_tag test_event.image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
@@ -50,6 +53,7 @@
           <% end %>
         </div>
       </div>
+      <% end %>
     <% end %>
   </div>
 </div>
