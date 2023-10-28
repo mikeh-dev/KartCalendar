@@ -43,6 +43,7 @@
         <div class="p-4">
           <h2 class="text-xl text-gray-800 font-semibold mb-2"><%= race_event.title %></h2>
           <p class="text-gray-600 mb-2"><%= race_event.date.strftime('%B %d, %Y') %></p>
+          <p class="text-gray-600 mb-2"><%= race_event.track.name %></p>
           <p class="text-gray-800"><%= race_event.description.truncate(150, omission: '...') %></p>
         </div>
         <div class="bg-gray-100 p-4">
