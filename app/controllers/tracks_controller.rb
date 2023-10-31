@@ -4,6 +4,7 @@ class TracksController < ApplicationController
 
   def index
     @tracks = Track.includes(:events).order(:name)
+    @upcoming_tracks = Track.joins(:events).where("events.date >= ? AND events.date <= ?", Date.today, Date.today + 6.days).distinct
   end
 
   def show
@@ -48,6 +49,6 @@ class TracksController < ApplicationController
   end
 
   def track_params
-    params.require(:track).permit(:name, :address, :contact_number, :main_image, :length, :email, :image, :description, :location)
+    params.require(:track).permit(:name, :address, :contact_number, :main_image, :length, :email, :race_image, :description, :location, :logo, :short_desc, :test_image, :champ_image, :tagline, :website, :contact_image, :static_map_url, :social_media => {}, :facilities => [])
   end
 end

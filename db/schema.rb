@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_25_230546) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_31_151536) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -62,6 +62,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_25_230546) do
     t.string "price"
     t.string "type"
     t.bigint "event_id"
+    t.string "contact_number"
+    t.string "mobile"
+    t.string "website"
+    t.string "email"
+    t.string "short_name"
+    t.string "long_name"
+    t.decimal "test_fee"
+    t.decimal "race_fee"
+    t.decimal "champ_fee"
+    t.string "tagline"
     t.index ["event_id"], name: "index_championships_on_event_id"
   end
 
@@ -100,6 +110,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_25_230546) do
     t.text "description"
     t.string "location"
     t.string "logo"
+    t.string "short_desc"
+    t.string "tagline"
+    t.string "facilities", default: [], array: true
+    t.string "website"
+    t.string "static_map_url"
+    t.text "social_media"
+    t.string "mobile"
   end
 
   create_table "users", force: :cascade do |t|

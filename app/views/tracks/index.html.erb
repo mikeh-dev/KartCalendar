@@ -1,20 +1,21 @@
+
 <div class="container mx-auto px-4 py-8">
-  <h1 class="text-3xl font-semibold mb-8">Tracks</h1>
+  <h1 class="text-3xl font-semibold mb-8 mt-10 text-center">All Tracks</h1>
     <% @tracks.each do |track| %>
         <% if track.main_image.attached? %>
-          <div class="bg-cover bg-center my-4" style="background-image: url('<%= url_for(track.main_image) %>')">
+          <div class="bg-cover bg-center my-4 rounded" style="background-image: url('<%= url_for(track.main_image) %>')">
             <div class="bg-[hsla(0,0%,0%,0.6)]">
         <% else %>
-          <div class="bg-cover bg-center my-4" style="background-image: url('<%= asset_url('placeholder.jpg') %>')">
+          <div class="bg-cover bg-center my-4 rounded" style="background-image: url('<%= asset_url('placeholder.jpg') %>')">
             <div class="bg-[hsla(0,0%,0%,0.6)]">
         <% end %>
               <div class="px-10 py-10" mb-4"">
                 <h2 class=" text-4xl font-bold mb-2"><%= track.name %></h2>
                 <% if track.events.present? %>
-                  <p class="mb-4"><%= track.description %> - Next Race Meeting -
+                  <p class="mb-4"><%= track.short_desc %> - Next Race Meeting -
                   <%= track.events.first.date.strftime("%A #{track.events.first.date.day.ordinalize} %B %Y") %></p>
                 <% else %>
-                  <p class="mb-4"><%= track.description %></p>
+                  <p class="mb-4"><%= track.short_desc %></p>
                 <% end %>
                 <%= link_to "View Track", track, class: "btn btn-primary" %>
                 <% if current_user&.admin? %>

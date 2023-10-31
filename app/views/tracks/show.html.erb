@@ -6,17 +6,17 @@
     <% end %>
 >
   <div class="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:items-center lg:px-8">
-    <div class="max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
+    <div class="max-w-xl text-center ltr:sm:text-left">
       <h1 class="text-3xl font-extrabold sm:text-5xl">
         <%= @track.name %>
         <strong class="block font-extrabold text-rose-700">
-          <%= @track.location %>
+          <%= @track.location %>, UK
         </strong>
       </h1>
       <p class="mt-4 max-w-lg sm:text-xl/relaxed">
-        <%= @track.description %>
+        <%= @track.short_desc %>
       </p>
-      <div class="mt-8 flex flex-wrap gap-4 text-center">
+      <div class="mt-8 flex flex-wrap gap-4 md:justify-center sm:justify-center">
         <%= link_to "Race Calendar", "#champ-calendar", class: "block w-full rounded bg-rose-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto" %>
         <%= link_to "Contact", "#contact", class: "block w-full rounded bg-white px-12 py-3 text-sm font-medium text-rose-600 shadow hover:text-rose-700 focus:outline-none focus:ring active:text-rose-500 sm:w-auto" %>
       </div>
@@ -24,7 +24,7 @@
   </div>
 </section>
 
-<div class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32" id="track_info">
+<div class="relative isolate overflow-hidden bg-gray-900 py-10 mb-10 mt-10 sm:py-32" id="track_info">
   <div class="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl" aria-hidden="true">
   </div>
   <div class="absolute -top-52 left-1/2 -z-10 -translate-x-1/2 transform-gpu blur-3xl sm:top-[-28rem] sm:ml-16 sm:translate-x-0 sm:transform-gpu" aria-hidden="true">
@@ -33,10 +33,7 @@
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-2xl lg:mx-0">
       <h2 class="text-4xl font-bold tracking-tight text-white sm:text-6xl"><%= @track.name %></h2>
-      <p class="text-4xl font-bold mt-6 mb-6 text-lg leading-8 text-gray-300 sm:text-4xl"><%= @track.description %></p>
-    </div>
-     <div class="mx-auto max-w-2xl lg:mx-0">
-      <p class="mt-6 text-lg leading-8 text-gray-300"><%= @track.address %></p>
+      <p class="text-3xl font-bold mt-6 mb-6 text-lg leading-8 text-gray-300 sm:text-3xl"><%= @track.short_desc %></p>
     </div>
     <div class="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
       <dl class="mb-16 grid grid-cols-2 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
@@ -57,26 +54,22 @@
           <dd class="text-2xl font-bold leading-9 tracking-tight text-white">12/2/23</dd>
         </div>
       </dl>
-      <div class="grid grid-cols-2 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
-          <div class="md:col-span-2 lg:col-span-1">
-            <p> - Toilets & Cafe On-Site</p>
-          </div>
-          <div class="md:col-span-2 lg:col-span-1">
-            <p> - ARKS Testing Available</p>
-          </div>
-          <div class="md:col-span-2 lg:col-span-1">
-            <p> - Arrive and Drive Karts</p>
-          </div>
-          <div class="md:col-span-2 lg:col-span-1">
-            <p> - Monthly Race Meetings</p>
+      <div class="grid grid-cols-2 gap-x-4 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+      <% @track.facilities.each do |facility| %>
+        <div>
+          <p> - <%= facility %></p>
         </div>
-      </div>
+      <% end %>
     </div>
+    </div>
+  </div>
+  <div class="relative mx-auto max-w-screen-xl px-4 py-4 sm:px-6 lg:flex lg:items-center lg:px-8 mt-16">
+    <p class="text-lg leading-8 text-gray-300"><%= @track.description %></p>
   </div>
 </div>
 
 <section id="events">
-  <div class="max-w-screen-xl px-4 py-8 mx-auto sm:px-6 sm:py-12 lg:px-8">
+  <div class="max-w-screen-xl px-4 py-8 mx-auto sm:px-6 sm:py-8 lg:px-8">
     <header class="text-center">
       <h2 class="text-3xl font-bold sm:text-4xl">
         Racing and Testing at <%= @track.name %>
@@ -97,9 +90,6 @@
               Next Test Day - <%= @track_test_events.last.date.day.strftime("%A #{@track_test_events.date.day.ordinalize} %B %Y") %>
             <% else %>
               Currently No Test Days Planned 
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4">
-              Subscribe for Updates
-            </button>
             <% end %>
           </span>
         </div>
@@ -107,7 +97,7 @@
     </li>
 
     <li>
-      <%= link_to "#", class: "relative block group" do %>
+      <%= link_to @track_race_events.last, class: "relative block group" do %>
         <%= image_tag "JHPhoto-3090.jpg", alt: "about photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
         <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
           <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white">
@@ -115,9 +105,6 @@
                   Next Race Day - <%= @track_race_events.last.date.strftime("%A #{ @track_race_events.last.date.day.ordinalize } %B %Y") %>
             <% else %>
               Currently No Race Days Scheduled
-              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4">
-                Subscribe for Updates
-              </button>
             <% end %>
           </span>
         </div>
@@ -130,30 +117,50 @@
 <section id="contact">
   <div class="relative isolate overflow-hidden bg-gray-900 py-10 sm:py-32">
   <div class="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl" aria-hidden="true">
-      <h1 class="text-4xl font-bold tracking-tight text-white sm:text-6xl text-center">Contact</h1>
   </div>
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      
      <div class="mx-auto max-w-2xl lg:mx-0">
-      <h2 class="text-gray-300 ">Track Address</h2>
+      <h2 class="text-white">Contact Details</h2>
       <p class="mt-6 text-lg leading-8 text-gray-300"><%= @track.address %></p>
     </div>
     <div class="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
-      <dl class="mb-16 grid grid-cols-2 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
+      <dl class="mb-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
         <div class="flex flex-col-reverse">
           <dt class="text-base leading-7 text-gray-300">Contact Number</dt>
-          <dd class="text-2xl font-bold leading-9 tracking-tight text-white">01664 458587</dd>
+          <dd class="text-1xl font-bold leading-9 tracking-tight text-white"><%= @track.contact_number %></dd>
         </div>
         <div class="flex flex-col-reverse">
           <dt class="text-base leading-7 text-gray-300">Email Address</dt>
-          <dd class="text-2xl font-bold leading-9 tracking-tight text-white">email@karttrack.com</dd>
+          <dd class="text-1xl font-bold leading-9 tracking-tight text-white"><%= @track.email %></dd>
         </div>
         <div class="flex flex-col-reverse">
           <dt class="text-base leading-7 text-gray-300">Website</dt>
-          <dd class="text-2xl font-bold leading-9 tracking-tight text-white">www.karttack.com</dd>
+          <dd class="text-1xl font-bold leading-9 tracking-tight text-white md:text-md"><%= @track.website %></dd>
         </div>
         <div class="flex flex-col-reverse">
           <dt class="text-base leading-7 text-gray-300">Social Media</dt>
-          <dd class="text-2xl font-bold leading-9 tracking-tight text-white">Link - Link</dd>
+          <dd class="flex flex-row items-center space-x-4 text-1xl font-bold leading-9 tracking-tight text-white">
+            <% if @track.social_media[:facebook].present? %>
+            <%= link_to @track.social_media[:facebook], target: "_blank", rel: "noopener noreferrer" do %>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955 .192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
+              </svg>
+            <% end %>
+            <% end %>
+            <% if @track.social_media[:instagram].present? %>
+              <%= link_to @track.social_media[:instagram], target: "_blank", rel: "noopener noreferrer" do %>
+              <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 "
+                  fill="currentColor"
+                  viewBox="0 0 24 24">
+                  <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                </svg>
+              <% end %>
+            <% end %>
+          </dd>
         </div>
       </dl>
     </div>
@@ -167,7 +174,7 @@
   <h1 class="text-3xl font-semibold mb-4 text-center mb-5">Find us on Google</h1>
   <div class="relative w-full h-96 mb-10">
       <iframe class="absolute top-0 left-0 w-full h-full"
-          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9535.354945862806!2d-2.9416328!3d53.3103343!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487adefa53aa7143%3A0x2d37a59a97a86742!2sHooton%20Park%20Circuit!5e0!3m2!1sen!2suk!4v1697815886011!5m2!1sen!2suk"
+          src="<%= @track.static_map_url %>"
           frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0">
       </iframe>
   </div>
