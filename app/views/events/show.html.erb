@@ -1,4 +1,4 @@
-<div class="container mx-auto sm:py-24 pb-10 px-4 relative z-10 flex flex-wrap items-center justify-between">
+<div class="container mx-auto sm:py-4 pb-5 px-4 relative z-10 flex flex-wrap items-center justify-between">
   <div class="xl:w-2/5 w-full xl:text-left text-center xl:pr-16">
     <% if @championship.present? %>
       <p class="text-indigo-600 text-2xl mb-6 lg:mt-0 mt-2 dark:text-indigo-500"><%= @event.championship.name %></p>
@@ -26,28 +26,25 @@
       <%= image_tag "JHPhoto-3115.jpg", alt: "Events", class: "max-w-full xl:max-w-2xl 2xl:max-w-3xl object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-50020"%>
     </div>
   <% end %>
-    <div class="container mx-auto py-8">
-      <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-6">
-        <h1 class="text-3xl font-semibold text-indigo-600 mb-4"><% if @championship.present? %><%= @event.championship.name %> - <% end %><%= @event.title %></h1>
-        
-        <div class="text-gray-600 mb-1">
-          <p class="mb-2"><strong>Date:</strong> <%= @event.date.strftime("%B %d, %Y") %></p>
-          <p><strong>Price:</strong> <%= number_to_currency(@event.price) %></p>
+    <div class="container mx-auto py-8 max-w-full xl:max-w-2xl 2xl:max-w-3xl object-cover rounded-3xl relative z-20 p-6">
+        <h1 class="text-3xl font-semibold text-white mb-4 text-center"><%= @event.title %></h1>
+        <div class="text-gray-200 mb-1">
+          <p class="mb-2"><strong>Track - </strong> <%= @event.track.name %>, <%= @event.track.location %> </p>
+          <p class="mb-2"><strong>Date - </strong> <%= @event.date.strftime('%m/%d/%Y') %> </p>
+          <p class="mb-6"><strong>Price - </strong> £<%= @event.price.to_i %> </p>
         </div>
-        <div class="mb-8">
-          <h2 class="text-xl font-semibold text-indigo-600 mb-2">Description</h2>
-          <p class="text-gray-700"><%= @event.description %></p>
+        <div class="mb-8 mt-4">
+          <h2 class="text-xl font-semibold text-white mb-2">Classes</h2>
+          <p class="text-gray-300">Classes Here</p>
         </div>
-        <div class="mb-8">
-          <h2 class="text-xl font-semibold text-indigo-600 mb-2">Track</h2>
-          <% if @event.track.present? %>
-            <p class="text-gray-700"><%= @event.track.name %></p>
-          <% end %>
+        <div class="mb-8 mt-4">
+          <h2 class="text-xl font-semibold text-white mb-2">Weather Forecast</h2>
+          <p class="text-gray-300">Weather here</p>
         </div>
-        <div class="mb-8">
-          <h2 class="text-xl font-semibold text-indigo-600 mb-2">Track Record</h2>
-            <p class="text-gray-700">Track record information not available for this event.</p>
+        <div class="mb-8 mt-4">
+          <h2 class="text-xl font-semibold text-white mb-2">Add to Calendar Button</h2>
         </div>
+
 
         <% if @event.event_type == "Test" %>
             <%= link_to "Back to Test Days", test_events_path, class: "btn btn-primary" %>

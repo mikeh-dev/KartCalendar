@@ -10,4 +10,10 @@ class Event < ApplicationRecord
     Faker::LoremFlickr.image(size: "300x200", search_terms: ["event"])
   end
 
+  scope :upcoming_based_on_date, -> { where("date > ?", Date.today).order("date ASC") }
+
+  def self.next_based_on_date
+    upcoming_based_on_date.first
+  end
+
 end

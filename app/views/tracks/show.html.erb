@@ -86,7 +86,7 @@
         <% if @track_test_image.present? %>
           <%= image_tag @track.test_image, alt: "about photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
         <% else %>
-          <%= image_tag "JHP_9755.jpg", alt: "about photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
+          <%= image_tag "JHPhoto-3114.jpg", alt: "about photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
         <% end %>
           <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
             <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white">
@@ -110,7 +110,7 @@
           <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
             <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white">
               <% if @track_race_events.present? %>
-                    Next Race Day - <%= @track_race_events.last.date.strftime("%A #{ @track_race_events.last.date.day.ordinalize } %B %Y") %>
+                    Next Race Day - <%= @track_race_events.last.date.strftime("%A #{ @track_race_events.last.date.day.ordinalize } %B %Y")%> - <%= @track_race_events.last.title %>
               <% else %>
                 Currently No Race Days Scheduled
               <% end %>
@@ -147,8 +147,8 @@
           <dd class="text-1xl font-bold leading-9 tracking-tight text-white md:text-md"><%= @track.website %></dd>
         </div>
         <div class="flex flex-col-reverse">
-          <dt class="text-base leading-7 text-gray-300">Social Media</dt>
-          <dd class="flex flex-row items-center space-x-4 text-1xl font-bold leading-9 tracking-tight text-white">
+          <dt class="text-base leading-7 text-gray-300 mt-2">Social Media</dt>
+          <dd class="flex flex-row items-center justify-start space-x-4 text-1xl font-bold leading-9 tracking-tight text-white">
             <% if @track.social_media[:facebook].present? %>
             <%= link_to @track.social_media[:facebook], target: "_blank", rel: "noopener noreferrer" do %>
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
