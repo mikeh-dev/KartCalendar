@@ -1,0 +1,983 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 14.5 (Homebrew)
+-- Dumped by pg_dump version 14.5 (Homebrew)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: action_text_rich_texts; Type: TABLE; Schema: public; Owner: michaelhoward
+--
+
+CREATE TABLE public.action_text_rich_texts (
+    id bigint NOT NULL,
+    name character varying NOT NULL,
+    body text,
+    record_type character varying NOT NULL,
+    record_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+ALTER TABLE public.action_text_rich_texts OWNER TO michaelhoward;
+
+--
+-- Name: action_text_rich_texts_id_seq; Type: SEQUENCE; Schema: public; Owner: michaelhoward
+--
+
+CREATE SEQUENCE public.action_text_rich_texts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.action_text_rich_texts_id_seq OWNER TO michaelhoward;
+
+--
+-- Name: action_text_rich_texts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: michaelhoward
+--
+
+ALTER SEQUENCE public.action_text_rich_texts_id_seq OWNED BY public.action_text_rich_texts.id;
+
+
+--
+-- Name: active_storage_attachments; Type: TABLE; Schema: public; Owner: michaelhoward
+--
+
+CREATE TABLE public.active_storage_attachments (
+    id bigint NOT NULL,
+    name character varying NOT NULL,
+    record_type character varying NOT NULL,
+    record_id bigint NOT NULL,
+    blob_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL
+);
+
+
+ALTER TABLE public.active_storage_attachments OWNER TO michaelhoward;
+
+--
+-- Name: active_storage_attachments_id_seq; Type: SEQUENCE; Schema: public; Owner: michaelhoward
+--
+
+CREATE SEQUENCE public.active_storage_attachments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.active_storage_attachments_id_seq OWNER TO michaelhoward;
+
+--
+-- Name: active_storage_attachments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: michaelhoward
+--
+
+ALTER SEQUENCE public.active_storage_attachments_id_seq OWNED BY public.active_storage_attachments.id;
+
+
+--
+-- Name: active_storage_blobs; Type: TABLE; Schema: public; Owner: michaelhoward
+--
+
+CREATE TABLE public.active_storage_blobs (
+    id bigint NOT NULL,
+    key character varying NOT NULL,
+    filename character varying NOT NULL,
+    content_type character varying,
+    metadata text,
+    service_name character varying NOT NULL,
+    byte_size bigint NOT NULL,
+    checksum character varying,
+    created_at timestamp(6) without time zone NOT NULL
+);
+
+
+ALTER TABLE public.active_storage_blobs OWNER TO michaelhoward;
+
+--
+-- Name: active_storage_blobs_id_seq; Type: SEQUENCE; Schema: public; Owner: michaelhoward
+--
+
+CREATE SEQUENCE public.active_storage_blobs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.active_storage_blobs_id_seq OWNER TO michaelhoward;
+
+--
+-- Name: active_storage_blobs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: michaelhoward
+--
+
+ALTER SEQUENCE public.active_storage_blobs_id_seq OWNED BY public.active_storage_blobs.id;
+
+
+--
+-- Name: active_storage_variant_records; Type: TABLE; Schema: public; Owner: michaelhoward
+--
+
+CREATE TABLE public.active_storage_variant_records (
+    id bigint NOT NULL,
+    blob_id bigint NOT NULL,
+    variation_digest character varying NOT NULL
+);
+
+
+ALTER TABLE public.active_storage_variant_records OWNER TO michaelhoward;
+
+--
+-- Name: active_storage_variant_records_id_seq; Type: SEQUENCE; Schema: public; Owner: michaelhoward
+--
+
+CREATE SEQUENCE public.active_storage_variant_records_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.active_storage_variant_records_id_seq OWNER TO michaelhoward;
+
+--
+-- Name: active_storage_variant_records_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: michaelhoward
+--
+
+ALTER SEQUENCE public.active_storage_variant_records_id_seq OWNED BY public.active_storage_variant_records.id;
+
+
+--
+-- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: michaelhoward
+--
+
+CREATE TABLE public.ar_internal_metadata (
+    key character varying NOT NULL,
+    value character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+ALTER TABLE public.ar_internal_metadata OWNER TO michaelhoward;
+
+--
+-- Name: championships; Type: TABLE; Schema: public; Owner: michaelhoward
+--
+
+CREATE TABLE public.championships (
+    id bigint NOT NULL,
+    name character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    image character varying,
+    description text,
+    logo character varying,
+    price character varying,
+    type character varying,
+    event_id bigint,
+    contact_number character varying,
+    mobile character varying,
+    website character varying,
+    email character varying,
+    short_name character varying,
+    long_name character varying,
+    test_fee numeric,
+    race_fee numeric,
+    champ_fee numeric,
+    tagline character varying
+);
+
+
+ALTER TABLE public.championships OWNER TO michaelhoward;
+
+--
+-- Name: championships_id_seq; Type: SEQUENCE; Schema: public; Owner: michaelhoward
+--
+
+CREATE SEQUENCE public.championships_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.championships_id_seq OWNER TO michaelhoward;
+
+--
+-- Name: championships_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: michaelhoward
+--
+
+ALTER SEQUENCE public.championships_id_seq OWNED BY public.championships.id;
+
+
+--
+-- Name: event_users; Type: TABLE; Schema: public; Owner: michaelhoward
+--
+
+CREATE TABLE public.event_users (
+    id bigint NOT NULL,
+    event_id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+ALTER TABLE public.event_users OWNER TO michaelhoward;
+
+--
+-- Name: event_users_id_seq; Type: SEQUENCE; Schema: public; Owner: michaelhoward
+--
+
+CREATE SEQUENCE public.event_users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.event_users_id_seq OWNER TO michaelhoward;
+
+--
+-- Name: event_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: michaelhoward
+--
+
+ALTER SEQUENCE public.event_users_id_seq OWNED BY public.event_users.id;
+
+
+--
+-- Name: events; Type: TABLE; Schema: public; Owner: michaelhoward
+--
+
+CREATE TABLE public.events (
+    id bigint NOT NULL,
+    title character varying(255),
+    description text,
+    date date,
+    price numeric,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    event_type character varying,
+    image character varying,
+    championship_id bigint,
+    track_id bigint
+);
+
+
+ALTER TABLE public.events OWNER TO michaelhoward;
+
+--
+-- Name: events_id_seq; Type: SEQUENCE; Schema: public; Owner: michaelhoward
+--
+
+CREATE SEQUENCE public.events_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.events_id_seq OWNER TO michaelhoward;
+
+--
+-- Name: events_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: michaelhoward
+--
+
+ALTER SEQUENCE public.events_id_seq OWNED BY public.events.id;
+
+
+--
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: michaelhoward
+--
+
+CREATE TABLE public.schema_migrations (
+    version character varying NOT NULL
+);
+
+
+ALTER TABLE public.schema_migrations OWNER TO michaelhoward;
+
+--
+-- Name: tracks; Type: TABLE; Schema: public; Owner: michaelhoward
+--
+
+CREATE TABLE public.tracks (
+    id bigint NOT NULL,
+    name character varying,
+    address character varying,
+    contact_number character varying,
+    length integer,
+    email character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    description text,
+    location character varying,
+    logo character varying,
+    short_desc character varying,
+    tagline character varying,
+    facilities character varying[] DEFAULT '{}'::character varying[],
+    website character varying,
+    static_map_url character varying,
+    social_media text,
+    mobile character varying
+);
+
+
+ALTER TABLE public.tracks OWNER TO michaelhoward;
+
+--
+-- Name: tracks_id_seq; Type: SEQUENCE; Schema: public; Owner: michaelhoward
+--
+
+CREATE SEQUENCE public.tracks_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tracks_id_seq OWNER TO michaelhoward;
+
+--
+-- Name: tracks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: michaelhoward
+--
+
+ALTER SEQUENCE public.tracks_id_seq OWNED BY public.tracks.id;
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: michaelhoward
+--
+
+CREATE TABLE public.users (
+    id bigint NOT NULL,
+    email character varying DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying,
+    reset_password_sent_at timestamp(6) without time zone,
+    remember_created_at timestamp(6) without time zone,
+    first_name character varying,
+    last_name character varying,
+    admin boolean DEFAULT false,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+ALTER TABLE public.users OWNER TO michaelhoward;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: michaelhoward
+--
+
+CREATE SEQUENCE public.users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO michaelhoward;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: michaelhoward
+--
+
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
+-- Name: action_text_rich_texts id; Type: DEFAULT; Schema: public; Owner: michaelhoward
+--
+
+ALTER TABLE ONLY public.action_text_rich_texts ALTER COLUMN id SET DEFAULT nextval('public.action_text_rich_texts_id_seq'::regclass);
+
+
+--
+-- Name: active_storage_attachments id; Type: DEFAULT; Schema: public; Owner: michaelhoward
+--
+
+ALTER TABLE ONLY public.active_storage_attachments ALTER COLUMN id SET DEFAULT nextval('public.active_storage_attachments_id_seq'::regclass);
+
+
+--
+-- Name: active_storage_blobs id; Type: DEFAULT; Schema: public; Owner: michaelhoward
+--
+
+ALTER TABLE ONLY public.active_storage_blobs ALTER COLUMN id SET DEFAULT nextval('public.active_storage_blobs_id_seq'::regclass);
+
+
+--
+-- Name: active_storage_variant_records id; Type: DEFAULT; Schema: public; Owner: michaelhoward
+--
+
+ALTER TABLE ONLY public.active_storage_variant_records ALTER COLUMN id SET DEFAULT nextval('public.active_storage_variant_records_id_seq'::regclass);
+
+
+--
+-- Name: championships id; Type: DEFAULT; Schema: public; Owner: michaelhoward
+--
+
+ALTER TABLE ONLY public.championships ALTER COLUMN id SET DEFAULT nextval('public.championships_id_seq'::regclass);
+
+
+--
+-- Name: event_users id; Type: DEFAULT; Schema: public; Owner: michaelhoward
+--
+
+ALTER TABLE ONLY public.event_users ALTER COLUMN id SET DEFAULT nextval('public.event_users_id_seq'::regclass);
+
+
+--
+-- Name: events id; Type: DEFAULT; Schema: public; Owner: michaelhoward
+--
+
+ALTER TABLE ONLY public.events ALTER COLUMN id SET DEFAULT nextval('public.events_id_seq'::regclass);
+
+
+--
+-- Name: tracks id; Type: DEFAULT; Schema: public; Owner: michaelhoward
+--
+
+ALTER TABLE ONLY public.tracks ALTER COLUMN id SET DEFAULT nextval('public.tracks_id_seq'::regclass);
+
+
+--
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: michaelhoward
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- Data for Name: action_text_rich_texts; Type: TABLE DATA; Schema: public; Owner: michaelhoward
+--
+
+COPY public.action_text_rich_texts (id, name, body, record_type, record_id, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: active_storage_attachments; Type: TABLE DATA; Schema: public; Owner: michaelhoward
+--
+
+COPY public.active_storage_attachments (id, name, record_type, record_id, blob_id, created_at) FROM stdin;
+1	main_image	Track	1	1	2023-11-01 15:19:38.487867
+2	logo	Track	1	2	2023-11-01 15:19:38.513031
+3	race_image	Track	1	3	2023-11-01 15:19:38.532374
+4	test_image	Track	1	4	2023-11-01 15:19:38.549647
+5	main_image	Track	2	5	2023-11-01 15:19:38.577219
+6	logo	Track	2	6	2023-11-01 15:19:38.59789
+7	race_image	Track	2	7	2023-11-01 15:19:38.633583
+8	test_image	Track	2	8	2023-11-01 15:19:38.72239
+9	contact_image	Track	2	9	2023-11-01 15:19:38.74571
+10	main_image	Track	3	10	2023-11-01 15:19:38.775492
+11	logo	Track	3	11	2023-11-01 15:19:38.796412
+12	main_image	Track	4	12	2023-11-01 15:19:38.823404
+13	logo	Track	4	13	2023-11-01 15:19:38.840717
+14	main_image	Track	5	14	2023-11-01 15:19:38.868397
+15	logo	Track	5	15	2023-11-01 15:19:38.890093
+16	main_image	Track	6	16	2023-11-01 15:19:38.918247
+17	race_image	Track	6	17	2023-11-01 15:19:38.938382
+18	test_image	Track	6	18	2023-11-01 15:19:38.959102
+19	main_image	Track	8	19	2023-11-01 15:19:38.99238
+20	race_image	Track	8	20	2023-11-01 15:19:39.017073
+21	test_image	Track	8	21	2023-11-01 15:19:39.045167
+22	main_image	Track	9	22	2023-11-01 15:19:39.073369
+23	main_image	Track	11	23	2023-11-01 15:19:39.109724
+24	main_image	Track	12	24	2023-11-01 15:19:39.139192
+25	main_image	Track	13	25	2023-11-01 15:19:39.171063
+26	main_image	Track	14	26	2023-11-01 15:19:39.198894
+27	main_image	Track	16	27	2023-11-01 15:19:39.236794
+28	main_image	Track	17	28	2023-11-01 15:19:39.256222
+29	main_image	Track	18	29	2023-11-01 15:19:39.28468
+30	main_image	Track	20	30	2023-11-01 15:19:39.318712
+31	main_image	Track	21	31	2023-11-01 15:19:39.346663
+32	main_image	Track	22	32	2023-11-01 15:19:39.376089
+33	main_image	Track	23	33	2023-11-01 15:19:39.401957
+34	main_image	Track	19	34	2023-11-01 16:02:56.633584
+35	main_image	Track	10	35	2023-11-01 16:03:51.345111
+36	main_image	Track	7	36	2023-11-01 16:04:09.647771
+\.
+
+
+--
+-- Data for Name: active_storage_blobs; Type: TABLE DATA; Schema: public; Owner: michaelhoward
+--
+
+COPY public.active_storage_blobs (id, key, filename, content_type, metadata, service_name, byte_size, checksum, created_at) FROM stdin;
+1	rjv0973da14dku3yj7bfvgf2dzdl	main_image.jpg	image/jpeg	{"identified":true,"analyzed":true}	local	671668	S7gUqf2erTeS43A74XQ5jg==	2023-11-01 15:19:38.485826
+2	cb9dp2lspmzdjoq3dh577xczm4da	logo.jpg	image/jpeg	{"identified":true,"analyzed":true}	local	14084	c8rQ2vYNNZ63yTdpghpcnw==	2023-11-01 15:19:38.510475
+12	8i0tlgcsd1yfzbcjy0cqilhpigsu	main_image.jpg	image/jpeg	{"identified":true}	local	278032	Cwy65qwojC+goFTHQfrTaw==	2023-11-01 15:19:38.820975
+3	k676ny316chxm9d8cqw25m16ceju	race_image.jpg	image/jpeg	{"identified":true,"analyzed":true}	local	382920	akZQjShnTCeBxpu+Fl6SOg==	2023-11-01 15:19:38.529962
+13	jr7feknw3e865ysmkx9itzr455ed	logo.jpg	image/jpeg	{"identified":true}	local	68725	To8+HYab2svrB+I+dHDM7A==	2023-11-01 15:19:38.8389
+14	d7eka240z96qifdc8e8595i3azl9	main_image.jpg	image/jpeg	{"identified":true}	local	333034	m3xuKCuwxXxYiQ26ywWmNw==	2023-11-01 15:19:38.866292
+15	bbk2jfgpgf2gcwk0822vqwil4bje	logo.jpg	image/jpeg	{"identified":true}	local	42118	WD+GNYb7JuyU7PlWR81kjg==	2023-11-01 15:19:38.886793
+4	rw48pm80o2j86e6t6bk6uaodljb7	test_image.jpg	image/jpeg	{"identified":true,"analyzed":true}	local	323223	i2Ya3sRtm2SkAxb32KME5Q==	2023-11-01 15:19:38.548131
+16	yjovm9lvorhdkzmiefvv4ani8zte	main_image.jpg	image/webp	{"identified":true}	local	78774	INiV9UfIyYUhGKOsb5kvwQ==	2023-11-01 15:19:38.916177
+17	p3rah24mzms09t7usjpw8x7u72ll	race_image.jpg	image/jpeg	{"identified":true}	local	508797	pj9wKuo1WYyJfkEtczqGNg==	2023-11-01 15:19:38.935869
+18	67omtdwdk663l5r4dpn6x3kf46oe	test_image.jpg	image/jpeg	{"identified":true}	local	456294	n7ZqWWuo+nq9P+uWtMNHog==	2023-11-01 15:19:38.955937
+5	14v03vodb4gj9mhfkwot4yz7x31z	main_image.jpg	image/jpeg	{"identified":true,"analyzed":true}	local	263278	aTDIDOTf6ITasuefJIv6kQ==	2023-11-01 15:19:38.575391
+19	nfxx9ihmnsbojopx4h40lr6mh4ab	main_image.jpg	image/jpeg	{"identified":true}	local	733272	WFZgV5mmIom1rg3giorMhw==	2023-11-01 15:19:38.990783
+20	u32idsipdk7u5aj6xg8v62eecnrj	race_image.jpg	image/jpeg	{"identified":true}	local	278087	qxPHCroMEBxc9I4W9BnAvw==	2023-11-01 15:19:39.014831
+6	xuv7j660155s2wibys2ds02swgjn	logo.jpg	image/jpeg	{"identified":true,"analyzed":true}	local	55736	LYHj+fGEojlLUU+K/AJrUQ==	2023-11-01 15:19:38.595787
+21	pcaim6pk92nzxyibdevwjehukyu5	test_image.jpg	image/jpeg	{"identified":true}	local	393229	Tk4rxThmGqz42RrJgl2r0Q==	2023-11-01 15:19:39.042395
+22	c9xkhrctxva23wbciabt3ivkpalz	main_image.jpg	image/webp	{"identified":true}	local	182410	uUtsbt6s0e3woTC5P0Ba8A==	2023-11-01 15:19:39.071215
+7	wps8t3xiqgj8kjzbvlkf8ueoqn6y	race_image.jpg	image/jpeg	{"identified":true,"analyzed":true}	local	421318	b4aO/BD25BU+aSJnSpMFDA==	2023-11-01 15:19:38.630471
+23	oykszxs4x40hb9239tfttt5qv82h	main_image.jpg	image/jpeg	{"identified":true}	local	747277	L0SMZyXmpI38HkdeoBBrOQ==	2023-11-01 15:19:39.108046
+24	redhgkpgbrepft6bb9psz87smzbc	main_image.jpg	image/jpeg	{"identified":true}	local	745333	WomlsznWzbvHGjh2joRqIA==	2023-11-01 15:19:39.137459
+8	o52yict32hrgvvz83vm6td69le8c	test_image.jpg	image/jpeg	{"identified":true,"analyzed":true}	local	526456	Dj1cLhW4BislMWZ2Np8X8g==	2023-11-01 15:19:38.719307
+25	c757a9k5mf802s99a1n856s7e3l4	main_image.jpg	image/jpeg	{"identified":true}	local	50776	rqgqfgshAfBZLSzy41jzOg==	2023-11-01 15:19:39.169134
+26	4zdp8ksdny3t0lldoa2uzyrlqo0n	main_image.jpg	image/jpeg	{"identified":true}	local	424411	3h3a+UiguvcwO9KmyR46aA==	2023-11-01 15:19:39.195678
+9	l4tn6vtsktx9akw0y31cvbea2gum	contact_image.jpg	image/jpeg	{"identified":true,"analyzed":true}	local	77611	7E6eZy54eLrmWK5GEklDFw==	2023-11-01 15:19:38.742465
+27	2kba1z7qrlgassw0mkrj6qogxfrz	main_image.jpg	image/jpeg	{"identified":true}	local	171455	g0bSwnVpuNx5SVLjB6La0g==	2023-11-01 15:19:39.234305
+28	2tcu4t9k07h2ohaekcmroth5shc2	main_image.jpg	image/jpeg	{"identified":true}	local	458668	R98InHzY+JqE0yN0rdBCjA==	2023-11-01 15:19:39.254305
+29	rn33xq83d24gehfedvj6npbsgcm5	main_image.jpg	image/jpeg	{"identified":true}	local	55806	dw7C2h/TI3GZnCbluJj3aQ==	2023-11-01 15:19:39.282961
+10	ww5ds2irck6r1dxq4t8tr2foxln4	main_image.jpg	image/jpeg	{"identified":true,"analyzed":true}	local	425465	5J6yH8fD74NyUxkGmXmisA==	2023-11-01 15:19:38.773711
+30	7sztgisfs82r2u8ntqdx7pjmfev9	main_image.jpg	image/jpeg	{"identified":true}	local	219496	1hntL8oo4Fu9Fp27r+lSLQ==	2023-11-01 15:19:39.317189
+31	1nt6on3zbgwdojcw1yg2fi3d9ryg	main_image.jpg	image/jpeg	{"identified":true}	local	228581	5shXbw5NguPLWRfdnjD66Q==	2023-11-01 15:19:39.344557
+32	o3v9c8qzahgkc8gx10drz7e9vixy	main_image.jpg	image/jpeg	{"identified":true}	local	267380	c7iN7X1zT/Z4wY335kuzfg==	2023-11-01 15:19:39.372543
+11	7mkv24gp95kodkgq9xjlury8xml4	logo.jpg	image/jpeg	{"identified":true,"analyzed":true}	local	25094	KX38wN5FkKTvnbjnAamrTQ==	2023-11-01 15:19:38.794383
+33	oebbri9kahvzegdld8zj2gxhap1y	main_image.jpg	image/jpeg	{"identified":true}	local	948695	75Sof5DenbD2t/PGCdThpw==	2023-11-01 15:19:39.399363
+34	2f1xsoay8ng3sb06l8k01nkx2hhc	main_image.jpg	image/jpeg	{"identified":true,"analyzed":true}	local	222562	eQFwjUtCO5UTpCwPwE+zzg==	2023-11-01 16:02:56.62978
+35	eccuai9gxpj5s0ggaqkt10v1qzvf	main_image.jpg	image/jpeg	{"identified":true,"analyzed":true}	local	348469	DU74yX01uhcwnv8hIJyyNQ==	2023-11-01 16:03:51.342593
+36	xk8hhqj9x5lvwu6pfqiq350hkisr	main_image.jpg	image/jpeg	{"identified":true,"analyzed":true}	local	129908	JLoYMM6E8jIgVEzEPtJUTA==	2023-11-01 16:04:09.645673
+\.
+
+
+--
+-- Data for Name: active_storage_variant_records; Type: TABLE DATA; Schema: public; Owner: michaelhoward
+--
+
+COPY public.active_storage_variant_records (id, blob_id, variation_digest) FROM stdin;
+\.
+
+
+--
+-- Data for Name: ar_internal_metadata; Type: TABLE DATA; Schema: public; Owner: michaelhoward
+--
+
+COPY public.ar_internal_metadata (key, value, created_at, updated_at) FROM stdin;
+environment	development	2023-11-01 15:19:37.626015	2023-11-01 15:19:37.626015
+schema_sha1	ab7c594d6e195ca14cc26808ce8cea59ab83e05c	2023-11-01 15:19:37.639572	2023-11-01 15:19:37.639572
+\.
+
+
+--
+-- Data for Name: championships; Type: TABLE DATA; Schema: public; Owner: michaelhoward
+--
+
+COPY public.championships (id, name, created_at, updated_at, image, description, logo, price, type, event_id, contact_number, mobile, website, email, short_name, long_name, test_fee, race_fee, champ_fee, tagline) FROM stdin;
+\.
+
+
+--
+-- Data for Name: event_users; Type: TABLE DATA; Schema: public; Owner: michaelhoward
+--
+
+COPY public.event_users (id, event_id, user_id, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: events; Type: TABLE DATA; Schema: public; Owner: michaelhoward
+--
+
+COPY public.events (id, title, description, date, price, created_at, updated_at, event_type, image, championship_id, track_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: michaelhoward
+--
+
+COPY public.schema_migrations (version) FROM stdin;
+20231031151536
+20230913122850
+20230913122925
+20230913122932
+20230913223426
+20230913223744
+20231003231034
+20231019175111
+20231019214706
+20231020084233
+20231020090327
+20231020092819
+20231023152341
+20231023152348
+20231023205047
+20231023213329
+20231024132541
+20231024144314
+20231024150454
+20231025230546
+20231028141644
+20231028141930
+20231031094810
+\.
+
+
+--
+-- Data for Name: tracks; Type: TABLE DATA; Schema: public; Owner: michaelhoward
+--
+
+COPY public.tracks (id, name, address, contact_number, length, email, created_at, updated_at, description, location, logo, short_desc, tagline, facilities, website, static_map_url, social_media, mobile) FROM stdin;
+3	Whilton Mill	Whilton Locks, Whilton, Daventry, NN11 2NH	01327 843822	1077	info@whiltonmill.co.uk	2023-11-01 15:19:38.759195	2023-11-01 15:19:38.798051	Specialists in outdoor activities since 1991; karting, quad bikes, clay shooting, archery and more. Our 100-acre site, set in the Northamptonshire countryside is an Historic mill on a vast estate with 2 karting tracks and best in industry hospitality facilties. Whilton Mill is home to the WMKC FastR Club Championship and boasts a full calendar of events throughout the year.	Daventry	\N	Home of FastR Championship		{"Bar & Cafe",Toilets,"Overnight Camping","Electric Hook Up",Parking,"Arrive & Drive Karting","Indoor Viewing Area",Showers,"Kart Shop","Pit Bays for Hire",Floodlights}	www.whiltonmillkc.co.uk	https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2441.206589865352!2d-1.0891450999999999!3d52.275951299999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4877141b639e4695%3A0x47d41a4446091c2a!2sWhilton%20Mill%20Karting%20%26%20Outdoor%20Activities!5e0!3m2!1sen!2suk!4v1698776707177!5m2!1sen!2suk	---\n:facebook: https://www.facebook.com/WhiltonMillLtd\n:instagram: https://www.instagram.com/whiltonmillkartclub/\n	
+1	Hooton Park	Hooton Park Airfield, West Rd, Hooton, Birkenhead, Ellesmere Port CH65 1BR	0151 355 7513	876	mail@hootonparkcircuit.co.uk	2023-11-01 15:19:38.361059	2023-11-01 15:19:38.551136	Hooton Park Circuit was constructed in 2006 on the site of the old Hooton Airfield near Ellesmere Port. Corporate Karting was introducted in 2007 and has proved to be very popular, drivers being able to experience the thrills of motor racing without the high cost. Large groups visit the circuit for full corporate entertaining of staff and customers alike.\n    Of course, owner drivers enjoy the use of a proper race circuit for testing, which is available most days.\n    The circuit has the facility to hold A.R.K.S. examinations, should you want to progress to MSUK racing.	Cheshire	\N	The Home of Cheshire Kart Racing Club		{Cafe,Toilets,"Overnight Camping",Parking,"Arrive & Drive Karting"}	www.hootonparkcircuit.co.uk	https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9535.354945862806!2d-2.9416328!3d53.3103343!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487adefa53aa7143%3A0x2d37a59a97a86742!2sHooton%20Park%20Circuit!5e0!3m2!1sen!2suk!4v1697815886011!5m2!1sen!2suk	---\n:facebook: https://www.facebook.com/profile.php?id=100057041637287\n:instagram: https://www.instagram.com/hootonparkkarting/\n	\N
+23	Forest Edge	Barton Stacey, Winchester SO21 3BF	07555 112012	1100	compsec@fekc.co.uk	2023-11-01 15:19:39.384991	2023-11-01 15:19:39.404872	Forest Edge Kart Club is situated on the A303 in Barton Stacey.\n    The circuit is situated on MOD land so the FEKC team of Marshalls and Officials build the track with military organisation at the start of the race weekend and equally pack the infrastructure away at the end of the event.\n    The circuit consists if fast straights but technical corner complexes, drivers love the combination of speed and skill as they compete on this amazing track.\n    	Hampshire	\N			{Cafe,Toilets,"Overnight Camping",Parking}	www.fekc.co.uk	https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10004.415687419852!2d-1.3643614!3d51.1803075!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48740582a8d0036d%3A0x7417c274d8cad5a3!2sForest%20Edge%20Kart%20Club!5e0!3m2!1sen!2suk!4v1698846130172!5m2!1sen!2suk	---\n:facebook: https://www.facebook.com/StrettonKarting/\n:instagram: https://www.instagram.com/strettoncircuit/\n	
+2	PFI - Paul Fletcher International	Stragglethorpe Ln, Brandon, Grantham NG32 2AY	01636 626747	1382	kartpfi@gmail.com	2023-11-01 15:19:38.559837	2023-11-01 15:19:38.749275	PFi is the UK's largest outdoor karting circuit and caters for many different karting events. The UK's Premier Circuit provides track time for Rental and Owner Drivers. The circuit is open every day of the week, as well as weekends when there is not an MSA Race Meeting taking place at the circuit. PF International kart circuit was first opened in 1994 and was, and still is, the brain-child of Mr Paul Fletcher.  The circuit is located in the village of Brandon, close to Grantham, in the lovely Lincolnshire countryside. Over the years, PFi has developed and grown and is now recognised as the UK\\’s premier Karting facility. During 2011, PFi saw perhaps it\\’s largest transformation to date \\– a track extension that incorporates a bridge with flyover! This sensational new feature has increased the overall track length to 1382m and helped the circuit to secure it\\’s International \\‘A\\’ grade track licence \\– the only short circuit kart track in the UK to achieve this level. Attaining this grade of track licence has firmly placed PFi on the Global Karting scene and has helped to secure several CIK-FIA kart race events to date.	Grantham	\N	The UK's Finest Karting Circuit		{"Bar & Cafe",Toilets,"Overnight Camping","Electric Hook Up",Parking,"Arrive & Drive Karting","Indoor Viewing Area",Showers,"Kart Shop","Pit Bays for Hire","Digital Timing Screen","On Circuit CCTV",Floodlights}	www.kartpfi.com	https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9595.877661542745!2d-0.6599833!3d53.038887!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4878362d729a50f1%3A0x738a765849950a00!2sPF%20International%20Kart%20Circuit!5e0!3m2!1sen!2suk!4v1698767265042!5m2!1sen!2suk	---\n:facebook: https://www.facebook.com/kartpfi\n:instagram: https://www.instagram.com/pfikarting/\n	07545 131099
+4	Rissington	Cheltenham, GL54 2LR	0118 983 6070	970	debbie@rissingtonkartclub.co.uk	2023-11-01 15:19:38.804338	2023-11-01 15:19:38.842427	Situated in the heart of the picturesque Cotswolds, the Little Rissington circuit offers superb high-speed racing under Motorsport UK rules for all major karting classes, from Cadets to the awesome 250 Gearbox karts. With its fast, wide sweeping bends, billiard smooth surface and big run-off areas makes it one of the best drivers’ circuits in the country.\n    Rissington prides itself of being a friendly club, run by the members for the members. The club particularly encourages novices, families and visiting drivers. It is also possible to take your ARKS test at the track. We are located on the Little Rissington RAF Base. The postcode for the Airbase itself is GL54 2QB. Access to the circuit can be found on a small lane between Upper Rissington and Great Barrington. Look for large silver metal gates that show signs for the Glider Training.	Little Rissington	\N	Situated in the heart of the picturesque Cotswolds		{"Hot Food Available",Toilets,"No Overnight Camping Currently","£5 Parking Per Car on Race Day","Spares Shop","Pit Bays for Hire","Electric Hook Up"}	http://www.rissingtonkartclub.co.uk/	https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d315274.9778407117!2d-1.653888!3d51.87764700000001!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48712fc376e76cfb%3A0x11ea5becbc3a5057!2sGreat%20Rissington%2C%20Cheltenham%2C%20UK!5e0!3m2!1sen!2sus!4v1698784245535!5m2!1sen!2sus	---\n:facebook: https://facebook.com/officialrissikc\n:instagram: https://www.instagram.com/rissingtonkc/\n	
+5	Kimbolton	The Old Airfield, Huntingdon, United Kingdom, PE28 OHU	07730 786869	989	info@hkrc.co.uk	2023-11-01 15:19:38.850034	2023-11-01 15:19:38.89393	Hunts Kart Racing Club (HKRC), or Kimbolton (or Kim as it’s affectionately known as!) was founded in 1959 by a group of karters who wanted somewhere to race their recently purchased karts.\n\n    As the years went by, various changes and improvements were made to this circuit and during the late sixties and early seventies Kimbolton was the largest karting circuit in East Anglia and was a very popular circuit even then.\n    \n    Throughout the years Kim has been improved and extended. The present track was complete in the early 90’s and occupies what was the home of the 379th USAF Bomber Squadron during World War Two.\n    \n    HKRC has been home to Motorsport UK racing for over 50 years and our race meetings are on the second weekend of the month.	Cambridgeshire	\N	The Home of Hunts Kart Racing Club	Affectionately known as Kim!	{"Hot Food Available",Toilets,"Overnight Camping",Parking,"Spares Shop","Pit Bays for Hire"}	www.hkrc.co.uk	https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9755.913367887408!2d-0.3703701!3d52.3163955!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4877c089cf206129%3A0x219ffcaa3a0e227!2sHunts%20Kart%20Racing%20Club!5e0!3m2!1sen!2suk!4v1698785743035!5m2!1sen!2suk	---\n:facebook: https://www.facebook.com/OfficialHKRC\n:instagram: https://www.instagram.com/hunts_kart_club/\n	
+6	Warden Law	Hangman’s Lane, Sunderland, SR3 2PR	0191 5214050	1200	ownerdrivers@kartingnortheast.com	2023-11-01 15:19:38.9025	2023-11-01 15:19:38.961157	Warden Law first officially opened for motorsport over 25 years ago and has since grown to become a multi activity venue as well as host to the biggest UK karting championships, including the Wera Tools British Kart Championship\n\n    The centre is situated between Sunderland and Durham on the North East coast and covers over 25 acres. The centrepiece of the venue is the 1200m National Kart circuit, which has recently been upgraded to the latest safety technology – Pixel digital warning lights rather than a traditional flag system.\n    \n    Alongside the kart track is a 350m training circuit which can removed to create further paddock space, a 2500m2 Paintball Arena, a 12000m2 Trials bike area and WLMC is also home to the Durham County Model Car Club!\n    \n    The venue also has a club house on site with classic homemade food using locally sourced ingredients which can be accompanied by award winning barista coffee.\n    \n    A huge amount of further plans are in the making to ensure Warden Law becomes the premier Kart & Motorsports venue in the North	Sunderland	\N	Home of Kai and Rhys Hunter		{"Hot Food Available",Toilets,"Overnight Camping",Parking,"Pit Bays for Hire",Floodlights,Showers,"Electric Hook Up"}	https://kartingnortheast.com/	https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9188.5055676099!2d-1.4228292!3d54.84803!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487e6394abe71c27%3A0xecdc02d8b8f6d2a4!2sKarting%20North%20East!5e0!3m2!1sen!2suk!4v1698786566459!5m2!1sen!2suk	---\n:facebook: https://www.facebook.com/WardenLawKC\n:instagram: https://www.instagram.com/wardenlaw_karting/\n	
+8	GYG	Glan Y Gors Park\n    Cerrig Y Drudion\n    Corwen, Conwy\n    LL21 0RU	01490 420 770	1100	info@gygkarting.co.uk	2023-11-01 15:19:38.976772	2023-11-01 15:19:39.047434	A prime venue for any Motorsport enthusiast. Largest Karting Circuit in the UK set in the heart of North Wales near Snowdonia National Park and voted as Number One in the UK by RedBull. Track is superb with a mix of tight and twisty to flat out sections. Staff are very welcoming, friendly and helpful. All facilities are extremely well kept.	Corwen, Wales	\N	Voted Number 1 Track in the UK by RedBull	Set in a rural location in the heart of North Wales, Snowdonia.	{"Hot Food Available",Toilets,"Overnight Camping",Parking,"Pit Bays for Hire","Arrive and Drive Karting",Floodlights,Showers,"Electric Hook Up"}	www.gygkarting.com	https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9596.795436825123!2d-3.5844905!3d53.0347633!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486538d5b383ed39%3A0xda8bc09c1439c1bc!2sGYG%20KARTING%20LTD!5e0!3m2!1sen!2suk!4v1698833795549!5m2!1sen!2suk	---\n:facebook: https://www.facebook.com/GYGKarting\n:instagram: https://www.instagram.com/gygkarting/\n	
+7	Three Sisters	Three Sisters Road, Ashton-in-Makerfield, Wigan WN4 8DD	01942 719030	1250	info@threesisterscircuit.co.uk	2023-11-01 15:19:38.97234	2023-11-01 16:04:09.649383	Three huge spoil heaps, referred to as the Three Sisters, were a legacy of extensive coal mining at Garswood Hall Colliery. Begun in 1867, this was a ceaseless enterprise until 1958, nearly a century later. Postindustrial Revolution slag heaps were a common sight around the country, often blighting the landscape for years before re-greening and reclamation plans brought benefits for the people living around them. The people of Wigan were no exception; and whilst their slag heaps also became affectionally known to locals as the Wigan Alps, it took a further 20 years until these vast eye-sores metamorphosed into a glorious 44-hectare country park and woodland.\r\n\r\n    Work began in the late 1970’s, and today the Three Sisters Local Nature Reserve, aside from featuring a boating lake and picnic area, also boasts a thriving wildlife wetland. An extensive network of footpaths attracts walkers, cyclists and even horse riders. It is also home to one of the UK’s most exciting race circuits.\r\n    \r\n    Notable motorsport celebrities associated with the circuit include Neil Hodgson, who won the 2000 British Superbike Championship - his first win came in 1990 at the Three Sisters Circuit. The circuit was also one of five to be chosen to host the 2006 season for McLaren Mercedes’ Champions of the Future, a series aimed at creating an environment in which young, aspiring drivers from all backgrounds could excel. The class champions that year were Formula 1 superstar Lewis Hamilton (Cadet), Andrew Delahunty (Yamaha), and German Touring Car champion Gary Paffett (Intercontinental).	Wigan	\N	The North West's premier outdoor circuit.		{"Hot Food Available",Toilets,"Overnight Camping",Parking,"Pit Bays for Hire"}	www.threesisterscircuit.co.uk	https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9491.579114575537!2d-2.6351784!3d53.506075!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487b05a6d8cee531%3A0x9cfa82ae14deb236!2sThree%20Sisters%20Race%20Circuit!5e0!3m2!1sen!2suk!4v1698787756126!5m2!1sen!2suk	---\nfacebook: https://www.facebook.com/threesisterscircuit\ninstagram: https://www.instagram.com/3sisterscircuit/\n	
+9	Clay Pigeon	Clay Pigeon Raceway, Wardon Hill, Dorchester, Dorset, DT2 9PW	01935 83713	887	enquiries@claypigeonraceway.com	2023-11-01 15:19:39.053532	2023-11-01 15:19:39.075063	The Clay Pigeon Raceway was founded in the late 1950's early 1960's on a disused Second World War Military Hospital site. The original track was built by joining the hut (ward) concrete bases together with tarmac to make a 500 metre track. The Blandford Karting Club was formed and a Roval Automobile Club Permit was obtained and the first "official" race took place on Sunday 5th May 1963.\n\n \n\n    Shortly after this first race meeting the Bath Karting Club assumed the responsibility of organising RACMSA race meetings.\n    \n     \n    \n    In the early 1970's the Clay Pigeon Kart Club was formed and has continued to organise and promote MSA race meetings at Clay, leasing the circuit for 14 days a year from a long list of owners of the circuit. Neil Hann was chairman in the early years and he and his volunteers extended the circuit to the 815 metres that it is today.\n    \n     \n    \n    In the mid 1980's Ian Rennison joined the committee of the Clay Pigeon Kart Club and together with Neil Hann, Trevor Brown, John Donovan, Colin Clark (and later Ron Davies) were responsible for saving the circuit in 1989 when the owners Lane Racing Ltd went into liquidation. They formed Chelborough Ltd, who purchased the freehold of the circuit to maintain MSA racing in this area.\n    \n     \n    \n    The circuit was in a poor state and once the trade tenants of the circuit were removed in 1994 improvements to the circuit were started - new fencing, track widened and totally resurfaced, tarmac pit areas etc. The club erected a new clubhouse followed by a new lap scorers hut and new scrutineering facilities.\n    \n     \n    \n    The circuit has now become a seven days a week business organising arrive and drive hire karts, Corporate events, practice and hosting most major championships that tour Britain.\n    \n     \n    \n    Recently Chelborough Ltd (the Circuit owners) has come under control of Southern Counties Leisure who now own all the leisure facilities around the circuit including the new 39 room George Albert Hotel and new improvements to the circuit and it facilities are on the way including a new purpose built Clubhouse and corporate area.\n    \n     \n    \n    The future is bright for the Clay Pigeon Kart Circuit and Clay Pigeon Kart Club.	Dorchester	\N	Home of Clay Pigeon Kart Club	Outdoor kart track, hosting national championship meetings, public and corporate races.	{"Hot Food Available",Toilets,"Overnight Camping",Parking,"Pit Bays for Hire","Arrive and Drive Karting",Floodlights,Showers,"Electric Hook Up","Kart Shop","ARKS Testing Available"}	www.claypigeonraceway.com	https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10081.510932252502!2d-2.5547235!3d50.8241669!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4872434bfcde60db%3A0x86d381aabfc9e1f1!2sClay%20Pigeon%20Raceway!5e0!3m2!1sen!2suk!4v1698833950420!5m2!1sen!2suk	---\n:facebook: https://www.facebook.com/claypigeonraceway\n:instagram: https://www.instagram.com/claypigeonraceway/\n	\N
+11	Rowrah	Kirkland, Frizington CA26 3XU	01229 463748	1030	www.cumbriakrc.co.uk/	2023-11-01 15:19:39.089029	2023-11-01 15:19:39.111082	From a small enthusiastic group of volunteers who created the circuit in 1963 the club and circuit has grown into the fantastic facility it is today. Even today, the circuit is still run by a small enthusiastic group of volunteers who continue to strive to make the circuit one of the best in the UK which is constantly voted for by the drivers and competitors who make long journeys to visit us.\n\n    The Club continues to run the Lets go Karting Scheme, where you can come along to the circuit and have a go on a race kart, with full tuition and safety equipment (further details elsewhere on the CKRC website). CKRC pioneered the "Racing For Buttons" program, our search for a young driver to become the next Formula 1 sensation, and this was taken up by the Motorsport UK, who introduced the Lets go Karting Scheme to encourage more people into the sport.   With the current success of ex-karting sensations such as David Coulthard, Jenson Button, Lewis Hamilton,Paul DiResta, George Russell and Llando Norris, all of whom started their careers in karting and, indeed, visited Rowrah on many occasions during their karting career, karting is becoming more and more popular so why not visit us and see if the karting bug bites? The 2016 season saw the opening of our new Lets Go Karting Training and Education Centre – this purpose built building is now complete and will provides a base for newcomers to our sport to gain experience and education.	Cumbria	\N	The Lakeland Circuit	Home of Cumbria Kart Racing Club	{"Hot Food Available",Toilets,"Overnight Camping",Parking,"Pit Bays for Hire","Arrive and Drive Karting",Showers,Floodlight,"Electric Hook Up"}	www.cumbriakrc.co.uk/	https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9255.997607950627!2d-3.4429247!3d54.551136!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487ca5f441d97d5d%3A0x51c9c510c27314a2!2sCumbria%20Kart%20Racing%20Club!5e0!3m2!1sen!2suk!4v1698835235449!5m2!1sen!2suk	---\n:facebook: https://www.facebook.com/profile.php?id=100062070679732\n:instagram: https://www.instagram.com/cumbriakartracingclub/\n	
+12	Larkhall	Merryton Rd, Larkhall ML9 2UL	01698 909808	1140	info@larkhallcircuit.com	2023-11-01 15:19:39.121466	2023-11-01 15:19:39.140874	Larkhall Circuit was built on the site of Summerlee Colliery in 1961. In 2019 the track received significant redevelopment and investment, which has resulted in Larkhall Circuit being able to lay claim to being the most technical karting track in the UK and the longest track in Scotland. As part of the redevelopment, the track was extended and many new safety features were installed, ensuring a world class facility for both drivers and spectators.\n\n    The track is well-known for being home to the WSKC Karting club. However the Larkhall Track is open to the public, companies, private groups and available all year round for events, conferences and team days out. Within the circuit complex, you’ll find the impressive Kart Republic Cafe.\n    \n    Many of today’s motorsports stars are current or former members of WSKC including David Coulthard, Dario Franchitti, Mario Franchitti, Ryan Dalziel, Allan McNish, Paul Di Resta, Stefan Di Resta, Barry Horne, Susie Wolff, Dean MacDonald. Ross Martin, Dexter Patterson, Angus Moulsdale, Lewis Gilbert and Ciaran Haggerty.\n    \n    Conveniently located just minutes from the M74, the circuit is easily accessible from all over Scotland and the UK.\n    \n    Larkhall Circuit is open and offering you the opportunity to experience motorsport karting at it’s finest, with both entry level karting available as well as owner practice days and international competitions.\n\n    Karts are available to hire for both individuals and groups, with full use of the international circuit.  \n    \n     A cafe and indoor/outdoor viewing areas are also situated on-site.\n    \n    British Championships are held at Larkhall Circuit, as well as a club race once a month by West of Scotland Kart Club who are based at the track.\n    \n    Recently the track has gone through major refurbishment including the track being extended to 1140 metres, new Kart Republic café and complete renovation of the paddock and pit bays.\n    \n    Conveniently located just minutes from the M74, the circuit is easily accessible from all over Scotland and the UK.\n    \n    We welcome all experience levels and provide everything you need: suit, balaclava, helmet, gloves and kart.	Scotland	\N	The Longest Outdoor Circuit in Scotland	Larkhall Circuit is the UK's Newest Outdoor Karting Circuit	{"Hot Food Available",Toilets,"Overnight Camping",Parking,"Pit Bays for Hire","Arrive and Drive Karting",Showers,Floodlight,"Electric Hook Up"}	www.larkhallcircuit.com	https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d147513.54937898627!2d-4.102294696017218!3d55.812827307528416!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x488815ec575164b7%3A0xd6ae35f45a28be03!2sLarkhall%20Circuit!5e0!3m2!1sen!2suk!4v1698835887384!5m2!1sen!2suk	---\n:facebook: https://www.facebook.com/larkhallcircuit\n:instagram: https://www.instagram.com/larkhallcircuit/\n	
+13	Shennington	Shenington Airfield, Shenington, Banbury OX15 6NW	01926 812177	1018	secretary@sheningtonkrc.co.uk	2023-11-01 15:19:39.157348	2023-11-01 15:19:39.172478	Shenington Kart Racing Club is a well-known and prestigious kart racing club located in Shenington, a village in Oxfordshire, England. Founded in 1960, it is one of the oldest and most respected karting clubs in the country. Shenington Kart Racing Club caters to racers of all ages and skill levels, from beginners to seasoned professionals. The club organizes various race events throughout the year, including club championships,  and national-level competitions. These events attract a diverse range of participants, from local enthusiasts to nationally recognized drivers.\n\n    The club has a vibrant and friendly community, with members who are passionate about karting and dedicated to promoting the sport. Shenington Kart Racing Club has a strong focus on safety, implementing strict regulations and procedures to ensure a secure racing environment. Shenington Kart Racing Club has gained a reputation as a breeding ground for talented drivers, with many successful racers having started their careers at the club. It serves as a stepping stone for aspiring motorsport professionals, providing them with the opportunity to gain experience, improve their skills, and progress to higher levels of competition.\n    \n    PLEASE NOTE: Shenington village, as a route to the circuit, is OUT OF BOUNDS (unless you are using the facilities in the village, eg for accommodation or food).  We regret that any kart team reported using this route will automatically be excluded from the meeting.  Please help us to preserve the good relations with our Shenington village neighbours.  Thank you for your co-operation.  Do not speed in the villages, the Police are informed.	Oxford	\N	Founded in 1960, it is one of the oldest and most respected karting clubs in the country.	Home of Shenington Kart Racing Club	{"Hot Food Available",Toilets,"Overnight Camping",Parking,"Pit Bays for Hire","Arrive and Drive Karting",Showers,Floodlight,"Electric Hook Up"}	www.sheningtonkrc.co.uk/	https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9807.628398867175!2d-1.476714!3d52.081421!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48772bec06e9bbcd%3A0x38e7b8d82c6f4242!2sShenington%20Kart%20Racing%20Club!5e0!3m2!1sen!2suk!4v1698836453541!5m2!1sen!2suk	---\n:facebook: https://www.facebook.com/sheningtonkrc\n:instagram: https://www.instagram.com/sheningtonkrc/\n	
+17	Rye House	Rye Rd, Hoddesdon EN11 0EH	01992 460895	900	info@rye-house.co.uk	2023-11-01 15:19:39.243439	2023-11-01 15:19:39.257887	Rye House Kart Raceway is now a famous venue that has become the UK’s foremost karting centres and offers the perfect introduction into the world of motorsport. It is a great opportunity to enjoy the thrills and exhilaration of go-karting, the ultimate race experience.\n\n    The historic racing circuit is one of the oldest in existence and over the years has hosted many national and international meetings, as well as club meetings\n    \n    “Rye House has always been a great circuit, run by great people who have been incredibly supportive throughout my career. This is where I started and let’s hope that for every one of you, this could be where your career begins too” Lewis Hamilton – Formula 1 seven time world champion 	Hertfordshire	\N	Lewis Hamilton\\s Home Track		{"Hot Food Available",Toilets,"Overnight Camping",Parking,"Arrive & Drive Karting"}	www.rye-house.co.uk	https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1239031.9397841273!2d-2.3672386931598077!3d52.66026192561268!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d89dfd755f6bcb%3A0x68e250e8f76a21d5!2sRye%20House%20Kart%20Raceway!5e0!3m2!1sen!2suk!4v1698843076499!5m2!1sen!2suk	---\n:facebook: https://www.facebook.com/RyeHouseKartRacewayGoKarting\n:instagram: https://www.instagram.com/ryehousekarting/\n	
+14	Buckmore Park	Maidstone Rd, Chatham ME5 9QG	01634 201562	1000	sales@buckmore.co.uk	2023-11-01 15:19:39.177714	2023-11-01 15:19:39.20159	We’ve been at the forefront of British karting for several decades. Now, we’re pioneering the next generation of kart circuit.\n\n    When my father, John Surtees (7 time Motorcycle World Champion and Ferrari Formula 1 World Champion), bought Buckmore in 2015 we had the opportunity to invest in upgrading all the facilities, both on and off track, and we're proud to be recognised as one of the most impressive and advanced karting circuits in the world.\n    \n    Sadly Dad passed away in March 2017 leaving a rich motorsport legacy and a big vision for Buckmore. Every day we strive to realise his grand plans and we continue to deliver the excitement, the thrill and the emotion that he wanted to bring to everyone who visits us.	Kent	\N	Buckmore Park saw its inception in the early 1960’s with the initial 400m circuit.	Home of Medway Valley Kart Club	{"Hot Food Available",Toilets,"Overnight Camping",Parking,"Pit Bays for Hire","Arrive and Drive Karting"}	www.buckmore.co.uk/	https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9969.007474834503!2d0.501862!3d51.343279!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47df333258701513%3A0x27bc7cc3da5517ab!2sBuckmore%20Park%20Kart%20Circuit!5e0!3m2!1sen!2suk!4v1698841800120!5m2!1sen!2suk	---\n:facebook: https://www.facebook.com/buckmorepark\n:instagram: https://www.instagram.com/buckmorepark/\n	
+15	Fulbeck	Stragglethorpe Ln, Grantham NG32 3JE	0114 2302381	930	compsec@fulbeckkartclub.co.uk	2023-11-01 15:19:39.210361	2023-11-01 15:19:39.210361	The home of real racing since 1954.\n\n    Located in Lincolnshire we host two meetings a month challenging you to drive at one of the most technical tracks in the UK.\n    \n    We welcome drivers of all experience levels to compete in a fair and fun way. Our team are dedicated to giving you a great service and competitive racing from Bambino to Senior grids.	Grantham	\N	The home of real racing since 1954.		{"Hot Food Available",Toilets,"Overnight Camping",Parking,"Pit Bays for Hire"}	www.fulbeckkartclub.co.uk	https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9594.64737699518!2d-0.6551306!3d53.0444145!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4878482af751e4ab%3A0xf8624acce7648106!2sFulbeck%20Kart%20Circuit!5e0!3m2!1sen!2suk!4v1698842362350!5m2!1sen!2suk	---\n:facebook: https://www.facebook.com/FulbeckKartClub\n:instagram: https://www.instagram.com/fulbeckkartclub/\n	07749 106101
+19	Mansell Raceway	Dunkeswell Aerodrome, Dunkeswell, Honiton, Devon EX14 4AH	0344 5441992	1032	njal@mansellraceway.com	2023-11-01 15:19:39.292047	2023-11-01 16:09:02.377845	Based in the west country it had early links with Exeter and Plymouth Kart clubs which are no longer on the karting map, but the two clubs have since left a legacy of experienced drivers and enthusiasts who are now using their skills at Dunkeswell and other UK circuits. Like our present day club many of the UK’s early Motor Sports organisations used some of the old American and RAF Airfields which were left behind after the the ‘Yankee’ soldiers and Battle Groups from America and Europe departed at the end of the last war. Many of these great Landing Strips have now been dug up, returned to arable pastures or redeveloped, but fortunately the early Club was lucky to have a good group of dedicated Karting and Motorsport enthusiasts to seal the fate of part of the old Airfield Fuel Bay and Runway and put the area to good Sporting use.\r\n\r\n    Although the Race circuit of today is situated on the southern side of the Blackdown Hills – recognised for its outstanding natural beauty, those early days at Dunkeswell or any other venue were rustic to say the least. Some parts of the early airfields were surfaced in concrete and most were left open to the elements, barren and in disrepair which meant a bumpy ride for those early drivers who sought to experience the thrills of driving at speed.\r\n    \r\n    As a member club of the ‘ Devon Four Motorsport Partnership’, Association of South Western Motor Clubs (ASWMC), Association of British Kart Clubs (ABkC) we hope to provide those with Karting Interests with a stepping stone to other forms of Motorsport. Of course you don’t have to be a Kart, Single seater or car driver to enjoy our sports as our gates are open free of charge to spectators and visitors on Saturday Practice Sessions and you are invited to enjoy views of the Airfield activities and Race Day excitment from our Track Side parking areas for a small fee on Race Sundays.\r\n\r\n    If you are interested in any of Dunkeswell Kart Clubs Sporting activities the club can be contacted on most days by telephone, email or post and you are welcome to visit us and see some of our drivers in action at the circuit.\r\n\r\n    Membership is open to all local and UK Kart drivers, friends, families and groups of any age.	South West	\N	Established over 50 years ago Mansell Kart Racing Club has grown from the early roots of karting.		{"Hot Food Available",Toilets,"Overnight Camping",Parking,"Arrive & Drive Karting","Kart Shop"}	www.mansellraceway.com	https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10071.969631313614!2d-3.2343932!3d50.8683403!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486d91e607c5bcf7%3A0x1cb33215802a326a!2sMansell%20Raceway!5e0!3m2!1sen!2suk!4v1698844578546!5m2!1sen!2suk	---\nfacebook: https://www.facebook.com/mansellracewayofficial\ninstagram: https://www.instagram.com/mansell_kart_club/\n	
+18	Lydd	Dengemarsh Rd, Lydd TN29 9JH	01797 321747	1040	info@lyddkartcircuit.com/	2023-11-01 15:19:39.267451	2023-11-01 15:19:39.28634	Established in 1993, Lydd Kart Circuit is the fastest for outdoor Go Karting in Kent and one of the fastest in the Country. The 1040 meter track is very popular with drivers, whether they be ‘Owner Drivers’ racing their own karts or ‘Arrive & Drive’ customers using our Hire Karts.\n\n    The current layout has existed since an extension was added in 1996, while our Junior Circuit measures approx 500m and is ideal for kids sessions, family sessions or children’s birthday parties.\n    \n    The owner, James Clarke, took control of the Circuit in February 2011 and is investing in his vision of the future of Lydd as a Karting venue.\n    \n    James is very passionate about Lydd and Karting, so the circuit is in safe hands, and the improvements to the whole venue will continue to be ‘work in progress’.\n    \n    A new workshop/garage building for the hire kart fleet/owner driver kart storage was built, creating a much better base to work from, while the next phase of James’ original plan to resurface the track, also ticked off the list as done. In 2016/2017 many customers who have known the track of old have re-visited, feedback on the track surface continues to be been very positive. Winter 2017/2018 the new build clubhouse/café/offices got underway, and finally opened in March 2020.\n    \n    We host owner driver monthly club race meetings providing drivers with the chance to go racing in a friendly family atmosphere. Also for owner drivers we can offer (subject to availability) one-to-one tuition, kart preparation and kart storage. For more information – please click on the Owner/Driver page.	South East	\N	The Biggest & Fastest Kart Circuit in the South		{"Hot Food Available",Toilets,"Overnight Camping",Parking,"Arrive & Drive Karting","Kart Shop"}	www.lyddkartcircuit.com	https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d45415.38629455035!2d0.8671727295675298!3d50.93819879500111!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47dee60de523691b%3A0x7f559f24cfa1a96b!2sLydd%20Karting%20Ltd!5e0!3m2!1sen!2suk!4v1698843621211!5m2!1sen!2suk	---\n:facebook: https://www.facebook.com/lydd.kartcircuit\n:instagram: https://www.instagram.com/lydd_kart_circuit/\n	
+16	Wombwell	Atheletic Stadium, Barnsley, Station Rd, Wombwell, Barnsley S73 0BJ	0771 1975572	865	wombwellkarting64@gmail.com	2023-11-01 15:19:39.215499	2023-11-01 16:08:24.587524	Wombwell Karting (previously known as South Yorkshire Kart Club) has one of the oldest and most unique kart circuits in the UK, with records dating back to 1959.\r\n\r\n    ​\r\n    \r\n    It's success may be down to the anti-clockwise layout, or possibly the infamous turn 3 which is approached flat out in all classes from the straight and is entered blind due to the perimeter fence, tightening into turn 4, presenting fantastic overtaking opportunities for the brave. It has been the point of many championship deciding moves (and bumps) over the years.\r\n    \r\n    The track is fairly short at only 865m long, with a breeze block wall separating the main straight from the return straight, just one metre from the edge of the track!\r\n  \r\n    Over the years the circuit has been raced by a number of driver that have gone on to be successful. These are just a few - Lewis Hamilton, George Russell, Jenson Button, David Coulthard, Mike Wilson, Dan Wheldon, Justin Wilson and local Formula E driver Oliver Rowland. \r\n    \r\n    The club is run by a committee of volunteers with a team of voluntary officials. A friendly, welcoming circuit and a great place to begin your karting journey. Race meetings are held monthly for owner drivers. As a registered Motorsport UK circuit we can offer ARKS Test to enable drivers to become licenced to race in MSUK events.\r\n    \r\n    Well worth a visit!	Barnsley	\N	The Home of The Joe Dale Championship	Cock O North	{"Hot Food Available",Toilets,"Overnight Camping",Parking}	www.wombwellkarting64.wixsite.com/website	https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9487.160751035994!2d-1.397073!3d53.5258039!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4879704454e4a415%3A0xfd0a14a2241c51c2!2sWombwell%20Kart%20Circuit!5e0!3m2!1sen!2suk!4v1698842755935!5m2!1sen!2suk	---\nfacebook: https://www.facebook.com/WombwellKarting\ninstagram: https://www.instagram.com/wombwellkarting/\n	07711975572
+21	Llandow	Llandow Trading Estate\n    Cowbridge\n    Vale of Glamorgan CF71 7PB	01446 795568	1050	karting@swkc.co.uk	2023-11-01 15:19:39.325746	2023-11-01 15:19:39.348199	Racing circuits around the world have particular names for parts of the track. The names aid drivers, observers and spectators to identify the position where the action is or the location of an incident which may be out of sight to the majority.\n\n    The names may be geographical, technical or often named after individuals. They are part of the history of a circuit and to enthusiasts they can produce a mental image of any particular track.\n    \n    The South Wales Karting Centre, at Llandow, is no different. Developed following adoption by the St Athan Kart Club and from the year 2000 by the renamed Llandow Kart Club, the names may be familiar to many drivers but the reasons for the names can be lost in the mists of time.\n    \n    We have recently added a new name to the list of designations so it presents an opportunity to review and explain the names.\n    \n    Clockwise, from the starting lights.\n    \n    Raymonds\n    This sharp hairpin recognises the early support and involvement by the nationally known John Raymond Transport Ltd. Jonathon Raymond was a multiple Welsh Karting Champion in the 1970s and 80s, and his son Richie raced at Llandow.\n    \n    Start/Finish Straight\n    Although the position of the start has changed the finish line is still part way along the ‘straight’.\n    \n    The Hook\n    A descriptive name for this right ' left ' right ' left section.\n    \n    Bomber Straight\n    More a shallow curve, the name remembers the part played by RAF Llandow during the Second World War. The airfield was a ‘satellite’ to RAF St Athan, in fact connected by a green track. RAF Llandow hosted two and four engined aircraft as a maintenance unit and storage facility.\n    \n    Surtees\n    Named in honour of Sir John Surtees, the only man to have ever won the Formula One and World Bike Championships, was at Llandow in August 2005 and officially ‘opened’ the first bend into the newly completed extension to the track.\n    \n    MacWhirters\n    Another nationally known early supporter, MacWhirter Ltd., supplier of refrigeration and air conditioning products.\n    \n    Lancaster Curve\n    A reference to Llandow’s post wartime period. As a storage depot many hundreds of aircraft spent time in the fields around the runways. The Battle of Britain Memorial Flight Lancaster PA 474 and ‘Just Jane’, NX 611 the Lincolnshire Aviation Heritage Lancaster were parked here before disposal. PA 474 had left by 1948 but NX 611 was here until 1952.\n    \n    Chandlers\n    The third major company to support the Club and circuit from the beginning, Chandler KBS, advises on construction cost and project management.\n    \n    Spitfire Straight\n    Living up to the name, this fast section pays tribute to the pilots who trained on Spitfires at RAF Llandow. Many went on to fly during the Battle of Britain and several were lost during training and in battle.\n    \n    The Dell\n    The name seems to have nothing to do with the sometime home ground of Southampton FC! The name describes the location of this right / left turn and the line of trees that separate the current circuit from the public road and the site of the original Llandow kart track.\n    \n    Diggers\n    This corner was named in 2013 in memory of Richard Dowers. Richard was known by family, friends and the Karting community as ‘Diggers’. He made major contributions to the Club and SWKC over many years.\n    \n    Hangar Straight\n    The fastest part of the track is on the line of one of RAF Llandow’s main runways. Several of the 1940s hangars can still be seen from the circuit. Also named after Hangar Straight at Silverstone, one of the most famous straights in motor sport.\n    \n    NGK Chicane\n    Part way along the straight is part of an earlier layout. Formally known as the NGK Kink. Following the continuation of the straight the ‘kink’ was renamed a ‘chicane’. Not used in the regular race circuit it does form part of the Bambino circuit. NGK Spark Plug Co. Ltd. was a long time supporter of the Club and circuit. The ‘kink’ was bypassed when the straight was extended and Raymond’s Hairpin was re-paved and re-profiled during the summer of 2006 before Llandow hosted the ABkC Internations.	South Wales	\N	South Wales Karting Centre is one of the largest, fastest and most exciting circuits in Wales.		{Cafe,Toilets,"Overnight Camping",Parking,Floodlights,Showers}	www.swkc.co.uk	https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9949.4111464195!2d-3.4957645!3d51.4333147!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e72c5ce9d0795%3A0xa7439f09687b3480!2sThe%20South%20Wales%20Karting%20Centre%20Ltd!5e0!3m2!1sen!2suk!4v1698845156762!5m2!1sen!2suk	---\n:facebook: https://www.facebook.com/southwaleskartingcentreltd/\n	
+22	Stretton	Gartree Rd, Leicester LE2 2FG	0116 259 2900	950	info@strettoncircuit.co.uk	2023-11-01 15:19:39.3554	2023-11-01 15:19:39.378716	Home of Leicester Go Karting - We're a family owned circuit run by racers, for racers!\n    Based in the Leicester, we're at the heart of the Midland's go karting scene. With a wide range of events will suit your every need, we welcome drivers of all levels to challenge themselves on our 950m floodlit outdoor karting circuit. Stretton has a reputation as a ‘racers circuit’, and outdoor karting offers a thrill like no other. The feeling of wind, weather and tarmac as you race around the track cannot be matched, providing a real sense of speed and an authentic motorsport experience.\n    	Leicester	\N	Home of Kart Racing in Leicestershire		{"Licensed Bar",Cafe,Toilets,"Overnight Camping",Parking,Floodlights,Showers}	www.strettoncircuit.co.uk	https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9691.90315095583!2d-1.0382852!3d52.6062085!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487764707c4c09b7%3A0x25ae37c5264a3901!2sStretton%20Circuit%2C%20Leicester%20Karting!5e0!3m2!1sen!2suk!4v1698845861000!5m2!1sen!2suk	---\n:facebook: https://www.facebook.com/StrettonKarting/\n:instagram: https://www.instagram.com/strettoncircuit/\n	
+10	Teeside Karting	Motor Sports Park, Teesside Autodrome South Tees, S Bank Rd, Middlesbrough TS6 6XH	01642 231117	1309	enquiries@teessidekarting.co.uk	2023-11-01 15:19:39.081188	2023-11-01 16:03:51.346818	Welcome to the world's longest kart circuit, managed by the current owners since 1998. Previously called Langburgh Circuit, it has since become the home of the British 24-hour kart race and has been developed into a multipurpose venue for karts, bikes and cars. Our karts are hand-built racing karts, built to give you the full experience of speed, reaching up to 60mph hour on the long straights of the Teesside Circuit. As the home of the Pro-Kart and the 24-hour race, we are uniquely placed to give you the thrill of karting at the highest level. 	Middlesborough	\N	Home of the British 24 Hour Race	Long-established track for drivers aged 8 and up, with special karts for children and a cafe/bar.	{"Hot Food Available",Toilets,"Overnight Camping",Parking,"Pit Bays for Hire","Arrive and Drive Karting",Showers}	teessidekarting.co.uk/	https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9250.00285478609!2d-1.1895201!3d54.5775508!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487eee44f668cb37%3A0xc5b9e92817eeecbc!2sTeesside%20Karting!5e0!3m2!1sen!2suk!4v1698834373242!5m2!1sen!2suk	---\nfacebook: https://www.facebook.com/teessidekarting.middlesbrough\ninstagram: https://www.instagram.com/teessidekarting/\n	
+20	Bayford Meadows	Symmonds Drive, Sittingbourne ME10 3RY	01795 410707	1100	info@bayfordmeadows.co.uk	2023-11-01 15:19:39.299643	2023-11-01 15:40:24.812656	Bayford boasts a 1100m MSUK-licensed circuit and a 300m leisure track, both set within a spacious 12-acre landscaped site. Running regular MSUK-licensed race meetings, Bayford Meadows is considered to be one of the leading competition kart circuits in the country. Enjoy the excitement of karting for both young and old on weekdays, evenings and weekends\r\n    \r\n    Bayford Meadows can host events for a group of friends or a multinational company. Running regular MSUK-licensed race meetings, Bayford Meadows is considered one of the leading competition kart circuits in the country. Enjoy the excitement of karting for both young and old at one of the UK's top kart circuits.\r\n\r\n    The circuit was designed and built by owner Gerry Lilley, on what was previously wasteland behind the Eurolink Industrial Estate and first opened to the public in 1997.\r\n\r\n    The circuit is managed by Gerry's daughter, Corinne Murphy (pictured below) and has a great team who work together with the aim of making every karting experience at Bayford Meadows an enjoyable one. The circuit features a fast and consistent asphalt racing surface, and is regularly enjoyed by both leisure karters and owner drivers.\r\n\r\n    Bayford Meadows\\’ commitment to exceptional customer care and personal service has made it one of the country’s premier outdoor floodlit kart circuits.\r\n\r\n    We hope to continue to increase our base of happy customers, so if there is a particular type of karting event you require, we will do our best to accommodate your requirements. We look forward to speaking to you.	Kent	\N	1100m NKA/MSA licensed circuit set within a 12 acre site.		{"60 Seater Diner on Site",Toilets,"Overnight Camping",Parking,"Arrive & Drive Karting"}	www.bayfordmeadows.co.uk	https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2492.017985164377!2d0.7435908174438512!3d51.347579900000014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8d5547b2f01c9%3A0x44a6c5eedae5416d!2sBayford%20Meadows%20Kart%20Circuit%20Ltd!5e0!3m2!1sen!2suk!4v1698844682544!5m2!1sen!2suk	---\nfacebook: https://www.facebook.com/pages/Bayford-Meadows-Kart-circuit-Sittingbourne/100930626669209\ninstagram: https://www.instagram.com/officialbayfordmeadowscircuit/\n	
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: michaelhoward
+--
+
+COPY public.users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, first_name, last_name, admin, created_at, updated_at) FROM stdin;
+1	mikeh112@hotmail.com	$2a$12$effrl5MP6SEKNFLKyZQbN.U11DyiiNnqsQ2Yjbr.gYj.ymdd3UsX2	\N	\N	\N	Mike	Howard	t	2023-11-01 15:19:38.328714	2023-11-01 15:19:38.328714
+\.
+
+
+--
+-- Name: action_text_rich_texts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: michaelhoward
+--
+
+SELECT pg_catalog.setval('public.action_text_rich_texts_id_seq', 1, false);
+
+
+--
+-- Name: active_storage_attachments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: michaelhoward
+--
+
+SELECT pg_catalog.setval('public.active_storage_attachments_id_seq', 36, true);
+
+
+--
+-- Name: active_storage_blobs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: michaelhoward
+--
+
+SELECT pg_catalog.setval('public.active_storage_blobs_id_seq', 36, true);
+
+
+--
+-- Name: active_storage_variant_records_id_seq; Type: SEQUENCE SET; Schema: public; Owner: michaelhoward
+--
+
+SELECT pg_catalog.setval('public.active_storage_variant_records_id_seq', 1, false);
+
+
+--
+-- Name: championships_id_seq; Type: SEQUENCE SET; Schema: public; Owner: michaelhoward
+--
+
+SELECT pg_catalog.setval('public.championships_id_seq', 1, false);
+
+
+--
+-- Name: event_users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: michaelhoward
+--
+
+SELECT pg_catalog.setval('public.event_users_id_seq', 1, false);
+
+
+--
+-- Name: events_id_seq; Type: SEQUENCE SET; Schema: public; Owner: michaelhoward
+--
+
+SELECT pg_catalog.setval('public.events_id_seq', 1, false);
+
+
+--
+-- Name: tracks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: michaelhoward
+--
+
+SELECT pg_catalog.setval('public.tracks_id_seq', 23, true);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: michaelhoward
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 1, true);
+
+
+--
+-- Name: action_text_rich_texts action_text_rich_texts_pkey; Type: CONSTRAINT; Schema: public; Owner: michaelhoward
+--
+
+ALTER TABLE ONLY public.action_text_rich_texts
+    ADD CONSTRAINT action_text_rich_texts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: active_storage_attachments active_storage_attachments_pkey; Type: CONSTRAINT; Schema: public; Owner: michaelhoward
+--
+
+ALTER TABLE ONLY public.active_storage_attachments
+    ADD CONSTRAINT active_storage_attachments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: active_storage_blobs active_storage_blobs_pkey; Type: CONSTRAINT; Schema: public; Owner: michaelhoward
+--
+
+ALTER TABLE ONLY public.active_storage_blobs
+    ADD CONSTRAINT active_storage_blobs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: active_storage_variant_records active_storage_variant_records_pkey; Type: CONSTRAINT; Schema: public; Owner: michaelhoward
+--
+
+ALTER TABLE ONLY public.active_storage_variant_records
+    ADD CONSTRAINT active_storage_variant_records_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: michaelhoward
+--
+
+ALTER TABLE ONLY public.ar_internal_metadata
+    ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: championships championships_pkey; Type: CONSTRAINT; Schema: public; Owner: michaelhoward
+--
+
+ALTER TABLE ONLY public.championships
+    ADD CONSTRAINT championships_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: event_users event_users_pkey; Type: CONSTRAINT; Schema: public; Owner: michaelhoward
+--
+
+ALTER TABLE ONLY public.event_users
+    ADD CONSTRAINT event_users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: events events_pkey; Type: CONSTRAINT; Schema: public; Owner: michaelhoward
+--
+
+ALTER TABLE ONLY public.events
+    ADD CONSTRAINT events_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: michaelhoward
+--
+
+ALTER TABLE ONLY public.schema_migrations
+    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: tracks tracks_pkey; Type: CONSTRAINT; Schema: public; Owner: michaelhoward
+--
+
+ALTER TABLE ONLY public.tracks
+    ADD CONSTRAINT tracks_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: michaelhoward
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_action_text_rich_texts_uniqueness; Type: INDEX; Schema: public; Owner: michaelhoward
+--
+
+CREATE UNIQUE INDEX index_action_text_rich_texts_uniqueness ON public.action_text_rich_texts USING btree (record_type, record_id, name);
+
+
+--
+-- Name: index_active_storage_attachments_on_blob_id; Type: INDEX; Schema: public; Owner: michaelhoward
+--
+
+CREATE INDEX index_active_storage_attachments_on_blob_id ON public.active_storage_attachments USING btree (blob_id);
+
+
+--
+-- Name: index_active_storage_attachments_uniqueness; Type: INDEX; Schema: public; Owner: michaelhoward
+--
+
+CREATE UNIQUE INDEX index_active_storage_attachments_uniqueness ON public.active_storage_attachments USING btree (record_type, record_id, name, blob_id);
+
+
+--
+-- Name: index_active_storage_blobs_on_key; Type: INDEX; Schema: public; Owner: michaelhoward
+--
+
+CREATE UNIQUE INDEX index_active_storage_blobs_on_key ON public.active_storage_blobs USING btree (key);
+
+
+--
+-- Name: index_active_storage_variant_records_uniqueness; Type: INDEX; Schema: public; Owner: michaelhoward
+--
+
+CREATE UNIQUE INDEX index_active_storage_variant_records_uniqueness ON public.active_storage_variant_records USING btree (blob_id, variation_digest);
+
+
+--
+-- Name: index_championships_on_event_id; Type: INDEX; Schema: public; Owner: michaelhoward
+--
+
+CREATE INDEX index_championships_on_event_id ON public.championships USING btree (event_id);
+
+
+--
+-- Name: index_event_users_on_event_id; Type: INDEX; Schema: public; Owner: michaelhoward
+--
+
+CREATE INDEX index_event_users_on_event_id ON public.event_users USING btree (event_id);
+
+
+--
+-- Name: index_event_users_on_user_id; Type: INDEX; Schema: public; Owner: michaelhoward
+--
+
+CREATE INDEX index_event_users_on_user_id ON public.event_users USING btree (user_id);
+
+
+--
+-- Name: index_events_on_championship_id; Type: INDEX; Schema: public; Owner: michaelhoward
+--
+
+CREATE INDEX index_events_on_championship_id ON public.events USING btree (championship_id);
+
+
+--
+-- Name: index_events_on_track_id; Type: INDEX; Schema: public; Owner: michaelhoward
+--
+
+CREATE INDEX index_events_on_track_id ON public.events USING btree (track_id);
+
+
+--
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: michaelhoward
+--
+
+CREATE UNIQUE INDEX index_users_on_email ON public.users USING btree (email);
+
+
+--
+-- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: michaelhoward
+--
+
+CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING btree (reset_password_token);
+
+
+--
+-- Name: events fk_rails_1b219767f0; Type: FK CONSTRAINT; Schema: public; Owner: michaelhoward
+--
+
+ALTER TABLE ONLY public.events
+    ADD CONSTRAINT fk_rails_1b219767f0 FOREIGN KEY (championship_id) REFERENCES public.championships(id);
+
+
+--
+-- Name: event_users fk_rails_2fc76a96e7; Type: FK CONSTRAINT; Schema: public; Owner: michaelhoward
+--
+
+ALTER TABLE ONLY public.event_users
+    ADD CONSTRAINT fk_rails_2fc76a96e7 FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
+-- Name: event_users fk_rails_55572bff4d; Type: FK CONSTRAINT; Schema: public; Owner: michaelhoward
+--
+
+ALTER TABLE ONLY public.event_users
+    ADD CONSTRAINT fk_rails_55572bff4d FOREIGN KEY (event_id) REFERENCES public.events(id);
+
+
+--
+-- Name: championships fk_rails_94e0fa24a6; Type: FK CONSTRAINT; Schema: public; Owner: michaelhoward
+--
+
+ALTER TABLE ONLY public.championships
+    ADD CONSTRAINT fk_rails_94e0fa24a6 FOREIGN KEY (event_id) REFERENCES public.events(id);
+
+
+--
+-- Name: active_storage_variant_records fk_rails_993965df05; Type: FK CONSTRAINT; Schema: public; Owner: michaelhoward
+--
+
+ALTER TABLE ONLY public.active_storage_variant_records
+    ADD CONSTRAINT fk_rails_993965df05 FOREIGN KEY (blob_id) REFERENCES public.active_storage_blobs(id);
+
+
+--
+-- Name: active_storage_attachments fk_rails_c3b3935057; Type: FK CONSTRAINT; Schema: public; Owner: michaelhoward
+--
+
+ALTER TABLE ONLY public.active_storage_attachments
+    ADD CONSTRAINT fk_rails_c3b3935057 FOREIGN KEY (blob_id) REFERENCES public.active_storage_blobs(id);
+
+
+--
+-- Name: events fk_rails_dea4df4d73; Type: FK CONSTRAINT; Schema: public; Owner: michaelhoward
+--
+
+ALTER TABLE ONLY public.events
+    ADD CONSTRAINT fk_rails_dea4df4d73 FOREIGN KEY (track_id) REFERENCES public.tracks(id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+

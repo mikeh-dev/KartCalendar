@@ -17,8 +17,38 @@
     </div>
 
     <div class="mb-4">
+      <%= form.label :mobile, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_field :mobile, class: "form-input" %>
+    </div>
+
+    <div class="mb-4">
       <%= form.label :main_image, class: "block text-gray-700 text-sm font-bold mb-2" %>
       <%= form.file_field :main_image, class: "form-input" %>
+    </div>
+
+     <div class="mb-4">
+      <%= form.label :logo, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.file_field :logo, class: "form-input" %>
+    </div>
+
+     <div class="mb-4">
+      <%= form.label :race_image, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.file_field :race_image, class: "form-input" %>
+    </div>
+
+     <div class="mb-4">
+      <%= form.label :test_image, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.file_field :test_image, class: "form-input" %>
+    </div>
+
+     <div class="mb-4">
+      <%= form.label :champ_image, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.file_field :champ_image, class: "form-input" %>
+    </div>
+
+     <div class="mb-4">
+      <%= form.label :contact_image, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.file_field :contact_image, class: "form-input" %>
     </div>
 
     <div class="mb-4">
@@ -32,6 +62,16 @@
     </div>
 
     <div class="mb-4">
+      <%= form.label :short_desc, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_field :short_desc, class: "form-input" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :tagline, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_field :tagline, class: "form-input" %>
+    </div>
+
+    <div class="mb-4">
       <%= form.label :location, class: "block text-gray-700 text-sm font-bold mb-2" %>
       <%= form.text_field :location, class: "form-input" %>
     </div>
@@ -39,6 +79,32 @@
     <div class="mb-4">
       <%= form.label :email, class: "block text-gray-700 text-sm font-bold mb-2" %>
       <%= form.email_field :email, class: "form-input" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :website, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_field :website, class: "form-input" %>
+    </div>
+
+    <%= form.fields_for :social_media do |sm| %>
+      <div class="mb-4">
+        <%= sm.label :facebook, "Facebook URL:", class:"block text-gray-700 text-sm font-bold mb-2" %>
+        <%= sm.text_field :facebook, value: @track.social_media[:facebook] || '', class:'form-input' %>
+      </div>
+      <div class="mb-4">
+        <%= sm.label :instagram, "Instagram URL:", class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= sm.text_field :instagram, value: @track.social_media[:instagram] || '', class: "form-input" %>
+      </div>
+    <% end %>
+
+    <div class="mb-4">  
+      <%= form.label :facilities_input, "Facilities (comma separated)", class:"block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_field :facilities_input, value: @track.facilities.join(", "), class: "form-input" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :static_map_url, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_field :static_map_url, class: "form-input" %>
     </div>
 
     <div class="flex items-center justify-between">

@@ -26,7 +26,7 @@
       <%= image_tag "JHPhoto-3090.jpg", alt: "Events", class: "max-w-full xl:max-w-2xl 2xl:max-w-3xl object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-50020"%>
     </div>
   <% end %>
-    <div class="container mx-auto py-8 max-w-full xl:max-w-2xl 2xl:max-w-3xl object-cover rounded-3xl relative z-20 shadow-2xl p-6">
+    <div class="container mx-auto py-8 max-w-full xl:max-w-2xl 2xl:max-w-3xl object-cover rounded-3xl relative z-20 p-6">
         <h1 class="text-3xl font-semibold text-indigo-600 mb-4 text-center"><%= @championship.name %></h1>
         
         <div class="text-gray-600 mb-1">
@@ -67,7 +67,7 @@
           <p class="text-gray-800"><%= champ_event.description %></p>
         </div>
         <div class="bg-gray-100 p-4">
-          <%= link_to "View Event", events_path(champ_event), class: "text-white-500 hover:underline btn btn-primary" %>
+          <%= link_to "View Event", event_path(champ_event), class: "text-white-500 hover:underline btn btn-primary" %>
           <% if current_user&.admin? %>
             <%= link_to "Edit Event", edit_event_path(champ_event), class: "btn btn-dark" %> 
           <% end %>

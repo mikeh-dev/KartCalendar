@@ -6,5 +6,5 @@ class Track < ApplicationRecord
   has_one_attached :test_image
   has_one_attached :champ_image
   has_one_attached :contact_image
-  serialize :social_media, Hash
+  store :social_media, accessors: [ :facebook, :instagram ]
 end

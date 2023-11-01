@@ -8,14 +8,59 @@
       <%= form.text_field :name, class: "form-input" %>
     </div>
 
+     <div class="mb-4">
+      <%= form.label :short_name, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_field :short_name, class: "form-input" %>
+    </div>
+
+     <div class="mb-4">
+      <%= form.label :long_name, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_field :long_name, class: "form-input" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :contact_number, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_field :contact_number, class: "form-input" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :mobile, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_field :mobile, class: "form-input" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :email, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_field :email, class: "form-input" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :website, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_field :website, class: "form-input" %>
+    </div>
+
     <div class="mb-4">
       <%= form.label :description, class: "block text-gray-700 text-sm font-bold mb-2" %>
       <%= form.text_area :description, class: "form-input" %>
     </div>
 
     <div class="mb-4">
+      <%= form.label :tagline, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_field :tagline, class: "form-input" %>
+    </div>
+
+    <div class="mb-4">
       <%= form.label :championship_entry_fee, class: "block text-gray-700 text-sm font-bold mb-2" %>
-      <%= form.number_field :price, class: "form-input" %>
+      <%= form.number_field :champ_fee, class: "form-input" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :race_entry_fee, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.number_field :race_fee, class: "form-input" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :test_day_fee, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.number_field :test_day_fee, class: "form-input" %>
     </div>
 
     <div class="mb-4">
@@ -32,6 +77,17 @@
       <%= form.label :logo, class: "block text-white-700 text-sm font-bold mb-2" %>
       <%= form.file_field :logo, class: "form-input" %>
     </div>
+
+    <%= form.fields_for :social_media do |sm| %>
+      <div class="mb-4">
+        <%= sm.label :facebook, "Facebook URL:", class:"block text-gray-700 text-sm font-bold mb-2" %>
+        <%= sm.text_field :facebook, value: @championship.social_media[:facebook] || '', class:'form-input' %>
+      </div>
+      <div class="mb-4">
+        <%= sm.label :instagram, "Instagram URL:", class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= sm.text_field :instagram, value: @championship.social_media[:instagram] || '', class: "form-input" %>
+      </div>
+    <% end %>
 
     <div class="flex items-center justify-between">
       <%= form.submit "Save", class: "btn btn-primary" %>

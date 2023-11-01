@@ -30,6 +30,11 @@ class TracksController < ApplicationController
   end
 
   def update
+    social_media_params = params[:track][:social_media] || {}
+    @track.social_media = {} unless @track.social_media.is_a?(Hash)
+    @track.social_media[:facebook] = social_media_params[:facebook]
+    @track.social_media[:instagram] = social_media_params[:instagram]
+
     if @track.update(track_params)
       redirect_to @track, notice: 'Track was successfully updated.'
     else

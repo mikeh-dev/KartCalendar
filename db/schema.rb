@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_31_151536) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_01_200516) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,7 +60,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_31_151536) do
     t.text "description"
     t.string "logo"
     t.string "price"
-    t.string "type"
     t.bigint "event_id"
     t.string "contact_number"
     t.string "mobile"
@@ -68,10 +67,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_31_151536) do
     t.string "email"
     t.string "short_name"
     t.string "long_name"
-    t.decimal "test_fee"
-    t.decimal "race_fee"
-    t.decimal "champ_fee"
+    t.string "test_fee"
+    t.string "race_fee"
+    t.string "champ_fee"
     t.string "tagline"
+    t.string "champ_type"
+    t.text "social_media"
     t.index ["event_id"], name: "index_championships_on_event_id"
   end
 
