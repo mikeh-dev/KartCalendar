@@ -7,6 +7,14 @@ class ApplicationController < ActionController::Base
   def set_championships
     @championships = Championship.all
   end
+
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+
+  private
+
+  def record_not_found
+    render file: "#{Rails.root}/public/404.html", layout: false, status: :not_found
+  end
   
   protected
 

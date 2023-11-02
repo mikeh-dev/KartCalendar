@@ -44,4 +44,9 @@ Rails.application.routes.draw do
 	get 'test_events', to: 'events#test_events', as: 'test_events'
 
 	get 'race_events', to: 'events#race_events', as: 'race_events'
+
+	get '*unmatched_route', to: 'application#not_found', constraints: lambda { |req|
+  req.path.exclude? 'rails/active_storage'
+	}
+
 end
