@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 	get 'about', to: 'page#about'
 	get 'contact', to: 'page#contact'
 	get 'home', to: 'page#home'
+	get 'dashboard', to: 'dashboard#index'
 
 	
   if Rails.env.development? || Rails.env.test?
@@ -39,7 +40,9 @@ Rails.application.routes.draw do
 	end
 	
 
-	resources :championships
+	resources :championships do
+		resources :championship_followings, only: [:create, :destroy]
+	end
 
 	get 'test_events', to: 'events#test_events', as: 'test_events'
 
