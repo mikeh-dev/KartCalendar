@@ -22,7 +22,8 @@
             <p class="text-xl"><%= next_event.title %></p>
             <p class="text-xl"><%= next_event.date.strftime("%A, %B %e") %></p>
             <p class="text-xl"><%= next_event.track.name %></p>
-            <%= link_to "View Details", (event_path(next_event)), class: "btn btn-primary text-white-500 mt-2" %>
+            <%= link_to "View Championship", (championship_path(champ)), class: "btn btn-light text-white-500 mt-2" %>
+            <%= link_to "View Next Event", (event_path(next_event)), class: "btn btn-primary text-white-500 mt-2" %>
           <% else %>
             <p class="text-xl">No upcoming events this weekend!</p>
           <% end %>
