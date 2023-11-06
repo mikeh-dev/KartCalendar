@@ -8,4 +8,9 @@ class Championship < ApplicationRecord
   has_many :events
 
   store :social_media, accessors: [ :facebook, :instagram ]
+
+  def next_event
+    events.where('date > ?', Time.current).order(date: :asc).first
+  end
+  
 end

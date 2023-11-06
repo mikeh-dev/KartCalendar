@@ -5,7 +5,7 @@
     <p class="my-6 text-slate-700 dark:text-slate-400 text-lg">Explore Championships running events this weekend. Get on the grid!</p>
   </div>
   
-  <div class="w-full grid lg:grid-cols-2">
+  <div class="w-full grid <%= @next_championships.size > 1 ? 'md:grid-cols-2' : 'md:grid-cols-1' %>">
     <% @next_championships.each do |champ| %>
       <% next_event = champ.events.where(event_type: "Race").where(date: Date.today..(Date.today + 6.days)).first %>
       <div class="flex flex-col items-center text-center mt-6">
@@ -48,7 +48,11 @@
           <p class="text-gray-600 mb-2">Next Event - </p>
         </div>
         <div class="bg-white p-4">
-          <%= link_to "View Championship", (championship_path(championship)), class: "text-white hover:underline btn btn-primary" %>
+          <%= link_to "View Championship", (championship_path(championship)), class: "text-white hover:underline btn btn-dark" %>
+           <% next_event = championship.next_event %>
+          <% if next_event.present? %>
+            <%= link_to "View Next Event", event_path(next_event), class: "btn btn-primary text-white-500 mt-2" %>
+          <% end %>
         </div>
       </div>
     <% end %>

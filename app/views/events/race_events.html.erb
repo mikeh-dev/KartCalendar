@@ -5,7 +5,7 @@
     <p class="my-6 text-slate-700 dark:text-slate-400 text-lg">Explore race weekends near you. Get on the grid!</p>
   </div>
   
-  <div class="w-full grid <%= @race_events.size > 1 ? 'lg:grid-cols-2' : 'lg:grid-cols-1' %>">
+  <div class="w-full grid <%= @race_events.size > 1 ? 'md:grid-cols-2' : 'md:grid-cols-1' %>">
       <% @race_events.each do |race_event| %>
         <% if race_event.date >= Date.today && race_event.date <= Date.today + 6.days %>
         <div class="flex flex-col items-center text-center mt-6">
