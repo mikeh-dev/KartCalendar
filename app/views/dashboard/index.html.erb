@@ -30,7 +30,7 @@
               <%= link_to event.title, event_path(event) %>
             </h3>
             <p class="text-gray-600">Date: <%= event.date.strftime("%B %d, %Y") %></p>
-            <p class="text-gray-600">Track: <%= event.track.name %></p>
+            <p class="text-gray-600">Track: <%= event.track&.name || 'No track assigned' %></p>
             <p class="text-gray-600">Championship: <%= event.championship.name %></p>
           </div>
         <% end %>

@@ -33,10 +33,7 @@ Rails.application.routes.draw do
 	resources :events
 
 	resources :tracks do
-		member do
-			post 'follow', to: 'follows#create'
-			delete 'unfollow', to: 'follows#destroy'
-		end
+		resources :track_followings, only: [:create, :destroy]
 	end
 	
 
@@ -45,7 +42,6 @@ Rails.application.routes.draw do
 	end
 
 	get 'test_events', to: 'events#test_events', as: 'test_events'
-
 	get 'race_events', to: 'events#race_events', as: 'race_events'
 
 	get '*unmatched_route', to: 'application#not_found', constraints: lambda { |req|

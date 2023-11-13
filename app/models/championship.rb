@@ -4,7 +4,8 @@ class Championship < ApplicationRecord
   has_one_attached :logo
 
   has_many :championship_followings
-  has_many :users, through: :championship_followings
+  has_many :followers, through: :championship_followings, source: :user
+  
   has_many :events
 
   store :social_media, accessors: [ :facebook, :instagram ]

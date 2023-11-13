@@ -19,10 +19,26 @@
       <div class="mt-8 flex flex-wrap gap-4 md:justify-center sm:justify-center">
         <%= link_to "Race Calendar", "#champ-calendar", class: "block w-full rounded bg-rose-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto" %>
         <%= link_to "Contact", "#contact", class: "block w-full rounded bg-white px-12 py-3 text-sm font-medium text-rose-600 shadow hover:text-rose-700 focus:outline-none focus:ring active:text-rose-500 sm:w-auto" %>
+        <% unless current_user.following?(track) %>
+          <%= link_to 'Unfollow', unfollow_user_path(track), method: :delete, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" %>
+        <% else %>
+          <%= link_to 'Follow', follow_user_path(track), method: :post, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+        <% end %>
       </div>
     </div>
   </div>
 </section>
+
+
+<% unless current_user.championships.include?(@championship) %>
+          <%= button_to 'Follow Championship', championship_championship_followings_path(@championship), method: :post, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+        <% else %>
+          <%= button_to 'Unfollow Championship', championship_championship_following_path(@championship, current_user.championship_followings.find_by(championship: @championship)), method: :delete, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+        <% end %>
+
+
+
+
 
 <div class="relative isolate overflow-hidden bg-gray-900 py-10 mb-10 mt-10 sm:py-32" id="track_info">
   <div class="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl" aria-hidden="true">
@@ -35,6 +51,16 @@
       <h2 class="text-4xl font-bold tracking-tight text-white sm:text-6xl"><%= @track.name %></h2>
       <p class="text-3xl font-bold mt-6 mb-6 text-lg leading-8 text-gray-300 sm:text-3xl"><%= @track.short_desc %></p>
     </div>
+    <div class="mx-auto max-w-2xl lg:mx-0">
+      <% if current_user.followed_tracks.include?(@track) %>
+      <%= button_to 'Unfollow Track', track_track_following_path(@track, current_user.track_followings.find_by(track_id: @track.id)), method: :delete, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" %>
+    <% else %>
+      <%= button_to 'Follow Track', track_track_followings_path(@track), method: :post, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+    <% end %>
+
+
+    </div>
+
     <div class="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
       <dl class="mb-16 grid grid-cols-2 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
         <div class="flex flex-col-reverse">
