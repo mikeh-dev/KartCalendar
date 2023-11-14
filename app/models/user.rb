@@ -4,14 +4,7 @@ class User < ApplicationRecord
 
   has_and_belongs_to_many :events, join_table: 'event_users'
 
-  has_many :championship_followings
-  has_many :followed_championships, through: :championship_followings, source: :championship
-
-  has_many :track_followings
-  has_many :followed_tracks, through: :track_followings, source: :track
-
-  after_create :follow_events_of_championships
-
+  has_many :follows
 
   validates :email, :first_name, :last_name, presence: true
   # Include default devise modules. Others available are:
@@ -19,6 +12,17 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  def following?(followable)
+    follows.exists?(followable: followable)
+  end
+
+  def followed_championships
+    Championship.joins(:follows).where(follows: { user_id: id })
+  end
+      
+  def followed_tracks
+    Track.joins(:follows).where(follows: { user_id: id })
+  end   
 
   private
 

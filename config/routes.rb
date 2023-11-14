@@ -29,17 +29,11 @@ Rails.application.routes.draw do
   root action: :home, controller: "page"
 
   devise_for :users
-
 	resources :events
+	resources :tracks 
+	resources :championships
 
-	resources :tracks do
-		resources :track_followings, only: [:create, :destroy]
-	end
-	
-
-	resources :championships do
-		resources :championship_followings, only: [:create, :destroy]
-	end
+	resources :follows, only: [:create, :destroy]
 
 	get 'test_events', to: 'events#test_events', as: 'test_events'
 	get 'race_events', to: 'events#race_events', as: 'race_events'

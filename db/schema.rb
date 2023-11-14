@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_12_133215) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_13_234959) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -109,6 +109,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_12_133215) do
     t.index ["track_id"], name: "index_events_on_track_id"
   end
 
+  create_table "follows", force: :cascade do |t|
+    t.string "followable_type", null: false
+    t.bigint "followable_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["followable_type", "followable_id"], name: "index_follows_on_followable"
+    t.index ["user_id", "followable_id", "followable_type"], name: "index_follows_on_user_and_followable", unique: true
+    t.index ["user_id"], name: "index_follows_on_user_id"
+  end
+
   create_table "track_followings", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "track_id", null: false
@@ -163,6 +174,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_12_133215) do
   add_foreign_key "event_users", "users"
   add_foreign_key "events", "championships"
   add_foreign_key "events", "tracks"
+  add_foreign_key "follows", "users"
   add_foreign_key "track_followings", "tracks"
   add_foreign_key "track_followings", "users"
 end

@@ -3,8 +3,7 @@ class Championship < ApplicationRecord
   has_one_attached :image
   has_one_attached :logo
 
-  has_many :championship_followings
-  has_many :followers, through: :championship_followings, source: :user
+  has_many :follows, as: :followable
   
   has_many :events
 

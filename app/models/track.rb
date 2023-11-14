@@ -1,8 +1,7 @@
 class Track < ApplicationRecord
   has_many :events
 
-  has_many :track_followings
-  has_many :followers, through: :track_followings, source: :user
+  has_many :follows, as: :followable
 
   has_one_attached :main_image
   has_one_attached :logo

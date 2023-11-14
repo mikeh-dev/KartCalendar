@@ -3,15 +3,17 @@ class TrackFollowingsController < ApplicationController
   before_action :set_track
 
   def create
-    current_user.followed_tracks << @track unless current_user.followed_tracks.include?(@track)
+    unless current_user.track_followings.exists?(track: @track)
+      current_user.track_followings.create(track: @track)
+    end
     redirect_to @track
-  end
+  end  
 
   def destroy
-    track_following = current_user.track_followings.find_by(track_id: @track.id)
+    track_following = current_user.track_followings.find_by(track: @track)
     track_following&.destroy
     redirect_to @track
-  end
+  end  
 
   private
 
