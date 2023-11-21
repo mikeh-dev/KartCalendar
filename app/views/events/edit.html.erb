@@ -1,4 +1,9 @@
 <% content_for :title, 'Edit Event' %>
 <div class="container mx-auto px-4">
   <%= render partial: "events/form" %>
+  <div class="mt-4">
+  <h3>Admin Buttons</h3>
+  <%= link_to 'Back', events_path, class: "btn btn-primary" %>
+  <%= link_to 'Delete Track', event_path(@event), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn bg-red-700" %>
+  </div>
 </div>

@@ -8,9 +8,13 @@ class TracksController < ApplicationController
   end
 
   def show
+    @future_track_events = @track.events.where('date >= ?', Date.today).order(date: :asc)
+    @next_event = @future_track_events.first
     @track_events = @track.events.order(date: :asc)
     @track_race_events = @track.events.where(event_type: "Race")
     @track_test_events = @track.events.where(event_type: "Test")
+    @next_race_event = @track_race_events.first
+    @next_test_event = @track_test_events.first
   end
 
   def new
