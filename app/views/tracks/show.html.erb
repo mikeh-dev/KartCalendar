@@ -38,9 +38,9 @@
     </div>
     <div class="mx-auto max-w-2xl lg:mx-0">
       <% if current_user.following?(@track) %>
-          <%= button_to 'Unfollow', follow_path(id: follow_id_for(@track)), method: :delete, class: "block w-full rounded bg-rose-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto" %>
+          <%= button_to 'Remove from My Tracks', follow_path(id: follow_id_for(@track)), method: :delete, class: "block w-full rounded bg-rose-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto" %>
         <% else %>
-          <%= button_to 'Follow', follows_path(followable_id: @track.id, followable_type: 'Track'), method: :post, class: "block w-full rounded bg-blue-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-blue-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto" %>
+          <%= button_to 'Add to My Tracks', follows_path(followable_id: @track.id, followable_type: 'Track'), method: :post, class: "block w-full rounded bg-blue-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-blue-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto" %>
         <% end %>
     </div>
 

@@ -22,7 +22,11 @@ class User < ApplicationRecord
       
   def followed_tracks
     Track.joins(:follows).where(follows: { user_id: id })
-  end   
+  end
+
+  def followed_events
+    Event.joins(:follows).where(follows: { user_id: id })
+  end
 
   private
 

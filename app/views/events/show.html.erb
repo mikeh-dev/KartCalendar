@@ -27,8 +27,8 @@
     </div>
   <% end %>
     <div class="container mx-auto py-8 max-w-full xl:max-w-2xl 2xl:max-w-3xl object-cover rounded-3xl relative z-20 p-6">
-        <h3 class="text-3xl font-semibold text-white mb-4 text-center"><%= @event.event_type %></h3>
-        <h1 class="md:text-3xl text-lg font-semibold text-white mb-4 text-center"><%= @event.championship.long_name %> - <%= @event.title %></h1>
+        <h4 class="text-indigo-600 text-2xl mb-6 lg:mt-0 mt-2 dark:text-indigo-500 text-center"><%= @event.championship.present? ? @event.championship.long_name + " - " : "" %><%= @event.event_type %></h4>
+        <h1 class="md:text-3xl text-lg font-semibold text-white mb-4 text-center"><%= @event.title %></h1>
         <div class="text-gray-200 mb-1">
           <p class="mb-2"><strong>Track - </strong> <%= @event.track.name %>, <%= @event.track.location %> </p>
           <p class="mb-2"><strong>Date - </strong> <%= @event.date.strftime('%m/%d/%Y') %> </p>

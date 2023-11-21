@@ -3,6 +3,8 @@ class DashboardController < ApplicationController
 
   def index
     @followed_championships = current_user.followed_championships.includes(:events)
+    @followed_tracks = current_user.followed_tracks.includes(:events)
+    @followed_events = current_user.followed_events.includes(:championship, :track)
     
     @timeline_events = Event.where(championship: @followed_championships)
                             .order('date ASC')

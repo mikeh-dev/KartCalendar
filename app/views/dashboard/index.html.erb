@@ -6,85 +6,96 @@
     </div>
     
     <div class="mb-6">
-      <h2 class="text-2xl font-semibold text-gray-700 mb-4">Your Championships</h2>
+      <h2 class="text-2xl font-semibold text-gray-700 mb-4">My Championships</h2>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         <% @followed_championships.each do |championship| %>
-          <div class="bg-white rounded-lg shadow-lg p-4">
+          <div class="bg-white rounded-lg shadow-lg flex">
+            <div class="flex-none w-1/3">
+              <%= image_tag(championship.image, alt: championship.name, class: "object-cover h-full rounded-l-lg") if championship.image.present? %>
+            </div>
+            <div class="p-4 w-2/3">
             <h3 class="font-semibold text-lg text-blue-800 mb-2">
               <%= link_to championship.name, championship_path(championship) %>
             </h3>
             <% championship.events.each do |event| %>
               <p class="text-gray-600">Next Race: <%= event.title %>: <%= event.date.strftime("%B %d, %Y") %></p>
             <% end %>
+            </div>
           </div>
         <% end %>
       </div>
     </div>
-    
+
     <div class="mb-6">
       <h2 class="text-2xl font-semibold text-gray-700 mb-4">Upcoming Events</h2>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         <% @timeline_events.each do |event| %>
-          <div class="bg-white rounded-lg shadow-lg p-4">
+          <div class="bg-white rounded-lg shadow-lg flex">
+            <div class="flex-none w-1/3">
+              <%= image_tag(event.image, alt: event.title, class: "object-cover h-full rounded-l-lg") if event.image.present? %>
+            </div>
+            <div class="p-4 w-2/3">
             <h3 class="font-semibold text-lg text-blue-800 mb-2">
               <%= link_to event.title, event_path(event) %>
             </h3>
             <p class="text-gray-600">Date: <%= event.date.strftime("%B %d, %Y") %></p>
             <p class="text-gray-600">Track: <%= event.track&.name || 'No track assigned' %></p>
             <p class="text-gray-600">Championship: <%= event.championship.name %></p>
+            </div>
           </div>
         <% end %>
       </div>
     </div>
+
+    <div class="mb-6">
+      <h2 class="text-2xl font-semibold text-gray-700 mb-4">My Tracks</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <% @followed_tracks.each do |track| %>
+          <div class="bg-white rounded-lg shadow-lg flex">
+            <div class="flex-none w-1/3">
+              <%= image_tag(track.main_image, alt: track.name, class: "object-cover h-full rounded-l-lg") if track.main_image.present? %>
+            </div>
+            <div class="p-4 w-2/3">
+            <h3 class="font-semibold text-lg text-blue-800 mb-2">
+              <%= link_to track.name, track_path(track) %>
+            </h3>
+            <p class="text-gray-600">Location <%= track.location %></p>
+            <p class="text-gray-600">Next Test Day <%=  %></p>
+            <p class="text-gray-600">Next Race <%=  %></p>
+            </div>
+            </div>
+        <% end %>
+      </div>
+
   </div>
+
+
+
+
+
+
 <div class="container mx-auto px-4 lg:my-16 my-8">
   <div class="md:gap-x-16 md:gap-y-4 lg:gap-y-8 gap-6 grid md:grid-cols-12 grid-cols-1">
     <h2 class="font-semibold dark:text-gray-700 text-gray-700 md:text-2xl text-2xl tracking-tight md:col-span-12 col-span-1">Calendar</h2>
     <div class="md:pr-0 lg:pr-10 lg:col-span-6 md:col-span-12 col-span-1 lg:order-1 md:order-2 order-2">
       <ul class="divide-y dark:divide-slate-700/80">
-      <% [
-        {
-          title: "1:1 with Xiavier Glad",
-          time: "10:00 AM - 10:45 AM",
-          zoom: "Zoom Meeting ID: 124 0360 3254",
-          img: { id: "43", variant: "men" }
-        },
-        {
-          title: "Jonas Moss",
-          time: "11:00 AM - 12:00 PM",
-          zoom: "Zoom Meeting ID: 124 0351 4264",
-          img: { id: "45", variant: "men" }
-        },
-        {
-          title: "Sally Jones",
-          time: "1:00 PM - 1:45 PM",
-          zoom: "Zoom Meeting ID: 156 4560 8954",
-          img: { id: "49", variant: "women" }
-        },
-        {
-          title: "🧑‍💻🧑‍💻 Code pairing with Zack Dunas",
-          time: "3:00 PM - 4:15 PM",
-          zoom: "Zoom Meeting ID: 136 3260 8651",
-          img: { id: "37", variant: "men" }
-        }
-      ].each do |event| %>
-        <!-- Begin: example event -->
+      <% @timeline_events.each do |event| %>
         <li class="flex items-start justify-between space-x-4 relative py-5">
 
           <%= link_to "#" do %>
-            <%= image_tag demo_avatar_url(id: event[:img][:id]), class: "w-10 h-10 rounded-full", alt: event[:title] %>
+            <%= image_tag event.image, class: "w-10 h-10 rounded-full", alt: event.title if event.image.attached? %>
           <% end %>
 
           <div class="flex-1">
             <%= link_to "#", class: "group" do %>
-              <h3 class="font-medium group-hover:text-indigo-600 text-base dark:text-slate-300 dark:group-hover:text-indigo-400 text-slate-700 mb-1"><%= event[:title] %></h3>
+              <h3 class="font-medium group-hover:text-indigo-800 text-base dark:text-slate-600 dark:group-hover:text-indigo-600 text-slate-700 mb-1"><%= event.championship.present? ? event.championship.long_name + " - " : "" %><%= event.event_type %></h3>
             <% end %>
 
-            <p class="text-sm dark:text-slate-400/90 text-slate-500"><%= event[:time] %></p>
+            <p class="text-sm dark:text-slate-400/90 text-slate-500"><%= event.date %></p>
 
             <div class="mt-2 flex items-center space-x-2 text-xs dark:text-slate-400/90 text-slate-500">
               <%= icon "map-pin", classes: "stroke-current w-5 h-5 text-slate-400 dark:text-slate-500/80" %>
-              <span><%= event[:zoom] %></span>
+              <span><%= event.track.name %>, <%= event.track.location %></span>
             </div>
           </div>
           <div data-controller="dropdown">
@@ -102,21 +113,21 @@
               data-transition-leave-from="transform opacity-100 scale-100"
               data-transition-leave-to="transform opacity-0 scale-95">
               <li>
-                <%= link_to "#", class: "py-2 px-4 hover:text-indigo-600 focus:text-indigo-600 flex items-center space-x-2 w-full group dark:hover:text-indigo-400" do %>
+                <%= link_to event_path(event), class: "py-2 px-4 hover:text-indigo-600 focus:text-indigo-600 flex items-center space-x-2 w-full group dark:hover:text-indigo-400" do %>
                   <%= icon "pencil-square", classes: "stroke-current w-5 h-5 text-slate-500 group-hover:text-indigo-600 dark:group-hover:text-indigo-400" %>
-                  <span>Edit</span>
+                  <span>View</span>
                 <% end %>
               </li>
+
               <li>
-                <%= link_to "#", class: "py-2 px-4 hover:text-indigo-600 focus:text-indigo-600 flex items-center space-x-2 w-full group dark:hover:text-indigo-400" do %>
+                <%= link_to '#', class: "py-2 px-4 hover:text-indigo-600 focus:text-indigo-600 flex items-center space-x-2 w-full group dark:hover:text-indigo-400" do %>
                   <%= icon "paper-airplane", classes: "stroke-current w-5 h-5 text-slate-500 group-hover:text-indigo-600 dark:group-hover:text-indigo-400" %>
-                  <span>Message</span>
+                  <span>Remove</span>
                 <% end %>
               </li>
             </ul>
           </div>
         </li>
-        <!-- End: example event -->
         <% end %>
       </ul>
     </div>
@@ -124,8 +135,9 @@
       <div class="rounded-lg bg-slate-300/60 text-sm shadow-sm ring-1 ring-slate-300 dark:ring-slate-600">
         <div
           class="flex items-center justify-between bg-white dark:bg-slate-800 dark:text-slate-100 rounded-t-lg py-4 px-6">
-          <div class="text-2xl font-bold text-slate-900 dark:text-slate-100 text-left">August<span
-              class="font-normal pl-1">2023</span>
+          <div class="text-2xl font-bold text-slate-900 dark:text-slate-100 text-left"><%= Time.now.strftime("%B") %>
+          <span
+              class="font-normal pl-1"><%= Time.now.year %></span>
           </div>
           <div class="flex items-center text-slate-900">
             <button type="button"

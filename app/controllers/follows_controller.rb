@@ -14,9 +14,9 @@ class FollowsController < ApplicationController
   def destroy
     follow = current_user.follows.find_by(id: params[:id])
     if follow&.destroy
-      redirect_back(fallback_location: root_path, notice: 'Successfully unfollowed.')
+      redirect_back(fallback_location: root_path, notice: 'Successfully Removed.')
     else
-      redirect_back(fallback_location: root_path, alert: 'Unfollow action failed.')
+      redirect_back(fallback_location: root_path, alert: 'There has been an error!')
     end
   end
 
