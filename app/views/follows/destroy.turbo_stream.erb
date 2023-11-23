@@ -1,3 +1,3 @@
 <%= turbo_stream.update dom_id(@followable, "follow_#{dom_class(@followable)}"), class: "w-32" do %>
-  <%= link_to 'Follow', follows_path(followable_type: @followable.class.name, followable_id: @followable.id), method: :post, class: "block rounded bg-blue-600 px-6 py-3 text-sm font-medium text-center text-white shadow hover:bg-blue-700 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto", data: { turbo_method: :post } %>
+  <%= link_to 'Follow', follows_path(followable_type: @followable.class.name, followable_id: @followable.id), method: :post, class: "text-center block rounded bg-blue-600 px-6 py-3 text-sm font-medium text-center text-white shadow hover:bg-blue-700 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto", data: { turbo_method: :post } %>
 <% end %>
