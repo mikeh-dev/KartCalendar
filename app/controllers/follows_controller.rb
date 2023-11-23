@@ -5,7 +5,10 @@ class FollowsController < ApplicationController
   def create
     follow = current_user.follows.new(followable: @followable)
     if follow.save
-      redirect_back(fallback_location: root_path, notice: 'Successfully followed!')
+      respond_to do |format|
+        format.html { redirect_back(fallback_location: root_path) }
+        format.turbo_stream
+      end
     else
       redirect_back(fallback_location: root_path, alert: 'Unable to follow.')
     end
@@ -13,8 +16,13 @@ class FollowsController < ApplicationController
 
   def destroy
     follow = current_user.follows.find_by(id: params[:id])
-    if follow&.destroy
-      redirect_back(fallback_location: root_path, notice: 'Successfully Removed.')
+    if follow
+      @followable = follow.followable
+      follow.destroy
+      respond_to do |format|
+        format.html { redirect_back(fallback_location: root_path) }
+        format.turbo_stream
+      end
     else
       redirect_back(fallback_location: root_path, alert: 'There has been an error!')
     end
@@ -23,10 +31,10 @@ class FollowsController < ApplicationController
   private
 
   def set_followable
-    @followable = params[:followable_type].classify.constantize.find(params[:followable_id])
-  rescue NameError
-    redirect_to root_path, alert: 'Invalid followable type.'
-  rescue ActiveRecord::RecordNotFound
-    redirect_to root_path, alert: 'Followable not found.'
+    klass = params[:followable_type].classify.constantize
+    @followable = klass.find(params[:followable_id])
+  rescue NameError, ActiveRecord::RecordNotFound
+    redirect_to root_path, alert: 'Invalid or not found followable.'
   end
+  
 end

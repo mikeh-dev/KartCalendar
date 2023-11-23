@@ -27,11 +27,15 @@
   <% end %>
     <div class="container mx-auto py-8 max-w-full xl:max-w-2xl 2xl:max-w-3xl object-cover rounded-3xl relative z-20 p-6">
         <h1 class="text-3xl font-semibold text-white mb-4 text-center"><%= @championship.long_name %></h1>
-          <% if current_user.following?(@championship) %>
-            <%= button_to 'Unfollow Championship', follow_path(id: follow_id_for(@championship)), method: :delete, class: "block w-full rounded bg-rose-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto" %>
-          <% else %>
-            <%= button_to 'Follow Championship', follows_path(followable_id: @championship.id, followable_type: 'Championship'), method: :post, class: "block w-full rounded bg-blue-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-blue-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto" %>
+        <div class="flex justify-center">
+          <%= turbo_frame_tag dom_id(@championship, "follow_#{dom_class(@championship)}"), class: "w-32 text-center" do %>
+            <% if current_user.following?(@championship) %>
+              <%= link_to 'Unfollow', follow_path(id: current_user.follows.find_by(followable: @championship).id), method: :delete, class: "block rounded bg-rose-600 px-6 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto", data: { turbo_method: :delete } %>
+            <% else %>
+              <%= link_to 'Follow', follows_path(followable_type: @championship.class.name, followable_id: @championship.id), method: :post, class: "block rounded bg-blue-600 px-6 py-3 text-sm font-medium text-white shadow hover:bg-blue-700 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto", data: { turbo_method: :post } %>
+            <% end %>
           <% end %>
+        </div>
         <div class="text-gray-200 mb-1 mt-5">
           <p class="mb-2">
             <strong>Website - </strong> 
