@@ -1,3 +1,5 @@
+<% button_text = @followable.is_a?(Championship) ? ['Follow', 'Unfollow'] : ['Add to my Tracks', 'Remove from my Tracks'] %>
+
 <%= turbo_stream.update dom_id(@followable, "follow_#{dom_class(@followable)}"), class: "w-32" do %>
-  <%= link_to 'Unfollow', follow_path(id: current_user.follows.find_by(followable: @followable).id), method: :delete, class: "text-center block rounded bg-rose-600 px-6 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto", data: { turbo_method: :delete } %>
+  <%= link_to button_text[1], follow_path(id: current_user.follows.find_by(followable: @followable).id), method: :delete, class: "text-center block rounded bg-rose-600 px-6 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto", data: { turbo_method: :delete } %>
 <% end %>

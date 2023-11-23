@@ -37,12 +37,15 @@
       <p class="text-3xl font-bold mt-6 mb-6 text-lg leading-8 text-gray-300 sm:text-3xl"><%= @track.short_desc %></p>
     </div>
     <div class="mx-auto max-w-2xl lg:mx-0">
+
+
     <div class="flex">
+        <% button_text = @followable.is_a?(Championship) ? ['Follow', 'Unfollow'] : ['Add to my Tracks', 'Remove from my Tracks'] %>
           <%= turbo_frame_tag dom_id(@track, "follow_#{dom_class(@track)}"), class: "w-auto" do %>
             <% if current_user.following?(@track) %>
-              <%= link_to 'Remove from My Tracks', follow_path(id: current_user.follows.find_by(followable: @track).id), method: :delete, class: "text-center block rounded bg-rose-600 px-6 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto", data: { turbo_method: :delete } %>
+              <%= link_to button_text[1], follow_path(id: current_user.follows.find_by(followable: @track).id), method: :delete, class: "text-center block rounded bg-rose-600 px-6 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto", data: { turbo_method: :delete } %>
             <% else %>
-              <%= link_to 'Add to my Tracks', follows_path(followable_type: @track.class.name, followable_id: @track.id), method: :post, class: "text-center block rounded bg-blue-600 px-6 py-3 text-sm font-medium text-white shadow hover:bg-blue-700 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto", data: { turbo_method: :post } %>
+              <%= link_to button_text[0], follows_path(followable_type: @track.class.name, followable_id: @track.id), method: :post, class: "text-center block rounded bg-blue-600 px-6 py-3 text-sm font-medium text-white shadow hover:bg-blue-700 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto", data: { turbo_method: :post } %>
             <% end %>
           <% end %>
         </div>
