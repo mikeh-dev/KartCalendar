@@ -95,4 +95,5 @@ RSpec.configure do |config|
   
   # Set the JavaScript driver to the headless Chrome driver
   Capybara.javascript_driver = :selenium_chrome_headless
+
 end
