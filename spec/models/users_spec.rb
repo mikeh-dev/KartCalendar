@@ -39,4 +39,26 @@ RSpec.describe User, type: :model do
       expect(user).to be_valid
     end
   end
+
+  describe 'name validations' do
+    it 'rejects short first names' do
+      user = build(:user, first_name: 'a')
+      expect(user).not_to be_valid
+    end
+
+    it 'rejects long first names' do
+      user = build(:user, first_name: 'a' * 51)
+      expect(user).not_to be_valid
+    end
+
+    it 'rejects short last names' do
+      user = build(:user, last_name: 'a')
+      expect(user).not_to be_valid
+    end
+
+    it 'rejects long last names' do
+      user = build(:user, last_name: 'a' * 51)
+      expect(user).not_to be_valid
+    end
+  end
 end
