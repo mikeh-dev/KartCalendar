@@ -19,6 +19,9 @@
       <div class="mt-8 flex flex-wrap gap-4 md:justify-center sm:justify-center">
         <%= link_to "Race Calendar", "#champ-calendar", class: "block w-full rounded bg-rose-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto" %>
         <%= link_to "Contact", "#contact", class: "block w-full rounded bg-white px-12 py-3 text-sm font-medium text-rose-600 shadow hover:text-rose-700 focus:outline-none over:bg-rose-700 focus:ring active:text-rose-500 sm:w-auto" %>
+        <% if current_user&.admin? %>
+          <%= link_to "Edit Track", edit_track_path(@track), class: "block w-full rounded bg-white px-12 py-3 text-sm font-medium text-rose-600 shadow hover:text-rose-700 focus:outline-none over:bg-rose-700 focus:ring active:text-rose-500 sm:w-auto" %>
+        <% end %>
       </div>
     </div>
   </div>
