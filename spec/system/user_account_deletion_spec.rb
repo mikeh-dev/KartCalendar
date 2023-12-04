@@ -3,12 +3,11 @@ require 'rails_helper'
 RSpec.describe 'User account cancellation', type: :system do
   let(:user) { FactoryBot.create(:user) }
 
-  before do
-    login_as user
-  end
-
   context 'when a user is signed in' do
+
     it 'allows a user to cancel their account' do
+      login_as user
+      visit root_path
       find("#dropdowns-nav-toggle").click
       find("#profile-button").click
       click_link 'Edit account'
