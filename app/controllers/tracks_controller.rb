@@ -1,6 +1,7 @@
 class TracksController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_track, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_admin_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @tracks = Track.includes(:events).order(:name)

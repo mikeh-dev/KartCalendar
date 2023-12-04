@@ -1,8 +1,15 @@
 FactoryBot.define do
   factory :user do
     email { Faker::Internet.email }
-    password { 'password' } # Adjust the default password as needed
+    password { 'password' }
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
+
+    trait :admin do
+      email { 'mike@admin.com' }
+      first_name { 'Mike' }
+      last_name { 'Howard' }
+      admin { true }
+    end
   end
 end

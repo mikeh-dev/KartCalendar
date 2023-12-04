@@ -83,17 +83,21 @@ RSpec.configure do |config|
     Capybara::Selenium::Driver.new(app, browser: :chrome)
   end
   
-  # Register the headless Chrome driver
   Capybara.register_driver :selenium_chrome_headless do |app|
     options = ::Selenium::WebDriver::Chrome::Options.new
     options.args << '--headless'
-    options.args << '--disable-gpu' # May be required on some systems
-    options.args << '--no-sandbox' # If you are running as root
+    options.args << '--disable-gpu' 
+    options.args << '--no-sandbox' 
   
     Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
   end
   
-  # Set the JavaScript driver to the headless Chrome driver
   Capybara.javascript_driver = :selenium_chrome_headless
+
+  config.include Warden::Test::Helpers
+
+  config.after(:each) do
+    Warden.test_reset!
+  end
 
 end

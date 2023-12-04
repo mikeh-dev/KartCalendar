@@ -4,10 +4,7 @@ RSpec.describe 'User Sign Out', type: :system do
   let(:user) { FactoryBot.create(:user) }
 
   before do
-    visit new_user_session_path
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_button 'Sign in'
+   login_as user
   end
 
   context 'when user is signed in' do

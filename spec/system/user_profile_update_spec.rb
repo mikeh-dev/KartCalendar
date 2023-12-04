@@ -4,10 +4,7 @@ RSpec.describe 'User Profile Update', type: :system do
   let(:user) { FactoryBot.create(:user) }
 
   before do
-    visit new_user_session_path
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_button 'Sign in'
+    login_as user
   end
 
   context 'when user is signed in' do
@@ -34,7 +31,17 @@ RSpec.describe 'User Profile Update', type: :system do
       click_button 'Update'
       expect(page).to have_content('Current password is invalid')
     end
+
+    it 'does not allow user to update with an invalid email' do
+      visit root_path
+      find("#dropdowns-nav-toggle").click
+      find("#profile-button").click
+      click_link 'Edit account'
+      fill_in 'Email', with: 'test'
+      fill_in 'Current password', with: user.password
+      click_button 'Update'
+      expect(user.reload.email).not_to eq('invalidemail')
+    end
+
   end
-
-
 end

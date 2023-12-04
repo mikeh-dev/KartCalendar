@@ -15,6 +15,13 @@ class ApplicationController < ActionController::Base
   def record_not_found
     render file: "#{Rails.root}/public/404.html", layout: false, status: :not_found
   end
+
+  def ensure_admin_user!
+    unless current_user&.admin?
+      flash[:alert] = "You are not authorized to perform this action."
+      redirect_to(root_path)
+    end
+  end
   
   protected
 
