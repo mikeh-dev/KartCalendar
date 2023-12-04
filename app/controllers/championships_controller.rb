@@ -1,6 +1,7 @@
 class ChampionshipsController < ApplicationController
   before_action :set_championship, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: %i[index show]
+  before_action :ensure_admin_user!, except: %i[index show]
 
   def index
     @championships = Championship.all.order(name: :asc)
@@ -15,7 +16,7 @@ class ChampionshipsController < ApplicationController
   end
 
   def show
-    @championships = Championship.all
+    @championships = Championship.all #need to refactor this to only fetch the championships that have events and needed to be displayed
     @champ_events = @championship.events
   end
 
