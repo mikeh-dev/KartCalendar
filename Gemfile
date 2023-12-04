@@ -38,4 +38,5 @@ group :test do
   gem "faker"
   gem "shoulda-matchers"
   gem 'launchy'
+  gem 'letter_opener'
 end
