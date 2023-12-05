@@ -4,7 +4,7 @@ RSpec.describe "Championships", type: :request do
   let(:admin_user) { FactoryBot.create(:user, :admin) }
   let(:non_admin_user) { FactoryBot.create(:user) }
   let(:championship) { FactoryBot.create(:championship) }
-  let(:championship_params) { { championship: { name: "New Championship", price: 100, description: "New Championship Description" } } }
+  let(:championship_params) { { championship: { name: "New Championship", price: 100, description: "New Championship Description", short_name: "new champ", long_name: "Long Championship Name" } } }
   let(:update_params) { { championship: { name: "Updated Championship Name" } } }
 
 

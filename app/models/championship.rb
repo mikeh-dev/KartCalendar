@@ -3,6 +3,8 @@ class Championship < ApplicationRecord
   has_one_attached :image
   has_one_attached :logo
 
+  validates :name, :description, :short_name, :long_name, presence: true
+
   has_many :follows, as: :followable
   
   has_many :events

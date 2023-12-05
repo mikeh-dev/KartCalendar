@@ -30,7 +30,6 @@ RSpec.describe Event, type: :model do
     describe ".upcoming_based_on_date" do
       it "returns upcoming events based on date" do
         upcoming_event = FactoryBot.create(:event, date: Date.tomorrow)
-        past_event = FactoryBot.create(:event, date: Date.yesterday)
 
         expect(Event.upcoming_based_on_date).to eq([upcoming_event])
       end
@@ -49,7 +48,6 @@ RSpec.describe Event, type: :model do
     describe ".next_based_on_date" do
       it "returns the next upcoming event based on date" do
         upcoming_event = FactoryBot.create(:event, date: Date.tomorrow)
-        past_event = FactoryBot.create(:event, date: Date.yesterday)
 
         expect(Event.next_based_on_date).to eq(upcoming_event)
       end

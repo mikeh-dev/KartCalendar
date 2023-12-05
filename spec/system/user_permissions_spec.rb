@@ -150,6 +150,8 @@ RSpec.describe 'User Permissions', type: :system do
       fill_in 'Name', with: 'New Championship'
       fill_in 'Description', with: 'New Championship Description'
       fill_in 'Tagline', with: 'New Championship Tagline'
+      fill_in 'Short name', with: 'New Champ'
+      fill_in 'Long name', with: 'New Championship Name'
   
       click_on 'Save'
       expect(page).to have_content('Championship was successfully created.')
