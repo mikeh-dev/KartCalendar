@@ -3,7 +3,7 @@ class Event < ApplicationRecord
   belongs_to :championship, optional: true
   belongs_to :track
 
-  has_many :follows, as: :followable
+  has_many :follows, as: :followable, dependent: :destroy
 
   validates :title, :description, :date, :price, :event_type, :track_id, presence: true
   has_one_attached :image
