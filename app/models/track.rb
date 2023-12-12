@@ -1,7 +1,10 @@
 class Track < ApplicationRecord
   has_many :events
+  has_many :follows, as: :followable, dependent: :destroy
 
-  has_many :follows, as: :followable
+  validates :name, length: { minimum: 2, maximum: 50 }, presence: true
+  validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :address, :contact_number, :length, :description, :location, :short_desc, :website, presence: true
 
   has_one_attached :main_image
   has_one_attached :logo
