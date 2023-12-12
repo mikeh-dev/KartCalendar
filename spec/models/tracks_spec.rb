@@ -24,6 +24,23 @@ RSpec.describe Track, type: :model do
     it { should validate_presence_of(:location) }
     it { should validate_presence_of(:short_desc) }
     it { should validate_presence_of(:website) }
+
+    it 'should validate length of name' do
+      expect(track).to validate_length_of(:name).is_at_least(2).is_at_most(50)
+    end
+
+    it 'should validate format of email' do
+      expect(track).to allow_value("test@example.com").for(:email)
+      expect(track).to_not allow_value("test@example").for(:email)
+    end
   end
 
+  describe 'social media accessors' do
+    it 'allows setting and getting facebook and instagram' do
+      track.facebook = 'facebook_url'
+      track.instagram = 'instagram_url'
+      expect(track.facebook).to eq('facebook_url')
+      expect(track.instagram).to eq('instagram_url')
+    end
+  end
 end

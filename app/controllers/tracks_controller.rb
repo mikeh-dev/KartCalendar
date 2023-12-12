@@ -43,7 +43,7 @@ class TracksController < ApplicationController
     if @track.update(track_params)
       redirect_to @track, notice: 'Track was successfully updated.'
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

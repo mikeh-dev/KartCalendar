@@ -3,6 +3,20 @@
 <div class="max-w-screen-lg mx-auto">
 
   <%= form_with(model: @championship, local: true, html: { enctype: 'multipart/form-data' }) do |form| %>
+    <% if @championship.errors.any? %>
+      <div id="error_explanation" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative my-5" role="alert">
+        <strong class="font-bold">Oops!</strong>
+        <span class="block sm:inline"> <%= pluralize(@championship.errors.count, "error") %> prohibited this championship from being saved:</span>
+
+        <ul class="list-disc list-inside">
+        <% @championship.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+
     <div class="mb-4">
       <%= form.label :name, class: "block text-gray-700 text-sm font-bold mb-2" %>
       <%= form.text_field :name, class: "form-input" %>
