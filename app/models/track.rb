@@ -15,5 +15,5 @@ class Track < ApplicationRecord
   has_one_attached :champ_image
   has_one_attached :contact_image
 
-  FACILITIES = ['Parking', 'Electric Hook-Up', 'Wi-Fi', 'Cafe', 'Kart Shop', 'Bar', 'Arrive & Drive Karting' ].freeze
+  FACILITIES = ['Parking', 'Electric Hook-Up', 'Wi-Fi', 'Cafe', 'Kart Shop', 'Bar', 'Arrive & Drive Karting', 'Overnight Camping', 'Digital Timing Screen', 'Floodlights'].freeze
 end

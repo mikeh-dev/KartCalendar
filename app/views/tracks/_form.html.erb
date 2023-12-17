@@ -108,7 +108,6 @@
     <div class="mb-4">
         <%= form.label :facilities %>
         <%= form.select :facilities, options_for_select(Track::FACILITIES.reject(&:blank?), @track.facilities), {}, { multiple: true, size: 5, class: "bg-white text-black border-gray-300" } %>
-
     </div>
 
     <div class="mb-4">

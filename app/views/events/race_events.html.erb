@@ -2,7 +2,7 @@
   <div class="w-full text-center">
     <p class="text-indigo-600 font-medium mb-6 lg:mt-0 mt-2 dark:text-indigo-500">Next Up</p>
     <h1 class="sm:text-6xl text-4xl font-extrabold">This Weekends Racing.. </h1>
-    <p class="my-6 text-slate-700 dark:text-slate-400 text-lg">Explore race weekends near you. Get on the grid!</p>
+    <p class="my-6 text-slate-700 dark:text-slate-400 text-lg">Explore race weekends near you.</p>
   </div>
   
   <div class="w-full grid <%= @race_events.size > 1 ? 'md:grid-cols-2' : 'md:grid-cols-1' %>">
@@ -17,7 +17,7 @@
             <% end %>
           </div>
           <div class="w-full text-center mt-6 space-y-2">
-            <h1 class="text-4xl"><%= race_event.title %></h1>
+            <h1 class="text-2xl"><%= race_event.title %> - <%= race_event.championship.name %></h1>
               <p class="text-xl"><%= race_event.date.strftime("%A, %B %e") %></p>
               <p class="text-xl"><%= race_event.track.name %></p>
               <%= link_to "View Details", (event_path(race_event)), class: "btn btn-primary text-white-500 mt-2" %>
@@ -29,7 +29,7 @@
 </div>
 
 <div class="container mx-auto mt-8 px-4">
-  <h1 class="text-3xl font-semibold mb-4 text-center">Upcoming Events</h1>
+  <h1 class="text-3xl font-semibold mb-4 text-center">Future Events</h1>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
     <% @race_events.each do |race_event| %>
       <% if race_event.date > Date.today + 6.days %>
