@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_14_002927) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_17_211405) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -127,8 +127,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_14_002927) do
     t.string "facilities", default: [], array: true
     t.string "website"
     t.string "static_map_url"
-    t.text "social_media"
     t.string "mobile"
+    t.string "facebook"
+    t.string "instagram"
   end
 
   create_table "users", force: :cascade do |t|

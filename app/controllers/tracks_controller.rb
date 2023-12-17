@@ -24,10 +24,11 @@ class TracksController < ApplicationController
 
   def create
     @track = Track.new(track_params)
+
     if @track.save
       redirect_to @track, notice: 'Track was successfully created.'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -35,11 +36,6 @@ class TracksController < ApplicationController
   end
 
   def update
-    social_media_params = params[:track][:social_media] || {}
-    @track.social_media = {} unless @track.social_media.is_a?(Hash)
-    @track.social_media[:facebook] = social_media_params[:facebook]
-    @track.social_media[:instagram] = social_media_params[:instagram]
-
     if @track.update(track_params)
       redirect_to @track, notice: 'Track was successfully updated.'
     else
@@ -59,6 +55,7 @@ class TracksController < ApplicationController
   end
 
   def track_params
-    params.require(:track).permit(:name, :address, :contact_number, :main_image, :length, :email, :race_image, :description, :location, :logo, :short_desc, :test_image, :champ_image, :tagline, :website, :contact_image, :static_map_url, :social_media => {}, :facilities => [])
+    params.require(:track).permit(:name, :address, :contact_number, :main_image, :length, :email, :race_image, :description, :location, :logo, :short_desc, :test_image, :champ_image, :tagline, :website, :mobile, :contact_image, :static_map_url, :facebook, :instagram, facilities: [])
   end
+  
 end

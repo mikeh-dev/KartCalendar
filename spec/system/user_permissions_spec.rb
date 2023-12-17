@@ -85,7 +85,13 @@ RSpec.describe 'User Permissions', type: :system do
       visit new_track_path
       fill_in 'Name', with: 'New Track'
       fill_in 'Address', with: '123 Track Lane'
+      fill_in 'Contact number', with: "1234567890"
+      fill_in 'Length', with: '1122'
       fill_in 'Description', with: 'New Track Description'
+      fill_in 'Location', with: 'New Track Location'
+      fill_in 'Short desc', with: 'New Track Short Desc'
+      fill_in 'Email', with: 'knansd@ddd.com'
+      fill_in 'Website', with: 'www.newtrack.com'
       click_on 'Save Track'
       expect(page).to have_content('Track was successfully created.')
       expect(page).to have_current_path(track_path(Track.last))

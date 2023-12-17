@@ -1,5 +1,4 @@
 <div class="max-w-screen-lg mx-auto">
-  
   <%= form_with(model: @track, local: true) do |form| %>
     <% if @track.errors.any? %>
       <div id="error_explanation" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative my-5" role="alert">
@@ -99,20 +98,17 @@
       <%= form.text_field :website, class: "form-input" %>
     </div>
 
-    <%= form.fields_for :social_media do |sm| %>
-      <div class="mb-4">
-        <%= sm.label :facebook, "Facebook URL:", class:"block text-gray-700 text-sm font-bold mb-2" %>
-        <%= sm.text_field :facebook, value: @track.social_media[:facebook] || '', class:'form-input' %>
-      </div>
-      <div class="mb-4">
-        <%= sm.label :instagram, "Instagram URL:", class: "block text-gray-700 text-sm font-bold mb-2" %>
-        <%= sm.text_field :instagram, value: @track.social_media[:instagram] || '', class: "form-input" %>
-      </div>
-    <% end %>
+    <div class="mb-4">
+        <%= form.text_field :facebook, class: "form-input", placeholder: "Facebook URL" %>
+    </div>
+    <div class="mb-4">
+        <%= form.text_field :instagram, class: "form-input", placeholder: "Instagram URL" %>
+    </div>
 
-    <div class="mb-4">  
-      <%= form.label :facilities_input, "Facilities (comma separated)", class:"block text-gray-700 text-sm font-bold mb-2" %>
-      <%= form.text_field :facilities_input, value: @track.facilities.join(", "), class: "form-input" %>
+    <div class="mb-4">
+        <%= form.label :facilities %>
+        <%= form.select :facilities, options_for_select(Track::FACILITIES.reject(&:blank?), @track.facilities), {}, { multiple: true, size: 5, class: "bg-white text-black border-gray-300" } %>
+
     </div>
 
     <div class="mb-4">

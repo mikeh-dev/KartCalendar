@@ -75,9 +75,11 @@
       </dl>
       <div class="grid grid-cols-2 gap-x-4 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
       <% @track.facilities.each do |facility| %>
+          <% unless facility.blank? %>
         <div>
           <p> - <%= facility %></p>
         </div>
+        <% end %>
       <% end %>
     </div>
     </div>
@@ -164,15 +166,15 @@
         <div class="flex flex-col-reverse">
           <dt class="text-base leading-7 text-gray-300 mt-2">Social Media</dt>
           <dd class="flex flex-row items-center justify-start space-x-4 text-1xl font-bold leading-9 tracking-tight text-white">
-            <% if @track.social_media[:facebook].present? %>
-            <%= link_to @track.social_media[:facebook], target: "_blank", rel: "noopener noreferrer" do %>
+            <% if @track.facebook.present? %>
+            <%= link_to @track.facebook, target: "_blank", rel: "noopener noreferrer" do %>
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955 .192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
               </svg>
             <% end %>
             <% end %>
-            <% if @track.social_media[:instagram].present? %>
-              <%= link_to @track.social_media[:instagram], target: "_blank", rel: "noopener noreferrer" do %>
+            <% if @track.instagram.present? %>
+              <%= link_to @track.instagram, target: "_blank", rel: "noopener noreferrer" do %>
               <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="h-5 w-5 "

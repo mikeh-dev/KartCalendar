@@ -6,14 +6,14 @@ RSpec.describe "Tracks", type: :request do
   let(:track) { FactoryBot.create(:track) }
 
   describe "POST /tracks" do
-    let(:track_params) { { track: { name: "New Track", address: "123 Track Lane" } } }
+    let(:track_attributes) { FactoryBot.attributes_for(:track) }
 
     context "as an admin user" do
       before { login_as admin_user }
 
       it "allows creating a track" do
         expect {
-          post tracks_path, params: track_params
+          post tracks_path, params: { track: track_attributes }
         }.to change(Track, :count).by(1)
 
         expect(response).to have_http_status(:redirect) 
@@ -25,7 +25,7 @@ RSpec.describe "Tracks", type: :request do
 
       it "does not allow creating a track" do
         expect {
-          post tracks_path, params: track_params
+          post tracks_path, params: { track: track_attributes }
         }.not_to change(Track, :count)
 
         expect(response).to have_http_status(:found)
