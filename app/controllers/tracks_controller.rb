@@ -9,13 +9,13 @@ class TracksController < ApplicationController
   end
 
   def show
-    @future_track_events = @track.events.where('date >= ?', Date.today).order(date: :asc)
-    @next_event = @future_track_events.first
+    @future_track_events = @track.future_events
+    @next_event = @track.next_event
     @track_events = @track.events.order(date: :asc)
-    @track_race_events = @track.events.where(event_type: "Race")
-    @track_test_events = @track.events.where(event_type: "Test")
-    @next_race_event = @track_race_events.first
-    @next_test_event = @track_test_events.first
+    @track_race_events = @track.race_events
+    @track_test_events = @track.test_events
+    @next_race_event = @track.next_race_event
+    @next_test_event = @track.next_test_event
   end
 
   def new

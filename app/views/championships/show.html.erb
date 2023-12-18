@@ -27,6 +27,7 @@
   <% end %>
     <div class="container mx-auto py-8 max-w-full xl:max-w-2xl 2xl:max-w-3xl object-cover rounded-3xl relative z-20 p-6">
         <h1 class="text-3xl font-semibold text-white mb-4 text-center"><%= @championship.long_name %></h1>
+        <% if current_user %>
         <div class="flex justify-center">
           <% button_text = @followable.is_a?(Championship) ? ['Follow', 'Unfollow'] : ['Add to my Tracks', 'Remove from my Tracks'] %>
           <%= turbo_frame_tag dom_id(@championship, "follow_#{dom_class(@championship)}"), class: "w-32" do %>
@@ -37,6 +38,7 @@
             <% end %>
           <% end %>
         </div>
+        <% end %>
         <div class="text-gray-200 mb-1 mt-5">
           <p class="mb-2">
             <strong>Website - </strong> 

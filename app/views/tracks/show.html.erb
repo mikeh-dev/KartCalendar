@@ -28,7 +28,7 @@
 </section>
 
 
-<div class="relative isolate overflow-hidden bg-gray-900 py-10 mb-10 mt-10 sm:py-32" id="track_info">
+<div class="relative isolate overflow-hidden bg-gray-900 mt-10 sm:py-32" id="track_info">
   <div class="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl" aria-hidden="true">
   </div>
   <div class="absolute -top-52 left-1/2 -z-10 -translate-x-1/2 transform-gpu blur-3xl sm:top-[-28rem] sm:ml-16 sm:translate-x-0 sm:transform-gpu" aria-hidden="true">
@@ -41,8 +41,8 @@
     </div>
     <div class="mx-auto max-w-2xl lg:mx-0">
 
-
     <div class="flex">
+        <% if current_user %> 
         <% button_text = @followable.is_a?(Championship) ? ['Follow', 'Unfollow'] : ['Add to my Tracks', 'Remove from my Tracks'] %>
           <%= turbo_frame_tag dom_id(@track, "follow_#{dom_class(@track)}"), class: "w-auto" do %>
             <% if current_user.following?(@track) %>
@@ -51,8 +51,10 @@
               <%= link_to button_text[0], follows_path(followable_type: @track.class.name, followable_id: @track.id), method: :post, class: "text-center block rounded bg-blue-600 px-6 py-3 text-sm font-medium text-white shadow hover:bg-blue-700 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto", data: { turbo_method: :post } %>
             <% end %>
           <% end %>
+        <% end %>
         </div>
     </div>
+    
 
     <div class="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
       <dl class="mb-16 grid grid-cols-2 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
@@ -66,11 +68,12 @@
         </div>
         <div class="flex flex-col-reverse">
           <dt class="text-base leading-7 text-gray-300">Next Test Day</dt>
-          <dd class="text-2xl font-bold leading-9 tracking-tight text-white">13/2/23</dd>
+          <dd class="text-2xl font-bold leading-9 tracking-tight text-white"><%= @next_event.present? ? @next_event.date.strftime("%A, %B %-d, %Y") : "Nothing Scheduled" %></dd>
         </div>
         <div class="flex flex-col-reverse">
           <dt class="text-base leading-7 text-gray-300">Next Race Day</dt>
-          <dd class="text-2xl font-bold leading-9 tracking-tight text-white">12/2/23</dd>
+          <dd class="text-2xl font-bold leading-9 tracking-tight text-white"><%= @track_race_events.present? ? @track_race_events.date.strftime("%A, %B %-d, %Y") : "Nothing Scheduled" %>
+</dd>
         </div>
       </dl>
       <div class="grid grid-cols-2 gap-x-4 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
@@ -89,58 +92,8 @@
   </div>
 </div>
 
-<section id="events">
-  <div class="max-w-screen-xl px-4 py-8 mx-auto sm:px-6 sm:py-8 lg:px-8">
-    <header class="text-center">
-      <h2 class="text-3xl font-bold sm:text-4xl">
-        Racing and Testing at <%= @track.name %>
-      </h2>
-
-      <p class="max-w-md mx-auto mt-4 text-gray-500">
-        Some text about race days and tracks days
-      </p>
-    </header>
-
-  <ul class="grid grid-cols-1 gap-4 mt-8 lg:grid-cols-2">
-    <li>
-      <%= link_to @track_test_events.last, class: "relative block group" do %>
-        <% if @track_test_image.present? %>
-          <%= image_tag @track.test_image, alt: "about photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
-        <% else %>
-          <%= image_tag "JHPhoto-3114.jpg", alt: "about photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
-        <% end %>
-          <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
-            <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white">
-                Next Test Day - <%= @next_event.date.strftime("%A, %B %-d, %Y") if @next_event.present? %>
-            </span>
-          </div>
-        <% end %>
-      </li>
-
-    <li>
-      <%= link_to @track_race_events.last, class: "relative block group" do %>
-        <% if @track.test_image.present?%>
-          <%= image_tag @track.race_image, alt: "about photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
-        <% else %>
-          <%= image_tag "DSC_4486.JPG", alt: "about photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
-        <% end %>
-          <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
-            <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white">
-              <% if @track_race_events.present? %>
-                    Next Race Day - <%= @track_race_events.last.date.strftime("%A #{ @track_race_events.last.date.day.ordinalize } %B %Y")%> - <%= @track_race_events.last.title %>
-              <% else %>
-                Currently No Race Days Scheduled
-              <% end %>
-            </span>
-          </div>
-        <% end %>
-      </li>
-  </ul>
-</div>
-</section>
-
 <section id="contact">
-  <div class="relative isolate overflow-hidden bg-gray-900 py-10 sm:py-32">
+  <div class="relative isolate overflow-hidden bg-gray-900 py-5 sm:py-10">
   <div class="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl" aria-hidden="true">
   </div>
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
@@ -191,7 +144,56 @@
     </div>
   </div>
 </div>
+</section>
 
+<section id="events">
+  <div class="max-w-screen-xl px-4 py-8 mx-auto sm:px-6 sm:py-8 lg:px-8">
+    <header class="text-center">
+      <h2 class="text-3xl font-bold sm:text-4xl">
+        Racing and Testing at <%= @track.name %>
+      </h2>
+
+      <p class="max-w-md mx-auto mt-4 text-gray-500">
+        Some text about race days and tracks days
+      </p>
+    </header>
+
+  <ul class="grid grid-cols-1 gap-4 mt-8 lg:grid-cols-2">
+    <li>
+      <%= link_to @track_test_events.last, class: "relative block group" do %>
+        <% if @track_test_image.present? %>
+          <%= image_tag @track.test_image, alt: "about photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
+        <% else %>
+          <%= image_tag "JHPhoto-3114.jpg", alt: "about photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
+        <% end %>
+          <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
+            <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white">
+                Next Test Day - <%= @next_event.date.strftime("%A, %B %-d, %Y") if @next_event.present? %>
+            </span>
+          </div>
+        <% end %>
+      </li>
+
+    <li>
+      <%= link_to @track_race_events.last, class: "relative block group" do %>
+        <% if @track.test_image.present?%>
+          <%= image_tag @track.race_image, alt: "about photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
+        <% else %>
+          <%= image_tag "DSC_4486.JPG", alt: "about photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
+        <% end %>
+          <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
+            <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white">
+              <% if @track_race_events.present? %>
+                    Next Race Day - <%= @track_race_events.last.date.strftime("%A #{ @track_race_events.last.date.day.ordinalize } %B %Y")%> - <%= @track_race_events.last.title %>
+              <% else %>
+                Currently No Race Days Scheduled
+              <% end %>
+            </span>
+          </div>
+        <% end %>
+      </li>
+  </ul>
+</div>
 </section>
 
 <section id="map">

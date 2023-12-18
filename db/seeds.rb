@@ -25,7 +25,8 @@ track_data = [
     short_desc: 'The Home of Cheshire Kart Racing Club',
     tagline: '',
     facilities: ['Cafe', 'Toilets', 'Overnight Camping', 'Parking', 'Arrive & Drive Karting'],
-    social_media: { facebook: 'https://www.facebook.com/profile.php?id=100057041637287', instagram: 'https://www.instagram.com/hootonparkkarting/' },
+    facebook: 'https://www.facebook.com/profile.php?id=100057041637287',
+    instagram: 'https://www.instagram.com/hootonparkkarting/',
     static_map_url: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9535.354945862806!2d-2.9416328!3d53.3103343!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487adefa53aa7143%3A0x2d37a59a97a86742!2sHooton%20Park%20Circuit!5e0!3m2!1sen!2suk!4v1697815886011!5m2!1sen!2suk'
   },
   {
@@ -40,7 +41,8 @@ track_data = [
     short_desc: 'The UK\'s Finest Karting Circuit',
     tagline: '',
     facilities: ['Bar & Cafe', 'Toilets', 'Overnight Camping', 'Electric Hook Up', 'Parking', 'Arrive & Drive Karting', 'Indoor Viewing Area', 'Showers', 'Kart Shop', 'Pit Bays for Hire', 'Digital Timing Screen', 'On Circuit CCTV', 'Floodlights' ],
-    social_media: { facebook: 'https://www.facebook.com/kartpfi', instagram: 'https://www.instagram.com/pfikarting/' },
+    facebook: 'https://www.facebook.com/kartpfi',
+    instagram: 'https://www.instagram.com/pfikarting/',
     static_map_url: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9595.877661542745!2d-0.6599833!3d53.038887!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4878362d729a50f1%3A0x738a765849950a00!2sPF%20International%20Kart%20Circuit!5e0!3m2!1sen!2suk!4v1698767265042!5m2!1sen!2suk',
     mobile: '07545 131099'
   },
@@ -56,7 +58,8 @@ track_data = [
     short_desc: 'Home of FastR Championship',
     tagline: '',
     facilities: ['Bar & Cafe', 'Toilets', 'Overnight Camping', 'Electric Hook Up', 'Parking', 'Arrive & Drive Karting', 'Indoor Viewing Area', 'Showers', 'Kart Shop', 'Pit Bays for Hire', 'Floodlights' ],
-    social_media: { facebook: 'https://www.facebook.com/WhiltonMillLtd', instagram: 'https://www.instagram.com/whiltonmillkartclub/' },
+    facebook: 'https://www.facebook.com/WhiltonMillLtd',
+    instagram: 'https://www.instagram.com/whiltonmillkartclub/',
     static_map_url: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2441.206589865352!2d-1.0891450999999999!3d52.275951299999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4877141b639e4695%3A0x47d41a4446091c2a!2sWhilton%20Mill%20Karting%20%26%20Outdoor%20Activities!5e0!3m2!1sen!2suk!4v1698776707177!5m2!1sen!2suk',
     mobile: ''
   },
@@ -73,7 +76,8 @@ track_data = [
     short_desc: 'Situated in the heart of the picturesque Cotswolds',
     tagline: '',
     facilities: ['Hot Food Available', 'Toilets', 'No Overnight Camping Currently', '£5 Parking Per Car on Race Day', 'Spares Shop', 'Pit Bays for Hire', 'Electric Hook Up' ],
-    social_media: { facebook: 'https://facebook.com/officialrissikc', instagram: 'https://www.instagram.com/rissingtonkc/' },
+    facebook: 'https://facebook.com/officialrissikc',
+    instagram: 'https://www.instagram.com/rissingtonkc/',
     static_map_url: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d315274.9778407117!2d-1.653888!3d51.87764700000001!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48712fc376e76cfb%3A0x11ea5becbc3a5057!2sGreat%20Rissington%2C%20Cheltenham%2C%20UK!5e0!3m2!1sen!2sus!4v1698784245535!5m2!1sen!2sus',
     mobile: ''
   },
@@ -95,7 +99,8 @@ track_data = [
     short_desc: 'The Home of Hunts Kart Racing Club',
     tagline: 'Affectionately known as Kim!',
     facilities: ['Hot Food Available', 'Toilets', 'Overnight Camping', 'Parking', 'Spares Shop', 'Pit Bays for Hire' ],
-    social_media: { facebook: 'https://www.facebook.com/OfficialHKRC', instagram: 'https://www.instagram.com/hunts_kart_club/' },
+    facebook: 'https://www.facebook.com/OfficialHKRC', 
+    instagram: 'https://www.instagram.com/hunts_kart_club/',
     static_map_url: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9755.913367887408!2d-0.3703701!3d52.3163955!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4877c089cf206129%3A0x219ffcaa3a0e227!2sHunts%20Kart%20Racing%20Club!5e0!3m2!1sen!2suk!4v1698785743035!5m2!1sen!2suk',
     mobile: ''
   },
@@ -119,7 +124,8 @@ track_data = [
     short_desc: 'Home of Kai and Rhys Hunter',
     tagline: '',
     facilities: ['Hot Food Available', 'Toilets', 'Overnight Camping', 'Parking', 'Pit Bays for Hire', 'Floodlights', 'Showers', 'Electric Hook Up' ],
-    social_media: { facebook: 'https://www.facebook.com/WardenLawKC', instagram: 'https://www.instagram.com/wardenlaw_karting/' },
+    facebook: 'https://www.facebook.com/WardenLawKC', 
+    instagram: 'https://www.instagram.com/wardenlaw_karting/',
     static_map_url: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9188.5055676099!2d-1.4228292!3d54.84803!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487e6394abe71c27%3A0xecdc02d8b8f6d2a4!2sKarting%20North%20East!5e0!3m2!1sen!2suk!4v1698786566459!5m2!1sen!2suk',
     mobile: ''
   },
@@ -139,7 +145,8 @@ track_data = [
     short_desc: 'The North West\'s premier outdoor circuit.',
     tagline: '',
     facilities: ['Hot Food Available', 'Toilets', 'Overnight Camping', 'Parking', 'Pit Bays for Hire' ],
-    social_media: { facebook: 'https://www.facebook.com/threesisterscircuit', instagram: 'https://www.instagram.com/3sisterscircuit/' },
+    facebook: 'https://www.facebook.com/threesisterscircuit', 
+    instagram: 'https://www.instagram.com/3sisterscircuit/',
     static_map_url: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9491.579114575537!2d-2.6351784!3d53.506075!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487b05a6d8cee531%3A0x9cfa82ae14deb236!2sThree%20Sisters%20Race%20Circuit!5e0!3m2!1sen!2suk!4v1698787756126!5m2!1sen!2suk',
     mobile: ''
   },
@@ -158,7 +165,8 @@ track_data = [
     short_desc: 'Voted Number 1 Track in the UK by RedBull',
     tagline: 'Set in a rural location in the heart of North Wales, Snowdonia.',
     facilities: ['Hot Food Available', 'Toilets', 'Overnight Camping', 'Parking', 'Pit Bays for Hire', 'Arrive and Drive Karting', 'Floodlights', 'Showers', 'Electric Hook Up' ],
-    social_media: { facebook: 'https://www.facebook.com/GYGKarting', instagram: 'https://www.instagram.com/gygkarting/' },
+    facebook: 'https://www.facebook.com/GYGKarting', 
+    instagram: 'https://www.instagram.com/gygkarting/',
     static_map_url: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9596.795436825123!2d-3.5844905!3d53.0347633!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486538d5b383ed39%3A0xda8bc09c1439c1bc!2sGYG%20KARTING%20LTD!5e0!3m2!1sen!2suk!4v1698833795549!5m2!1sen!2suk',
     mobile: ''
   },
@@ -202,7 +210,8 @@ track_data = [
     short_desc: 'Home of Clay Pigeon Kart Club',
     tagline: 'Outdoor kart track, hosting national championship meetings, public and corporate races.', 
     facilities: ['Hot Food Available', 'Toilets', 'Overnight Camping', 'Parking', 'Pit Bays for Hire', 'Arrive and Drive Karting', 'Floodlights', 'Showers', 'Electric Hook Up', 'Kart Shop', 'ARKS Testing Available' ],
-    social_media: { facebook: 'https://www.facebook.com/claypigeonraceway', instagram: 'https://www.instagram.com/claypigeonraceway/' },
+    facebook: 'https://www.facebook.com/claypigeonraceway', 
+    instagram: 'https://www.instagram.com/claypigeonraceway/',
     static_map_url: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10081.510932252502!2d-2.5547235!3d50.8241669!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4872434bfcde60db%3A0x86d381aabfc9e1f1!2sClay%20Pigeon%20Raceway!5e0!3m2!1sen!2suk!4v1698833950420!5m2!1sen!2suk'
   },
   {
@@ -210,14 +219,15 @@ track_data = [
     address: 'Motor Sports Park, Teesside Autodrome South Tees, S Bank Rd, Middlesbrough TS6 6XH',
     contact_number: '01642 231117',
     length: 1309,
-    email: 'teessidekarting.co.uk',
+    email: 'info@teessidekarting.co.uk',
     description: 'Welcome to the world\'s longest kart circuit, managed by the current owners since 1998. Previously called Langburgh Circuit, it has since become the home of the British 24-hour kart race and has been developed into a multipurpose venue for karts, bikes and cars. Our karts are hand-built racing karts, built to give you the full experience of speed, reaching up to 60mph hour on the long straights of the Teesside Circuit. As the home of the Pro-Kart and the 24-hour race, we are uniquely placed to give you the thrill of karting at the highest level. ',
     location: 'Middlesborough',
     website: 'teessidekarting.co.uk/',
     short_desc: 'Home of the British 24 Hour Race',
     tagline: 'Long-established track for drivers aged 8 and up, with special karts for children and a cafe/bar.',
     facilities: ['Hot Food Available', 'Toilets', 'Overnight Camping', 'Parking', 'Pit Bays for Hire', 'Arrive and Drive Karting', 'Showers' ],
-    social_media: { facebook: 'https://www.facebook.com/teessidekarting.middlesbrough', instagram: 'https://www.instagram.com/teessidekarting/' },
+    facebook: 'https://www.facebook.com/teessidekarting.middlesbrough', 
+    instagram: 'https://www.instagram.com/teessidekarting/',
     static_map_url: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9250.00285478609!2d-1.1895201!3d54.5775508!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487eee44f668cb37%3A0xc5b9e92817eeecbc!2sTeesside%20Karting!5e0!3m2!1sen!2suk!4v1698834373242!5m2!1sen!2suk',
     mobile: ''
   },
@@ -226,7 +236,7 @@ track_data = [
     address: 'Kirkland, Frizington CA26 3XU',
     contact_number: '01229 463748',
     length: 1030,
-    email: 'www.cumbriakrc.co.uk/',
+    email: 'info@cumbriakrc.co.uk',
     description: 'From a small enthusiastic group of volunteers who created the circuit in 1963 the club and circuit has grown into the fantastic facility it is today. Even today, the circuit is still run by a small enthusiastic group of volunteers who continue to strive to make the circuit one of the best in the UK which is constantly voted for by the drivers and competitors who make long journeys to visit us.
 
     The Club continues to run the Lets go Karting Scheme, where you can come along to the circuit and have a go on a race kart, with full tuition and safety equipment (further details elsewhere on the CKRC website). CKRC pioneered the "Racing For Buttons" program, our search for a young driver to become the next Formula 1 sensation, and this was taken up by the Motorsport UK, who introduced the Lets go Karting Scheme to encourage more people into the sport.   With the current success of ex-karting sensations such as David Coulthard, Jenson Button, Lewis Hamilton,Paul DiResta, George Russell and Llando Norris, all of whom started their careers in karting and, indeed, visited Rowrah on many occasions during their karting career, karting is becoming more and more popular so why not visit us and see if the karting bug bites? The 2016 season saw the opening of our new Lets Go Karting Training and Education Centre – this purpose built building is now complete and will provides a base for newcomers to our sport to gain experience and education.',
@@ -235,7 +245,8 @@ track_data = [
     short_desc: 'The Lakeland Circuit',
     tagline: 'Home of Cumbria Kart Racing Club',
     facilities: ['Hot Food Available', 'Toilets', 'Overnight Camping', 'Parking', 'Pit Bays for Hire', 'Arrive and Drive Karting', 'Showers', 'Floodlight', 'Electric Hook Up' ],
-    social_media: { facebook: 'https://www.facebook.com/profile.php?id=100062070679732', instagram: 'https://www.instagram.com/cumbriakartracingclub/' },
+    facebook: 'https://www.facebook.com/profile.php?id=100062070679732', 
+    instagram: 'https://www.instagram.com/cumbriakartracingclub/',
     static_map_url: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9255.997607950627!2d-3.4429247!3d54.551136!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487ca5f441d97d5d%3A0x51c9c510c27314a2!2sCumbria%20Kart%20Racing%20Club!5e0!3m2!1sen!2suk!4v1698835235449!5m2!1sen!2suk',
     mobile: ''
   },
@@ -271,7 +282,8 @@ track_data = [
     short_desc: 'The Longest Outdoor Circuit in Scotland',
     tagline: 'Larkhall Circuit is the UK\'s Newest Outdoor Karting Circuit',
     facilities: ['Hot Food Available', 'Toilets', 'Overnight Camping', 'Parking', 'Pit Bays for Hire', 'Arrive and Drive Karting', 'Showers', 'Floodlight', 'Electric Hook Up' ],
-    social_media: { facebook: 'https://www.facebook.com/larkhallcircuit', instagram: 'https://www.instagram.com/larkhallcircuit/' },
+    facebook: 'https://www.facebook.com/larkhallcircuit', 
+    instagram: 'https://www.instagram.com/larkhallcircuit/',
     static_map_url: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d147513.54937898627!2d-4.102294696017218!3d55.812827307528416!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x488815ec575164b7%3A0xd6ae35f45a28be03!2sLarkhall%20Circuit!5e0!3m2!1sen!2suk!4v1698835887384!5m2!1sen!2suk',
     mobile: ''
   },
@@ -291,7 +303,8 @@ track_data = [
     short_desc: 'Founded in 1960, it is one of the oldest and most respected karting clubs in the country.',
     tagline: 'Home of Shenington Kart Racing Club',
     facilities: ['Hot Food Available', 'Toilets', 'Overnight Camping', 'Parking', 'Pit Bays for Hire', 'Arrive and Drive Karting', 'Showers', 'Floodlight', 'Electric Hook Up' ],
-    social_media: { facebook: 'https://www.facebook.com/sheningtonkrc', instagram: 'https://www.instagram.com/sheningtonkrc/' },
+    facebook: 'https://www.facebook.com/sheningtonkrc', 
+    instagram: 'https://www.instagram.com/sheningtonkrc/',
     static_map_url: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9807.628398867175!2d-1.476714!3d52.081421!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48772bec06e9bbcd%3A0x38e7b8d82c6f4242!2sShenington%20Kart%20Racing%20Club!5e0!3m2!1sen!2suk!4v1698836453541!5m2!1sen!2suk',
     mobile: ''
   },
@@ -311,7 +324,8 @@ track_data = [
     short_desc: 'Buckmore Park saw its inception in the early 1960’s with the initial 400m circuit.',
     tagline: 'Home of Medway Valley Kart Club',
     facilities: ['Hot Food Available', 'Toilets', 'Overnight Camping', 'Parking', 'Pit Bays for Hire', 'Arrive and Drive Karting' ],
-    social_media: { facebook: 'https://www.facebook.com/buckmorepark', instagram: 'https://www.instagram.com/buckmorepark/' },
+    facebook: 'https://www.facebook.com/buckmorepark', 
+    instagram: 'https://www.instagram.com/buckmorepark/',
     static_map_url: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9969.007474834503!2d0.501862!3d51.343279!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47df333258701513%3A0x27bc7cc3da5517ab!2sBuckmore%20Park%20Kart%20Circuit!5e0!3m2!1sen!2suk!4v1698841800120!5m2!1sen!2suk',
     mobile: ''
   },
@@ -331,7 +345,8 @@ track_data = [
     short_desc: 'The home of real racing since 1954.',
     tagline: '',
     facilities: ['Hot Food Available', 'Toilets', 'Overnight Camping', 'Parking', 'Pit Bays for Hire' ],
-    social_media: { facebook: 'https://www.facebook.com/FulbeckKartClub', instagram: 'https://www.instagram.com/fulbeckkartclub/' },
+    facebook: 'https://www.facebook.com/FulbeckKartClub', 
+    instagram: 'https://www.instagram.com/fulbeckkartclub/',
     static_map_url: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9594.64737699518!2d-0.6551306!3d53.0444145!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4878482af751e4ab%3A0xf8624acce7648106!2sFulbeck%20Kart%20Circuit!5e0!3m2!1sen!2suk!4v1698842362350!5m2!1sen!2suk',
     mobile: '07749 106101'
   },
@@ -359,7 +374,8 @@ track_data = [
     short_desc: 'The home of teh Joe Dale Championship',
     tagline: 'Cock O North',
     facilities: ['Hot Food Available', 'Toilets', 'Overnight Camping', 'Parking' ],
-    social_media: { facebook: 'https://www.facebook.com/WombwellKarting', instagram: 'https://www.instagram.com/wombwellkarting/' },
+    facebook: 'https://www.facebook.com/WombwellKarting', 
+    instagram: 'https://www.instagram.com/wombwellkarting/',
     static_map_url: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9487.160751035994!2d-1.397073!3d53.5258039!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4879704454e4a415%3A0xfd0a14a2241c51c2!2sWombwell%20Kart%20Circuit!5e0!3m2!1sen!2suk!4v1698842755935!5m2!1sen!2suk',
     mobile: '07711975572'
   },
@@ -379,7 +395,8 @@ track_data = [
     short_desc: 'Lewis Hamilton\s Home Track',
     tagline: '',
     facilities: ['Hot Food Available', 'Toilets', 'Overnight Camping', 'Parking', 'Arrive & Drive Karting',  ],
-    social_media: { facebook: 'https://www.facebook.com/RyeHouseKartRacewayGoKarting', instagram: 'https://www.instagram.com/ryehousekarting/' },
+    facebook: 'https://www.facebook.com/RyeHouseKartRacewayGoKarting', 
+    instagram: 'https://www.instagram.com/ryehousekarting/',
     static_map_url: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1239031.9397841273!2d-2.3672386931598077!3d52.66026192561268!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d89dfd755f6bcb%3A0x68e250e8f76a21d5!2sRye%20House%20Kart%20Raceway!5e0!3m2!1sen!2suk!4v1698843076499!5m2!1sen!2suk',
     mobile: ''
   },
@@ -388,7 +405,7 @@ track_data = [
     address: 'Dengemarsh Rd, Lydd TN29 9JH',
     contact_number: '01797 321747',
     length: 1040,
-    email: 'info@lyddkartcircuit.com/',
+    email: 'info@lyddkartcircuit.com',
     description: 'Established in 1993, Lydd Kart Circuit is the fastest for outdoor Go Karting in Kent and one of the fastest in the Country. The 1040 meter track is very popular with drivers, whether they be ‘Owner Drivers’ racing their own karts or ‘Arrive & Drive’ customers using our Hire Karts.
 
     The current layout has existed since an extension was added in 1996, while our Junior Circuit measures approx 500m and is ideal for kids sessions, family sessions or children’s birthday parties.
@@ -405,7 +422,8 @@ track_data = [
     short_desc: 'The Biggest & Fastest Kart Circuit in the South',
     tagline: '',
     facilities: ['Hot Food Available', 'Toilets', 'Overnight Camping', 'Parking', 'Arrive & Drive Karting', 'Kart Shop',   ],
-    social_media: { facebook: 'https://www.facebook.com/lydd.kartcircuit', instagram: 'https://www.instagram.com/lydd_kart_circuit/' },
+    facebook: 'https://www.facebook.com/lydd.kartcircuit', 
+    instagram: 'https://www.instagram.com/lydd_kart_circuit/',
     static_map_url: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d45415.38629455035!2d0.8671727295675298!3d50.93819879500111!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47dee60de523691b%3A0x7f559f24cfa1a96b!2sLydd%20Karting%20Ltd!5e0!3m2!1sen!2suk!4v1698843621211!5m2!1sen!2suk',
     mobile: ''
   },
@@ -419,7 +437,7 @@ track_data = [
 
     Although the Race circuit of today is situated on the southern side of the Blackdown Hills – recognised for its outstanding natural beauty, those early days at Dunkeswell or any other venue were rustic to say the least. Some parts of the early airfields were surfaced in concrete and most were left open to the elements, barren and in disrepair which meant a bumpy ride for those early drivers who sought to experience the thrills of driving at speed.
     
-    As a member club of the ‘ Devon Four Motorsport Partnership’, Association of South Western Motor Clubs (ASWMC), Association of British Kart Clubs (ABkC) we hope to provide those with Karting Interests with a stepping stone to other forms of Motorsport. Of course you don’t have to be a Kart, Single seater or car driver to enjoy our sports as our gates are open free of charge to spectators and visitors on Saturday Practice Sessions and you are invited to enjoy views of the Airfield activities and Race Day excitment from our Track Side parking areas for a small fee on Race Sundays.
+    As a member club of the ‘Devon Four Motorsport Partnership’, Association of South Western Motor Clubs (ASWMC), Association of British Kart Clubs (ABkC) we hope to provide those with Karting Interests with a stepping stone to other forms of Motorsport. Of course you don’t have to be a Kart, Single seater or car driver to enjoy our sports as our gates are open free of charge to spectators and visitors on Saturday Practice Sessions and you are invited to enjoy views of the Airfield activities and Race Day excitment from our Track Side parking areas for a small fee on Race Sundays.
 
     If you are interested in any of Dunkeswell Kart Clubs Sporting activities the club can be contacted on most days by telephone, email or post and you are welcome to visit us and see some of our drivers in action at the circuit.
 
@@ -429,7 +447,8 @@ track_data = [
     short_desc: 'Established over 50 years ago Mansell Kart Racing Club has grown from the early roots of karting and motorsports interests in the UK.',
     tagline: '',
     facilities: ['Hot Food Available', 'Toilets', 'Overnight Camping', 'Parking', 'Arrive & Drive Karting', 'Kart Shop',   ],
-    social_media: { facebook: 'https://www.facebook.com/mansellracewayofficial', instagram: 'https://www.instagram.com/mansell_kart_club/' },
+    facebook: 'https://www.facebook.com/mansellracewayofficial', 
+    instagram: 'https://www.instagram.com/mansell_kart_club/',
     static_map_url: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10071.969631313614!2d-3.2343932!3d50.8683403!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486d91e607c5bcf7%3A0x1cb33215802a326a!2sMansell%20Raceway!5e0!3m2!1sen!2suk!4v1698844578546!5m2!1sen!2suk',
     mobile: ''
   },
@@ -455,7 +474,8 @@ track_data = [
     short_desc: '1100m NKA/MSA licensed circuit set within a 12 acre site.',
     tagline: '',
     facilities: ['60 Seater Diner on Site', 'Toilets', 'Overnight Camping', 'Parking', 'Arrive & Drive Karting' ],
-    social_media: { facebook: 'https://www.facebook.com/pages/Bayford-Meadows-Kart-circuit-Sittingbourne/100930626669209', instagram: 'https://www.instagram.com/officialbayfordmeadowscircuit/' },
+    facebook: 'https://www.facebook.com/pages/Bayford-Meadows-Kart-circuit-Sittingbourne/100930626669209', 
+    instagram: 'https://www.instagram.com/officialbayfordmeadowscircuit/',
     static_map_url: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2492.017985164377!2d0.7435908174438512!3d51.347579900000014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8d5547b2f01c9%3A0x44a6c5eedae5416d!2sBayford%20Meadows%20Kart%20Circuit%20Ltd!5e0!3m2!1sen!2suk!4v1698844682544!5m2!1sen!2suk',
     mobile: ''
   },
@@ -520,7 +540,8 @@ track_data = [
     short_desc: 'South Wales Karting Centre is one of the largest, fastest and most exciting circuits in Wales.',
     tagline: '',
     facilities: ['Cafe', 'Toilets', 'Overnight Camping', 'Parking', 'Floodlights', 'Showers'],
-    social_media: { facebook: 'https://www.facebook.com/southwaleskartingcentreltd/'},
+    facebook: 'https://www.facebook.com/southwaleskartingcentreltd/',
+    instagram: 'https://www.instagram.com/southwaleskartingcentre/',
     static_map_url: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9949.4111464195!2d-3.4957645!3d51.4333147!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e72c5ce9d0795%3A0xa7439f09687b3480!2sThe%20South%20Wales%20Karting%20Centre%20Ltd!5e0!3m2!1sen!2suk!4v1698845156762!5m2!1sen!2suk',
     mobile: ''
   },
@@ -538,7 +559,8 @@ track_data = [
     short_desc: 'Home of Kart Racing in Leicestershire',
     tagline: '',
     facilities: ['Licensed Bar', 'Cafe', 'Toilets', 'Overnight Camping', 'Parking', 'Floodlights', 'Showers'],
-    social_media: { facebook: 'https://www.facebook.com/StrettonKarting/', instagram: 'https://www.instagram.com/strettoncircuit/'},
+    facebook: 'https://www.facebook.com/StrettonKarting/', 
+    instagram: 'https://www.instagram.com/strettoncircuit/',
     static_map_url: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9691.90315095583!2d-1.0382852!3d52.6062085!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487764707c4c09b7%3A0x25ae37c5264a3901!2sStretton%20Circuit%2C%20Leicester%20Karting!5e0!3m2!1sen!2suk!4v1698845861000!5m2!1sen!2suk',
     mobile: ''
   },
@@ -554,10 +576,11 @@ track_data = [
     ',
     location: 'Hampshire',
     website: 'www.fekc.co.uk',
-    short_desc: '',
+    short_desc: 'An amazing track with fast straights and technical corners.',
     tagline: '',
     facilities: ['Cafe', 'Toilets', 'Overnight Camping', 'Parking'],
-    social_media: { facebook: 'https://www.facebook.com/StrettonKarting/', instagram: 'https://www.instagram.com/strettoncircuit/'},
+    facebook: 'https://www.facebook.com/StrettonKarting/', 
+    instagram: 'https://www.instagram.com/strettoncircuit/',
     static_map_url: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10004.415687419852!2d-1.3643614!3d51.1803075!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48740582a8d0036d%3A0x7417c274d8cad5a3!2sForest%20Edge%20Kart%20Club!5e0!3m2!1sen!2suk!4v1698846130172!5m2!1sen!2suk',
     mobile: ''
   },
@@ -577,9 +600,6 @@ track_data.each do |data|
     end
   end
 end
-
-
-
 
 champ_data = [ 
   {
@@ -639,7 +659,7 @@ champ_data = [
     description: 'The Kart Championship is designed to allow your child the chance to compete on a even playing field. All the dates for 2024 are set in stone, along with all the classes that will be competing throughout the year, from March all the way to December.
     It\'s another exciting year, that has taken a lot of hard work to put together, but it\'s going to showcase UK karting at its very best!
     Don\'t forget that registrations for next year officially open at 11 a.m. on November 11th.',
-    price: '' ,
+    price: '',
     champ_type: 'Series',
     contact_number: '',
     mobile: '',
@@ -737,19 +757,27 @@ champ_data.each do |data|
   end
 end
 
-
 event_data = [
   {
     title: 'Super One Round 1',
     description: 'The Opening Round of the 2024 Super One Series',
     date: '2024-03-30',
     price: 185,
-    event_type: "Race",
+    event_type: 'Race',
     championship_id: 1,
-    track_id: 8,
+    track_id: 8
+  },
+  {
+    title: 'Super One Round 2',
+    description: 'The Second Round of the 2024 Super One Series',
+    date: '2024-04-30',
+    price: 185,
+    event_type: 'Race',
+    championship_id: 1,
+    track_id: 9
   }
 ]
 
 event_data.each do |data|
-  event = Event.create!(data)
+  Event.create!(data)
 end
