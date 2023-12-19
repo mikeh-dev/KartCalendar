@@ -62,11 +62,11 @@
         </div>
         <div class="flex flex-col-reverse">
           <dt class="text-base leading-7 text-gray-300">Next Test Day</dt>
-          <dd class="text-2xl font-bold leading-9 tracking-tight text-white"><%= @next_event.present? ? @next_event.date.strftime("%A, %B %-d, %Y") : "No Tests Scheduled" %></dd>
+          <dd class="text-2xl font-bold leading-9 tracking-tight text-white"><%= @next_test_event.present? ? @next_test_event.date.strftime("%A, %B %-d, %Y") : "No Tests Scheduled" %></dd>
         </div>
         <div class="flex flex-col-reverse">
           <dt class="text-base leading-7 text-gray-300">Next Race Day</dt>
-          <dd class="text-2xl font-bold leading-9 tracking-tight text-white"><%= @track_race_events.present? ? @track_race_events.date.strftime("%A, %B %-d, %Y") : "No Race Scheduled" %></dd>
+          <dd class="text-2xl font-bold leading-9 tracking-tight text-white"><%= @next_race_event.present? ? @next_race_event.date.strftime("%A, %B %-d, %Y") : "No Race Scheduled" %></dd>
         </div>
          <div class="flex flex-col-reverse">
           <dt class="text-base leading-7 text-gray-300">Track Surface</dt>
@@ -206,11 +206,6 @@
   </div>
 </section>
 
-<section id="map">
-  <h1 class="text-3xl font-semibold mb-4 text-center mb-5">Find us on Mapbox</h1>
-  <div id="mapbox" class="relative w-full h-96 mb-10"></div> <!-- Mapbox container -->
-</section>
-
 <div class="container mx-auto px-4" id="champ-calendar">
   <h1 class="text-3xl font-semibold mb-4 text-center mb-5"> Calendar</h1>
 
@@ -237,33 +232,40 @@
   </div>
 </div>
 
-<section id="hotels">
-  <% if @hotels && @hotels['features'] %>
-    <h2 class="text-2xl font-semibold mb-4">Nearest Hotels</h2>
-    <ul>
+
+<div class="container flex flex-wrap mx-auto">
+  <div class="w-full md:w-1/2 px-2 mb-4">
+    <h2 class="text-2xl font-bold text-white-800 mb-4">Nearest Hotels</h2>
+    <% if @hotels && @hotels['features'] %>
       <% @hotels['features'].each do |hotel| %>
-        <li><%= hotel['text'] %> - <%= hotel['place_name'] %></li>
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden mb-4">
+          <div class="p-4">
+            <h3 class="text-gray-700 text-lg font-semibold"><%= hotel['text'] %></h3>
+            <p class="text-gray-600 text-sm"><%= hotel['place_name'] %></p>
+          </div>
+        </div>
       <% end %>
-    </ul>
-  <% else %>
-    <p>No hotel information available.</p>
-  <% end %>
-</section>
+    <% else %>
+      <p>No hotel information available.</p>
+    <% end %>
+  </div>
 
-<section id="fuel-stations">
-  <% if @fuel_stations && @fuel_stations['features'] %>
-    <h2 class="text-2xl font-semibold mb-4">Nearest Fuel Stations</h2>
-    <ul>
+  <div class="w-full md:w-1/2 px-2 mb-4">
+    <h2 class="text-2xl font-bold text-white-800 mb-4">Nearest Fuel Stations</h2>
+    <% if @fuel_stations && @fuel_stations['features'] %>
       <% @fuel_stations['features'].each do |station| %>
-        <li><%= station['text'] %> - <%= station['place_name'] %></li>
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden mb-4">
+          <div class="p-4">
+            <h3 class="text-gray-700 text-lg font-semibold"><%= station['text'] %></h3>
+            <p class="text-gray-600 text-sm"><%= station['place_name'] %></p>
+          </div>
+        </div>
       <% end %>
-    </ul>
-  <% else %>
-    <p>No fuel station information available.</p>
-  <% end %>
-</section>
-
-
+    <% else %>
+      <p>No fuel station information available.</p>
+    <% end %>
+  </div>
+</div>
 
 <script>
   mapboxgl.accessToken = 'pk.eyJ1IjoibWlrZWhvd2FyZDExMiIsImEiOiJjbHFibGYyMTAwMW4zMmtvNzhjMG1oanF3In0.zJd50SbiyG9g2GY9KCFmmg';
