@@ -14,6 +14,7 @@ gem "railsui", github: "getrailsui/railsui"
 gem "devise"
 gem "name_of_person"
 gem "meta-tags"
+gem "httparty"
 
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
