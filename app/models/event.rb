@@ -2,6 +2,8 @@ class Event < ApplicationRecord
   has_and_belongs_to_many :users, join_table: 'event_users'
   belongs_to :championship, optional: true
   belongs_to :track
+  has_and_belongs_to_many :categories
+
 
   has_many :follows, as: :followable, dependent: :destroy
 

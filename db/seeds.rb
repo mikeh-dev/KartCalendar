@@ -781,3 +781,10 @@ event_data = [
 event_data.each do |data|
   Event.create!(data)
 end
+
+
+categories = ['C50 Bambino', 'IAME Bambino', 'IAME Cadet', 'Junior Max', 'Junior X30', 'Senior Max', 'Senior X30', 'KZ (Gearbox)', 'Waterswift', 'MicroMax', 'Rotax 177', 'Honda Cadet', 'InterMax', 'Junior TKM', 'TKM Extreme', 'TKM Inter', 'ProKart', 'Junior ProKart', 'Junior Gearbox'  ]
+
+categories.each do |category_name|
+  Category.find_or_create_by(name: category_name)
+end

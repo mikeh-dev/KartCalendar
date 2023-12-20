@@ -33,6 +33,9 @@ Rails.application.routes.draw do
 	resources :tracks 
 	resources :championships
 
+	get 'categories/search', to: 'categories#search', as: 'search_categories'
+  post 'categories/find_events', to: 'categories#find_events', as: 'find_category_events'
+
 	resources :follows, only: [:create, :destroy]
 
 	get 'test_events', to: 'events#test_events', as: 'test_events'

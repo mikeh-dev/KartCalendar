@@ -61,11 +61,11 @@ class EventsController < ApplicationController
 private
 
 def set_event
-  @event = Event.find(params[:id])
+  @event = Event.includes(:categories).find(params[:id])
 end
 
 def event_params
-  params.require(:event).permit(:title, :description, :date, :price, :event_type, :image, :championship_id, :track_id)
+  params.require(:event).permit(:title, :description, :date, :price, :event_type, :image, :championship_id, :track_id, category_ids: [])
 end
   
 end

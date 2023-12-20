@@ -1,6 +1,7 @@
 class Track < ApplicationRecord
   has_many :events
   has_many :follows, as: :followable, dependent: :destroy
+  has_and_belongs_to_many :categories
 
   VALID_EMAIL = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL }

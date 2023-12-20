@@ -1,0 +1,13 @@
+<% if @categories.present? %>
+  <%= form_with url: find_category_events_path, method: :post, local: true do |form| %>
+    <%= form.label :category_id, "Select a Category" %>
+    <%= form.collection_select :category_id, @categories, :id, :name, include_blank: true %>
+    <%= form.submit "Search" %>
+  <% end %>
+<% else %>
+  <p>There are no categories available.</p>
+<% end %>
+
+<div id="search-results">
+  <%= render 'categories/search_results', events: @events if @events.present? %>
+</div>

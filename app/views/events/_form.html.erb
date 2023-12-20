@@ -54,6 +54,12 @@
       <%= form.file_field :image, class: "form-input" %>
     </div>
 
+    <div class="field">
+      <%= form.label :category_ids, "Categories", class: "block text-gray-700 text-sm font-bold mb-2" %><br>
+      <%= form.collection_select :category_ids, Category.all, :id, :name, {}, { multiple: true, class: "select-multiple text-black" } %>
+    </div>
+
+
     <div class="flex items-center">
       <%= form.submit "Save", class: "btn btn-primary" %>
     </div>

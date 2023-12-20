@@ -1,0 +1,10 @@
+<% if @events.any? %>
+  <% @events.each do |event| %>
+    <div class="event">
+      <h3><%= event.title %></h3>
+      <!-- Display other event details -->
+    </div>
+  <% end %>
+<% else %>
+  <p>No events found for this category.</p>
+<% end %>
