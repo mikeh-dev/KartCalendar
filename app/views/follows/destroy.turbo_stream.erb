@@ -1,6 +1,15 @@
-<% button_text = @followable.is_a?(Championship) ? ['Follow', 'Unfollow'] : ['Add to my Tracks', 'Remove from my Tracks'] %>
+<% if @followable.is_a?(Event) %>
+  <% button_text = ['Add to My Calendar', 'Remove from My Calendar'] %>
+  <% button_class = ["btn btn-red", "btn btn-primary"] %>
+<% elsif @followable.is_a?(Championship) %>
+  <% button_text = ['Add to My Championships', 'Remove from My Championships'] %>
+  <% button_class = ["btn btn-red btn-md", "btn btn-primary btn-md"]  %>
+<% else %>
+  <% button_text = ['Add to my Tracks', 'Remove from my Tracks'] %>
+  <% button_class = ["btn btn-red", "btn btn-primary"]  %>
+<% end %>
 
-<%= turbo_stream.update dom_id(@followable, "follow_#{dom_class(@followable)}"), class: "w-32" do %>
-  <%= link_to button_text[0], follows_path(followable_type: @followable.class.name, followable_id: @followable.id), method: :post, class: "text-center block rounded bg-blue-600 px-6 py-3 text-sm font-medium text-center text-white shadow hover:bg-blue-700 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto", data: { turbo_method: :post } %>
+<%= turbo_stream.update dom_id(@followable, "follow_#{dom_class(@followable)}"), class: "w-auto" do %>
+  <%= link_to button_text[0], follows_path(followable_type: @followable.class.name, followable_id: @followable.id), method: :post, class: button_class[1], data: { turbo_method: :post } %>
 <% end %>
 

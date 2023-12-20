@@ -18,4 +18,8 @@ class Event < ApplicationRecord
     upcoming_based_on_date.first
   end
 
+  def self.followed_by(user)
+    followed_event_ids = user.follows.where(followable_type: 'Event').pluck(:followable_id)
+    where(id: followed_event_ids)
+  end
 end

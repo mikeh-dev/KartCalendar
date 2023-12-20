@@ -7,28 +7,33 @@
     <% end %>
     <h1 class="sm:text-6xl text-4xl font-extrabold"><%= @event.title %></h1>
     <p class="my-6 text-slate-700 dark:text-slate-400 text-lg"><%= @event.description %></p>
-    <div class="xl:flex grid grid-cols-1 gap-4">
-      <% if @championship.present? %>
-        <%= link_to "View Championship", championship_path(@event.championship), class: "btn btn-primary btn-lg" %>
-      <% end %>
-      <% if @event.track.present? %>
-        <%= link_to "View Track Info", track_path(@event.track), class: "btn btn-primary btn-lg" %>
-      <% end %>
-    </div>
   </div>
   <div class="xl:w-3/5 w-full xl:my-0 mt-6 mb-10">
   <% if @event.image.attached? %>
     <div class="flex justify-center relative">
-      <%= image_tag @event.image, alt: "Events", class: "max-w-full xl:max-w-2xl 2xl:max-w-3xl object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-500/20" %>
+      <%= image_tag @event.image, alt: "Events", class: "max-w-md object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-500/20" %>
     </div>
   <% else %>
     <div class="flex justify-center relative">
-      <%= image_tag "JHPhoto-3115.jpg", alt: "Events", class: "max-w-full xl:max-w-2xl 2xl:max-w-3xl object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-50020"%>
+      <%= image_tag "JHPhoto-3115.jpg", alt: "Events", class: "max-w-md object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-50020"%>
     </div>
   <% end %>
+
     <div class="container mx-auto py-8 max-w-full xl:max-w-2xl 2xl:max-w-3xl object-cover rounded-3xl relative z-20 p-6">
         <h4 class="text-indigo-600 text-2xl mb-6 lg:mt-0 mt-2 dark:text-indigo-500 text-center"><%= @event.championship.present? ? @event.championship.long_name + " - " : "" %><%= @event.event_type %></h4>
-        <h1 class="md:text-3xl text-lg font-semibold text-white mb-4 text-center"><%= @event.title %></h1>
+          <h1 class="md:text-3xl text-lg font-semibold text-white mb-4 text-center"><%= @event.title %></h1>
+        <div class="flex justify-center relative mb-10">
+          <% if current_user %> 
+              <% button_text = @followable.is_a?(Event) ? ['Add to my Tracks', 'Remove from my Tracks'] : ['Add to My Calendar', 'Remove from My Calendar'] %>
+              <%= turbo_frame_tag dom_id(@event, "follow_#{dom_class(@event)}"), class: "" do %>
+                <% if current_user.following?(@event) %>
+                  <%= link_to button_text[1], follow_path(id: current_user.follows.find_by(followable: @event).id), method: :delete, class: "btn btn-red", data: { turbo_method: :delete } %>
+                <% else %>
+                  <%= link_to button_text[0], follows_path(followable_type: @event.class.name, followable_id: @event.id), method: :post, class: "btn btn-primary", data: { turbo_method: :post } %>
+                <% end %>
+              <% end %>
+            <% end %>
+        </div>      
         <div class="text-gray-200 mb-1">
           <p class="mb-2"><strong>Track - </strong> <%= @event.track.name %>, <%= @event.track.location %> </p>
           <p class="mb-2"><strong>Date - </strong> <%= @event.date.strftime('%m/%d/%Y') %> </p>
@@ -42,21 +47,21 @@
           <h2 class="text-xl font-semibold text-white mb-2">Weather Forecast</h2>
           <p class="text-gray-300">Weather here</p>
         </div>
-        <div class="mb-8 mt-4">
-          <h2 class="text-xl font-semibold text-white mb-2">Add to Calendar Button</h2>
+
+        <div class="">
+          <% if @championship.present? %>
+            <%= link_to "View Championship", championship_path(@event.championship), class: "btn btn-primary" %>
+          <% end %>
+          <% if @event.track.present? %>
+            <%= link_to "View Track Info", track_path(@event.track), class: "btn btn-primary" %>
+          <% end %>
         </div>
 
-
-        <% if @event.event_type == "Test" %>
-            <%= link_to "Back to Test Days", test_events_path, class: "btn btn-primary" %>
-        <% else %>
-            <%= link_to "Back to Race Days", race_events_path, class: "btn btn-primary" %>
-        <% end %>
-        
-        <%= link_to "Back to All Events", events_path, class: "btn btn-primary" %>
-        <% if current_user&.admin? %>
-          <%= link_to "Edit Event", edit_event_path(@event), class: "btn btn-dark" %> 
-        <% end %>
+        <div class="mb-8 mt-4">
+            <% if current_user&.admin? %>
+              <%= link_to "Edit Event", edit_event_path(@event), class: "btn btn-dark" %> 
+            <% end %>
+        </div>
       </div>
     </div>
   </div>

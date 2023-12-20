@@ -45,9 +45,9 @@
         <% button_text = @followable.is_a?(Championship) ? ['Follow', 'Unfollow'] : ['Add to my Tracks', 'Remove from my Tracks'] %>
           <%= turbo_frame_tag dom_id(@track, "follow_#{dom_class(@track)}"), class: "w-auto" do %>
             <% if current_user.following?(@track) %>
-              <%= link_to button_text[1], follow_path(id: current_user.follows.find_by(followable: @track).id), method: :delete, class: "text-center block rounded bg-rose-600 px-6 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto", data: { turbo_method: :delete } %>
+              <%= link_to button_text[1], follow_path(id: current_user.follows.find_by(followable: @track).id), method: :delete, class: "btn btn-red", data: { turbo_method: :delete } %>
             <% else %>
-              <%= link_to button_text[0], follows_path(followable_type: @track.class.name, followable_id: @track.id), method: :post, class: "text-center block rounded bg-blue-600 px-6 py-3 text-sm font-medium text-white shadow hover:bg-blue-700 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto", data: { turbo_method: :post } %>
+              <%= link_to button_text[0], follows_path(followable_type: @track.class.name, followable_id: @track.id), method: :post, class: "btn btn-primary", data: { turbo_method: :post } %>
             <% end %>
           <% end %>
         <% end %>
@@ -68,10 +68,18 @@
           <dt class="text-base leading-7 text-gray-300">Next Race Day</dt>
           <dd class="text-2xl font-bold leading-9 tracking-tight text-white"><%= @next_race_event.present? ? @next_race_event.date.strftime("%A, %B %-d, %Y") : "No Race Scheduled" %></dd>
         </div>
-         <div class="flex flex-col-reverse">
-          <dt class="text-base leading-7 text-gray-300">Track Surface</dt>
-          <dd class="text-2xl font-bold leading-9 tracking-tight text-white">Tarmac</dd>
-        </div>
+        <% if @track.track_surface.present? %>
+          <div class="flex flex-col-reverse">
+            <dt class="text-base leading-7 text-gray-300">Track Surface</dt>
+            <dd class="text-2xl font-bold leading-9 tracking-tight text-white"><%= @track.track_surface %></dd>
+          </div>
+        <% end %>
+        <% if @track.live_timing.present? %>
+          <div class="flex flex-col-reverse">
+            <dt class="text-base leading-7 text-gray-300">Live Timing Link</dt>
+            <dd class="text-2xl font-bold leading-9 tracking-tight text-white">Live Timing Link</dd>
+          </div>
+        <% end %>
       </dl>
       <div class="grid grid-cols-2 gap-x-4 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
       <% @track.facilities.each do |facility| %>
@@ -104,14 +112,22 @@
           <dt class="text-base leading-7 text-gray-300">Email Address</dt>
           <dd class="text-1xl font-bold leading-9 tracking-tight text-white"><%= @track.email %></dd>
         </div>
+        <% if @track.paddock_email.present? %>
+          <div class="flex flex-col-reverse">
+            <dt class="text-base leading-7 text-gray-300">Paddock Booking Email</dt>
+            <dd class="text-1xl font-bold leading-9 tracking-tight text-white"><%= @track.paddocks_email %></dd>
+          </div>
+        <% end %>
         <div class="flex flex-col-reverse">
           <dt class="text-base leading-7 text-gray-300">Website</dt>
-          <dd class="text-1xl font-bold leading-9 tracking-tight text-white md:text-md"><%= @track.website %></dd>
+          <dd class="text-1xl font-bold leading-9 tracking-tight text-white md:text-md">
+            <% url = @track.website.start_with?('http://', 'https://') ? @track.website : "http://#{@track.website}" %>
+            <%= link_to url, target: "_blank", class: "text-blue-500 hover:text-blue-600", rel: "noopener noreferrer" do %>
+              <%= @track.website %>
+            <% end %>
+          </dd>
         </div>
-        <div class="flex flex-col-reverse">
-          <dt class="text-base leading-7 text-gray-300">Paddock Booking Email</dt>
-          <dd class="text-1xl font-bold leading-9 tracking-tight text-white md:text-md">Paddock Booking Email Here</dd>
-        </div>
+      
         <div class="flex flex-col-reverse">
           <dt class="text-base leading-7 text-gray-300 mt-2">Social Media</dt>
           <dd class="flex flex-row items-center justify-start space-x-4 text-1xl font-bold leading-9 tracking-tight text-white">
@@ -267,17 +283,7 @@
   </div>
 </div>
 
-<script>
-  mapboxgl.accessToken = 'pk.eyJ1IjoibWlrZWhvd2FyZDExMiIsImEiOiJjbHFibGYyMTAwMW4zMmtvNzhjMG1oanF3In0.zJd50SbiyG9g2GY9KCFmmg';
+<div class="container mx-auto flex justify-center">
+  <%= link_to 'Submit a Correction', contact_path, class: "inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+</div>
 
-  var map = new mapboxgl.Map({
-    container: 'mapbox',
-    style: 'mapbox://styles/mapbox/streets-v11',
-    center: [<%= @track.longitude %>, <%= @track.latitude %>],
-    zoom: 12
-  });
-
-new mapboxgl.Marker()
-    .setLngLat([<%= @track.longitude %>, <%= @track.latitude %>])
-    .addTo(map);
-</script>

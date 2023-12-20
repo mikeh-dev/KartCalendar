@@ -7,7 +7,8 @@ class DashboardController < ApplicationController
     @followed_events = current_user.followed_events.includes(:championship, :track)
     
     @timeline_events = Event.where(championship: @followed_championships)
-                            .order('date ASC')
-                            .limit(50)
+                        .or(Event.followed_by(current_user))
+                        .order('date ASC')
+                        .limit(50)
   end
 end
