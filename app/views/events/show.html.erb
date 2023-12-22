@@ -3,9 +3,9 @@
     <% if @championship.present? %>
       <p class="text-indigo-600 text-2xl mb-6 lg:mt-0 mt-2 dark:text-indigo-500"><%= @event.championship.name %></p>
     <% else %>
-      <p class="text-indigo-600 font-medium mb-6 lg:mt-0 mt-2 dark:text-indigo-500">Something Here</p>
+      <p class="text-indigo-600 font-medium mb-6 lg:mt-0 mt-2 dark:text-indigo-500">Championship</p>
     <% end %>
-    <h1 class="sm:text-6xl text-4xl font-extrabold"><%= @event.title %></h1>
+    <h1 class="sm:text-5xl text-4xl font-extrabold"><%= @event.title %> - <%= @event.track.name %></h1>
     <p class="my-6 text-slate-700 dark:text-slate-400 text-lg"><%= @event.description %></p>
   </div>
   <div class="xl:w-3/5 w-full xl:my-0 mt-6 mb-10">
@@ -15,13 +15,14 @@
     </div>
   <% else %>
     <div class="flex justify-center relative">
-      <%= image_tag "JHPhoto-3115.jpg", alt: "Events", class: "max-w-md object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-50020"%>
+      <%= image_tag "JHPhoto-3117.jpg", alt: "Events", class: "max-w-md object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-50020"%>
     </div>
   <% end %>
 
     <div class="container mx-auto py-8 max-w-full xl:max-w-2xl 2xl:max-w-3xl object-cover rounded-3xl relative z-20 p-6">
-        <h4 class="text-indigo-600 text-2xl mb-6 lg:mt-0 mt-2 dark:text-indigo-500 text-center"><%= @event.championship.present? ? @event.championship.long_name + " - " : "" %><%= @event.event_type %></h4>
-          <h1 class="md:text-3xl text-lg font-semibold text-white mb-4 text-center"><%= @event.title %></h1>
+        <h4 class="text-indigo-600 text-lg mb-1 lg:mt-0 mt-2 dark:text-indigo-500 text-center"><%= @event.event_type %></h4>
+          <h1 class="md:text-3xl text-lg font-semibold text-white mb-2 text-center"><%= @event.championship&.name %> - <%= @event.title %></h1>
+          <p class="mb-10 text-center"><strong>Date - </strong> <%= @event.date.strftime('%m/%d/%Y') %> </p>
         <div class="flex justify-center relative mb-10">
           <% if current_user %> 
               <% button_text = @followable.is_a?(Event) ? ['Add to my Tracks', 'Remove from my Tracks'] : ['Add to My Calendar', 'Remove from My Calendar'] %>
@@ -36,7 +37,6 @@
         </div>      
         <div class="text-gray-200 mb-1">
           <p class="mb-2"><strong>Track - </strong> <%= @event.track.name %>, <%= @event.track.location %> </p>
-          <p class="mb-2"><strong>Date - </strong> <%= @event.date.strftime('%m/%d/%Y') %> </p>
           <p class="mb-6"><strong>Price - </strong> £<%= @event.price.to_i %> </p>
         </div>
         <div class="mb-8 mt-4">
@@ -52,6 +52,18 @@
         <div class="mb-8 mt-4">
           <h2 class="text-xl font-semibold text-white mb-2">Weather Forecast</h2>
           <p class="text-gray-300">Weather here</p>
+        </div>
+
+        <div class="mb-8 mt-4">
+          <h2 class="text-xl font-semibold text-white mb-2">Local Fuel Stations</h2>
+          <p class="text-gray-300">Fuel Stations</p>
+        </div>
+
+        <div class="mb-8 mt-4">
+          <h2 class="text-xl font-semibold text-white mb-2">Accommadation Nearby</h2>
+          <p class="text-gray-300">Hotel 1</p>
+          <p class="text-gray-300">Hotel 2</p>
+          <p class="text-gray-300">Hotel 3</p>
         </div>
 
         <div class="">
@@ -72,6 +84,15 @@
     </div>
   </div>
 </div>
+
+<section id="map">
+  <div class="relative w-full h-96 mb-10">
+      <iframe class="absolute top-0 left-0 w-full h-full"
+          src="<%= @event.track.static_map_url %>"
+          frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0">
+      </iframe>
+  </div>
+</section>
 
 <% if @championship.present? %>
   <div class="container mx-auto px-4">

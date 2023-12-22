@@ -5,6 +5,7 @@ FactoryBot.define do
     date { "1/1/24"}
     price { rand(1000..5000) }
     event_type { "Race" }
-    track
+    track { FactoryBot.create(:track) }
+    championship { FactoryBot.create(:championship) }
   end
 end

@@ -76,11 +76,9 @@
           <p class="mb-2"><strong>Championship Entry Fee:</strong> £<%= @championship.champ_fee %></p>
           <p class="mb-2"><strong>Race Fee:</strong> £<%= @championship.race_fee %> </p>
           <p class="mb-2"><strong>Test Day Fee:</strong> £<%= @championship.test_fee %> </p>
-          <p class="mb-2"><strong>Race Fee:</strong> £<%= @championship.race_fee %> </p>
         </div>
         <%= link_to "Back to Events", championships_path, class: "btn btn-primary" %>
         <% if current_user&.admin? %>
-
           <%= link_to "Edit Championship", edit_championship_path(@championship), class: "btn btn-dark" %> 
         <% end %>
       
