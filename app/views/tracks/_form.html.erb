@@ -110,6 +110,11 @@
         <%= form.select :facilities, options_for_select(Track::FACILITIES.reject(&:blank?), @track.facilities), {}, { multiple: true, size: 5, class: "bg-white text-black border-gray-300" } %>
     </div>
 
+    <div class="field">
+      <%= form.label :category_ids, "Categories", class: "block text-gray-700 text-sm font-bold mb-2" %><br>
+      <%= form.collection_select :category_ids, Category.all, :id, :name, {}, { multiple: true, class: "select-multiple text-black" } %>
+    </div>
+
     <div class="mb-4">
       <%= form.label :static_map_url, class: "block text-gray-700 text-sm font-bold mb-2" %>
       <%= form.text_field :static_map_url, class: "form-input" %>
