@@ -54,3 +54,4 @@ jobs:
         run: bundle exec bundler-audit --update
       - name: Security audit application code
         run: bin/brakeman -q -w2
+
