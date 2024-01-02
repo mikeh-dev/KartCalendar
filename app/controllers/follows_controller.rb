@@ -30,10 +30,17 @@ class FollowsController < ApplicationController
 
   private
 
+  ALLOWED_FOLLOWABLE_TYPES = ['Track', 'Event', 'Championship'].freeze
+
   def set_followable
-    klass = params[:followable_type].classify.constantize
-    @followable = klass.find(params[:followable_id])
-  rescue NameError, ActiveRecord::RecordNotFound
+    followable_type = params[:followable_type].classify
+    if ALLOWED_FOLLOWABLE_TYPES.include?(followable_type)
+      klass = followable_type.constantize
+      @followable = klass.find(params[:followable_id])
+    else
+      redirect_to root_path, alert: 'Invalid or not found followable.'
+    end
+  rescue ActiveRecord::RecordNotFound
     redirect_to root_path, alert: 'Invalid or not found followable.'
   end
   
