@@ -15,6 +15,7 @@ gem "devise"
 gem "name_of_person"
 gem "meta-tags"
 gem "httparty"
+gem 'bundler-audit', require: false
 
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
