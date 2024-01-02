@@ -20,8 +20,8 @@ Rails.application.routes.draw do
 	get 'home', to: 'page#home'
 	get 'dashboard', to: 'dashboard#index'
 
-	get 'contact', to: 'page#contact', as: 'contact'
-	post 'contact', to: 'contacts#create'   
+	get 'contact', to: 'page#contact', as: 'contact'  # For displaying the contact form
+	post 'contact', to: 'contacts#create'             # For form submission
 	
   if Rails.env.development? || Rails.env.test?
     mount Railsui::Engine, at: "/railsui"
