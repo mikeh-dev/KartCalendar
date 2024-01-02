@@ -26,6 +26,7 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem 'dotenv-rails'
   gem 'erb_lint'
+  gem 'letter_opener'
 end
 
 group :development do
@@ -41,5 +42,4 @@ group :test do
   gem "faker"
   gem "shoulda-matchers"
   gem 'launchy'
-  gem 'letter_opener'
 end

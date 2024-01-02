@@ -17,10 +17,11 @@ Rails.application.routes.draw do
 	get 'admin/dashboard', to: 'page#dashboard'
 	get 'pricing', to: 'page#pricing'
 	get 'about', to: 'page#about'
-	get 'contact', to: 'page#contact'
 	get 'home', to: 'page#home'
 	get 'dashboard', to: 'dashboard#index'
 
+	get 'contact', to: 'page#contact', as: 'contact'
+	post 'contact', to: 'contacts#create'   
 	
   if Rails.env.development? || Rails.env.test?
     mount Railsui::Engine, at: "/railsui"
@@ -32,6 +33,7 @@ Rails.application.routes.draw do
 	resources :events
 	resources :tracks 
 	resources :championships
+
 
 	get 'categories/search', to: 'categories#search', as: 'search_categories'
   post 'categories/find_events', to: 'categories#find_events', as: 'find_category_events'

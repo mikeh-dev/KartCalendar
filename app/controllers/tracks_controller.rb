@@ -19,8 +19,7 @@ class TracksController < ApplicationController
     mapbox_service = MapboxService.new
     hotel_response = mapbox_service.search_category(@track.longitude, @track.latitude, 'hotel')
     @hotels = JSON.parse(hotel_response.body) if hotel_response.success?
-
-    fuel_response = mapbox_service.search_category(@track.longitude, @track.latitude, 'fuel') # Replace 'fuel' with the correct category if different
+    fuel_response = mapbox_service.search_category(@track.longitude, @track.latitude, 'fuel')
     @fuel_stations = JSON.parse(fuel_response.body) if fuel_response.success?
 
 
