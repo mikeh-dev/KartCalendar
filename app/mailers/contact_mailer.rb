@@ -6,6 +6,6 @@ class ContactMailer < ApplicationMailer
     @email = email
     @message = message
 
-    mail(to: 'recipient@example.com', subject: 'New Contact Form Message')
+    mail(to: default[:to], subject: 'New Contact Form Message')
   end
 end
