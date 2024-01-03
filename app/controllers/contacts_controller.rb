@@ -1,17 +1,21 @@
 class ContactsController < ApplicationController
- 
+  def new
+    @contact = Contact.new
+  end
+
   def create
-    if contact_form_valid?
-      ContactMailer.contact_email(params[:name], params[:email], params[:message]).deliver_now
-      redirect_to contact_path, notice: 'Message sent successfully'
+    @contact = Contact.new(contact_params)
+    if @contact.save
+      ContactMailer.contact_email(@contact).deliver_now
+      redirect_to new_contact_path, notice: 'Message sent successfully'
     else
-      render contact_path, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
   private
 
-  def contact_form_valid?
-    params[:name].present? && params[:email].present? && params[:message].present?
+  def contact_params
+    params.require(:contact).permit(:name, :email, :message)
   end
 end

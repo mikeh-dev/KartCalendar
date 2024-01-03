@@ -1,11 +1,8 @@
 class ContactMailer < ApplicationMailer
-  default to: 'recipient@example.com', from: 'no-reply@example.com'
+  default from: 'info@kartstream.co.uk'
 
-  def contact_email(name, email, message)
-    @name = name
-    @email = email
-    @message = message
-
-    mail(to: default[:to], subject: 'New Contact Form Message')
+  def contact_email(contact)
+    @contact = contact
+    mail(to: 'mhlejhjhgh@gmail.com', subject: 'New Contact Message')
   end
 end

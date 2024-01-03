@@ -20,8 +20,7 @@ Rails.application.routes.draw do
 	get 'home', to: 'page#home'
 	get 'dashboard', to: 'dashboard#index'
 
-	get 'contact', to: 'page#contact', as: 'contact'
-	post 'contact', to: 'contacts#create'
+	resources :contacts, only: [:new, :create]
 	
   if Rails.env.development? || Rails.env.test?
     mount Railsui::Engine, at: "/railsui"
