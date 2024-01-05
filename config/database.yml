@@ -17,7 +17,12 @@ test:
 
 production:
   adapter: postgresql
-  database: kartstreamdb
-  pool: 5
-  timeout: 5000
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: <%= ENV['DATABASE_HOST'] %>
+  port: <%= ENV['DATABASE_PORT'] %>
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  database: <%= ENV['DATABASE_NAME'] %>
+  sslmode: <%= ENV['DATABASE_SSL_MODE'] %>
 
