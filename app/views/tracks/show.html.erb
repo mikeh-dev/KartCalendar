@@ -223,31 +223,6 @@
 </div>
 </section>
 
-<div class="map-container">
-  <div 
-    id="hotels"
-    data-latitude=<%= @location.latitude %>
-    data-longitude=<%= @location.longitude %>
-  >
-    <h2>Breweries in <%= @location.name %></h2>
-    <ol>
-      <% @hotels.each do |hotel| %>
-        <li
-          class="hotel-list-item"
-          data-latitude=<%= hotel.latitude %>
-          data-longitude=<%= hotel.longitude %>
-        >
-          <h4><%= hotel.name %></h4>
-          <p><%= hotel.address %></p>
-        </li>
-      <% end %>
-    </ol>
-  </div>
-  <div id="map"></div>
-</div>
-
-
-
 <div class="container mx-auto px-4" id="champ-calendar">
   <h1 class="text-3xl font-semibold mb-4 text-center mb-5"> Calendar</h1>
 
