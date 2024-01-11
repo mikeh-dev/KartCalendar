@@ -1,10 +1,11 @@
 require 'rails_helper'
 
-let(:track) { FactoryBot.create(:track) }
-let(:event) { FactoryBot.create(:event) }
-let(:championship) { FactoryBot.create(:championship) }
-
 RSpec.describe 'Non-user viewer', type: :system do
+  let(:track) { FactoryBot.create(:track) }
+  let(:event) { FactoryBot.create(:event) }
+  let(:championship) { FactoryBot.create(:championship) }
+
+
   describe 'tracks' do
     it 'can view the index page' do
       visit tracks_path
