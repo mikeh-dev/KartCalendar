@@ -3,7 +3,7 @@ class Track < ApplicationRecord
   has_many :follows, as: :followable, dependent: :destroy
   has_and_belongs_to_many :categories
 
-  geocoded_by :address
+  geocoded_by :address_for_geocoding
   after_validation :geocode, if: :address_changed?
 
   VALID_EMAIL = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -43,5 +43,9 @@ class Track < ApplicationRecord
 
   def next_test_event
     test_events.first
+  end
+
+  def address_for_geocoding
+    address[-8..]
   end
 end
