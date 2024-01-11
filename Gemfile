@@ -44,3 +44,4 @@ group :test do
   gem "shoulda-matchers"
   gem 'launchy'
 end
+gem "geocoder", "~> 1.8"

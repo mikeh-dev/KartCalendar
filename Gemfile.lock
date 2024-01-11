@@ -159,6 +159,7 @@ GEM
     faker (3.2.2)
       i18n (>= 1.8.11, < 2)
     ffi (1.16.3)
+    geocoder (1.8.2)
     globalid (1.2.1)
       activesupport (>= 6.1)
     httparty (0.21.0)
@@ -372,6 +373,7 @@ DEPENDENCIES
   erb_lint
   factory_bot_rails
   faker
+  geocoder (~> 1.8)
   httparty
   image_processing (~> 1.2)
   jbuilder
