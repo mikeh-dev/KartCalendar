@@ -286,9 +286,6 @@
               <h2 class="text-gray-800 text-xl font-semibold mb-2"><%= hotel['text'] %></h2>
               <p class="text-gray-800"><%= hotel['properties']['address'] %></p>
             </div>
-            <div class="bg-gray-100 p-4">
-              <%= link_to "View Hotel", hotel['properties']['url'], class: "text-white-500 hover:underline btn btn-primary" %>
-            </div>
           </div>
         <% end %>
       <% else %>
@@ -304,9 +301,6 @@
             <div class="p-4">
               <h2 class="text-gray-800 text-xl font-semibold mb-2"><%= station['text'] %></h2>
               <p class="text-gray-800"><%= station['properties']['address'] %></p>
-            </div>
-            <div class="bg-gray-100 p-4">
-              <%= link_to "View Station", station['properties']['url'], class: "text-white-500 hover:underline btn btn-primary" %>
             </div>
           </div>
         <% end %>
