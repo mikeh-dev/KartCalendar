@@ -1,5 +1,9 @@
 require 'rails_helper'
 
+let(:track) { FactoryBot.create(:track) }
+let(:event) { FactoryBot.create(:event) }
+let(:championship) { FactoryBot.create(:championship) }
+
 RSpec.describe 'Non-user viewer', type: :system do
   describe 'tracks' do
     it 'can view the index page' do
@@ -8,7 +12,6 @@ RSpec.describe 'Non-user viewer', type: :system do
     end
 
     it 'can view a track show page' do
-      track = create(:track)
       visit track_path(track)
       expect(page).to have_content(track.name)
     end
@@ -21,7 +24,6 @@ RSpec.describe 'Non-user viewer', type: :system do
     end
 
     it 'can view an event show page' do
-      event = create(:event)
       visit event_path(event)
       expect(page).to have_content(event.title)
     end
@@ -34,7 +36,6 @@ RSpec.describe 'Non-user viewer', type: :system do
     end
 
     it 'can view a championship show page' do
-      championship = create(:championship)
       visit championship_path(championship)
       expect(page).to have_content(championship.name)
     end

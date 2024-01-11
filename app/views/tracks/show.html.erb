@@ -255,7 +255,7 @@
 <div id="map">
   <%= js_map [
     { latitude: @track.latitude, longitude: @track.longitude, label: @track.name, color: "#f84d4d" },
-    *@hotels['features'].map do |hotel| 
+    *@hotels['features']&.map do |hotel| 
       { 
         latitude: hotel['geometry']['coordinates'][1], 
         longitude: hotel['geometry']['coordinates'][0], 
@@ -263,7 +263,7 @@
         color: "blue" 
       } 
     end,
-    *@fuel_stations['features'].map do |station| 
+    *@fuel_stations['features']&.map do |station| 
       { 
         latitude: station['geometry']['coordinates'][1], 
         longitude: station['geometry']['coordinates'][0], 
