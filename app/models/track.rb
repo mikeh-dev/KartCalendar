@@ -3,6 +3,9 @@ class Track < ApplicationRecord
   has_many :follows, as: :followable, dependent: :destroy
   has_and_belongs_to_many :categories
 
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
+
   VALID_EMAIL = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL }
 

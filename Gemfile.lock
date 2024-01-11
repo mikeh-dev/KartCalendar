@@ -197,6 +197,7 @@ GEM
       net-imap
       net-pop
       net-smtp
+    mapkick-rb (0.1.5)
     marcel (1.0.2)
     matrix (0.4.2)
     meta-tags (2.20.0)
@@ -379,6 +380,7 @@ DEPENDENCIES
   jbuilder
   launchy
   letter_opener
+  mapkick-rb
   meta-tags
   name_of_person
   pg (~> 1.2)

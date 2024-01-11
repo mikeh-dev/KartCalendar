@@ -13,6 +13,7 @@
     "@tailwindcss/typography": "^0.5.10",
     "autoprefixer": "^10.4.15",
     "esbuild": "^0.19.2",
+    "mapkick": "^0.2.6",
     "postcss": "^8.4.29",
     "postcss-import": "^15.1.0",
     "postcss-nesting": "^12.0.1",
