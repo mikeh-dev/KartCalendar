@@ -9,7 +9,7 @@ FactoryBot.define do
     location { Faker::Address.city }
     short_desc { Faker::Lorem.sentence }
     website { Faker::Internet.domain_name }
-    latitude { Faker::Address.latitude }
-    longitude { Faker::Address.longitude }
+    latitude { "53.31032"}
+    longitude { "-2.94163" }
   end
 end
