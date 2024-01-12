@@ -253,7 +253,7 @@
 
 
 <div id="map">
-  <% if @hotels['features'].present? %>
+  <% if @hotels.present? %>
   <%= js_map [
     { latitude: @track.latitude, longitude: @track.longitude, label: @track.name, color: "#f84d4d" },
     *@hotels['features']&.map do |hotel| 
