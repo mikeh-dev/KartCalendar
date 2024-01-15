@@ -162,6 +162,7 @@ GEM
     geocoder (1.8.2)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    gmaps4rails (2.1.2)
     httparty (0.21.0)
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
@@ -375,6 +376,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   geocoder (~> 1.8)
+  gmaps4rails
   httparty
   image_processing (~> 1.2)
   jbuilder
