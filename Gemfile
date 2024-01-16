@@ -20,6 +20,7 @@ gem 'brakeman', require: false
 gem 'aws-sdk-s3', require: false
 gem "mapkick-rb"
 gem "gmaps4rails"
+gem "geocoder", "~> 1.8"
 
 
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
@@ -47,4 +48,3 @@ group :test do
   gem "shoulda-matchers"
   gem 'launchy'
 end
-gem "geocoder", "~> 1.8"

@@ -253,32 +253,43 @@
 
 
 <div id="map" style="height: 400px; width: 100%;">
-<script>
+  <script>
 
-  function initMap() {
-  var trackLocation = { 
-    lat: <%= @track.latitude %>, 
-    lng: <%= @track.longitude %> 
-  };
+    function initMap() {
+    var trackLocation = { 
+      lat: <%= @track.latitude %>, 
+      lng: <%= @track.longitude %> 
+    };
 
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 15,
-    center: trackLocation
-  });
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 15,
+      center: trackLocation
+    });
 
-  new google.maps.Marker({
-    position: trackLocation,
-    map: map
-  });
-}
+    hotels.forEach(function(hotel) {
+      new google.maps.Marker({
+        position: { lat: hotel.geometry.coordinates[1], lng: hotel.geometry.coordinates[0] },
+        map: map,
+        title: hotel.text
+      });
+    });
 
-document.addEventListener("turbo:load", function() {
-  if (document.getElementById('map') && typeof google !== 'undefined') {
-    initMap();
+    fuelStations.forEach(function(station) {
+      new google.maps.Marker({
+        position: { lat: station.geometry.coordinates[1], lng: station.geometry.coordinates[0] },
+        map: map,
+        title: station.text
+      });
+    });
   }
-});
-</script>
 
+  document.addEventListener("turbo:load", function() {
+    if (document.getElementById('map')) {
+      initMap();
+    }
+  });
+
+  </script>
 </div>
 
 
@@ -319,10 +330,7 @@ document.addEventListener("turbo:load", function() {
   <%= link_to 'Submit a Correction', contacts_path, class: "inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
 </div>
 
-
-
-
-
 <script>
-    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_MAPS_API_KEY']}&callback=initMap", defer: true %>
+  var hotels = <%= @hotels['features'].to_json.html_safe %>;
+  var fuelStations = <%= @fuel_stations['features'].to_json.html_safe %>;
 </script>
