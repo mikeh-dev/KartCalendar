@@ -19,7 +19,7 @@ class Track < ApplicationRecord
   FACILITIES = ['Parking', 'Electric Hook-Up', 'Wi-Fi', 'Cafe', 'Kart Shop', 'Bar', 'Arrive & Drive Karting', 'Overnight Camping', 'Digital Timing Screen', 'Floodlights', 'Toilets'].freeze
 
   def future_events
-    events.where('date >= ?', Date.today).order(date: :asc)
+    events.where('start_date >= ?', Date.today).order(start_date: :asc)
   end
 
   def race_events
@@ -30,7 +30,7 @@ class Track < ApplicationRecord
     events.where(event_type: "Test")
   end
 
-  def next_event
+  def next_track_event
     future_events.first
   end
 

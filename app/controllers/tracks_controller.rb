@@ -5,13 +5,13 @@ class TracksController < ApplicationController
 
   def index
     @tracks = Track.includes(:events).order(:name)
-    @upcoming_tracks = Track.joins(:events).where("events.date >= ? AND events.date <= ?", Date.today, Date.today + 6.days).distinct
+    @upcoming_track_events = Track.joins(:events).where("events.start_date >= ? AND events.start_date <= ?", Date.today, Date.today + 6.days).distinct
   end
 
   def show
     @future_track_events = @track.future_events
-    @next_event = @track.next_event
-    @track_events = @track.events.order(date: :asc)
+    @next_event = @track.next_track_event
+    @track_events = @track.events.order(start_date: :asc)
     @track_race_events = @track.race_events
     @track_test_events = @track.test_events
     @next_race_event = @track.next_race_event

@@ -14,7 +14,8 @@ RSpec.describe Event, type: :model do
   describe "validations" do
     it { should validate_presence_of(:title) }
     it { should validate_presence_of(:description) }
-    it { should validate_presence_of(:date) }
+    it { should validate_presence_of(:start_date) }
+    it { should validate_presence_of(:end_date) }
     it { should validate_presence_of(:price) }
     it { should validate_presence_of(:event_type) }
     it { should validate_presence_of(:track_id) }
@@ -29,13 +30,13 @@ RSpec.describe Event, type: :model do
 
     describe ".upcoming_based_on_date" do
       it "returns upcoming events based on date" do
-        upcoming_event = FactoryBot.create(:event, date: Date.tomorrow)
+        upcoming_event = FactoryBot.create(:event, start_date: Date.tomorrow)
 
         expect(Event.upcoming_based_on_date).to eq([upcoming_event])
       end
 
       it "does not include past events" do
-        past_event = FactoryBot.create(:event, date: Date.yesterday)
+        past_event = FactoryBot.create(:event, start_date: 2.days.ago, end_date: Date.yesterday)
     
         expect(Event.upcoming_based_on_date).not_to include(past_event)
       end
@@ -47,7 +48,7 @@ RSpec.describe Event, type: :model do
 
     describe ".next_based_on_date" do
       it "returns the next upcoming event based on date" do
-        upcoming_event = FactoryBot.create(:event, date: Date.tomorrow)
+        upcoming_event = FactoryBot.create(:event, start_date: Date.tomorrow)
 
         expect(Event.next_based_on_date).to eq(upcoming_event)
       end

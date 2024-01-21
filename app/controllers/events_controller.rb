@@ -5,26 +5,26 @@ class EventsController < ApplicationController
 
   def test_events
     @test_events = Event.where(event_type: 'Test')
-                      .where("date >= ?", Date.today)
-                      .order(date: :asc)
+                      .where("start_date >= ?", Date.today)
+                      .order(start_date: :asc)
   end
 
   def race_events
     @race_events = Event.where(event_type: 'Race')
-                      .where("date >= ?", Date.today)
-                      .order(date: :asc)
+                      .where("start_date >= ?", Date.today)
+                      .order(start_date: :asc)
   end
 
   def index
-    @events = Event.all.order(date: :asc)
-    @next_events = Event.where('date >= ?', Date.today).order(date: :asc).first
+    @events = Event.all.order(start_date: :asc)
+    @next_events = Event.where('start_date >= ?', Date.today).order(start_date: :asc).first
   end
 
   def show
     @championship = @event.championship
     @events = Event.where(championship: @championship)
-                 .where('date >= ? AND id != ?', Date.today, @event.id)
-                 .order(date: :asc)
+                 .where('start_date >= ? AND id != ?', Date.today, @event.id)
+                 .order(start_date: :asc)
   end
 
   def new
@@ -65,7 +65,7 @@ def set_event
 end
 
 def event_params
-  params.require(:event).permit(:title, :description, :date, :price, :event_type, :image, :championship_id, :track_id, category_ids: [])
+  params.require(:event).permit(:title, :description, :start_date, :end_date, :price, :event_type, :image, :championship_id, :track_id, category_ids: [])
 end
   
 end

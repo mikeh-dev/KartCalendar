@@ -7,7 +7,7 @@
   
   <div class="w-full grid <%= @race_events.size > 1 ? 'md:grid-cols-2' : 'md:grid-cols-1' %>">
       <% @race_events.each do |race_event| %>
-        <% if race_event.date >= Date.today && race_event.date <= Date.today + 6.days %>
+        <% if race_event.start_date >= Date.today && race_event.start_date <= Date.today + 6.days %>
         <div class="flex flex-col items-center text-center mt-6">
           <div class="flex justify-center relative mt-6 mx-4">
             <% if race_event.image.attached? %>
@@ -18,7 +18,7 @@
           </div>
           <div class="w-full text-center mt-6 space-y-2">
             <h1 class="text-2xl"><%= race_event.title %> - <%= race_event.championship.name %></h1>
-              <p class="text-xl"><%= race_event.date.strftime("%A, %B %e") %></p>
+              <p class="text-xl"><%= race_event.start_date.strftime("%A, %B %e") %></p>
               <p class="text-xl"><%= race_event.track.name %></p>
               <%= link_to "View Details", (event_path(race_event)), class: "btn btn-primary text-white-500 mt-2" %>
           </div>
@@ -32,7 +32,7 @@
   <h1 class="text-3xl font-semibold mb-4 text-center">Future Events</h1>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
     <% @race_events.each do |race_event| %>
-      <% if race_event.date > Date.today + 6.days %>
+      <% if race_event.start_date > Date.today + 6.days %>
       <div class="bg-white shadow-lg rounded-lg overflow-hidden">
         <% if race_event.image.present? %>
           <%= image_tag race_event.image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
@@ -41,7 +41,7 @@
         <% end %>
         <div class="p-4">
           <h2 class="text-xl text-gray-800 font-semibold mb-2"><%= race_event.title %></h2>
-          <p class="text-gray-600 mb-2"><%= race_event.date.strftime('%B %d, %Y') %></p>
+          <p class="text-gray-600 mb-2"><%= race_event.start_date.strftime('%B %d, %Y') %></p>
           <p class="text-gray-600 mb-2"><%= race_event.track.name %></p>
           <p class="text-gray-800"><%= race_event.description.truncate(150, omission: '...') %></p>
         </div>

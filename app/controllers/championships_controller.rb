@@ -7,7 +7,7 @@ class ChampionshipsController < ApplicationController
     @championships = Championship.all.order(name: :asc)
     @next_championships = Championship.joins(:events)
                             .where(events: { event_type: "Race" })
-                            .where(events: { date: Date.today..(Date.today + 6.days) })
+                            .where(events: { start_date: Date.today..(Date.today + 6.days) })
                             .distinct
   end
 
@@ -18,6 +18,8 @@ class ChampionshipsController < ApplicationController
   def show
     @championships = Championship.all #need to refactor this to only fetch the championships that have events and needed to be displayed
     @champ_events = @championship.events
+    @future_champ_events = @champ_events.where("start_date >= ?", Date.tomorrow).order(start_date: :asc)
+    @past_champ_events = @champ_events.where("end_date < ?", Date.today).order(start_date: :desc)
   end
 
   def create

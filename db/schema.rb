@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_03_150009) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_18_224003) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -117,7 +117,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_03_150009) do
   create_table "events", force: :cascade do |t|
     t.string "title", limit: 255
     t.text "description"
-    t.date "date"
     t.decimal "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -125,6 +124,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_03_150009) do
     t.string "image"
     t.bigint "championship_id"
     t.bigint "track_id"
+    t.date "start_date"
+    t.date "end_date"
     t.index ["championship_id"], name: "index_events_on_championship_id"
     t.index ["track_id"], name: "index_events_on_track_id"
   end

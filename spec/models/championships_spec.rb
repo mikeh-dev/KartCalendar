@@ -12,12 +12,12 @@ RSpec.describe Championship, type: :model do
 
   describe '#next_event' do
     let(:championship) { create(:championship) }
-    let!(:past_event) { create(:event, championship: championship, date: 1.day.ago) }
-    let!(:future_event1) { create(:event, championship: championship, date: 1.day.from_now) }
-    let!(:future_event2) { create(:event, championship: championship, date: 2.days.from_now) }
+    let!(:past_event) { create(:event, championship: championship, start_date: 2.days.ago, end_date: 1.day.ago ) }
+    let!(:future_event1) { create(:event, championship: championship, start_date: 1.day.from_now, end_date: 2.days.from_now ) }
+    let!(:future_event2) { create(:event, championship: championship, start_date: 2.days.from_now, end_date: 3.days.from_now ) }
 
     it 'returns the next event based on the current date' do
-      expect(championship.next_event).to eq(future_event1)
+      expect(championship.next_champ_event).to eq(future_event1)
     end
   end
 end

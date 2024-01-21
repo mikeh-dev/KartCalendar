@@ -7,7 +7,7 @@ RSpec.describe "Events", type: :request do
   let(:track) { FactoryBot.create(:track) }
 
   describe "POST /events" do
-    let(:event_params) { { event: { title: "New Event", description: "Test event", date: Date.today, price: 100, event_type: "Test", track_id: track.id } } }
+    let(:event_params) { { event: { title: "New Event", description: "Test event", start_date: Date.today, end_date: Date.tomorrow, price: 100, event_type: "Test", track_id: track.id } } }
 
     context "as an admin user" do
       before { login_as admin_user }
