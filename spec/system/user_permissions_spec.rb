@@ -79,7 +79,7 @@ RSpec.describe 'User Permissions', type: :system do
     end
 
     let!(:track_to_edit) { FactoryBot.create(:track, name: "Editable Track", address: "Editable Address", description: "Editable Description") }
-    let!(:event_to_edit) { FactoryBot.create(:event, title: "Editable Event", date: "2021-12-31", description: "Editable Description", event_type: "Editable Event Type") }
+    let!(:event_to_edit) { FactoryBot.create(:event, title: "Editable Event", start_date: "2021-12-30", end_date: "2021-12-31", description: "Editable Description", event_type: "Editable Event Type") }
 
     it 'allows an admin user to create a track' do
       visit new_track_path
@@ -92,6 +92,8 @@ RSpec.describe 'User Permissions', type: :system do
       fill_in 'Short desc', with: 'New Track Short Desc'
       fill_in 'Email', with: 'knansd@ddd.com'
       fill_in 'Website', with: 'www.newtrack.com'
+      fill_in 'Latitude', with: '53.503764'
+      fill_in 'Longitude', with: '-2.633295'
       click_on 'Save Track'
       expect(page).to have_content('Track was successfully created.')
       expect(page).to have_current_path(track_path(Track.last))
@@ -120,7 +122,8 @@ RSpec.describe 'User Permissions', type: :system do
     it 'allows an admin user to create an event' do
       visit new_event_path
       fill_in 'Title', with: 'New Event'
-      fill_in 'Date', with: '2021-12-31'
+      fill_in 'Start date', with: '2021-12-30'
+      fill_in 'End date', with: '2021-12-31'
       fill_in 'Description', with: 'New Event Description'
       select 'Race', from: 'Event type'
       fill_in 'Price', with: '100'
