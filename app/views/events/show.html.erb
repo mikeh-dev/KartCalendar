@@ -15,7 +15,7 @@
     </div>
   <% else %>
     <div class="flex justify-center relative">
-      <%= image_tag "JHPhoto-3117.jpg", alt: "Events", class: "max-w-md object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-50020"%>
+      <%= image_tag random_default_image, alt: "Events", class: "max-w-md object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-50020"%>
     </div>
   <% end %>
 
@@ -119,7 +119,7 @@
         <% if event.image.attached? %>
           <%= image_tag event.image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
         <% else %>
-          <%= image_tag "DSC_4486.JPG", alt: "Events", class: "w-full h-36 object-cover object-center" %>
+          <%= image_tag random_default_image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
         <% end %>
           <div class="p-4">
             <h2 class="text-gray-800 text-xl font-semibold mb-2"><%= event.title %> <% if @championship.present? %>- <%= event.championship.name %><% end %></h2>
@@ -146,7 +146,7 @@
           <% if event.image.attached? %>
             <%= image_tag event.image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
           <% else %>
-            <%= image_tag "DSC_4486.JPG", alt: "Events", class: "w-full h-36 object-cover object-center" %>
+            <%= image_tag random_default_image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
           <% end %>
             <div class="p-4">
               <h2 class="text-gray-800 text-xl font-semibold mb-2"><%= event.title %> <% if @championship.present? %>- <%= event.championship.name %><% end %></h2>

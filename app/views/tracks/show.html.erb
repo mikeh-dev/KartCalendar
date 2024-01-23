@@ -211,7 +211,7 @@
           <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
             <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white">
               <% if @track_race_events.present? %>
-                    Next Race Day - <%= @track_race_events.last.start_date.strftime("%A #{ @track_race_events.last.start_date.ordinalize } %B %Y")%> - <%= @track_race_events.last.title %>
+                    Next Race Day - <%= @track_race_events.last.start_date.strftime("%A #{ @track_race_events.last.start_date } %B %Y")%> - <%= @track_race_events.last.title %>
               <% else %>
                 Currently No Race Days Scheduled
               <% end %>

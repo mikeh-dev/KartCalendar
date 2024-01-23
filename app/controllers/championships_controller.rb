@@ -5,9 +5,9 @@ class ChampionshipsController < ApplicationController
 
   def index
     @championships = Championship.all.order(name: :asc)
-    @next_championships = Championship.joins(:events)
+    @next_championship_events = Championship.joins(:events)
                             .where(events: { event_type: "Race" })
-                            .where(events: { start_date: Date.today..(Date.today + 6.days) })
+                            .where(events: { end_date: Date.today..(Date.today + 7.days) })
                             .distinct
   end
 
