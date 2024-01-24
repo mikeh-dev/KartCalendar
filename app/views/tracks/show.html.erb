@@ -331,6 +331,15 @@
 </div>
 
 <script>
-  var hotels = <%= @hotels['features'].to_json.html_safe %>;
-  var fuelStations = <%= @fuel_stations['features'].to_json.html_safe %>;
+  <% if @fuel_stations && @fuel_stations['features'] %>
+    var fuelStations = <%= @fuel_stations['features'].to_json.html_safe %>;
+  <% else %>
+    var fuelStations = [];
+  <% end %>
+
+  <% if @hotels && @hotels['features'] %>
+    var hotels = <%= @hotels['features'].to_json.html_safe %>;
+  <% else %>
+    var hotels = [];
+  <% end %>
 </script>
