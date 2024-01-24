@@ -4,8 +4,7 @@ module ApplicationHelper
   end
 
   def random_default_image
-    images_directory = Rails.root.join('app', 'assets', 'images', 'random')
-    images = Dir.children(images_directory)
-    "/assets/random/#{images.sample}"
+    images = Dir.glob('random/*', base: Rails.root.join('app', 'assets', 'images'))
+    ActionController::Base.helpers.asset_path(images.sample)
   end
 end
