@@ -1,33 +1,41 @@
 <div class="container mx-auto sm:py-24 pb-10 px-4 relative z-10 flex flex-wrap items-center justify-between">
-  <div class="w-full text-center">
-    <p class="text-indigo-600 font-medium mb-6 lg:mt-0 mt-2 dark:text-indigo-500">Next Up</p>
-    <h1 class="sm:text-6xl text-4xl font-extrabold">This Weekends Racing.. </h1>
-    <p class="my-6 text-slate-700 dark:text-slate-400 text-lg">Explore race weekends near you.</p>
-  </div>
-  
-  <div class="w-full grid <%= @race_events.size > 1 ? 'md:grid-cols-2' : 'md:grid-cols-1' %>">
-      <% @race_events.each do |race_event| %>
-        <% if race_event.start_date >= Date.today && race_event.start_date <= Date.today + 6.days %>
-        <div class="flex flex-col items-center text-center mt-6">
-          <div class="flex justify-center relative mt-6 mx-4">
-            <% if race_event.image.attached? %>
-              <%= image_tag race_event.image, alt: "Events", class: "lg:max-h-fit max-w-full object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
-            <% else %>
-              <%= image_tag "JHPhoto-3112.jpg", alt: "Events", class: "max-w-full object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
-            <% end %>
+
+<div class="w-full text-center">
+  <h1 class="sm:text-6xl text-4xl font-extrabold">Race Weekends</h1>
+  <% if @this_weekends_race_events.empty? %>
+    <div class="w-full text-center">
+      <h1 class="text-3xl font-semibold mb-4 mt-10">No Events This Weekend</h1>
+      <p class="text-xl">Check back next week for more events.</p>
+    </div>
+  <% else %>
+      <p class="text-indigo-600 font-medium mb-6 lg:mt-0 mt-2 dark:text-indigo-500">Next Up</p>
+      <h1 class="sm:text-6xl text-4xl font-extrabold">This Weekends Racing.. </h1>
+      <p class="my-6 text-slate-700 dark:text-slate-400 text-lg">Explore race weekends near you.</p>
+    </div>
+      <div class="w-full grid <%= @race_events.size > 1 ? 'md:grid-cols-2' : 'md:grid-cols-1' %>">
+          <% @race_events.each do |race_event| %>
+            <% if race_event.start_date >= Date.today && race_event.start_date <= Date.today + 6.days %>
+            <div class="flex flex-col items-center text-center mt-6">
+              <div class="flex justify-center relative mt-6 mx-4">
+                <% if race_event.image.attached? %>
+                  <%= image_tag race_event.image, alt: "Events", class: "lg:max-h-fit max-w-full object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
+                <% else %>
+                  <%= image_tag "JHPhoto-3112.jpg", alt: "Events", class: "max-w-full object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
+                <% end %>
+              </div>
+              <div class="w-full text-center mt-6 space-y-2">
+                <p class="text-l text-slate-700 dark:text-slate-400"><%= race_event.championship.long_name %></p>
+                <h1 class="text-3xl"><%= race_event.title %></h1>
+                <h1 class="text-2xl"><%= race_event.track.name %></h1>
+                <p class="text-sm"><%= race_event.start_date.strftime("%A, %B %e") %> - <%= race_event.end_date.strftime("%A, %B %e") %></p>
+                <%= link_to "View Details", (event_path(race_event)), class: "btn btn-primary text-white-500 mt-2" %>
+              </div>
           </div>
-          <div class="w-full text-center mt-6 space-y-2">
-            <p class="text-l text-slate-700 dark:text-slate-400"><%= race_event.championship.long_name %></p>
-            <h1 class="text-3xl"><%= race_event.title %></h1>
-            <h1 class="text-2xl"><%= race_event.track.name %></h1>
-            <p class="text-sm"><%= race_event.start_date.strftime("%A, %B %e") %> - <%= race_event.end_date.strftime("%A, %B %e") %></p>
-            <%= link_to "View Details", (event_path(race_event)), class: "btn btn-primary text-white-500 mt-2" %>
-          </div>
+          <% end %>
+        <% end %>
       </div>
-      <% end %>
-    <% end %>
-  </div>
-</div>
+    </div>
+  <% end %>
 
 
 <div class="container mx-auto mt-8 px-4">

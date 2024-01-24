@@ -757,32 +757,6 @@ champ_data.each do |data|
   end
 end
 
-event_data = [
-  {
-    title: 'Super One Round 1',
-    description: 'The Opening Round of the 2024 Super One Series',
-    date: '2024-03-30',
-    price: 185,
-    event_type: 'Race',
-    championship_id: 1,
-    track_id: 8
-  },
-  {
-    title: 'Super One Round 2',
-    description: 'The Second Round of the 2024 Super One Series',
-    date: '2024-04-30',
-    price: 185,
-    event_type: 'Race',
-    championship_id: 1,
-    track_id: 9
-  }
-]
-
-event_data.each do |data|
-  Event.create!(data)
-end
-
-
 categories = ['C50 Bambino', 'IAME Bambino', 'IAME Cadet', 'Junior Max', 'Junior X30', 'Senior Max', 'Senior X30', 'KZ (Gearbox)', 'Waterswift', 'MicroMax', 'Rotax 177', 'Honda Cadet', 'InterMax', 'Junior TKM', 'TKM Extreme', 'TKM Inter', 'ProKart', 'Junior ProKart', 'Junior Gearbox'  ]
 
 categories.each do |category_name|

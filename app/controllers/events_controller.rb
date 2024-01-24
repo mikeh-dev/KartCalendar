@@ -7,11 +7,17 @@ class EventsController < ApplicationController
     @test_events = Event.where(event_type: 'Test')
                       .where("start_date >= ?", Date.today)
                       .order(start_date: :asc)
+    @this_weekends_test_events = Event.where(event_type: 'Test')
+                      .where("start_date >= ? AND start_date <= ?", Date.today, Date.today + 6.days)
+                      .order(start_date: :asc)
   end
 
   def race_events
     @race_events = Event.where(event_type: 'Race')
                       .where("start_date >= ?", Date.today)
+                      .order(start_date: :asc)
+    @this_weekends_race_events = Event.where(event_type: "Race")
+                      .where("start_date >= ? AND start_date <= ?", Date.today, Date.today + 6.days)
                       .order(start_date: :asc)
   end
 
