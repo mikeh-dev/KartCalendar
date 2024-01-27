@@ -16,7 +16,7 @@ class EventsController < ApplicationController
     @race_events = Event.where(event_type: 'Race')
                       .where("start_date >= ?", Date.today)
                       .order(start_date: :asc)
-    @this_weekends_race_events = Event.where(event_type: "Race")
+    @this_weekends_race_events = Event.where(event_type: 'Race')
                       .where("start_date >= ? AND start_date <= ?", Date.today, Date.today + 6.days)
                       .order(start_date: :asc)
   end
@@ -31,6 +31,8 @@ class EventsController < ApplicationController
     @events = Event.where(championship: @championship)
                  .where('start_date >= ? AND id != ?', Date.today, @event.id)
                  .order(start_date: :asc)
+                 
+                 @hotels = GoogleService.fetch_nearby_hotels(@event.track.latitude, @event.track.longitude)
   end
 
   def new

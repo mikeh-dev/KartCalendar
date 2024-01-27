@@ -42,7 +42,7 @@
           <p class="text-gray-600 mb-2"><%= championship.next_champ_event.present? ? "Next Event - #{championship.next_champ_event.title} on #{championship.next_champ_event.start_date.strftime('%d/%m/%y')}" : "No events scheduled" %></p>
         </div>
         <div class="bg-white p-4">
-          <%= link_to "View Championship", (championship_path(championship)), class: "text-white hover:underline btn btn-dark" %>
+          <%= link_to "View Championship", (championship_path(championship)), class: "text-white hover:light btn btn-dark" %>
           <% this_champ_event = championship.next_champ_event %>
           <% if this_champ_event.present? %>
             <%= link_to "View Next Event", event_path(this_champ_event), class: "btn btn-primary text-white-500 mt-2" %>
