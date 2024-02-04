@@ -101,8 +101,8 @@
               </span>
             <% end %>
       </div>
-    </div> 
-  </div>        
+    </div>
+  </div>
 
   <section id="contact">
   <div class="relative isolate overflow-hidden bg-gray-900 py-10 sm:py-15">
@@ -225,10 +225,8 @@
 
 <section id="local-info">
   <h1 class="text-3xl font-semibold mb-4 text-center mb-5"> Useful Local Information </h1>
-
   <div id="map" style="height: 400px; width: 100%;">
     <script>
-
       function initMap() {
       var trackLocation = { 
         lat: <%= @track.latitude %>, 
@@ -237,23 +235,8 @@
 
       var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 15,
-        center: trackLocation
-      });
-
-      hotels.forEach(function(hotel) {
-        new google.maps.Marker({
-          position: { lat: hotel.geometry.coordinates[1], lng: hotel.geometry.coordinates[0] },
-          map: map,
-          title: hotel.text
-        });
-      });
-
-      fuelStations.forEach(function(station) {
-        new google.maps.Marker({
-          position: { lat: station.geometry.coordinates[1], lng: station.geometry.coordinates[0] },
-          map: map,
-          title: station.text
-        });
+        center: trackLocation,
+        mapTypeId: 'terrain'
       });
     }
 
@@ -262,10 +245,8 @@
         initMap();
       }
     });
-
     </script>
   </div>
-
 
   <div class="container flex flex-wrap mx-auto">
     <div class="w-full md:w-1/2 px-2 my-4">
@@ -276,6 +257,7 @@
               <div class="p-4">
                 <h2 class="text-gray-800 text-xl font-semibold mb-2"><%= hotel['text'] %></h2>
                 <p class="text-gray-800"><%= hotel['properties']['address'] %></p>
+                <p class="text-gray-800"><%= hotel['properties']['contact_number'] %></p>
               </div>
             </div>
           <% end %>
@@ -313,7 +295,6 @@
       var hotels = [];
     <% end %>
   </script>
-
 </section>
 
 <div class="container mx-auto px-4" id="champ-calendar">

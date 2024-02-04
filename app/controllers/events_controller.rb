@@ -32,7 +32,11 @@ class EventsController < ApplicationController
                  .where('start_date >= ? AND id != ?', Date.today, @event.id)
                  .order(start_date: :asc)
                  
-                 @hotels = GoogleService.fetch_nearby_hotels(@event.track.latitude, @event.track.longitude)
+    mapbox_service = MapboxService.new
+    hotel_response = mapbox_service.search_category(@event.track.longitude, @event.track.latitude, 'hotel')
+    @hotels = JSON.parse(hotel_response.body) if hotel_response.success?
+    fuel_response = mapbox_service.search_category(@event.track.longitude, @event.track.latitude, 'fuel')
+    @fuel_stations = JSON.parse(fuel_response.body) if fuel_response.success?
   end
 
   def new
