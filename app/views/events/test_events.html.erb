@@ -54,9 +54,8 @@
           <p class="text-gray-800"><%= test_event.description.truncate(150, omission: '...') %></p>
         </div>
         <div class="bg-gray-100 p-4">
-          <%= link_to "View Details", event_path(test_event), class: "text-blue-500 hover:underline" %>
+          <%= link_to "View Details", event_path(test_event), class: "btn btn-primary text-white-500 hover:underline" %>
           <% if current_user&.admin? %>
-
             <%= link_to "Edit Event", edit_event_path(test_event), class: "btn btn-dark" %> 
           <% end %>
         </div>
