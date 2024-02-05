@@ -32,21 +32,21 @@
   <h1 class="text-3xl font-semibold mb-4 text-center">UK Championships</h1>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
     <% @championships.each do |championship| %>
-      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col h-full">
         <% if championship.image.present? %>
           <%= image_tag championship.image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
         <% else %>
           <%= image_tag random_default_image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
         <% end %>
-        <div class="p-4">
+        <div class="p-4 flex-grow">
           <% if championship.logo.present? %>
-          <div class="flex justify-center">
-            <%= image_tag championship.logo, alt: "championship logo", class: "mb-2" %>
+          <div class="flex justify-center h-24 w-full overflow-hidden"> <!-- Fixed height container -->
+            <%= image_tag championship.logo, alt: "championship logo", class: "object-scale-down max-h-full" %> <!-- Scale down to fit -->
           </div>
-          <% else %>
+        <% else %>
             <h2 class="text-xl font-semibold mb-2 text-black text-center"><%= championship.long_name %></h2>
           <% end %>
-          <p class="text-gray-600 mb-2 text-center font-semibold">Next Event</p>
+          <p class="text-gray-600 mb-2 text-center font-semibold mt-5">Next Event</p>
           <p class="text-gray-600 mb-2 text-center"><%= championship.next_champ_event.present? ? "#{championship.next_champ_event.title} on #{championship.next_champ_event.start_date.strftime('%d/%m/%y')}" : "No events scheduled" %></p>
         </div>
         <div class="bg-white p-4 flex justify-center space-x-4">
