@@ -1,23 +1,18 @@
 <div class="container mx-auto sm:py-4 pb-5 px-4 relative z-10 flex flex-wrap items-center justify-between">
   <div class="xl:w-2/5 w-full xl:text-left text-center xl:pr-16">
-    <% if @championship.present? %>
-      <p class="text-indigo-600 text-2xl mb-6 lg:mt-0 mt-2 dark:text-indigo-500"><%= @event.championship.name %></p>
-    <% else %>
-      <p class="text-indigo-600 font-medium mb-6 lg:mt-0 mt-2 dark:text-indigo-500">Championship</p>
-    <% end %>
+    <p class="text-indigo-600 text-2xl mb-6 lg:mt-0 mt-2 dark:text-indigo-500">
+      <%= @championship.present? ? @event.championship.name : "Championship" %>
+    </p>
     <h1 class="sm:text-5xl text-4xl font-extrabold"><%= @event.title %> - <%= @event.track.name %></h1>
     <p class="my-6 text-slate-700 dark:text-slate-400 text-lg"><%= @event.description %></p>
   </div>
-  <div class="xl:w-3/5 w-full xl:my-0 mt-6 mb-10">
-  <% if @event.image.attached? %>
-    <div class="flex justify-center relative">
-      <%= image_tag @event.image, alt: "Events", class: "max-w-md object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-500/20" %>
+  <div class="xl:w-3/5 w-full xl:my-0 mt-6">
+    <div class="flex justify-center relative p-4 sm:p-0 sm:px-0">
+    <% image_source = @event.image.attached? ? @event.image : random_default_image %>
+    <%= image_tag image_source, alt: "Events", class: "object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-500/20" %>
     </div>
-  <% else %>
-    <div class="flex justify-center relative">
-      <%= image_tag random_default_image, alt: "Events", class: "max-w-md object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-50020"%>
-    </div>
-  <% end %>
+  </div>
+</div>
 
     <div class="container mx-auto py-8 max-w-full xl:max-w-2xl 2xl:max-w-3xl object-cover rounded-3xl relative z-20 p-6">
         <h4 class="text-indigo-600 text-lg mb-1 lg:mt-0 mt-2 dark:text-indigo-500 text-center"><%= @event.event_type %></h4>
