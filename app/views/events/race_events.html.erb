@@ -45,16 +45,16 @@
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
     <% @race_events.each do |race_event| %>
       <% if race_event.start_date > Date.today + 7.days %>
-      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col h-full">
         <% if race_event.image.present? %>
           <%= image_tag race_event.image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
         <% else %>
           <%= image_tag random_default_image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
         <% end %>
-        <div class="p-4">
+        <div class="p-4 flex-grow">
         <% if race_event.championship.logo.present? %>
-        <div class="flex justify-center">
-          <%= image_tag race_event.championship.logo, alt: "Logo", class: "mb-2" %>
+        <div class="flex justify-center h-24 w-full overflow-hidden">
+          <%= image_tag race_event.championship.logo, alt: "Logo", class: "mb-2 object-scale-down max-h-full" %>
         </div>
         <% end %>
           <h2 class="text-xl text-gray-800 font-semibold mb-2"><%= race_event.title %> - <%= race_event.championship.name %></h2>
@@ -62,7 +62,7 @@
           <p class="text-gray-600 mb-2"><%= race_event.track.name %></p>
           <p class="text-gray-800"><%= race_event.description.truncate(150, omission: '...') %></p>
         </div>
-        <div class="p-4">
+        <div class="p-4 flex justify-center space-x-4">
           <%= link_to "View Details", event_path(race_event), class: "text-white hover:light btn btn-dark" %>
           <% if current_user&.admin? %>
             <%= link_to "Edit Event", edit_event_path(race_event), class: "btn btn-dark" %> 
