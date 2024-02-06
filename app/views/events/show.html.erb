@@ -95,27 +95,13 @@
         zoom: 13,
         center: trackLocation
       });
-
-      new google.maps.Marker({
-        position: trackLocation,
-        map: map,
-        title: "<%= @event.track.name %>",
-        icon: {
-          path: google.maps.SymbolPath.CIRCLE,
-          scale: 10, // Size of the marker
-          fillColor: '#FF0000',
-          fillOpacity: 0.8,
-          strokeWeight: 2,
-          strokeColor: 'white'
-        }
-      });
+    }
 
     document.addEventListener("turbo:load", function() {
       if (document.getElementById('map')) {
         initMap();
       }
     });
-    }
     </script>
   </div>
 
