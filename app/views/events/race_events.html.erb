@@ -63,7 +63,7 @@
           <p class="text-gray-800"><%= race_event.description.truncate(150, omission: '...') %></p>
         </div>
         <div class="p-4 flex justify-center space-x-4">
-          <%= link_to "View Details", event_path(race_event), class: "text-white hover:light btn btn-dark" %>
+          <%= link_to "View Event", event_path(race_event), class: "text-white hover:light btn btn-dark" %>
           <% if current_user&.admin? %>
             <%= link_to "Edit Event", edit_event_path(race_event), class: "btn btn-dark" %> 
           <% end %>
