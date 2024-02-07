@@ -47,10 +47,6 @@ class EventsController < ApplicationController
         tooltip: hotel['properties']['address'] # Or any other info you want to show
       }
     end
-
-    @hotel_markers.each do |marker|
-      puts marker.inspect
-    end
     
   end
 
