@@ -37,16 +37,6 @@ class EventsController < ApplicationController
     @hotels = JSON.parse(hotel_response.body) if hotel_response.success?
     fuel_response = mapbox_service.search_category(@event.track.longitude, @event.track.latitude, 'fuel')
     @fuel_stations = JSON.parse(fuel_response.body) if fuel_response.success?
-
-    @hotel_markers = @hotels['features'].map do |hotel|
-      coords = hotel['geometry']['coordinates']
-      {
-        latitude: coords[1],
-        longitude: coords[0],
-        label: hotel['text'], # Assuming this is the hotel's name
-        tooltip: hotel['properties']['address'] # Or any other info you want to show
-      }
-    end
     
   end
 
