@@ -63,7 +63,7 @@
         </div>
         <div class="mb-8 mt-4">
           <h2 class="text-xl font-semibold text-white mb-2">Weather Forecast</h2>
-          <p class="text-gray-300">Coming Soon</p>
+          <p class="text-gray-300">Weather here</p>
         </div>
 
         <div class="">
@@ -82,7 +82,7 @@
   </div>
 </div>
 
-<%= js_map [{lat: @event.track.latitude , lon: @event.track.longitude }], zoom: 11, @hotel_markers %>
+<%= js_map [{lat: @event.track.latitude , lon: @event.track.longitude }], zoom: 11 %>
 
 <div class="container flex flex-wrap mx-auto">
     <div class="w-full md:w-1/2 px-2 my-4">
@@ -129,6 +129,21 @@
     </div>
   </div>
 </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <% if @championship.present? %>
   <div class="container mx-auto px-4">
