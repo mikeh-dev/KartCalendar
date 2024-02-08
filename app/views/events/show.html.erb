@@ -9,7 +9,7 @@
   <div class="xl:w-3/5 w-full xl:my-0 mt-6">
     <div class="flex justify-center relative p-4 sm:p-0 sm:px-0">
     <% image_source = @event.image.attached? ? @event.image : random_default_image %>
-    <%= image_tag image_source, alt: "Events", class: "object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-500/20" %>
+    <%= image_tag image_source.variant(resize_to_limit: [500, 500]), alt: "Events", class: "object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-500/20" %>
     </div>
   </div>
 </div>
@@ -53,7 +53,7 @@
         </div>
         <div class="mb-8 mt-4">
           <h2 class="text-xl font-semibold text-white mb-2">Non-Member Entry Fee</h2>
-          <p class="text-gray-300">£<%= @event.price.to_i %></p>
+          <p class="text-gray-300">Check with Track for more Info..</p>
         </div>     
         <div class="mb-8 mt-4">
           <h2 class="text-xl font-semibold text-white mb-2">Classes</h2>

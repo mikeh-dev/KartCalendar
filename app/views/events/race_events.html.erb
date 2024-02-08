@@ -18,7 +18,7 @@
             <div class="flex flex-col items-center text-center mt-6">
               <div class="flex justify-center relative mt-6 mx-4">
                 <% if race_event.image.attached? %>
-                  <%= image_tag race_event.image, alt: "Events", class: "lg:max-h-fit max-w-full object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
+                  <%= image_tag race_event.image.variant(resize_to_limit: [500, 500]), alt: "Events", class: "lg:max-h-fit max-w-full object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
                 <% else %>
                   <%= image_tag random_default_image, alt: "Events", class: "max-w-full object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
                 <% end %>
