@@ -9,7 +9,7 @@
   <div class="xl:w-3/5 w-full xl:my-0 mt-6">
     <div class="flex justify-center relative p-4 sm:p-0 sm:px-0">
       <% if @event.image.attached? %>
-        <%= image_tag @event.image.variant(resize_to_limit: [500, 500]), alt: "Events", class: "object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-500/20" %>
+        <%= image_tag @event.image, alt: "Events", class: "object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-500/20" %>
       <% else %>
         <%= image_tag random_default_image, alt: "Events", class: "object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-500/20" %>
       <% end %>    
