@@ -16,7 +16,9 @@
           <% end %>
         </div>
         <div class="w-full text-center mt-6 space-y-2">
+        <% if champ_event.championship.logo.present? %>
           <%= image_tag champ_event.championship.logo, alt: "championshop logo", class: "" %>
+        <% end %>
           <p class="text-l text-slate-700 dark:text-slate-400"><%= champ_event.long_name %></p>
           <h1 class="text-3xl"><%= champ_event.events.first.title %></h1> 
           <h1 class="text-2xl"><%= champ_event.events.first.track.name %></h1>

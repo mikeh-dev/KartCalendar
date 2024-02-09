@@ -197,7 +197,7 @@
     <li>
       <%= link_to @track_test_events.last, class: "relative block group" do %>
         <% if @track.test_image.present? %>
-          <%= image_tag @track.test_image, alt: "next race event photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
+          <%= image_tag @track.test_image.variant(resize_to_limit: [500, 500]), alt: "next race event photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
         <% else %>
           <%= image_tag random_default_image, alt: "next test event photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
         <% end %>
