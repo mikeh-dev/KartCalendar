@@ -23,7 +23,7 @@ class Track < ApplicationRecord
     if main_image.attached?
       main_image.variant(resize_to_fill: [500, 500]).processed
     else
-      ActionController::Base.helpers.image_url('placeholder_image.jpg')
+      ActionController::Base.helpers.image_url('placeholder_image.webp')
     end
   end
 
