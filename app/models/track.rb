@@ -19,6 +19,14 @@ class Track < ApplicationRecord
   has_one_attached :champ_image
   has_one_attached :contact_image
 
+  def resized_main_image
+    if main_image.attached?
+      main_image.variant(resize_to_fill: [500, 500]).processed
+    else
+      ActionController::Base.helpers.image_url('placeholder_image.jpg')
+    end
+  end
+
   FACILITIES = ['Parking', 'Electric Hook-Up', 'Wi-Fi', 'Cafe', 'Kart Shop', 'Bar', 'Arrive & Drive Karting', 'Overnight Camping', 'Digital Timing Screen', 'Floodlights', 'Toilets'].freeze
 
   def future_events

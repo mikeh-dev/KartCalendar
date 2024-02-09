@@ -2,7 +2,7 @@
     <% if @track.main_image.attached? %>
        class="bg-cover bg-center bg-no-repeat" style="background-image: url('<%= url_for(@track.main_image) %>');"
     <% else %>
-      class="bg-cover bg-center bg-no-repeat" style="background-image: url('<%= asset_url('placeholder.jpg') %>');"
+      class="bg-cover bg-center bg-no-repeat" style="background-image: url('<%= asset_url('placeholder.webp') %>');"
     <% end %>
 >
   <div class="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:items-center lg:px-8">
