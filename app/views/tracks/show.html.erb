@@ -214,8 +214,8 @@
 
     <li>
       <%= link_to @next_race_event, class: "relative block group" do %>
-        <% if @next_race_event.track.test_image.present?%>
-          <%= image_tag @next_race_event.track.race_image, alt: "about photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
+        <% if @next_race_event&.image.present? %>
+          <%= image_tag @next_race_event.image, alt: "about photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
         <% else %>
           <%= image_tag random_default_image, alt: "about photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
         <% end %>
@@ -231,7 +231,7 @@
         <% end %>
       </li>
   </ul>
-</div>
+  </div>
 </section>
 
 <section id="local-info">
@@ -336,4 +336,4 @@
 
  <div class="container mx-auto flex justify-center mb-2 mt-10">
     <%= link_to 'Submit a Correction', contacts_path, class: "inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
-  </div>
+</div>
