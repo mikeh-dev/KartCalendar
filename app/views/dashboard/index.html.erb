@@ -17,9 +17,7 @@
             <h3 class="font-semibold text-lg text-blue-800 mb-2">
               <%= link_to championship.name, championship_path(championship) %>
             </h3>
-            <% championship.events.each do |event| %>
-              <p class="text-gray-600">Next Race: <%= event.title %>: <%= event.start_date.strftime("%B %d, %Y") %></p>
-            <% end %>
+              <p class="text-gray-600">Next Race: <%= championship.events.first.title %>: <%= championship.events.first.start_date.strftime("%B %d, %Y") %></p>
             </div>
           </div>
         <% end %>
