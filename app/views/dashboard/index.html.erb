@@ -38,7 +38,11 @@
         <% @followed_championships.each do |championship| %>
           <div class="bg-white rounded-lg shadow-lg flex">
             <div class="flex-none w-1/3">
+            <% if championship.image.present? %>
               <%= image_tag(championship.image, alt: championship.name, class: "object-cover h-full rounded-l-lg h-38 w-38") if championship.image.present? %>
+            <% else %>
+              <%= image_tag random_default_image, alt: championship.name, class: "object-cover h-full rounded-l-lg h-38 w-38" %>
+            <% end %>
             </div>
             <div class="p-4 w-2/3">
             <h3 class="font-semibold text-lg text-blue-800 mb-2">
@@ -68,12 +72,16 @@
             </div>
             <div class="p-4 w-2/3">
             <h3 class="font-semibold text-lg text-blue-800 mb-2">
+            <% if event.championship.present? %>
               <%= link_to event.championship.name, event_path(event) %> -
+            <% end %>
               <%= link_to event.title, event_path(event) %>
             </h3>
             <p class="text-gray-600"><strong>Date:</strong> <%= event.start_date.strftime("%B %d, %Y") %></p>
-            <p class="text-gray-600">Track: <%= event.track&.name || 'No track assigned' %></p>
+            <p class="text-gray-600">Track: <%= (event.track&.name || 'No track assigned').truncate(20) %></p>
+            <% if event.championship.present? %>
             <p class="text-gray-600">Championship: <%= event.championship.name %></p>
+            <% end %>
             </div>
           </div>
         <% end %>
