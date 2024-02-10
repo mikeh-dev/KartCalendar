@@ -89,6 +89,9 @@
           </div>
         <% end %>
       </dl>
+
+
+      <h2 class="text-white mb-6">Facilities</h2>
       <div class="grid grid-cols-2 gap-x-4 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
       <% @track.facilities.each do |facility| %>
           <% unless facility.blank? %>
@@ -101,7 +104,7 @@
     </div>
 
   <div class="mx-auto mt-10 mb-10 max-w-2xl lg:mx-0 lg:max-w-none">
-    <h2 class="text-xl font-semibold text-white mb-2">Classes</h2>
+    <h2 class="text-white mb-2">Classes</h2>
       <div class="flex flex-wrap gap-2">
         <% @track.categories.each do |category| %>
           <span class="bg-indigo-600 text-white px-3 py-1 rounded-full text-sm font-medium">
@@ -193,13 +196,13 @@
       </p>
     </header>
 
-  <ul class="grid grid-cols-1 gap-4 mt-8 lg:grid-cols-2">
+  <ul class="grid grid-cols-1 gap-4 mt-8 grid-cols-2">
     <li>
       <%= link_to @track_test_events.last, class: "relative block group" do %>
         <% if @track.test_image.present? %>
-          <%= image_tag @track.test_image.variant(resize_to_limit: [500, 500]), alt: "next race event photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
+          <%= image_tag @track.test_image, alt: "next race event photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
         <% else %>
-          <%= image_tag random_default_image, alt: "next test event photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
+          <%= image_tag random_default_image, alt: "next test event photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90 h-38 w-38" %>
         <% end %>
           <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
             <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white">
@@ -210,16 +213,16 @@
     </li>
 
     <li>
-      <%= link_to @track_race_events.last, class: "relative block group" do %>
-        <% if @track.test_image.present?%>
-          <%= image_tag @track.race_image, alt: "about photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
+      <%= link_to @next_race_event, class: "relative block group" do %>
+        <% if @next_race_event.track.test_image.present?%>
+          <%= image_tag @next_race_event.track.race_image, alt: "about photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
         <% else %>
           <%= image_tag random_default_image, alt: "about photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
         <% end %>
           <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
             <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white">
-              <% if @track_race_events.present? %>
-                    Next Race Day - <%= @track_race_events.last.start_date.strftime("%A #{ @track_race_events.last.start_date } %B %Y")%> - <%= @track_race_events.last.title %>
+              <% if @next_race_event.present? %>
+                    Next Race Day - <%= @next_race_event.start_date.strftime("%A #{ @track_race_events.last.start_date } %B %Y")%> - <%= @next_race_event.title %> - <%= @next_race_event.championship.name %>
               <% else %>
                 Currently No Race Days Scheduled
               <% end %>
