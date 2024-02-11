@@ -5,6 +5,19 @@ RSpec.describe 'Non-user viewer', type: :system do
   let(:event) { FactoryBot.create(:event) }
   let(:championship) { FactoryBot.create(:championship) }
 
+  describe 'general page viewings' do
+    it 'can view the home page' do
+      visit root_path
+      expect(page).to have_content('KartStream')
+    end
+
+    it 'can view the about page' do
+      visit about_path
+      expect(page).to have_content('About KartStream')
+    end
+
+  end
+
 
   describe 'tracks' do
     it 'can view the index page' do
