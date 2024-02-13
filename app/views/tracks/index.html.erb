@@ -1,15 +1,15 @@
-
-<div class="container mx-auto px-4 py-8">
+<div class="container mx-auto px-2 py-4">
   <h1 class="text-3xl font-semibold mb-8 mt-10 text-center">Take a look at the best Owner/Driver UK Tracks</h1>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-0">
     <% @tracks.each do |track| %>
         <% if track.main_image.attached? %>
-            <div class="bg-cover bg-center my-4 rounded" style="background-image: url('<%= url_for(track.main_image) %>')">
-            <div class="bg-[hsla(0,0%,0%,0.6)]">
+            <div class="bg-cover bg-center mt-4 rounded" style="background-image: url('<%= url_for(track.main_image) %>')">
+            <div class="bg-[hsla(0,0%,0%,0.5)]">
         <% else %>
-          <div class="bg-cover bg-center my-4 rounded" style="background-image: url('<%= asset_url('placeholder.webp') %>')">
-            <div class="bg-[hsla(0,0%,0%,0.6)]">
+          <div class="bg-cover bg-center mt-4 rounded" style="background-image: url('<%= asset_url('placeholder.webp') %>')">
+            <div class="bg-[hsla(0,0%,0%,0.5)]">
         <% end %>
-              <div class="px-10 py-10" mb-4"">
+              <div class="px-10 py-5 mb-2">
                 <h2 class=" text-4xl font-bold mb-2"><%= track.name %></h2>
                 <% if track.events.present? %>
                   <p class="mb-4"><%= track.short_desc %> - Next Race Meeting -
@@ -20,11 +20,10 @@
                 <%= link_to "View Track", track, class: "btn btn-primary" %>
                 <% if current_user&.admin? %>
                   <%= link_to "Edit Track", edit_track_path(track), class: "text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" %>
-                <% else %>
-
                 <% end %>
               </div>
             </div>
           </div>
     <% end %>
-</div> 
+  </div>
+</div>
