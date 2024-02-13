@@ -4,12 +4,12 @@
     <% @tracks.each do |track| %>
         <% if track.main_image.attached? %>
             <div class="bg-cover bg-center mt-4 rounded" style="background-image: url('<%= url_for(track.main_image) %>')">
-            <div class="bg-[hsla(0,0%,0%,0.5)]">
+            <div class="bg-[hsla(0,0%,0%,0.5)] h-full">
         <% else %>
           <div class="bg-cover bg-center mt-4 rounded" style="background-image: url('<%= asset_url('placeholder.webp') %>')">
-            <div class="bg-[hsla(0,0%,0%,0.5)]">
+            <div class="bg-[hsla(0,0%,0%,0.5)] h-full">
         <% end %>
-              <div class="px-10 py-5 mb-2">
+              <div class="px-10 py-10 mb-2">
                 <h2 class=" text-4xl font-bold mb-2"><%= track.name %></h2>
                 <% if track.events.present? %>
                   <p class="mb-4"><%= track.short_desc %> - Next Race Meeting -
