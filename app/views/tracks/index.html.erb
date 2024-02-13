@@ -3,7 +3,7 @@
   <h1 class="text-3xl font-semibold mb-8 mt-10 text-center">Take a look at the best Owner/Driver UK Tracks</h1>
     <% @tracks.each do |track| %>
         <% if track.main_image.attached? %>
-            <div class="bg-cover bg-center my-4 rounded" style="background-image: url('<%= url_for(track.resized_main_image) %>')">
+            <div class="bg-cover bg-center my-4 rounded" style="background-image: url('<%= url_for(track.main_image) %>')">
             <div class="bg-[hsla(0,0%,0%,0.6)]">
         <% else %>
           <div class="bg-cover bg-center my-4 rounded" style="background-image: url('<%= asset_url('placeholder.webp') %>')">

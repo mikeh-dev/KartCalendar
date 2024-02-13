@@ -43,6 +43,8 @@ Rails.application.configure do
 
   config.active_storage.variant_processor = :mini_magick
 
+  config.action_view.image_loading = "lazy"
+
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
   # config.action_cable.url = "wss://example.com/cable"
