@@ -236,27 +236,7 @@
 
 <section id="local-info">
   <h1 class="text-3xl font-semibold mb-4 text-center mb-5"> Useful Local Information </h1>
-  <div id="map" style="height: 400px; width: 100%;">
-    <script>
-      function initMap() {
-      var trackLocation = { 
-        lat: <%= @track.latitude %>, 
-        lng: <%= @track.longitude %> 
-      };
-
-      var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 15,
-        center: trackLocation,
-        mapTypeId: 'terrain'
-      });
-    }
-
-    document.addEventListener("turbo:load", function() {
-      if (document.getElementById('map')) {
-        initMap();
-      }
-    });
-    </script>
+  <%= js_map [{lat: @track.latitude , lon: @track.longitude }], zoom: 11 %>
   </div>
 
   <div class="container flex flex-wrap mx-auto">
