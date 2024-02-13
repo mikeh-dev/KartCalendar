@@ -390,6 +390,7 @@ DEPENDENCIES
   letter_opener
   mapkick-rb
   meta-tags
+  mini_magick
   name_of_person
   nokogiri (>= 1.16.2)
   pg (~> 1.2)
