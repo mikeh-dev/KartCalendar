@@ -5,28 +5,56 @@
     <p class="my-6 text-slate-700 dark:text-slate-400 text-lg">All Events in one place...</p>
   </div>
 
-<div class="grid grid-cols-7 grid-col-dense grid-rows-6 p-6 gap-1">
-  <% date_range = @today.beginning_of_month.beginning_of_week(:monday)..@today.end_of_month.end_of_week(:sunday) %>
-  <% date_range.each do |date| %>
-    <% day_events = @events.select { |event| event.start_date.to_date <= date && event.end_date.to_date >= date } %>
-    <a href="#" class="<%= 'bg-indigo-500 text-white' if day_events.any? %> bg- hover:bg-indigo-100 rounded-md p-2 <%= 'text-gray-500' if date.month != @today.month %>">
-      <%= date.day %>
-      <% if day_events.any? %>
-        <span class="tooltip">
-          <% day_events.each do |event| %>
-            <br>
-            <%= event.title %><br>
-            <%= event.track.name %><br>
-          <% end %>
-        </span>
-      <% end %>
-    </a>
-  <% end %>
+  <div class="w-full flex flex-wrap justify-center items-center">
+    <div class="w-full lg:w-1/2">
+      <div class="relative">
+        <input type="text" class="w-full bg-white dark:bg-slate-800 rounded-lg shadow-lg p-4" placeholder="Search for events...">
+        <button class="absolute right-0 top-0 mt-4 mr-4">
+          <svg class="w-6 h-6 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 19l-5-5m0 0l-5 5m5-5V5"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="w-full lg:w-1/2 mt-6 lg:mt-0">
+      <div class="flex items-center justify-center">
+        <button class="bg-indigo-500 text-white px-6 py-3 rounded-lg mr-4">All Events</button>
+        <button class="bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 px-6 py-3 rounded-lg mr-4 hover:bg-indigo-500 hover:text-white">Test Days</button>
+        <button class="bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 px-6 py-3 rounded-lg hover:bg-indigo-500 hover:text-white">Race Days</button>
+      </div>
+    </div>
+
+    <div class="w-full mt-6">
+      <div class="flex items center justify-between">
+        <button class="bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 px-6 py-3 rounded-lg mr-4 hover:bg-indigo-500 hover:text-white">Prev</button>
+        <button class="bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 px-6 py-3 rounded-lg mr-4 hover:bg-indigo-500 hover:text-white">Today</button>
+        <button class="bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 px-6 py-3 rounded-lg hover:bg-indigo-500 hover:text-white">Next</button>
+      </div>
+    </div>
+  </div>
 </div>
 
+    <div class="grid grid-cols-7 grid-col-dense grid-rows-6 p-6 gap-1">
+      <% date_range = @today.beginning_of_month.beginning_of_week(:monday)..@today.end_of_month.end_of_week(:sunday) %>
+      <% date_range.each do |date| %>
+        <% day_events = @events.select { |event| event.start_date.to_date <= date && event.end_date.to_date >= date } %>
+        <a href="#" class="<%= 'bg-indigo-500 text-white' if day_events.any? %> bg-gray-500 hover:bg-indigo-500 rounded-md p-2 <%= 'text-gray-500' if date.month != @today.month %>">
+          <%= date.day %>
+          <% if day_events.any? %>
+            <span class="tooltip">
+              <% day_events.each do |event| %>
+                <p class="text-sm"><%= event.title %></p>
+                <p class="text-sm"><%= event.track.name %></p>
+              <% end %>
+            </span>
+          <% end %>
+        </a>
+      <% end %>
+    </div>
+    </div>
 
-
-  
     <div class="w-full grid <%= @events.size > 1 ? 'lg:grid-cols-2' : 'lg:grid-cols-1' %>">
       <% @events.each do |event| %>
         <div class="flex flex-col items-center text-center mt-6">
