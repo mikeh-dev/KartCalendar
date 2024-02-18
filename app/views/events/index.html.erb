@@ -4,6 +4,28 @@
     <h1 class="sm:text-6xl text-4xl font-extrabold">This Weekends Races and Test Days</h1>
     <p class="my-6 text-slate-700 dark:text-slate-400 text-lg">All Events in one place...</p>
   </div>
+
+<div class="grid grid-cols-7 grid-col-dense grid-rows-6 p-6 gap-1">
+  <% date_range = @today.beginning_of_month.beginning_of_week(:monday)..@today.end_of_month.end_of_week(:sunday) %>
+  <% date_range.each do |date| %>
+    <% day_events = @events.select { |event| event.start_date.to_date <= date && event.end_date.to_date >= date } %>
+    <a href="#" class="<%= 'bg-indigo-500 text-white' if day_events.any? %> bg- hover:bg-indigo-100 rounded-md p-2 <%= 'text-gray-500' if date.month != @today.month %>">
+      <%= date.day %>
+      <% if day_events.any? %>
+        <span class="tooltip">
+          <% day_events.each do |event| %>
+            <br>
+            <%= event.title %><br>
+            <%= event.track.name %><br>
+          <% end %>
+        </span>
+      <% end %>
+    </a>
+  <% end %>
+</div>
+
+
+
   
     <div class="w-full grid <%= @events.size > 1 ? 'lg:grid-cols-2' : 'lg:grid-cols-1' %>">
       <% @events.each do |event| %>

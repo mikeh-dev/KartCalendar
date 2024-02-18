@@ -24,6 +24,8 @@ gem "geocoder", "~> 1.8"
 gem 'csv'
 gem 'activerecord-import'
 gem 'nokogiri', '>= 1.16.2'
+gem "simple_calendar"
+
 
 
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]

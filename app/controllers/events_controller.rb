@@ -22,9 +22,12 @@ class EventsController < ApplicationController
   end
 
   def index
-    @events = Event.all.order(start_date: :asc)
-    @next_events = Event.where('start_date >= ?', Date.today).order(start_date: :asc).first
-  end
+    @today = Date.today
+    start_of_month = @today.beginning_of_month
+    end_of_month = @today.end_of_month
+    
+    @events = Event.where('start_date <= ? AND end_date >= ?', end_of_month, start_of_month).order(:start_date)
+  end  
 
   def show
     @championship = @event.championship
