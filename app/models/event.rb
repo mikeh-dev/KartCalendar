@@ -41,6 +41,6 @@ class Event < ApplicationRecord
     end
   end
 
-  
+  scope :starting_within_next_six_days, -> { where(start_date: Date.today..(Date.today + 6.days)) }
 
 end
