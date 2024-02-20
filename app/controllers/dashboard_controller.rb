@@ -11,7 +11,14 @@ class DashboardController < ApplicationController
                         .order('start_date ASC')
                         .where("start_date >= ?", Date.today)
                         .limit(15)
-                  
+                        @display_month = params[:month] ? Date.parse(params[:month]) : Date.today
 
+                        # Find events for the displayed month
+                        @events = Event.where('start_date >= ? AND start_date <= ?', @display_month.beginning_of_month, @display_month.end_of_month)
+                    
+                        # Calculate next and previous months for navigation links
+                        @next_month = (@display_month + 1.month).to_s
+                        @prev_month = (@display_month - 1.month).to_s
+  
   end
 end
