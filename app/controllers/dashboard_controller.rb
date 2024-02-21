@@ -11,6 +11,6 @@ class DashboardController < ApplicationController
                         .order('start_date ASC')
                         .where("start_date >= ?", Date.today)
                         .limit(15)
-                        @display_month = params[:month] ? Date.parse(params[:month]) : Date.today
+    @display_month = params[:month] ? Date.parse(params[:month]) : Date.today
   end
 end
