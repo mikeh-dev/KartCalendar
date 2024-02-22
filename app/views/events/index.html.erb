@@ -16,6 +16,23 @@
   </div>
 </div>
 
+<div class="container mx-auto w-1/2">
+    <%= turbo_frame_tag 'calendar' do %>
+      <%= month_calendar(events: @events) do |date, events| %>
+          <% if events.any? %>
+            <span class="tooltip">
+              <% events.each do |event| %>
+                <%= link_to event_path(event), data: { turbo: false } do %>
+                  <p class="text-sm text-indigo"><%= event.title %></p>
+                  <p class="text-sm"><%= event.track.name %></p>
+                <% end %>
+              <% end %>
+            </span>
+          <% end %>
+      <% end %>
+    <% end %>
+  </div>
+
     <div class="w-full grid <%= @events.size > 1 ? 'lg:grid-cols-2' : 'lg:grid-cols-1' %>">
       <% @events.each do |event| %>
         <div class="flex flex-col items-center text-center mt-6">

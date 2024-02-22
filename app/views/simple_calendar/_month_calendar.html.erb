@@ -11,8 +11,8 @@
     </nav>
   </div>
 
-  <table class="w-full mt-4 bg-white rounded-b-lg shadow overflow-hidden">
-    <thead class="bg-slate-800 text-white22">
+  <table class="w-full bg-white rounded-b-lg shadow overflow-hidden">
+    <thead class="bg-slate-800 text-white">
       <tr>
         <% date_range.slice(0, 7).each do |day| %>
           <th class="px-4 py-3">
@@ -26,7 +26,7 @@
       <% date_range.each_slice(7) do |week| %>
         <tr>
           <% week.each do |day| %>
-            <%= content_tag :td, class: "relative px-7 py-10 text-left text-slate-800 border-b border-slate-200 #{'bg-indigo-100' if day == Date.today} hover:bg-indigo-100 cursor-pointer transition-colors duration-200" do %>
+            <%= content_tag :td, class: "relative px-7 py-10 text-left text-slate-800 border-b border-slate-200 #{'bg-indigo-100' if day == Date.today} #{'bg-indigo-100' if day == Date.tomorrow}hover:bg-indigo-100 cursor-pointer transition-colors duration-200" do %>
               <div class="absolute top-0 left-0 p-2">
                 <%= day.day %>
               </div>
@@ -36,7 +36,6 @@
             <% end %>
           <% end %>
         </tr>
-
       <% end %>
     </tbody>
   </table>

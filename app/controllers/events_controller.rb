@@ -25,8 +25,8 @@ class EventsController < ApplicationController
     @today = Date.today
     start_of_month = @today.beginning_of_month
     end_of_month = @today.end_of_month
-    
-    @events = Event.where('start_date <= ? AND end_date >= ?', end_of_month, start_of_month).order(:start_date)
+    @events = Event.all
+    @current_month_events = Event.where('start_date <= ? AND end_date >= ?', end_of_month, start_of_month).order(:start_date)
   end  
 
   def show

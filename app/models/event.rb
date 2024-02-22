@@ -31,6 +31,10 @@ class Event < ApplicationRecord
     self.start_date.to_datetime
   end
 
+  def end_time
+    self.end_date.to_datetime
+  end
+
   private
 
   def end_date_after_start_date
