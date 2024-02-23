@@ -6,7 +6,6 @@
   <div class="md:gap-x-16 md:gap-y-4 lg:gap-y-8 gap-6 grid md:grid-cols-12 grid-cols-1">
     <h2 class="font-normal dark:text-slate-300 text-slate-600 md:text-xl text-lg tracking-tight md:col-span-12 col-span-1">Upcoming events</h2>
     <div class="md:pr-0 lg:pr-10 lg:col-span-6 md:col-span-12 col-span-1 lg:order-1 md:order-2 order-2">
-    <!-- items here -->
     </div>
     <div class="lg:mt-8 mt-0 text-center md:col-span-12 lg:col-span-6 col-span-1 lg:order-1 md:order-1 order-1">
       <div class="rounded-lg bg-slate-300/60 text-sm shadow-sm ring-1 ring-slate-300 dark:ring-slate-600">
@@ -15,7 +14,6 @@
           <div class="text-2xl font-bold text-slate-900 dark:text-slate-100 text-left"><%= anchor_date.strftime("%B %Y") %>   <span class="font-normal pl-1"></span>
           </div>
           <div class="flex items-center text-slate-900">
-
             <%= link_to calendars_path(date: anchor_date - 1.month), class: "-m-1.5 flex flex-none items-center justify-center p-1.5 text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-300" do %>
               <span class="sr-only">Previous month</span>
               <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
