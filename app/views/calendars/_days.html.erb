@@ -1,0 +1,25 @@
+<% bottom_left_day = range.count - 1 - 6 %>
+<% bottom_right_day = range.count - 1 %>
+
+<% range.each_with_index do |date, index| %>
+  <% round_class = case index
+      when 0; "rounded-tl-lg";
+      when 6; "rounded-tr-lg";
+      when bottom_left_day; "rounded-bl-lg";
+      when bottom_right_day; "rounded-br-lg";
+      end
+    %>
+  <% button_class = anchor_date.month == date.month ? "bg-white dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-600 py-1.5 text-slate-900 " : "bg-slate-50 dark:bg-slate-900 dark:hover:bg-slate-700 py-1.5 text-slate-500 " %>
+  <% today_class = Date.today == date ? "rounded-full bg-gray-200" : "" %>
+  <% selected_class = date == anchor_date ? "bg-gray-900 font-semibold text-white" : "" %>
+  <% combined_class = ["hover:bg-slate-100 focus:z-10", round_class, button_class, today_class].join(" ") %>
+
+  <%= link_to events_path(date: date),
+    "data-action": "calendar#clickLink",
+    "data-turbo-frame": :events,
+    class: combined_class do %>
+    <%= content_tag :time, "data-calendar-target": :day, datetime: date.to_s, class: "ml-auto mr-2 flex sm:h-14 sm:w-14 h-10 w-10 items-start justify-end #{today_class} #{selected_class}" do %>
+      <%= date.day %>
+    <% end %>
+  <% end %>
+<% end %>
