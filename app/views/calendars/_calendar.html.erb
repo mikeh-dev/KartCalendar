@@ -2,6 +2,9 @@
 <% start_date = anchor_date.beginning_of_month.beginning_of_week(:monday) %>
 <% end_date = anchor_date.end_of_month.end_of_week(:monday) %>
 <% range = start_date..end_date %>
+<div data-controller="calendar calendar-populate"
+    data-calendar-populate-start-date-value=<%=start_date%>
+    data-calendar-populate-end-date-value=<%=end_date%>>
 <div class="container mx-auto px-4 lg:my-16 my-8">
   <div class="md:gap-x-16 md:gap-y-4 lg:gap-y-8 gap-6 grid md:grid-cols-12 grid-cols-1">
     <h2 class="font-normal dark:text-slate-300 text-slate-600 md:text-xl text-lg tracking-tight md:col-span-12 col-span-1">Upcoming events</h2>

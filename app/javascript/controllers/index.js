@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import CalendarPopulateController from "./calendar_populate_controller"
+application.register("calendar-populate", CalendarPopulateController)
+
 import ComboSelectController from "./combo_select_controller"
 application.register("combo-select", ComboSelectController)
 

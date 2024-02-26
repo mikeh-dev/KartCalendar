@@ -10,12 +10,12 @@
       end
     %>
   <% button_class = anchor_date.month == date.month ? "bg-white dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-600 py-4 text-slate-900 " : "bg-slate-50 dark:bg-slate-900 dark:hover:bg-slate-700 py-4 text-slate-500" %>
-  <% today_class = Date.today == date ? "bg-indigo-500 text-white rounded-full px-2 py-2" : "" %>
-  <% selected_class = date == anchor_date ? "" : "" %>
-  <% combined_class = "hover:bg-slate-100 focus:z-10 #{round_class} #{button_class}" %>
+  <% today_class = Date.today == date ? "bg-indigo-500 text-white rounded-full px-2 font-semibold" : "" %>
+  <% selected_class = date == anchor_date ? "bg-gray-500 text-white font-semibold" : "" %>
+  <% combined_class = "hover:bg-slate-100 focus:z-10 #{round_class} #{button_class} #{today_class}" %>
 
   <%= link_to events_path(date: date), "data-action": "calendar#clickLink", "data-turbo-frame": :events, class: combined_class do %>
-        <%= content_tag :time, "data-calendar-target": :day, datetime: date.to_s, class: "flex items-center justify-center #{today_class}" do %>
+        <%= content_tag :time, "data-calendar-target": :day, datetime: date.to_s, class: "flex items-center justify-center rounded-full" do %>
       <%= date.day %>
     <% end %>
   <% end %>

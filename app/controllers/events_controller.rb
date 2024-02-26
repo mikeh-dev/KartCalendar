@@ -74,6 +74,18 @@ class EventsController < ApplicationController
     redirect_to events_url, notice: 'Event was successfully destroyed.'
   end
 
+  def check
+    start_date = Date.parse(params[:start_date])
+    end_date = Date.parse(params[:end_date])
+    events = Event.where('start_date <= ? AND end_date >= ?', end_date, start_date)
+    render json: (start_date..end_date).map { |date|
+      {
+        date: date,
+        events: events.select { |e| e.occurs_on == date }.any?
+      }
+    }
+  end
+
 private
 
 def set_event

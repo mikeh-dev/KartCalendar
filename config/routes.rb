@@ -29,7 +29,12 @@ Rails.application.routes.draw do
   root action: :home, controller: "page"
 
   devise_for :users
-	resources :events
+	resources :events do
+		collection do
+			get :check
+		end
+	end
+	
 	resources :tracks 
 	resources :championships
 	resource :calendars, only: [:show]
