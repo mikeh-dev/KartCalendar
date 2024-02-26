@@ -12,8 +12,6 @@ class DashboardController < ApplicationController
                         .where("start_date >= ?", Date.today)
                         .limit(15)
     @display_month = params[:month] ? Date.parse(params[:month]) : Date.today
-
-    @events = Event.where(start_date: params[:date])
   end
 
   def check
