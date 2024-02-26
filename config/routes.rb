@@ -18,7 +18,12 @@ Rails.application.routes.draw do
 	get 'pricing', to: 'page#pricing'
 	get 'about', to: 'page#about'
 	get 'home', to: 'page#home'
-	get 'dashboard', to: 'dashboard#index'
+
+	resources :dashboard, only: [:index] do
+		collection do
+			get :check_events # Example route for fetching events via JS
+		end
+	end
 
 	resources :contacts, only: [:new, :create]
 	

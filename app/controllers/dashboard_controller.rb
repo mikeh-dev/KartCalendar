@@ -12,5 +12,20 @@ class DashboardController < ApplicationController
                         .where("start_date >= ?", Date.today)
                         .limit(15)
     @display_month = params[:month] ? Date.parse(params[:month]) : Date.today
+
+    @anchor_date = params[:date] ? Date.parse(params[:date]) : Date.today
+    @events = Event.where('start_date <= ? AND end_date >= ?', @anchor_date.beginning_of_month, @anchor_date.end_of_month)
+  end
+
+  def check
+    start_date = Date.parse(params[:start_date])
+    end_date = Date.parse(params[:end_date])
+    events = Event.where('start_date <= :end_date AND end_date >= :start_date', start_date: start_date, end_date: end_date).select(:start_date, :end_date)
+    render json: (start_date..end_date).map { |date|
+      {
+        date: date,
+        events: events.any? { |e| e.start_date <= date && e.end_date >= date }
+      }
+    }
   end
 end

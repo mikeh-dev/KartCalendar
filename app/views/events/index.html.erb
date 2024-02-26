@@ -12,26 +12,11 @@
         <button class="bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 px-6 py-3 rounded-lg mr-4 hover:bg-indigo-500 hover:text-white">Today</button>
         <button class="bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 px-6 py-3 rounded-lg hover:bg-indigo-500 hover:text-white">Next</button>
       </div>
+      <%= turbo_frame_tag :calendar, src: calendars_path(date: Date.today) %>
     </div>
   </div>
 </div>
 
-<div class="container mx-auto w-1/2">
-    <%= turbo_frame_tag 'calendar' do %>
-      <%= month_calendar(events: @events) do |date, events| %>
-          <% if events.any? %>
-            <span class="tooltip">
-              <% events.each do |event| %>
-                <%= link_to event_path(event), data: { turbo: false } do %>
-                  <p class="text-sm text-indigo"><%= event.title %></p>
-                  <p class="text-sm"><%= event.track.name %></p>
-                <% end %>
-              <% end %>
-            </span>
-          <% end %>
-      <% end %>
-    <% end %>
-  </div>
 
     <div class="w-full grid <%= @events.size > 1 ? 'lg:grid-cols-2' : 'lg:grid-cols-1' %>">
       <% @events.each do |event| %>

@@ -77,11 +77,11 @@ class EventsController < ApplicationController
   def check
     start_date = Date.parse(params[:start_date])
     end_date = Date.parse(params[:end_date])
-    events = Event.where('start_date <= ? AND end_date >= ?', end_date, start_date)
+    events = Event.where('start_date <= :end_date AND end_date >= :start_date', start_date: start_date, end_date: end_date).select(:start_date, :end_date)
     render json: (start_date..end_date).map { |date|
       {
         date: date,
-        events: events.select { |e| e.occurs_on == date }.any?
+        events: events.any? { |e| e.start_date <= date && e.end_date >= date }
       }
     }
   end
