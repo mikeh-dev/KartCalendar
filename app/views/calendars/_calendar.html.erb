@@ -9,6 +9,7 @@
   <div class="md:gap-x-16 md:gap-y-4 lg:gap-y-8 gap-6 grid md:grid-cols-12 grid-cols-1">
     <h2 class="font-normal dark:text-slate-300 text-slate-600 md:text-xl text-lg tracking-tight md:col-span-12 col-span-1">Upcoming events</h2>
     <div class="md:pr-0 lg:pr-10 lg:col-span-6 md:col-span-12 col-span-1 lg:order-1 md:order-2 order-2">
+    <%= turbo_frame_tag :events, src: events_path(date: anchor_date) %>
     </div>
     <div class="lg:mt-8 mt-0 text-center md:col-span-12 lg:col-span-6 col-span-1 lg:order-1 md:order-1 order-1">
       <div class="rounded-lg bg-slate-300/60 text-sm shadow-sm ring-1 ring-slate-300 dark:ring-slate-600">

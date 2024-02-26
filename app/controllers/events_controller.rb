@@ -23,11 +23,12 @@ class EventsController < ApplicationController
 
   def index
     @today = Date.today
+    @anchor_date = params[:date] ? Date.parse(params[:date]) : Date.today
     start_of_month = @today.beginning_of_month
     end_of_month = @today.end_of_month
-    @events = Event.all
+    @events = Event.where('start_date <= ? AND end_date >= ?', @anchor_date.beginning_of_month, @anchor_date.end_of_month)
     @current_month_events = Event.where('start_date <= ? AND end_date >= ?', end_of_month, start_of_month).order(:start_date)
-  end  
+  end
 
   def show
     @championship = @event.championship
