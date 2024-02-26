@@ -13,8 +13,7 @@ class DashboardController < ApplicationController
                         .limit(15)
     @display_month = params[:month] ? Date.parse(params[:month]) : Date.today
 
-    @anchor_date = params[:date] ? Date.parse(params[:date]) : Date.today
-    @events = Event.where('start_date <= ? AND end_date >= ?', @anchor_date.beginning_of_month, @anchor_date.end_of_month)
+    @events = Event.where(start_date: params[:date])
   end
 
   def check
