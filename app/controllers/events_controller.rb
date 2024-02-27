@@ -22,8 +22,8 @@ class EventsController < ApplicationController
   end
 
   def index
-    selected_date = Date.parse(params[:date])
-    @events = Event.where('start_date <= ? AND end_date >= ?', selected_date.end_of_day, selected_date.beginning_of_day)
+    selected_date = params[:date]
+    @events = Event.where('start_date <= ? AND end_date >= ?', selected_date, selected_date)
     @today = Date.today
   end
 
