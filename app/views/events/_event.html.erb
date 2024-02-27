@@ -1,4 +1,4 @@
-<%= link_to event_path(event) do %>
+<%= link_to event_path(event), data: { turbo: false } do %>
 <li class="relative flex space-x-6 py-6 xl:static">
   <%= image_tag event.track.main_image, class: "h-14 w-14 flex-none rounded-full", alt: "" %>
   <div class="flex-auto">
