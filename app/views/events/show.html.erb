@@ -26,7 +26,7 @@
               <% button_text = @followable.is_a?(Event) ? ['Add to my Tracks', 'Remove from my Tracks'] : ['Add to My Calendar', 'Remove from My Calendar'] %>
               <%= turbo_frame_tag dom_id(@event, "follow_#{dom_class(@event)}"), class: "" do %>
                 <% if current_user.following?(@event) %>
-                  <%= link_to button_text[1], follow_path(id: current_user.follows.find_by(followable: @event).id), method: :delete, class: "btn btn-rose", data: { turbo_method: :delete } %>
+                  <%= link_to button_text[1], follow_path(id: current_user.follows.find_by(followable: @event).id), method: :delete, class: "btn bg-rose-600", data: { turbo_method: :delete } %>
                 <% else %>
                   <%= link_to button_text[0], follows_path(followable_type: @event.class.name, followable_id: @event.id), method: :post, class: "btn btn-primary", data: { turbo_method: :post } %>
                 <% end %>
