@@ -33,19 +33,4 @@ class User < ApplicationRecord
 
   private
 
-    def follow_events_of_championships
-      championships.each do |championship|
-        championship.events.each do |event|
-          events << event unless events.include?(event)
-        end
-      end
-    end
-
-    def unfollow_events_of_championships
-      championships.each do |championship|
-        championship.events.each do |event|
-          events.delete(event)
-        end
-      end
-    end
 end
