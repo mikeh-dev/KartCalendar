@@ -1,23 +1,26 @@
 class DashboardController < ApplicationController
   before_action :authenticate_user!
 
+  before_action :set_followed_events, only: %i[index check]
+  before_action :set_followed_championships, only: %i[index check]
+  before_action :set_championship_events, only: %i[index check]
+
   def index
-    @followed_championships = current_user.followed_championships.includes(:events)
     @followed_tracks = current_user.followed_tracks.includes(:events)
-    @followed_events = current_user.followed_events.includes(:championship, :track)
-    
+    @display_month = params[:month] ? Date.parse(params[:month]) : Date.today
     @timeline_events = Event.where(championship: @followed_championships)
                         .or(Event.followed_by(current_user))
                         .order('start_date ASC')
                         .where("start_date >= ?", Date.today)
                         .limit(15)
-    @display_month = params[:month] ? Date.parse(params[:month]) : Date.today
   end
 
   def check
     start_date = Date.parse(params[:start_date])
     end_date = Date.parse(params[:end_date])
-    events = Event.where('start_date <= :end_date AND end_date >= :start_date', start_date: start_date, end_date: end_date).select(:start_date, :end_date)
+    events = Event.where(id: current_user.followed_events.select(:id))
+    .or(Event.where(championship: @followed_championships))
+
     render json: (start_date..end_date).map { |date|
       {
         date: date,
@@ -25,4 +28,17 @@ class DashboardController < ApplicationController
       }
     }
   end
+
+  def set_followed_events
+    @followed_events = current_user.followed_events
+  end
+
+  def set_followed_championships
+    @followed_championships = current_user.followed_championships
+  end
+
+  def set_championship_events
+    @championship_events = current_user.followed_championships.includes(:events).map(&:events).flatten.uniq
+  end
 end
+

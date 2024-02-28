@@ -40,4 +40,12 @@ class User < ApplicationRecord
         end
       end
     end
+
+    def unfollow_events_of_championships
+      championships.each do |championship|
+        championship.events.each do |event|
+          events.delete(event)
+        end
+      end
+    end
 end

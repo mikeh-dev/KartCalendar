@@ -1,12 +1,12 @@
 <% if @followable.is_a?(Event) %>
   <% button_text = ['Add to My Calendar', 'Remove from My Calendar'] %>
-  <% button_class = ["btn btn-red", "btn btn-primary"] %>
+  <% button_class = ["btn btn-rose", "btn btn-primary"] %>
 <% elsif @followable.is_a?(Championship) %>
   <% button_text = ['Add to My Championships', 'Remove from My Championships'] %>
-  <% button_class = ["btn btn-red btn-md", "btn btn-primary btn-md"]  %>
+  <% button_class = ["btn btn-rose btn-md", "btn btn-primary btn-md"]  %>
 <% else %>
   <% button_text = ['Add to my Tracks', 'Remove from my Tracks'] %>
-  <% button_class = ["btn btn-red", "btn btn-primary"]  %>
+  <% button_class = ["btn btn-rose", "btn btn-primary"]  %>
 <% end %>
 
 <%= turbo_stream.update dom_id(@followable, "follow_#{dom_class(@followable)}"), class: "w-auto" do %>

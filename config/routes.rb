@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
 	resources :dashboard, only: [:index] do
 		collection do
-			get :check_events # Example route for fetching events via JS
+			get :check # Example route for fetching events via JS
 		end
 	end
 
@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   root action: :home, controller: "page"
 
   devise_for :users
+
 	resources :events do
 		collection do
 			get :check

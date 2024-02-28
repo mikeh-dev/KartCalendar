@@ -45,7 +45,7 @@
         <% button_text = @followable.is_a?(Championship) ? ['Follow', 'Unfollow'] : ['Add to my Tracks', 'Remove from my Tracks'] %>
           <%= turbo_frame_tag dom_id(@track, "follow_#{dom_class(@track)}"), class: "w-auto" do %>
             <% if current_user.following?(@track) %>
-              <%= link_to button_text[1], follow_path(id: current_user.follows.find_by(followable: @track).id), method: :delete, class: "btn btn-red", data: { turbo_method: :delete } %>
+              <%= link_to button_text[1], follow_path(id: current_user.follows.find_by(followable: @track).id), method: :delete, class: "btn", data: { turbo_method: :delete } %>
             <% else %>
               <%= link_to button_text[0], follows_path(followable_type: @track.class.name, followable_id: @track.id), method: :post, class: "btn btn-primary", data: { turbo_method: :post } %>
             <% end %>
