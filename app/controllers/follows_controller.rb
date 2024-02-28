@@ -20,6 +20,9 @@ class FollowsController < ApplicationController
     follow = current_user.follows.find_by(id: params[:id])
     if follow
       @followable = follow.followable
+      if @followable.is_a?(Championship)
+        unfollow_championship_events(@followable)
+      end
       follow.destroy
       respond_to do |format|
         format.html { redirect_back(fallback_location: root_path) }
@@ -44,6 +47,12 @@ class FollowsController < ApplicationController
     end
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path, alert: 'Invalid or not found followable.'
+  end
+
+  def unfollow_championship_events(championship)
+    championship.events.each do |event|
+      current_user.follows.where(followable: event).destroy_all
+    end
   end
   
 end
