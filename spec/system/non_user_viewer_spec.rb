@@ -13,7 +13,7 @@ RSpec.describe 'Non-user viewer', type: :system do
 
     it 'can view the about page' do
       visit about_path
-      expect(page).to have_content('About KartStream')
+      expect(page).to have_content('KartStream was born')
     end
 
   end

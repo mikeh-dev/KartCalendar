@@ -55,14 +55,12 @@ class EventsController < ApplicationController
   end
 
   def edit
-    if @event.update(event_params)
-      redirect_to @event, notice: 'Event was successfully updated.'
-    else
-      render :edit, status: :unprocessable_entity
-    end
+    
   end
 
   def update
+    Rails.logger.debug "Params: #{params.inspect}"
+
     if @event.update(event_params)
       redirect_to @event, notice: 'Event was successfully updated.'
     else
@@ -94,7 +92,7 @@ def set_event
 end
 
 def event_params
-  params.require(:event).permit(:title, :description, :start_date, :end_date, :price, :event_type, :image, :championship_id, :track_id, category_ids: [])
+  params.require(:event).permit(:title, :description, :price, :event_type, :image, :championship_id, :track_id, :start_date, :end_date, category_ids: [])
 end
   
 end

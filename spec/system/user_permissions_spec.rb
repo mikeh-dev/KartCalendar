@@ -111,7 +111,7 @@ RSpec.describe 'User Permissions', type: :system do
     it 'allows an admin user to delete a track' do
       visit track_path(track_to_edit)
       click_on 'Edit Track'
-      expect(page).to have_current_path(track_path(track_to_edit))
+      expect(page).to have_current_path(edit_track_path(track_to_edit))
       accept_confirm do
         click_on 'Delete Track'
       end
