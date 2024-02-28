@@ -31,6 +31,4 @@ class User < ApplicationRecord
     Event.joins(:follows).where(follows: { user_id: id })
   end
 
-  private
-
 end
