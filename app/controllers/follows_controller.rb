@@ -5,6 +5,8 @@ class FollowsController < ApplicationController
   def create
     follow = current_user.follows.new(followable: @followable)
     if follow.save
+      FollowChampionshipEventsService.new(user: current_user, championship: @followable).call if @followable.is_a?(Championship)
+
       respond_to do |format|
         format.html { redirect_back(fallback_location: root_path) }
         format.turbo_stream
