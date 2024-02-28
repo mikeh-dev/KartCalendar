@@ -30,7 +30,7 @@ class DashboardController < ApplicationController
   end
 
   def set_followed_events
-    @followed_events = current_user.followed_events
+    @followed_events = current_user.followed_events.order('start_date ASC')
   end
 
   def set_followed_championships
