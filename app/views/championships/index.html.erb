@@ -15,9 +15,9 @@
             <%= image_tag random_default_image, alt: "Events", class: "max-w-full object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
           <% end %>
         </div>
-        <div class="w-full text-center mt-6 space-y-2 items-center">
+        <div class="w-full text-center mt-6 space-y-2 items-center justify-center">
         <% if champ_event.logo.present? %>
-          <%= image_tag champ_event.logo, alt: "championship logo", class: "" %>
+          <%= image_tag champ_event.logo, alt: "championship logo", class: "object-scale-down mx-auto" %>
         <% end %>
           <p class="text-l text-slate-700 dark:text-slate-400"><%= champ_event.long_name %></p>
           <h1 class="text-3xl"><%= champ_event.events.first.title %></h1> 
