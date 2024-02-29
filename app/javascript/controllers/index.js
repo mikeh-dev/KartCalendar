@@ -28,9 +28,6 @@ application.register("modal", ModalController)
 import NavController from "./nav_controller"
 application.register("nav", NavController)
 
-import ScrollController from "./scroll_controller"
-application.register("scroll", ScrollController)
-
 import TabsController from "./tabs_controller"
 application.register("tabs", TabsController)
 
