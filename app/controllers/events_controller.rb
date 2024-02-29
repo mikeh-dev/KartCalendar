@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: %i[index show test_events race_events, check]
-  before_action :ensure_admin_user!, except: %i[index show test_events race_events, check]
+  before_action :authenticate_user!, except: %i[index show test_events race_events check check_race]
+  before_action :ensure_admin_user!, except: %i[index show test_events race_events check check_race]
 
   def test_events
     @test_events = Event.where(event_type: 'Test')
@@ -23,7 +23,9 @@ class EventsController < ApplicationController
 
   def index
     selected_date = params[:date]
-    @all_events = Event.all
+
+    @all_events = Event.all.order(start_date: :asc).limit(20)
+    
     @events = Event.where('start_date <= ? AND end_date >= ?', selected_date, selected_date)
     @today = Date.today
     @this_weekends_events = Event.where('start_date >= ? AND start_date <= ?', Date.today, Date.today + 6.days)
@@ -79,6 +81,30 @@ class EventsController < ApplicationController
     start_date = Date.parse(params[:start_date])
     end_date = Date.parse(params[:end_date])
     events = Event.where('start_date <= :end_date AND end_date >= :start_date', start_date: start_date, end_date: end_date).select(:start_date, :end_date)
+    render json: (start_date..end_date).map { |date|
+      {
+        date: date,
+        events: events.any? { |e| e.start_date <= date && e.end_date >= date }
+      }
+    }
+  end
+
+  def check_race
+    start_date = Date.parse(params[:start_date])
+    end_date = Date.parse(params[:end_date])
+    events = Event.where('start_date <= :end_date AND end_date >= :start_date AND event_type = :event_type', start_date: start_date, end_date: end_date, event_type: "Race").select(:start_date, :end_date)
+    render json: (start_date..end_date).map { |date|
+      {
+        date: date,
+        events: events.any? { |e| e.start_date <= date && e.end_date >= date }
+      }
+    }
+  end
+
+  def check_test
+    start_date = Date.parse(params[:start_date])
+    end_date = Date.parse(params[:end_date])
+    events = Event.where('start_date <= :end_date AND end_date >= :start_date AND event_type = :event_type', start_date: start_date, end_date: end_date, event_type: "Test").select(:start_date, :end_date)
     render json: (start_date..end_date).map { |date|
       {
         date: date,

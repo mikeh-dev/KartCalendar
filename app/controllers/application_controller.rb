@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include Pagy::Backend
   helper Railsui::ThemeHelper
   before_action :set_championships
 

@@ -38,6 +38,8 @@ Rails.application.routes.draw do
 	resources :events do
 		collection do
 			get :check
+			get	:check_race
+			get :check_test
 		end
 	end
 	

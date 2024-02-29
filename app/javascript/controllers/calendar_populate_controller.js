@@ -8,17 +8,35 @@ export default class extends Controller {
   }
 
   connect() {
-    // Determine the fetch URL based on the current URL path
-    let fetchUrl = window.location.pathname.includes('dashboard') ?
-                   `/dashboard/check?start_date=${this.startDateValue}&end_date=${this.endDateValue}` :
-                   `/events/check?start_date=${this.startDateValue}&end_date=${this.endDateValue}`;
+    let fetchUrl = "";
+  
+    // Check if the URL includes 'dashboard'
+    if (window.location.pathname.includes('/dashboard')) {
+      fetchUrl = `/dashboard/check?start_date=${this.startDateValue}&end_date=${this.endDateValue}`;
+    } 
+    // Check if the URL is for the events index
+    else if (window.location.pathname === '/events' || window.location.pathname === '/events/') {
+      fetchUrl = `/events/check?start_date=${this.startDateValue}&end_date=${this.endDateValue}`;
+    } 
+    // Check if the URL is for the race_events index
+    else if (window.location.pathname === '/race_events' || window.location.pathname === '/race_events/') {
+      fetchUrl = `/events/check_race?start_date=${this.startDateValue}&end_date=${this.endDateValue}`;
+    }
 
-    fetch(fetchUrl).then(response => {
-        return response.json();
-    }).then(json => {
-        this.populateCalendarWithEvents(json);
-    });
-}
+    else if (window.location.pathname === '/test_events' || window.location.pathname === '/test_events/') {
+      fetchUrl = `/events/check_test?start_date=${this.startDateValue}&end_date=${this.endDateValue}`;
+    }
+  
+    // Only proceed if fetchUrl was set
+    if (fetchUrl) {
+      fetch(fetchUrl)
+        .then(response => response.json())
+        .then(json => this.populateCalendarWithEvents(json))
+        .catch(error => console.error('Error fetching events:', error));
+    } else {
+      console.log("No appropriate fetch URL determined based on the current path:", window.location.pathname);
+    }
+  }
 
 populateCalendarWithEvents(json) {
     json.forEach(element => {
