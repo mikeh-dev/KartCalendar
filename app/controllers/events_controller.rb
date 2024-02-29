@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: %i[index show test_events race_events]
-  before_action :ensure_admin_user!, except: %i[index show test_events race_events]
+  before_action :authenticate_user!, except: %i[index show test_events race_events, check]
+  before_action :ensure_admin_user!, except: %i[index show test_events race_events, check]
 
   def test_events
     @test_events = Event.where(event_type: 'Test')
@@ -23,6 +23,7 @@ class EventsController < ApplicationController
 
   def index
     selected_date = params[:date]
+    @all_events = Event.all
     @events = Event.where('start_date <= ? AND end_date >= ?', selected_date, selected_date)
     @today = Date.today
   end

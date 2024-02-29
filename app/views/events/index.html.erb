@@ -17,12 +17,12 @@
   </div>
 </div>
 
-        <%= turbo_frame_tag :events do %>
-          <%= render @events %>
-        <% end %>
+  <%= turbo_frame_tag :events do %>
+    <%= render @events %>
+  <% end %>
 
-    <div class="w-full grid <%= @events.size > 1 ? 'lg:grid-cols-2' : 'lg:grid-cols-1' %>">
-      <% @events.each do |event| %>
+    <div class="w-full grid <%= @all_events.size > 1 ? 'lg:grid-cols-2' : 'lg:grid-cols-1' %>">
+      <% @all_events.each do |event| %>
         <div class="flex flex-col items-center text-center mt-6">
           <div class="flex justify-center relative mt-6 mx-4">
             <% if event.image.attached? %>
