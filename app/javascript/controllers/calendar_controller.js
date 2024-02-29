@@ -19,6 +19,14 @@ export default class extends Controller {
     } else {
       event.target.querySelector("time").classList.add("bg-black")
     }
+    this.scrollToSection();
+  }
+
+  scrollToSection() {
+    const targetSection = document.getElementById('calendar-section');
+    if (targetSection) {
+      targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 
   clearDayTargets() {
