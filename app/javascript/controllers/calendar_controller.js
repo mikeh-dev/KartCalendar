@@ -12,18 +12,18 @@ export default class extends Controller {
     console.log(event)
     this.clearDayTargets()
     if (event.target.tagName == "TIME") {
-      event.target.classList.add("bg-white")
+      event.target.classList.add("bg-black")
       console.log(event.target)
     } else if (event.target.tagName == "DIV") {
-      event.target.parentElement.classList.add("bg-white")
+      event.target.parentElement.classList.add("bg-black")
     } else {
-      event.target.querySelector("time").classList.add("bg-white")
+      event.target.querySelector("time").classList.add("bg-black")
     }
   }
 
   clearDayTargets() {
     this.dayTargets.forEach(dayButton => {
-      dayButton.classList.remove("bg-white")
+      dayButton.classList.remove("bg-black")
     })
   }
 }
