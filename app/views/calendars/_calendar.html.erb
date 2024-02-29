@@ -7,7 +7,6 @@
     data-calendar-populate-end-date-value=<%=end_date%>>
 <div class="container mx-auto px-4 lg:my-16 my-8">
   <div class="md:gap-x-16 md:gap-y-4 lg:gap-y-8 gap-6 grid md:grid-cols-12 grid-cols-1">
-    <h2 class="font-semibold text-gray-700 text-2xl tracking-tight md:col-span-12 col-span-1">Your Calendar</h2>
     <div class="md:pr-0 lg:pr-10 lg:col-span-6 md:col-span-12 col-span-1 lg:order-1 md:order-2 order-2">
         <div class="md:pr-0 lg:pr-10 lg:col-span-6 md:col-span-12 col-span-1 lg:order-1 md:order-2 order-2">
           <%= turbo_frame_tag :events, src: events_path(date: anchor_date) %>

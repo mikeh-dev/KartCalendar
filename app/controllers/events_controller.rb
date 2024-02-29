@@ -26,6 +26,7 @@ class EventsController < ApplicationController
     @all_events = Event.all
     @events = Event.where('start_date <= ? AND end_date >= ?', selected_date, selected_date)
     @today = Date.today
+    @this_weekends_events = Event.where('start_date >= ? AND start_date <= ?', Date.today, Date.today + 6.days)
   end
 
   def show

@@ -8,9 +8,6 @@
   <div class="w-full flex flex-wrap justify-center items-center">
     <div class="w-full mt-6">
       <div class="flex items center justify-between">
-        <button class="bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 px-6 py-3 rounded-lg mr-4 hover:bg-indigo-500 hover:text-white">Prev</button>
-        <button class="bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 px-6 py-3 rounded-lg mr-4 hover:bg-indigo-500 hover:text-white">Today</button>
-        <button class="bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 px-6 py-3 rounded-lg hover:bg-indigo-500 hover:text-white">Next</button>
       </div>
       <%= turbo_frame_tag :calendar, src: calendars_path(date: Date.today) %>
     </div>
@@ -21,21 +18,21 @@
     <%= render @events %>
   <% end %>
 
-    <div class="w-full grid <%= @all_events.size > 1 ? 'lg:grid-cols-2' : 'lg:grid-cols-1' %>">
-      <% @all_events.each do |event| %>
+    <div class="w-full grid <%= @this_weekends_events.size > 1 ? 'grid-cols-3' : 'grid-cols-1' %>">
+      <% @this_weekends_events.each do |event| %>
         <div class="flex flex-col items-center text-center mt-6">
-          <div class="flex justify-center relative mt-6 mx-4">
+          <div class="flex justify-center relative mt-6 mx-10">
             <% if event.image.attached? %>
-              <%= image_tag event.image, alt: "Events", class: "max-w-full object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
+              <%= image_tag event.image, alt: "Events", class: "max-w-full object-scale-down h-32 w-32 rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
             <% else %>
-              <%= image_tag random_default_image, alt: "Events", class: "max-w-full object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
+              <%= image_tag random_default_image, alt: "Events", class: "max-w-full object-scale-down h-96 rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
             <% end %>
           </div>
           <div class="w-full text-center mt-6 space-y-2">
-            <h1 class="text-4xl"><%= event.title %></h1>
-              <p class="text-xl"><%= event.start_date.strftime("%A, %B %e") %></p>
-              <p class="text-xl"><%= event.title %></p>
-              <p class="text-xl"><%= event.track.name %></p>
+            <h1 class="text-2xl"><%= event.title %></h1>
+              <p class="text-l"><%= event.start_date.strftime("%A, %B %e") %></p>
+              <p class="text-l"><%= event&.championship&.name %></p>
+              <p class="text-l"><%= event.track.name %></p>
               <%= link_to "View Details", (event_path(event)), class: "btn btn-primary text-white-500 mt-2" %>
           </div>
       </div>
@@ -44,9 +41,9 @@
 
 <div class="container mx-auto mt-8 px-4">
   <h1 class="text-3xl font-semibold mb-4 text-center">Upcoming Events</h1>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
-    <% @events.each do |event| %>
-      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+  <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
+    <% @all_events.each do |event| %>
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col">
         <% if event.image.present? %>
           <%= image_tag event.image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
         <% else %>
