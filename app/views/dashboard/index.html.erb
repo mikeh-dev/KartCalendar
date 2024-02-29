@@ -102,6 +102,12 @@
           <p class="text-gray-600">You don't have any chassis' stored yet.</p>
       </div>
   </div>
+
+
+<div class="mb-6">
+  <h2 class="text-2xl font-semibold text-gray-600 mb-4">My Calendar</h2>
+  <p class="text-gray-700">Click a date to see what's happening...</p>  
+  <%= turbo_frame_tag :calendar, src: calendars_path(date: Date.today) %>
 </div>
 
-<%= turbo_frame_tag :calendar, src: calendars_path(date: Date.today) %>
+</div>

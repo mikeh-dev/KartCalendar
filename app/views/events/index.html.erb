@@ -4,28 +4,14 @@
     <h1 class="sm:text-6xl text-4xl font-extrabold">This Weekends Races and Test Days</h1>
     <p class="my-6 text-slate-700 dark:text-slate-400 text-lg">All Events in one place...</p>
   </div>
-
-  <div class="w-full flex flex-wrap justify-center items-center">
-    <div class="w-full mt-6">
-      <div class="flex items center justify-between">
-      </div>
-      <%= turbo_frame_tag :calendar, src: calendars_path(date: Date.today) %>
-    </div>
-  </div>
-</div>
-
-  <%= turbo_frame_tag :events do %>
-    <%= render @events %>
-  <% end %>
-
-    <div class="w-full grid <%= @this_weekends_events.size > 1 ? 'grid-cols-3' : 'grid-cols-1' %>">
+  <div class="w-full grid <%= @this_weekends_events.size > 1 ? 'grid-cols-3' : 'grid-cols-1' %>">
       <% @this_weekends_events.each do |event| %>
         <div class="flex flex-col items-center text-center mt-6">
           <div class="flex justify-center relative mt-6 mx-10">
             <% if event.image.attached? %>
-              <%= image_tag event.image, alt: "Events", class: "max-w-full object-scale-down h-32 w-32 rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
+              <%= image_tag event.image, alt: "Events", class: "max-w-full object-scale-down rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
             <% else %>
-              <%= image_tag random_default_image, alt: "Events", class: "max-w-full object-scale-down h-96 rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
+              <%= image_tag random_default_image, alt: "Events", class: "max-w-full object-scale-down rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
             <% end %>
           </div>
           <div class="w-full text-center mt-6 space-y-2">
@@ -38,6 +24,20 @@
       </div>
     <% end %>
   </div>
+
+
+  <div class="w-full flex flex-wrap justify-center items-center">
+    <div class="w-full mt-6">
+      <h1 class="text-4xl font-bold text-center mt-10">Race and Testing Calendar</h1>
+      <%= turbo_frame_tag :calendar, src: calendars_path(date: Date.today) %>
+    </div>
+  </div>
+</div>
+
+  <%= turbo_frame_tag :events do %>
+    <%= render @events %>
+  <% end %>
+
 
 <div class="container mx-auto mt-8 px-4">
   <h1 class="text-3xl font-semibold mb-4 text-center">Upcoming Events</h1>
@@ -54,8 +54,8 @@
           <p class="text-gray-600 mb-2"><%= event.start_date.strftime('%B %d, %Y') %></p>
           <p class="text-gray-800"><%= event.description.truncate(150, omission: '...') %></p>
         </div>
-        <div class="bg-gray-100 p-4">
-          <%= link_to "View Details", event_path(event), class: "text-blue-500 hover:underline" %>
+        <div class="bg-white p-4 space-x-4 flex justify-center">
+          <%= link_to "View Details", event_path(event), class: "btn btn-primary" %>
           <% if current_user&.admin? %>
             <%= link_to "Edit Event", edit_event_path(event), class: "btn btn-dark" %> 
           <% end %>
