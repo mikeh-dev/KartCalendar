@@ -14,7 +14,7 @@
         <% @followed_tracks.each do |track| %>
           <div class="bg-white rounded-lg shadow-lg flex">
             <div class="flex-none w-1/3">
-              <%= image_tag(track.main_image, alt: track.name, class: "object-cover h-full rounded-l-lg") if track.main_image.present? %>
+              <%= image_tag(track.main_image, alt: track.name, class: "object-cover h-48 rounded-l-lg") if track.main_image.present? %>
             </div>
             <div class="p-4 w-2/3">
             <h3 class="font-semibold text-lg text-blue-800 mb-2">
@@ -39,9 +39,9 @@
           <div class="bg-white rounded-lg shadow-lg flex">
             <div class="flex-none w-1/3">
             <% if championship.image.present? %>
-              <%= image_tag(championship.image, alt: championship.name, class: "object-cover h-full rounded-l-lg h-38 w-38") if championship.image.present? %>
+              <%= image_tag(championship.image, alt: championship.name, class: "object-cover h-48 rounded-l-lg w-38") if championship.image.present? %>
             <% else %>
-              <%= image_tag random_default_image, alt: championship.name, class: "object-cover h-full rounded-l-lg h-38 w-38" %>
+              <%= image_tag random_default_image, alt: championship.name, class: "object-cover rounded-l-lg h-48 w-38" %>
             <% end %>
             </div>
             <div class="p-4 w-2/3">
@@ -65,9 +65,9 @@
           <div class="bg-white rounded-lg shadow-lg flex">
             <div class="flex-none w-1/3">
             <% if event.image.attached? %>
-              <%= image_tag(event.image, alt: event.title, class: "object-cover h-full rounded-l-lg h-38 w-38") %>
+              <%= image_tag(event.image, alt: event.title, class: "object-cover h-full rounded-l-lg h-48 w-38") %>
             <% else %>
-              <%= image_tag random_default_image, alt: event.title, class: "object-cover h-full rounded-l-lg h-38 w-38" %>
+              <%= image_tag random_default_image, alt: event.title, class: "object-cover h-48 rounded-l-lg w-38" %>
             <% end %>
             </div>
             <div class="p-4 w-2/3">

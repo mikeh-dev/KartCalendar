@@ -150,7 +150,7 @@ RSpec.describe 'User Permissions', type: :system do
         click_on 'Delete Event'
       end
       expect(page).to have_current_path(events_path)
-      expect(page).to have_content('Event was successfully destroyed.')
+      expect(page).to have_content('Event was successfully deleted.')
     end
 
     it 'allows an admin user to create a championship' do

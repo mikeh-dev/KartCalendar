@@ -63,8 +63,6 @@ class EventsController < ApplicationController
   end
 
   def update
-    Rails.logger.debug "Params: #{params.inspect}"
-
     if @event.update(event_params)
       redirect_to @event, notice: 'Event was successfully updated.'
     else
@@ -74,7 +72,7 @@ class EventsController < ApplicationController
 
   def destroy
     @event.destroy
-    redirect_to events_url, notice: 'Event was successfully destroyed.'
+    redirect_to events_url, notice: 'Event was successfully deleted.'
   end
 
   def check
