@@ -38,17 +38,3 @@
     <%= render @events %>
   <% end %>
 
-
-<div class="container mx-auto mt-8 px-4">
-  <h1 class="text-3xl font-semibold mb-4 text-center">Upcoming Events</h1>
-    <div id="all_events" class="min-w-full">
-      <%= turbo_frame_tag "all_events", src: events_path(format: :turbo_stream), loading: :lazy %>
-    </div>
-
-    <% if @all_events.next_page %>
-      <%= turbo_frame_tag "load_more", src: events_path(page: @all_events.next_page, format: :turbo_stream), loading: :lazy %>
-    <% end %> 
-</div>
-
-
-
