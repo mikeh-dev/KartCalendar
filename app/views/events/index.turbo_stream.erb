@@ -1,0 +1,15 @@
+<%= turbo_stream.append "all_events" do %>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
+  <%= render partial: "events/race_event", collection: @all_events, as: :event %>
+</div>
+<% end %>
+
+<% if @all_events.next_page %>
+  <%= turbo_stream.replace "load_more" do %>
+    <%= turbo_frame_tag "load_more", src: events_path(page: @all_events.next_page, format: :turbo_stream), loading: :lazy %>
+  <% end %>
+<% end %>
+
+<%= turbo_stream.update "current_page", @all_events.current_page %>
+
+

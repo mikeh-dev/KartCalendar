@@ -1,0 +1,20 @@
+<article id="<%= dom_id event %>" class="py-6">
+     <div class="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col">
+        <% if event.image.present? %>
+          <%= image_tag event.image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
+        <% else %>
+          <%= image_tag "JHPhoto-3115.jpg", alt: "Events", class: "w-full h-36 object-cover object-center" %>
+        <% end %>
+        <div class="p-4">
+          <h2 class="text-xl text-gray-800 font-semibold mb-2"><%= event.title %> - <%= event.championship&.name if event&.championship.present? %></h2>
+          <p class="text-gray-600 mb-2"><%= event.start_date.strftime('%B %d, %Y') %> - <%= event.end_date.strftime('%B %d, %Y') %></p>
+          <p class="text-gray-800"><%= event.description.truncate(20, omission: '...') %></p>
+        </div>
+        <div class="bg-white p-4 space-x-4 flex justify-center">
+          <%= link_to "View Details", event_path(event), class: "btn btn-primary" %>
+          <% if current_user&.admin? %>
+            <%= link_to "Edit Event", edit_event_path(event), class: "btn btn-dark" %> 
+          <% end %>
+        </div>
+      </div>
+</article>

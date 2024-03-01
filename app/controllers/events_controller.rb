@@ -24,7 +24,7 @@ class EventsController < ApplicationController
   def index
     selected_date = params[:date]
 
-    @all_events = Event.all.order(start_date: :asc).limit(20)
+    @all_events = Event.paginate(page: params[:page], per_page: 6).order(start_date: :asc)
     
     @events = Event.where('start_date <= ? AND end_date >= ?', selected_date, selected_date)
     @today = Date.today
