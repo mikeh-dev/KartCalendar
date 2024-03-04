@@ -25,6 +25,7 @@ class EventsController < ApplicationController
     selected_date = params[:date]
 
     @all_events = Event.all.order(start_date: :asc).limit(20)
+    @future_events = Event.where('start_date >= ?', Date.today + 10.days).order(start_date: :asc).limit(6)
     
     @events = Event.where('start_date <= ? AND end_date >= ?', selected_date, selected_date)
     @today = Date.today
