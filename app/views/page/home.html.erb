@@ -4,8 +4,8 @@
     <%= render "shared/nav_menu" %>
   </div>
   <div class="container mx-auto sm:py-24 pb-5 px-4 relative z-10 flex flex-wrap items-center justify-between">
-    <div class="xl:w-3/5 w-full xl:text-left text-center xl:pr-16">
-      <p class="text-indigo-600 font-medium mb-6 lg:mt-0 mt-2 dark:text-indigo-500">A KartStream Product</p>
+    <div class="w-full text-left text-center xl:pr-16 mb-10">
+      <p class="text-indigo-600 font-medium lg:mt-0 mt-2 dark:text-indigo-500">A KartStream Product</p>
       <h1 class="sm:text-6xl text-4xl font-extrabold">KartStream</h1>
     </div>
 
@@ -61,16 +61,24 @@
   <div class="flex flex-wrap items-center justify-between">
     <div class="lg:w-1/2 w-full">
       <span class="block w-20 bg-slate-300 dark:bg-slate-700 h-px"></span>
-      <h2 class="font-extrabold lg:text-4xl text-3xl pt-10">How can this help me?</h2>
+      <p class="text-indigo-300 uppercase tracking-wider text-sm font-medium dark:text-indigo-500 pt-10">KartStream</p>
+      <h2 class="font-extrabold lg:text-4xl text-3xl">How can this help me?</h2>
       <div class="max-w-lg mt-6 prose prose-indigo dark:prose-invert">
+        <h3 class="text-white font-extrabold text-lg my-2">All the information in one place</h3>
         <p>
-          If your new to Karting you can explore all the UK Tracks, browse the basic information and check out when the next events are inc Test Days and Race Days. You'll also be able to see what Championships are running and when.
+          If your new to Karting you can explore all the UK Tracks, browse the basic information and check out the next events inc Test Days and Race Days. You'll also be able to see what Championships are running and when.
         </p>
+        <h3 class="text-white font-extrabold text-lg my-2">Organise your Season</h3>
         <p>
-          If you're already part of the Karting community you can still get all the information you need to plan your next visit to the track. You can also follow your favourite tracks, championships and events and view them all on your own calendar via the User Dashboard.
+          If you're already part of the Karting community you can stop browing through different websites to find out about Test Days and Race Weekends, Kartstream aims to be up to date and offer all the relevant information in one place. You can also follow your favourite tracks, championships and add events to your own calendar and view your schedule on your User Dashboard.
         </p>
+        <h3 class="text-white font-extrabold text-lg my-2">Free to try</h3>
         <p>
-          For now, Signing up for an account is free and will give you access to all the features KartStream has to offer. You can also help us by submitting any data corrections you may find.
+          For now, Signing up for an account is free and will give you access to all the features KartStream has to offer. You can also help us by submitting any data corrections you may notice are incorrect.
+        </p>
+        <h3 class="text-white font-extrabold text-lg my-2">...and a Bonus feature</h3>
+        <p>
+          We know how easy it is to misplace paperwork so we are also working on a digital engine logbook which will allow you to store your engine rebuild records and dyno sheets digitally for easy reference later and to easily show to potential buyers.
         </p>
         <div class= "grid grid-cols-1 gap-4">
           <div class="p-4 space-x-4 flex justify-center">
@@ -85,68 +93,29 @@
         
       </div>
     </div>
-    <div class="lg:w-1/2 w-full">
-      <%= image_tag "jhphoto-3117.webp", alt: "Challenges", class: "max-w-full h-auto w-full" %>
+    <div class="lg:w-1/2 w-full flex items-center justify-center">
+      <%= image_tag "homeprocess.webp", alt: "Process description", class: "lg:max-w-lg max-w-full relative z-50 rounded" %>
     </div>
   </div>
 </div>
 
-
-<div class="bg-gradient-to-br from-slate-800 to-slate-900 text-white">
-  <div class="max-w-6xl mx-auto px-4 grid lg:grid-cols-2 grid-cols-1 gap-10 relative lg:py-24 py-16">
-    <div class="flex items-center md:justify-center">
-      <div
-        style="background-image: <%= asset_url('checkboard-pattern.svg') %>"
-        class="bg-repeat-y w-32 absolute top-0 left-0 h-full lg:opacity-100 opacity-50">
-      </div>
-
-      <%= image_tag "homeprocess.webp", alt: "Process description", class: "lg:max-w-lg max-w-full inline text-center relative z-50 rounded" %>
-    </div>
-    <div>
-      <p class="text-indigo-300 uppercase tracking-wider text-sm font-medium dark:text-indigo-500">KartStream</p>
-      <h3 class="text-white font-extrabold text-3xl my-2">Organise your Season</h3>
-      <div class="prose prose-indigo text-white max-w-lg">
-        <p>
-          KartStream is your go-to source for up-to-date karting events. Our platform meticulously compiles and presents a wide array of events, from local test and race days to major championships across the UK. With just a few clicks, you can access detailed informatiom, ensuring you're always in the know about upcoming karting events. Planning your next race or visit to the track has never been easier.
-          </p>
-          
-          <h4 class="text-white font-extrabold text-xl">Follow and Connect with Your Karting World</h4>
-          <p>
-          But KartStream is more than just a calendar. It's a dynamic community hub where you can follow your favorite events, championships, and tracks. Stay engaged with the karting world by getting regular updates and notifications about the events you care about. Whether you're tracking the progress of specific championships or keeping an eye on your local track, KartStream keeps you connected and informed.
-
-          Join the KartStream community today and elevate your karting experience. Stay ahead with our comprehensive schedules and engage with the events and tracks that fuel your passion for karting.
-        </p>
-
-        <p>Join the KartStream community today and elevate your karting experience. Stay ahead with our comprehensive schedules and engage with the events and tracks that fuel your passion for karting</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="bg-slate-100 dark:bg-slate-900 lg:py-20 py-16">
+<div class="bg-gradient-to-br from-slate-800 to-slate-900 lg:py-20 py-16">
   <div class="container mx-auto sm:px-16 px-4">
     <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-24 gap-12">
       <div>
-        <h3 class="font-extrabold lg:text-4xl text-3xl">KartStream Software <br class="lg:block hidden" /> digitally supporting the
-          Karting Community
-        </h3>
-        <p class="my-6 text-slate-700 text-lg leading-relaxed dark:text-slate-300">A Team Fueled by Passion and Expertise</p>
+        <h3 class="font-extrabold lg:text-4xl text-3xl">Digitally supporting Motorsport</h3>
+        <p class="my-6 text-slate-700 text-lg leading-relaxed dark:text-slate-300">At the heart of KartStream a one man team; a karting parent and a software developer.</p>
         <div class="prose prose-indigo dark:prose-invert">
           <p>
-            At the heart of KartStream is a dedicated team of developers and karting aficionados. We blend our deep understanding of technology with a genuine love for the sport to create digital solutions that are not just innovative, but also resonate with the karting community. Our expertise in Ruby on Rails, combined with a keen eye for user experience, drives us to deliver products that are both powerful and easy to use.
+           This app was born out of the need to have all the information in one place, as a parent of a young driver I found it difficult to keep track of all the events and test days and found myself browsing through different websites to find out about events and track information. I also see plenty of social media posts asking about track info and test day dates.
           </p>
-          <p class="my-6 text-slate-700 text-lg leading-relaxed dark:text-slate-300">Stay Tuned for What's Coming</p>
           <p>
-            Our journey doesn't end with KartStream. We're constantly exploring new horizons in the digital karting world. Our team is hard at work, developing a range of karting-focused digital products that promise to transform your experience of the sport. From advanced tracking tools to interactive platforms for fans, we are committed to enhancing every aspect of karting through technology.
-
-            While we continue to enhance KartStream, we are also excited about what lies ahead. Our upcoming projects are designed to bring more engagement, more insights, and more excitement to the karting community. Keep an eye out for our future releases – they are set to redefine the digital karting landscape.
-
-            Join us on this thrilling ride as we shape the future of karting digital experiences. With KartStream and our forthcoming innovations, the best is yet to come!  
+           The whole app has been built from the ground up a single person alongside weekend Karting and a full time job so it's been a long process but I'm excited to finally be able to share it with the Karting Community.
           </p>
-          <%= link_to about_path, class: "font-medium text-indigo-600 dark:text-indigo-400 flex items-center group" do %>
-            Read more about what we've been working on
-            <%= icon "chevron-right", classes: "group-hover:transform group-hover:translate-x-1 group-hover:transition-transform group-hover:duration-300 ml-2 w-2 h-2 fill-current transform transition duration-300", variant: :solid %>
-          <% end %>
+          <p>
+            If your a Track or championship owner and feel you want more control over you page or I have not included you and would like to have your information added to the app please get in touch.
+          </p>
+          <p class="my-6 text-slate-700 leading-relaxed dark:text-slate-300 font-semibold">The app is a work in progress and constantly being worked on, if you see something incorrect or missing feel free to submit a correction request.</p>
         </div>
       </div>
       <div>
@@ -159,7 +128,8 @@
                 d="m12.5312 16.9375c0 1.3333-.5416 2.5-1.625 3.5-1.06245 1-2.32287 1.5-3.7812 1.5-2.29167 0-4.05208-.7604-5.28125-2.2813-1.229167-1.5208-1.84375-3.625-1.84375-6.3124 0-2.5 1.05208-5.02088 3.15625-7.56255 2.125-2.54167 4.67708-4.46875 7.65625-5.78125l1.375 2.21875c-2.35417 1.14583-4.19792 2.47917-5.53125 4s-2.10417 3.36458-2.3125 5.53125h1.75c1.29167 0 2.34375.1458 3.15625.4375s1.4688.6979 1.9688 1.2187c.4791.5.8124 1.0521 1 1.6563.2083.6042.3124 1.2292.3124 1.875zm15.4063 0c0 1.3333-.5417 2.5-1.625 3.5-1.0625 1-2.3229 1.5-3.7813 1.5-2.2916 0-4.052-.7604-5.2812-2.2813-1.2292-1.5208-1.8438-3.625-1.8438-6.3124 0-2.5 1.0521-5.02088 3.1563-7.56255 2.125-2.54167 4.6771-4.46875 7.6563-5.78125l1.375 2.21875c-2.3542 1.14583-4.198 2.47917-5.5313 4s-2.1042 3.36458-2.3125 5.53125h1.75c1.2917 0 2.3438.1458 3.1562.4375.8126.2917 1.4688.6979 1.9688 1.2187.4792.5.8125 1.0521 1 1.6563.2083.6042.3125 1.2292.3125 1.875z">
               </path>
             </svg>
-            KartStream will be the first of a few digital products in the pipeline to help drivers, teams, mechanics and parents in the Karting Community.
+                        I have a few ideas for feature additions and improvements and I'm always open to suggestions from the community if you feel would make your life easier.
+
             <cite class="font-semibold text-base block mt-4">&mdash; Lead Developer</cite>
           </blockquote>
         </div>
@@ -186,36 +156,78 @@
   </div>
 </div>
 
-<div class="container mx-auto lg:py-20 py-10 sm:px-16 px-4">
-  <h5 class="tracking-wider lg:text-4xl text-3xl text-center mb-6 font-extrabold">Latest News </h5>
+<div class="container mx-auto sm:px-16 sm:px-16 px-4 lg:py-24 pb-16 pt-16">
+  <div class="flex flex-col sm:flex-row items-center space-x-0 sm:space-x-4 space-y-4 sm:space-y-0">
+    <div class="lg:w-1/3 w-full">
+      <article class="overflow-hidden rounded-lg shadow transition hover:shadow-lg">
+        <img
+          alt=""
+          src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
+          class="h-56 w-full object-cover"
+        />
 
-  <div class="flex items-start justify-between flex-wrap">
-    <article class="lg:w-1/3 w-full lg:p-6 p-3">
-      <%= link_to "#", class: "group" do %>
-        <%= image_tag "kartstreamnewsimage1.webp", alt: "Description for this image", class: "shadow-lg group-hover:shadow-none duration-300 transition-all" %>
-        <h1 class="text-slate-900 my-4 leading-tight font-extrabold text-lg group-hover:text-slate-800 dark:text-slate-200 dark:group-hover:text-indigo-500">KartStream V1.0 launches February 1st 2024</h1>
-        <p class="text-slate-700 dark:text-slate-400">It's been a while in the making and still not perfect but the first release of KartStream is now live, so far only a handful of features which we had in mind are live so there is much more to come from us. Ideally KartStream will be a </p>
-      <% end %>
-    </article>
-    <article class="lg:w-1/3 w-full lg:p-6 p-3">
-      <%= link_to "#", class: "group" do %>
-        <%= image_tag random_default_image, alt: "Description for this image", class: "shadow-lg group-hover:shadow-none duration-300 transition-all" %>
-        <h1 class="text-slate-900 my-4 leading-tight font-extrabold text-lg group-hover:text-slate-800 dark:text-slate-200 dark:group-hover:text-indigo-500">KartStream updates scheduled for late February</h1>
-        <p class="text-slate-700 dark:text-slate-400">We have a few new features which did not quite make the first release so we hope to add those in over the coming weeks. We also aren't 100% with every page layout so will be working on that to give all users the best experience on desktop and mobile. If you see something which you feel you can help with please get in touch.</p>
-      <% end %>
-    </article>
-    <article class="lg:w-1/3 w-full lg:p-6 p-3">
-      <%= link_to "#", class: "group" do %>
-        <%= image_tag random_default_image, alt: "Description for this image", class: "shadow-lg group-hover:shadow-none duration-300 transition-all" %>
-        <h1 class="text-slate-900 my-4 leading-tight font-extrabold text-lg group-hover:text-slate-800 dark:text-slate-200 dark:group-hover:text-indigo-500">Help us improve KartStream!
-        </h1>
-        <p class="text-slate-700 dark:text-slate-400">We are actively seeking data corrections for all information on KartStream. It's a big job and we need your help! If you spot any errors, please let us know by creating an account, login and click the button at the bottom of each page and we'll do our best to correct quickly.
-        </p>
-      <% end %>
-    </article>
+        <div class="bg-white p-4 sm:p-6">
+          <time datetime="2022-10-10" class="block text-xs text-gray-500"> 10th Oct 2022 </time>
+
+          <a href="#">
+            <h3 class="mt-0.5 text-lg text-gray-900">How to position your furniture for positivity</h3>
+          </a>
+
+          <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
+            pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
+            mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
+            dignissimos. Molestias explicabo corporis voluptatem?
+          </p>
+        </div>
+      </article>
+    </div>
+    <div class="lg:w-1/3 w-full">
+      <article class="overflow-hidden rounded-lg shadow transition hover:shadow-lg">
+        <img
+          alt=""
+          src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
+          class="h-56 w-full object-cover"
+        />
+
+        <div class="bg-white p-4 sm:p-6">
+          <time datetime="2022-10-10" class="block text-xs text-gray-500"> 10th Oct 2022 </time>
+
+          <a href="#">
+            <h3 class="mt-0.5 text-lg text-gray-900">How to position your furniture for positivity</h3>
+          </a>
+
+          <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
+            pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
+            mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
+            dignissimos. Molestias explicabo corporis voluptatem?
+          </p>
+        </div>
+      </article>
+    </div><div class="lg:w-1/3 w-full">
+      <article class="overflow-hidden rounded-lg shadow transition hover:shadow-lg">
+        <img
+          alt=""
+          src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
+          class="h-56 w-full object-cover"
+        />
+
+        <div class="bg-white p-4 sm:p-6">
+          <time datetime="2022-10-10" class="block text-xs text-gray-500"> 10th Oct 2022 </time>
+
+          <a href="#">
+            <h3 class="mt-0.5 text-lg text-gray-900">How to position your furniture for positivity</h3>
+          </a>
+
+          <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
+            pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
+            mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
+            dignissimos. Molestias explicabo corporis voluptatem?
+          </p>
+        </div>
+      </article>
+    </div>
   </div>
 </div>
-
-
-
-          
