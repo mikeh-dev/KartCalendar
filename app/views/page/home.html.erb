@@ -4,20 +4,47 @@
     <%= render "shared/nav_menu" %>
   </div>
   <div class="container mx-auto sm:py-24 pb-5 px-4 relative z-10 flex flex-wrap items-center justify-between">
-    <div class="xl:w-2/5 w-full xl:text-left text-center xl:pr-16">
+    <div class="xl:w-3/5 w-full xl:text-left text-center xl:pr-16">
       <p class="text-indigo-600 font-medium mb-6 lg:mt-0 mt-2 dark:text-indigo-500">A KartStream Product</p>
       <h1 class="sm:text-6xl text-4xl font-extrabold">KartStream</h1>
-      <p class="my-6 text-slate-700 dark:text-slate-400 text-lg">The Ultimate UK Karting Companion for the Racing Community.</p>
-        <div class="grid grid-cols-1 gap-4">
-        <% unless user_signed_in? %>
-          <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary btn-lg z-30" %>
-        <% end %>
-        </div>
     </div>
 
-    <div class="xl:w-3/5 w-full xl:my-0 mt-6 mb-10">
+    <div class="xl:w-3/5 w-full xl:text-left text-center xl:pr-16">
+      <p class="my-6 text-slate-700 dark:text-slate-400 text-lg">The Ultimate UK Karting Companion for the Racing Community.</p>
+      <dl class="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
+            <div class="relative pl-9">
+              <dt class="inline font-semibold text-white">
+                <svg class="absolute left-1 w-5 h-10 text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd" />
+                </svg>
+                Kart Track Directory
+              </dt>
+              <dd class="">Bringing you all the UK Kart Track information together in one place.</dd>
+            </div>
+            <div class="relative pl-9">
+              <dt class="inline font-semibold text-white">
+                <svg class="absolute left-1 h-10 w-5 text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path d="M16.557,4.467h-1.64v-0.82c0-0.225-0.183-0.41-0.409-0.41c-0.226,0-0.41,0.185-0.41,0.41v0.82H5.901v-0.82c0-0.225-0.185-0.41-0.41-0.41c-0.226,0-0.41,0.185-0.41,0.41v0.82H3.442c-0.904,0-1.64,0.735-1.64,1.639v9.017c0,0.904,0.736,1.64,1.64,1.64h13.114c0.904,0,1.64-0.735,1.64-1.64V6.106C18.196,5.203,17.461,4.467,16.557,4.467 M17.377,15.123c0,0.453-0.366,0.819-0.82,0.819H3.442c-0.453,0-0.82-0.366-0.82-0.819V8.976h14.754V15.123z M17.377,8.156H2.623V6.106c0-0.453,0.367-0.82,0.82-0.82h1.639v1.23c0,0.225,0.184,0.41,0.41,0.41c0.225,0,0.41-0.185,0.41-0.41v-1.23h8.196v1.23c0,0.225,0.185,0.41,0.41,0.41c0.227,0,0.409-0.185,0.409-0.41v-1.23h1.64c0.454,0,0.82,0.367,0.82,0.82V8.156z"></path>
+                </svg>
+                Test Day and Race Event Calendar
+              </dt>
+              <dd class="">View all the 2024 Events from Clubs and Championships.</dd>
+            </div>
+            <div class="relative pl-9">
+              <dt class="inline font-semibold text-white">
+                <svg class="absolute left-1 h-10 w-5 text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path d="M4.632 3.533A2 2 0 016.577 2h6.846a2 2 0 011.945 1.533l1.976 8.234A3.489 3.489 0 0016 11.5H4c-.476 0-.93.095-1.344.267l1.976-8.234z" />
+                  <path fill-rule="evenodd" d="M4 13a2 2 0 100 4h12a2 2 0 100-4H4zm11.24 2a.75.75 0 01.75-.75H16a.75.75 0 01.75.75v.01a.75.75 0 01-.75.75h-.01a.75.75 0 01-.75-.75V15zm-2.25-.75a.75.75 0 00-.75.75v.01c0 .414.336.75.75.75H13a.75.75 0 00.75-.75V15a.75.75 0 00-.75-.75h-.01z" clip-rule="evenodd" />
+                </svg>
+                Digital Engine Logbook
+              </dt>
+              <dd class="">Store your Engine rebuild records and dyno sheets digitally for easy reference later.</dd>
+            </div>
+          </dl>
+    </div>
+    <div class="xl:w-2/5 w-full xl:my-0 mt-6 mb-10">
       <div class="justify-center relative">
-        <%= image_tag "hero-image1.webp", alt: "Team", class: "max-w-full xl:max-w-2xl 2xl:max-w-3xl object-cover rounded-3xl relative z-9 shadow-2xl shadow-slate-500/20" %>
+        <%= image_tag "hero-image1.webp", alt: "Homepage Image of Kart", class: "max-w-full xl:max-w-l 2xl:max-w-xl object-cover rounded-3xl relative z-9 shadow-2xl shadow-slate-500/20" %>
         <div
           class="w-[650px] h-[650px] bg-indigo-500/10 absolute -bottom-10 left-5 rounded-full z-0 blur-2xl sm:block hidden">
         </div>
@@ -29,8 +56,6 @@
   </div>
 </header>
 <% end %>
-
-
 
 <div class="container mx-auto sm:px-16 sm:px-16 px-4 lg:py-24 pb-16 pt-0">
   <div class="flex flex-wrap items-center justify-between">
@@ -55,6 +80,12 @@
       <%= image_tag "jhphoto-3117.webp", alt: "Challenges", class: "max-w-full h-auto w-full" %>
     </div>
   </div>
+</div>
+
+<div class="grid grid-cols-1 gap-4">
+  <% unless user_signed_in? %>
+    <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary btn-lg z-30" %>
+  <% end %>      
 </div>
 
 <div class="bg-gradient-to-br from-slate-800 to-slate-900 text-white">
@@ -180,3 +211,7 @@
     </article>
   </div>
 </div>
+
+
+
+          
