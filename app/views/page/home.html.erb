@@ -10,7 +10,7 @@
     </div>
 
     <div class="xl:w-3/5 w-full xl:text-left text-center xl:pr-16">
-      <p class="my-6 text-slate-700 dark:text-slate-400 text-lg">The Ultimate UK Karting Companion for the Racing Community.</p>
+      <p class="my-6 text-slate-700 dark:text-slate-400 text-lg">The UK Karting Companion for the Racing Community.</p>
       <dl class="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
             <div class="relative pl-9">
               <dt class="inline font-semibold text-white">
@@ -61,19 +61,28 @@
   <div class="flex flex-wrap items-center justify-between">
     <div class="lg:w-1/2 w-full">
       <span class="block w-20 bg-slate-300 dark:bg-slate-700 h-px"></span>
-      <h2 class="font-extrabold lg:text-4xl text-3xl pt-10">We'd had enough of browsing the web looking for dates...</h2>
+      <h2 class="font-extrabold lg:text-4xl text-3xl pt-10">How can this help me?</h2>
       <div class="max-w-lg mt-6 prose prose-indigo dark:prose-invert">
-        <p>Discover Karting Events with Ease.
-          Gone are the days of endless web browsing to find karting dates. KartStream revolutionizes your karting experience by bringing all UK karting events into one easy-to-navigate platform. Our user-friendly interface allows you to quickly find events, track days, and championships, tailored to your class.
+        <p>
+          If your new to Karting you can explore all the UK Tracks, browse the basic information and check out when the next events are inc Test Days and Race Days. You'll also be able to see what Championships are running and when.
         </p>
-        <p>Whether you're a driver, team member, mechanic, or an enthusiastic supporter, KartStream has something for everyone. Our comprehensive database includes detailed information about UK tracks, upcoming test days, and exciting race days, ensuring you never miss out on any karting action.
-
-          Dive into a world where convenience meets passion. KartStream not only lists events but also provides essential details, allowing you to plan your karting activities effortlessly. From privateers to team owners, our platform caters to all levels, offering a unique window into the vibrant UK karting scene..
+        <p>
+          If you're already part of the Karting community you can still get all the information you need to plan your next visit to the track. You can also follow your favourite tracks, championships and events and view them all on your own calendar via the User Dashboard.
         </p>
-        <%= link_to events_path, class: " btn btn-primary font-medium text-white dark:text-white flex items-center group mb-5 w-48" do %>
-            View Events
-          <%= icon "chevron-right", classes: "group-hover:transform group-hover:translate-x-1 group-hover:transition-transform group-hover:duration-300 ml-2 w-2 h-2 fill-current transform transition duration-300", variant: :solid %>
-        <% end %>
+        <p>
+          For now, Signing up for an account is free and will give you access to all the features KartStream has to offer. You can also help us by submitting any data corrections you may find.
+        </p>
+        <div class= "grid grid-cols-1 gap-4">
+          <div class="p-4 space-x-4 flex justify-center">
+            <%= link_to events_path, class: "btn btn-primary font-medium text-white dark:text-white flex items-center group mb-5" do %>
+              View Events Calendar
+            <% end %>
+            <% unless user_signed_in? %>
+              <%= link_to "Sign Up for an Account", new_user_registration_path, class: "btn btn-primary font-medium text-white dark:text-white flex items-center group mb-5" %>
+            <% end %> 
+          </div>   
+        </div>
+        
       </div>
     </div>
     <div class="lg:w-1/2 w-full">
@@ -82,11 +91,6 @@
   </div>
 </div>
 
-<div class="grid grid-cols-1 gap-4">
-  <% unless user_signed_in? %>
-    <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary btn-lg z-30" %>
-  <% end %>      
-</div>
 
 <div class="bg-gradient-to-br from-slate-800 to-slate-900 text-white">
   <div class="max-w-6xl mx-auto px-4 grid lg:grid-cols-2 grid-cols-1 gap-10 relative lg:py-24 py-16">
