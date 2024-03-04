@@ -7,10 +7,10 @@
     <div class="w-full text-left text-center xl:pr-16 mb-10">
       <p class="text-indigo-600 font-medium lg:mt-0 mt-2 dark:text-indigo-500">A KartStream Product</p>
       <h1 class="sm:text-6xl text-4xl font-extrabold">KartStream</h1>
+      <p class="my-3 text-slate-700 dark:text-slate-400 text-lg">The UK Karting Companion for the Racing Community.</p>
     </div>
 
     <div class="xl:w-3/5 w-full xl:text-left text-center xl:pr-16">
-      <p class="my-6 text-slate-700 dark:text-slate-400 text-lg">The UK Karting Companion for the Racing Community.</p>
       <dl class="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
             <div class="relative pl-9">
               <dt class="inline font-semibold text-white">
@@ -61,7 +61,7 @@
   <div class="flex flex-wrap items-center justify-between">
     <div class="lg:w-1/2 w-full">
       <span class="block w-20 bg-slate-300 dark:bg-slate-700 h-px"></span>
-      <p class="text-indigo-300 uppercase tracking-wider text-sm font-medium dark:text-indigo-500 pt-10">KartStream</p>
+      <p class="text-indigo-300 uppercase tracking-wider text-sm font-medium dark:text-indigo-500 pt-10">Built for the User</p>
       <h2 class="font-extrabold lg:text-4xl text-3xl">How can this help me?</h2>
       <div class="max-w-lg mt-6 prose prose-indigo dark:prose-invert">
         <h3 class="text-white font-extrabold text-lg my-2">All the information in one place</h3>
@@ -103,6 +103,7 @@
   <div class="container mx-auto sm:px-16 px-4">
     <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-24 gap-12">
       <div>
+        <p class="text-indigo-300 uppercase tracking-wider text-sm font-medium dark:text-indigo-500 pt-10">About Us</p>
         <h3 class="font-extrabold lg:text-4xl text-3xl">Digitally supporting Motorsport</h3>
         <p class="my-6 text-slate-700 text-lg leading-relaxed dark:text-slate-300">At the heart of KartStream a one man team; a karting parent and a software developer.</p>
         <div class="prose prose-indigo dark:prose-invert">
@@ -128,8 +129,7 @@
                 d="m12.5312 16.9375c0 1.3333-.5416 2.5-1.625 3.5-1.06245 1-2.32287 1.5-3.7812 1.5-2.29167 0-4.05208-.7604-5.28125-2.2813-1.229167-1.5208-1.84375-3.625-1.84375-6.3124 0-2.5 1.05208-5.02088 3.15625-7.56255 2.125-2.54167 4.67708-4.46875 7.65625-5.78125l1.375 2.21875c-2.35417 1.14583-4.19792 2.47917-5.53125 4s-2.10417 3.36458-2.3125 5.53125h1.75c1.29167 0 2.34375.1458 3.15625.4375s1.4688.6979 1.9688 1.2187c.4791.5.8124 1.0521 1 1.6563.2083.6042.3124 1.2292.3124 1.875zm15.4063 0c0 1.3333-.5417 2.5-1.625 3.5-1.0625 1-2.3229 1.5-3.7813 1.5-2.2916 0-4.052-.7604-5.2812-2.2813-1.2292-1.5208-1.8438-3.625-1.8438-6.3124 0-2.5 1.0521-5.02088 3.1563-7.56255 2.125-2.54167 4.6771-4.46875 7.6563-5.78125l1.375 2.21875c-2.3542 1.14583-4.198 2.47917-5.5313 4s-2.1042 3.36458-2.3125 5.53125h1.75c1.2917 0 2.3438.1458 3.1562.4375.8126.2917 1.4688.6979 1.9688 1.2187.4792.5.8125 1.0521 1 1.6563.2083.6042.3125 1.2292.3125 1.875z">
               </path>
             </svg>
-                        I have a few ideas for feature additions and improvements and I'm always open to suggestions from the community if you feel would make your life easier.
-
+            I have a few ideas for feature additions and improvements and I'm always open to feature suggestions from the community if you feel something would make your life easier.
             <cite class="font-semibold text-base block mt-4">&mdash; Lead Developer</cite>
           </blockquote>
         </div>
@@ -151,6 +151,44 @@
       <div>
         <p class="text-slate-600 dark:text-slate-400">Championships</p>
         <h4 class="font-extrabold text-3xl lg:text-5xl">9</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mx-auto sm:px-16 px-4 lg:py-15 pb-16 pt-16">
+  <p class="text-indigo-300 uppercase tracking-wider text-sm font-medium dark:text-indigo-500 pt-10">Get Started</p>
+  <h3 class="font-extrabold lg:text-4xl text-3xl mb-10">Take a look around...</h3>
+  <div class="flex flex-col sm:flex-row items-center space-x-0 sm:space-x-4 space-y-4 sm:space-y-0">
+    <div class="lg:w-1/3 w-full">
+      <div class="overflow-hidden rounded-lg shadow transition hover:shadow-lg">
+      <%= link_to tracks_path do %>
+        <%= image_tag "jhphoto-3114-65cab31d815ad.webp", alt: "Homepage Image of Kart", class: "h-56 w-full object-cover" %>
+        <div class="bg-gradient-to-br from-slate-800 to-slate-900 p-4 sm:p-6">
+            <h3 class="mt-0.5 text-2xl font-bold text-white">Tracks</h3>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="lg:w-1/3 w-full">
+      <div class="overflow-hidden rounded-lg shadow transition hover:shadow-lg">
+        <%= link_to championships_path do %> 
+        <%= image_tag "jhphoto-3119-65cab328a4f87.webp", alt: "Homepage Image of Kart", class: "h-56 w-full object-cover" %>
+          <div class="bg-gradient-to-br from-slate-800 to-slate-900 p-4 sm:p-6">
+              <h3 class="mt-0.5 text-2xl font-bold text-white">Championships</h3>
+            
+          </div>
+        <% end %>
+      </div>
+    </div>    
+    <div class="lg:w-1/3 w-full">
+      <div class="overflow-hidden rounded-lg shadow transition hover:shadow-lg">
+      <%= link_to events_path do %>
+        <%= image_tag "jhphoto-3113-65cab32e1987c.webp", alt: "Homepage Image of Kart", class: "h-56 w-full object-cover" %>
+        <div class="bg-gradient-to-br from-slate-800 to-slate-900 p-4 sm:p-6">
+            <h3 class="mt-0.5 text-2xl font-bold text-white">Events</h3>
+        </div>
+      <% end %>
       </div>
     </div>
   </div>
