@@ -1,13 +1,11 @@
 <%= link_to event_path(event), data: { turbo: false } do %>
-<li class="relative flex space-x-6 py-6 xl:static">
-  <% if event.track.main_image.attached? %>
-    <%= image_tag event.track.main_image, class: "h-14 w-14 flex-none rounded-full", alt: "" %>
-  <% else %>
-    <%= image_tag 'image1-2-65cab320c5e17.webp', class: "h-14 w-14 flex-none rounded-full", alt: "" %>
-  <% end %>
-  <div class="flex-auto">
-    <h3 class="pr-10 font-bold text-gray-500 xl:pr-0"><%= event.title %> <%= event&.championship&.long_name %></h3>
-    <dl class="mt-2 flex flex-col text-gray-500 xl:flex-row">
+<li class="relative flex space-x-6 xl:static border border-gray-300 rounded-lg mb-2 hover:bg-indigo-200">
+    <div class="relative w-1/5 m-0 overflow-hidden text-gray-700 bg-white rounded-lg rounded-r-none shrink-0" > <!-- Container for the image, flex-none to prevent growing or shrinking -->
+      <%= image_tag 'image1-2-65cab320c5e17.webp', class: "h-full w-full  object-cover", alt: "" %>
+    </div>
+  <div class="flex-auto flex flex-col justify-start py-2">
+    <p class="font-bold text-white text-left"><%= event.title %> <%= event&.championship&.short_name %></p>
+    <dl class="mt-2 flex flex-col text-gray-500">
       <div class="flex items-start space-x-3">
         <dt class="mt-0.5">
           <span class="sr-only">Date</span>
@@ -15,10 +13,9 @@
             <path fill-rule="evenodd" d="M5.75 2a.75.75 0 01.75.75V4h7V2.75a.75.75 0 011.5 0V4h.25A2.75 2.75 0 0118 6.75v8.5A2.75 2.75 0 0115.25 18H4.75A2.75 2.75 0 012 15.25v-8.5A2.75 2.75 0 014.75 4H5V2.75A.75.75 0 015.75 2zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75z" clip-rule="evenodd" />
           </svg>
         </dt>
-        <dd><time datetime="2022-01-10T17:00"><%= event.start_date.strftime("%B %-d, %Y") %> -</time></dd>
-        <dd><time datetime="2022-01-10T17:00"><%= event.end_date.strftime("%B %-d, %Y") %></time></dd>
+        <dd><time datetime="2022-01-10T17:00"><%= event.start_date.strftime("%B %-d, %Y") %></time></dd>
       </div>
-      <div class="mt-2 flex items-start space-x-3 xl:mt-0 xl:ml-3.5 xl:border-l xl:border-gray-400 xl:border-opacity-50 xl:pl-3.5">
+      <div class="mt-2 flex items-start space-x-3">
         <dt class="mt-0.5">
           <span class="sr-only">Location</span>
           <!-- Heroicon name: mini/map-pin -->
