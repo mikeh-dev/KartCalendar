@@ -3,7 +3,6 @@
     <p class="text-indigo-600 font-medium mb-3 lg:mt-0 mt-2 dark:text-indigo-500">Next Up</p>
     <h1 class="sm:text-5xl text-4xl font-extrabold">This Weekends Events</h1>
   </div>
-  <!-- Adjust the grid setup here -->
   <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
     <% @this_weekends_events.each do |event| %>
       <div class="relative flex bg-clip-border rounded-xl bg-white text-gray-700 shadow-md w-full max-w-[48rem] ">
@@ -11,25 +10,33 @@
           <%= image_tag random_default_image, alt: "Events", class: "object-cover w-full h-full" %>
         </div>
         <div class="p-6">
-        <div class="mb-3">
+          <div class="mb-3">
           <span class="bg-indigo-600 text-white px-3 py-1 rounded-full text-sm font-medium">
             <%= event.event_type %>
           </span>
         </div>
           <h5 class="block mb-2 font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-            <% if event.championship.present? %>
+            <% if event.championship&.logo.present? %>
+              <%= image_tag event.championship.logo, alt: "Championship", class: "w-30 h-10 object-contain" %>
+            <% elsif event.championship.present? %>
               <%= event.championship.name %>
             <% end %>
           </h5>
-          <h4 class="block mb-2 font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+          <h4 class="block mb-2 font-sans text-1xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
             <%= event.title %>
           </h4>
-          <p class="block mb-2 font-sans text-base antialiased font-normal leading-relaxed text-gray-700 text-wrap">
-            <%= event.description.truncate(80, omission: '...') %>
+          <p class="block mb-4 font-sans text-base antialiased font-extrabold leading-relaxed text-gray-700 text-wrap">
+            at <%= event.track.name %>
           </p>
-          <p class="mb-6">
-            <span class="font-sans text-xs antialiased font-semibold leading-relaxed tracking-normal text-gray-700 uppercase">
-             <%= event.start_date.strftime('%B %d, %Y') %>
+          <p class="block mb-4 font-sans text-base antialiased font-normal leading-relaxed text-gray-700 text-wrap">
+            <%= event.description.truncate(80, omission: '...') %>
+          </p>   
+          <p class="mb-6 mt-6">
+            <span class="bg-gray-100 text-white text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded me-2 dark:bg-gray-700 dark:text-white border border-gray-500 ">
+            <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
+            </svg>
+              <%= event.start_date.strftime('%B %d, %Y') %>
             </span>
           </p>
           <%= link_to event_path(event), class: "border flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none hover:bg-gray-900/10 active:bg-gray-900/20" do %>
@@ -71,11 +78,19 @@
           <%= image_tag random_default_image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
         <% end %>
         <div class="p-4">
-          <h2 class="text-xl text-gray-800 font-semibold mb-2"><%= event.title %></h2>
-          <p class="text-gray-600 mb-2"><%= event.start_date.strftime('%B %d, %Y') %></p>
-          <p class="text-gray-800"><%= event.description.truncate(150, omission: '...') %></p>
+        <div class="flex justify-center items-center">
+          <h5 class="block mb-2 font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+            <% if event.championship&.logo.present? %>
+              <%= image_tag event.championship.logo, alt: "Championship", class: "w-30 h-12 object-contain" %>
+            <% elsif event.championship.present? %>
+              <%= event.championship.name %>
+            <% end %>
+          </h5>
         </div>
-        <div class="bg-white p-4 space-x-4 flex justify-center">
+          <h2 class="text-xl text-gray-800 font-semibold mb-2 text-center"><%= event.title %> at <%= event.track.name %></h2>
+          <p class="text-gray-600 mb-2 text-center"><%= event.start_date.strftime('%d %B, %Y') %></p>
+        </div>
+        <div class="bg-white pb-4 space-x-4 flex justify-center">
           <%= link_to "View Details", event_path(event), class: "btn btn-primary" %>
           <% if current_user&.admin? %>
             <%= link_to "Edit Event", edit_event_path(event), class: "btn btn-dark" %> 
