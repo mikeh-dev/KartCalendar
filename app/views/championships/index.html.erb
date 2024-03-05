@@ -1,36 +1,46 @@
 <div class="container mx-auto sm:py-24 pb-10 px-4 relative z-10 flex flex-wrap items-center justify-between">
   <div class="w-full text-center">
-    <p class="text-indigo-600 font-medium mb-6 lg:mt-0 mt-2 dark:text-indigo-500">Next Up</p>
+    <p class="text-indigo-600 font-medium mb-1 lg:mt-0 mt-2 dark:text-indigo-500">National and Club</p>
     <h1 class="sm:text-6xl text-4xl font-extrabold">Championships </h1>
-    
   </div>
 
 <div class="container mx-auto mt-8 px-4">
-  <h1 class="text-3xl font-semibold mb-4 text-center">UK Championships</h1>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
     <% @championships.each do |championship| %>
-      <div class="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col h-full">
-        <% if championship.image.present? %>
-          <%= image_tag championship.image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
-        <% else %>
-          <%= image_tag random_default_image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
-        <% end %>
-        <div class="p-4 flex-grow">
-          <% if championship.logo.present? %>
-          <div class="flex justify-center h-24 w-full overflow-hidden"> <!-- Fixed height container -->
-            <%= image_tag championship.logo, alt: "championship logo", class: "object-scale-down max-h-full" %> <!-- Scale down to fit -->
-          </div>
-        <% else %>
-            <h2 class="text-xl font-semibold mb-2 text-black text-center"><%= championship.long_name %></h2>
-          <% end %>
-          <p class="text-gray-600 mb-2 text-center font-semibold mt-5">Next Event</p>
-          <p class="text-gray-600 mb-2 text-center"><%= championship.next_champ_event.present? ? "#{championship.next_champ_event.title} on #{championship.next_champ_event.start_date.strftime('%d/%m/%y')}" : "No events scheduled" %></p>
+      <div class="relative flex bg-clip-border rounded-xl bg-white text-gray-700 shadow-md w-full max-w-[48rem] ">
+        <div class="relative w-2/5 m-0 overflow-hidden text-gray-700 bg-white rounded-r-none bg-clip-border rounded-xl shrink-0">
+          <%= image_tag random_default_image, alt: "Events", class: "object-cover w-full h-full" %>
         </div>
-        <div class="bg-white p-4 space-x-4 flex justify-center">
-          <%= link_to "View Championship", (championship_path(championship)), class: "text-white hover:light btn btn-dark" %>
-          <% this_champ_event = championship.next_champ_event %>
-          <% if this_champ_event.present? %>
-            <%= link_to "View Next Event", event_path(this_champ_event), class: "btn btn-primary text-white" %>
+        <div class="p-6">
+          <div class="mb-3">
+          <span class="bg-indigo-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+            <%= championship.champ_type %>
+          </span>
+        </div>
+          <h5 class="block mb-2 font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+            <% if championship&.logo.present? %>
+              <%= image_tag championship.logo, alt: "Championship", class: "w-30 h-10 object-contain" %>
+            <% elsif championship.present? %>
+              <%= championship.name %>
+            <% end %>
+          </h5>
+          <h4 class="block mb-2 font-sans text-1xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+            <%= championship.events.count %> Events
+          </h4>
+          <p class="block mb-2 font-sans text-base antialiased text-sm font-extrabold leading-relaxed text-gray-700 text-wrap">
+            Starts - <span class="font-normal"><%= championship.events.first.start_date.strftime("%B") %></span>
+          </p>
+           <p class="block mb-2 font-sans text-base antialiased text-sm font-extrabold leading-relaxed text-gray-700 text-wrap">
+            Championship Entry Fee - <span class="font-normal">£<%= championship.champ_fee %><span>
+          </p>
+          <p class="block mb-4 font-sans text-base antialiased text-sm font-normal leading-relaxed text-gray-700 text-wrap">
+            <%= championship.tagline %>
+          </p>
+          <%= link_to championship_path(championship), class: "border flex items-center gap-2 px-3 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none hover:bg-gray-900/10 active:bg-gray-900/20 w-36" do %>
+            <span>Learn More</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="w-4 h-4">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
+            </svg>
           <% end %>
         </div>
       </div>
