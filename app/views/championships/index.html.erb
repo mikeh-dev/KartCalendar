@@ -2,33 +2,8 @@
   <div class="w-full text-center">
     <p class="text-indigo-600 font-medium mb-6 lg:mt-0 mt-2 dark:text-indigo-500">Next Up</p>
     <h1 class="sm:text-6xl text-4xl font-extrabold">Championships </h1>
-    <p class="my-6 text-slate-700 dark:text-slate-400 text-lg">Explore Championships running events this weekend.</p>
+    
   </div>
-  
-  <div class="w-full grid <%= @next_championship_events.size > 1 ? 'md:grid-cols-2' : 'md:grid-cols-1' %>">
-    <% @next_championship_events.each do |champ_event| %>
-      <div class="flex flex-col items-center text-center mt-6">
-        <div class="flex justify-center relative mt-6 mx-4">
-          <% if champ_event.image.attached? %>
-            <%= image_tag champ_event.image, alt: "Events", class: "max-w-full object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
-          <% else %>
-            <%= image_tag random_default_image, alt: "Events", class: "max-w-full object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
-          <% end %>
-        </div>
-        <div class="w-full text-center mt-6 space-y-2 items-center justify-center">
-        <% if champ_event.logo.present? %>
-          <%= image_tag champ_event.logo, alt: "championship logo", class: "object-scale-down mx-auto" %>
-        <% end %>
-          <p class="text-l text-slate-700 dark:text-slate-400"><%= champ_event.long_name %></p>
-          <h1 class="text-3xl"><%= champ_event.events.first.title %></h1> 
-          <h1 class="text-2xl"><%= champ_event.events.first.track.name %></h1>
-          <p class="text-sm text-slate-700 dark:text-slate-400"><%= champ_event.events.first.start_date.strftime("%A, %B %e")  %> - <%= champ_event.events.first.end_date.strftime("%A, %B %e")  %></p>
-          <%= link_to "View Details", event_path(champ_event.events.first), class: "btn btn-primary text-white-500 mt-2" %>
-        </div>
-      </div>
-    <% end %>
-  </div>
-</div>
 
 <div class="container mx-auto mt-8 px-4">
   <h1 class="text-3xl font-semibold mb-4 text-center">UK Championships</h1>
