@@ -83,15 +83,19 @@
         </p>
         <div class= "grid grid-cols-1 gap-4">
           <div class="p-4 space-x-4 flex justify-center">
-            <%= link_to events_path, class: "btn btn-primary font-medium text-white dark:text-white flex items-center group mb-5" do %>
+            <%= link_to events_path, class: "btn btn-primary font-medium text-white dark:text-white flex items-center group" do %>
               View Events Calendar
             <% end %>
+             <%= link_to tracks_path, class: "btn btn-primary font-medium text-white dark:text-white flex items-center group" do %>
+              View Track Directory
+            <% end %>
+          </div>  
+          <div class="p-4 space-x-4 flex justify-center">
             <% unless user_signed_in? %>
               <%= link_to "Sign Up for an Account", new_user_registration_path, class: "btn btn-primary font-medium text-white dark:text-white flex items-center group mb-5" %>
-            <% end %> 
-          </div>   
+            <% end %>  
+          </div>
         </div>
-        
       </div>
     </div>
     <div class="lg:w-1/2 w-full flex items-center justify-center">
