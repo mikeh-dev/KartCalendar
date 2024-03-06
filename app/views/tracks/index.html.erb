@@ -1,5 +1,8 @@
 <div class="container mx-auto px-2 py-4">
-  <h1 class="text-3xl font-semibold mb-8 mt-10 text-center">Take a look at the best Owner/Driver UK Tracks</h1>
+  <div class="w-full text-center">
+    <p class="text-indigo-600 font-medium mb-1 lg:mt-0 mt-2 dark:text-indigo-500">UK Owner/Driver</p>
+    <h1 class="sm:text-6xl text-4xl font-extrabold">Tracks</h1>
+  </div>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-0">
     <% @tracks.each do |track| %>
         <% if track.main_image.attached? %>
@@ -20,7 +23,9 @@
                     <%= track.events.first.start_date.strftime("%A #{track.events.first.start_date.day.ordinalize} %B %Y") %>
                   </p>
                 <% else %>
-                  <p class="mb-4"><%= track.location %></p>
+                    <p class="mb-4"><svg class="inline w-5 h-10 text-indigo-600 mr-2 pb-2" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd" />
+                </svg><%= track.location %></p>
                 <% end %>
                 <%= link_to "View Track", track, class: "rounded border-2 border-neutral-50 px-7 pb-[8px] pt-[10px] text-sm font-medium uppercase leading-normal text-neutral-50 transition duration-150 ease-in-out hover:border-neutral-100 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-neutral-100 focus:border-neutral-100 focus:text-neutral-100 focus:outline-none focus:ring-0 active:border-neutral-200 active:text-neutral-200 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10" %>
                 <% if current_user&.admin? %>
