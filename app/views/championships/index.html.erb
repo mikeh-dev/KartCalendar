@@ -28,7 +28,9 @@
             <%= championship.events.count %> Events
           </h4>
           <p class="block mb-2 font-sans text-base antialiased text-sm font-extrabold leading-relaxed text-gray-700 text-wrap">
+          <% if championship.events.present? %>
             Starts - <span class="font-normal"><%= championship.events.first.start_date.strftime("%B") %></span>
+          <% end %>
           </p>
            <p class="block mb-2 font-sans text-base antialiased text-sm font-extrabold leading-relaxed text-gray-700 text-wrap">
             Championship Entry Fee - <span class="font-normal">£<%= championship.champ_fee %><span>
