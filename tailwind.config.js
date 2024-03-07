@@ -28,6 +28,17 @@ module.exports = {
         '4': '4px',
         '6': '6px',
         '8': '8px',
+      },
+      lineClamp: {
+        2: '2',
+        3: '3',
+        4: '4',
+        5: '5',
+        6: '6',
+        7: '7',
+        8: '8',
+        9: '9',
+        10: '10',
       }
     },
   },
@@ -36,5 +47,6 @@ module.exports = {
     require("@tailwindcss/forms"),
     // https://github.com/adoxography/tailwind-scrollbar
     require("tailwind-scrollbar")({ nocompatible: true }),
+    require('@tailwindcss/line-clamp')
   ],
 }
