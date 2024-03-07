@@ -54,7 +54,7 @@
         </div>
     </div>
     
-    <div class="mx-auto mt-10 mb-10 max-w-2xl lg:mx-0 lg:max-w-none">
+    <div class="mx-auto mt-10 mb-10 max-w-2xl lg:mx-0 lg:max-w-none border-b-2 border-slate-700">
       <dl class="mb-16 grid grid-cols-2 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
         <div class="flex flex-col-reverse">
           <dt class="text-base leading-7 text-gray-300">Track Length</dt>
@@ -66,7 +66,7 @@
         </div>
         <div class="flex flex-col-reverse">
           <dt class="text-base leading-7 text-gray-300">Next Race Day</dt>
-          <dd class="text-2xl font-bold leading-9 tracking-tight text-white"><%= @next_race_event.present? ? @next_race_event.start_date.strftime("%-d/%m/%Y") : "No Race Scheduled" %></dd>
+          <dd class="text-2xl font-bold leading-9 tracking-tight text-white"><%= @next_race_event.present? ? @next_race_event.start_date.strftime("%-d/%m/%Y") : "None" %></dd>
         </div>
           <div class="flex flex-col-reverse">
             <dt class="text-base leading-7 text-gray-300">Track Surface</dt>
@@ -87,8 +87,9 @@
           </div>
         <% end %>
       </dl>
+    </div>
 
-  <div class="mx-auto mt-10 mb-10 max-w-2xl lg:mx-0 lg:max-w-none">
+  <div class="mx-auto pb-10 mt-10 mb-10 max-w-2xl lg:mx-0 lg:max-w-none border-b-2 border-slate-700">
     <h2 class="text-white mb-5 font-semibold text-2xl">Facilities</h2>
       <div class="grid grid-cols-2 gap-x-4 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
       <% @track.facilities.each do |facility| %>
@@ -101,7 +102,7 @@
     </div>
   </div>
 
-  <div class="mx-auto mt-10 mb-10 max-w-2xl lg:mx-0 lg:max-w-none">
+  <div class="mx-auto mt-10 mb-10 max-w-2xl lg:mx-0 lg:max-w-none pb-10 border-b-2 border-slate-700">
     <h2 class="text-white mb-2 text-2xl font-semibold">Classes</h2>
       <div class="flex flex-wrap gap-2">
         <% @track.categories.each do |category| %>
@@ -111,7 +112,6 @@
             <% end %>
       </div>
     </div>
-  </div>
 
   <section id="contact">
   <div class="relative isolate overflow-hidden bg-gray-900 mx-auto mt-10">
@@ -121,7 +121,7 @@
     </div>
     
     <div class="mx-auto mt-5 max-w-2xl lg:mx-0 lg:max-w-none">
-      <dl class="mb-8 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
+      <dl class="mb-8 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
         <div class="flex flex-col-reverse">
           <dt class="text-base leading-7 text-gray-300">Track Address</dt>
           <dd class="text-1xl font-bold leading-9 tracking-tight text-white"><%= @track.address %></dd>
@@ -205,7 +205,7 @@
           <%= image_tag random_default_image, alt: "next test event photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90 h-38 w-38" %>
         <% end %>
           <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
-            <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white">
+            <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white rounded-lg ">
                 Next Test Day - <%= @next_event.start_date.strftime("%A, %B %-d, %Y") if @next_event.present? %>
             </span>
           </div>
@@ -220,7 +220,7 @@
           <%= image_tag random_default_image, alt: "about photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
         <% end %>
           <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
-            <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white">
+            <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white rounded-lg">
               <% if @next_race_event.present? %>
                     Next Race Day - <%= @next_race_event.start_date.strftime("%A #{ @track_race_events.last.start_date } %B %Y")%> - <%= @next_race_event.title %> - <%= @next_race_event.championship.name %>
               <% else %>
@@ -246,9 +246,15 @@
           <% @hotels['features'].each do |hotel| %>
             <div class="bg-white shadow-lg rounded-lg overflow-hidden mb-2">
               <div class="p-4">
-                <h2 class="text-gray-800 text-xl font-semibold mb-2"><%= hotel['text'] %></h2>
-                <p class="text-gray-800"><%= hotel['properties']['address'] %></p>
-                <p class="text-gray-800"><%= hotel['properties']['contact_number'] %></p>
+              <h2 class="text-gray-800 text-xl font-semibold mb-2"><%= hotel['text'] %></h2>
+              <% place_name_parts = hotel['place_name'].split(', ') %>
+              <% address_without_country = place_name_parts[1..-2].join(', ') %>
+              <p class="text-gray-600"><%= address_without_country %></p>
+              <% if hotel['geometry'] && hotel['geometry']['coordinates'] %>
+                <% coords = hotel['geometry']['coordinates'] %>
+                <% origin_address = @track.address %>
+                <a href="https://www.google.com/maps/dir/?api=1&origin=<%= origin_address %>&destination=<%= coords[1] %>,<%= coords[0] %>" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:text-blue-600">Get Directions</a>
+              <% end %>
               </div>
             </div>
           <% end %>
@@ -264,7 +270,14 @@
             <div class="bg-white shadow-lg rounded-lg overflow-hidden mb-2">
               <div class="p-4">
                 <h2 class="text-gray-800 text-xl font-semibold mb-2"><%= station['text'] %></h2>
-                <p class="text-gray-800"><%= station['properties']['address'] %></p>
+                <% place_name_parts = station['place_name'].split(', ') %>
+                  <% address_without_country = place_name_parts[1..-2].join(', ') %>
+                  <p class="text-gray-600"><%= address_without_country %></p>
+                  <% if station['geometry'] && station['geometry']['coordinates'] %>
+                    <% coords = station['geometry']['coordinates'] %>
+                    <% origin_address = @track.address %>
+                    <a href="https://www.google.com/maps/dir/?api=1&origin=<%= origin_address %>&destination=<%= coords[1] %>,<%= coords[0] %>" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:text-blue-600">Get Directions</a>
+                  <% end %>
               </div>
             </div>
           <% end %>

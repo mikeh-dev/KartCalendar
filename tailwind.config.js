@@ -20,6 +20,15 @@ module.exports = {
         warning: colors.yellow,
         danger: colors.red,
       },
+      borderWidth: {
+        DEFAULT: '1px',
+        '0': '0',
+        '2': '0.1px',
+        '3': '3px',
+        '4': '4px',
+        '6': '6px',
+        '8': '8px',
+      }
     },
   },
   plugins: [
