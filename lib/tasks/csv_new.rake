@@ -17,7 +17,6 @@ namespace :csv_import do
         event = Event.new(
           title: row[:title],
           description: row[:description],
-          price: row[:price],
           event_type: row[:event_type],
           championship_id: row[:championship_id],
           track_id: row[:track_id],

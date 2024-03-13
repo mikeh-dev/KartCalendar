@@ -9,7 +9,7 @@ class Event < ApplicationRecord
 
   has_many :follows, as: :followable, dependent: :destroy
 
-  validates :title, :description, :price, :event_type, :track_id, presence: true
+  validates :title, :description, :event_type, :track_id, presence: true
   has_one_attached :image
 
   def random_image_url
