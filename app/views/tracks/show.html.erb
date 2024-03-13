@@ -62,7 +62,7 @@
         </div>
         <div class="flex flex-col-reverse">
           <dt class="text-base leading-7 text-gray-300">Next Test Day</dt>
-          <dd class="text-2xl font-bold leading-9 tracking-tight text-white"><%= @next_test_event.present? ? @next_test_event.start_date.strftime("%A, %B %-d, %Y") : "None" %></dd>
+          <dd class="text-2xl font-bold leading-9 tracking-tight text-white"><%= @next_test_event.present? ? @next_test_event.start_date.strftime("%-d/%m/%Y") : "None" %></dd>
         </div>
         <div class="flex flex-col-reverse">
           <dt class="text-base leading-7 text-gray-300">Next Race Day</dt>
