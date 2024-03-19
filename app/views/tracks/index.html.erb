@@ -5,6 +5,7 @@
   </div>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-0">
     <% @tracks.each do |track| %>
+      <% cache(track, skip_digest: true) do %>
         <% if track.main_image.attached? %>
             <div class="bg-cover bg-center mt-4 rounded" style="background-image: url('<%= url_for(track.main_image) %>')">
             <div class="bg-[hsla(0,0%,0%,0.5)] h-full">
@@ -34,6 +35,7 @@
               </div>
             </div>
           </div>
+      <% end %>
     <% end %>
   </div>
 </div>
