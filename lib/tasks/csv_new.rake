@@ -3,7 +3,7 @@ require 'csv'
 namespace :csv_import do
   desc "Import events from a CSV file"
   task events: :environment do
-    file_path = 'lib/data/eventdates1.csv'
+    file_path = 'lib/data/newdates.csv'
 
     events_to_import = []
 
