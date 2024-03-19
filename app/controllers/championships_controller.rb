@@ -4,11 +4,7 @@ class ChampionshipsController < ApplicationController
   before_action :ensure_admin_user!, except: %i[index show]
 
   def index
-    @championships = Championship.all.order(name: :asc)
-    @next_championship_events = Championship.joins(:events)
-                            .where(events: { event_type: "Race" })
-                            .where(events: { end_date: Date.today..(Date.today + 7.days) })
-                            .distinct
+    @championships = Championship.all.order(name: :asc).includes(:image_attachment, :logo_attachment, :events)
   end
 
   def new

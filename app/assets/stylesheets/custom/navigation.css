@@ -1,5 +1,5 @@
 .nav-link {
-  @apply rounded px-3 py-4 text-slate-500 focus:text-indigo-600 md:inline-block block relative md:text-sm text-base font-medium hover:transition hover:duration-300 hover:ease-in-out hover:text-slate-700 dark:text-slate-200 dark:hover:text-slate-300 dark:focus:text-white;
+  @apply rounded px-3 py-4 text-slate-200 focus:text-indigo-600 md:inline-block block relative md:text-sm text-base font-medium hover:transition hover:duration-300 hover:ease-in-out hover:text-slate-700 dark:hover:text-slate-300 dark:focus:text-white;
 }
 
 .nav-link-active {
