@@ -22,11 +22,11 @@
             <%= @event.event_type %>
           </span>
           <% if @event.licence.present? && @event.licence == "MSUK Licence"%>
-            <span class="ml-2 bg-rose-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+            <span class="ml-2 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium">
               <%= @event.licence %>
             </span>
           <% elsif @event.licence.present? && @event.licence == "Non Licensed"%>
-            <span class="ml-2 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+            <span class="ml-2 bg-rose-500 text-white px-3 py-1 rounded-full text-sm font-medium">
               <%= @event.licence %>
             </span>
           <% end %>
