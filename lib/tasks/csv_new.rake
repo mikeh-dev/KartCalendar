@@ -18,7 +18,6 @@ namespace :csv_import do
           title: row[:title],
           description: row[:description],
           event_type: row[:event_type],
-          championship_id: row[:championship_id],
           track_id: row[:track_id],
           start_date: start_date,
           end_date: end_date

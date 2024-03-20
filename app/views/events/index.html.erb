@@ -9,17 +9,21 @@
         <div class="relative w-2/5 m-0 overflow-hidden text-gray-700 bg-white rounded-r-none bg-clip-border rounded-xl shrink-0">
           <%= image_tag random_default_image, alt: "Events", class: "object-cover w-full h-full" %>
         </div>
-        <div class="p-6">
+        <div class="p-4">
           <div class="mb-3">
-          <span class="bg-indigo-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+        <span class="bg-indigo-600 text-white px-2 py-1 rounded-full text-xs font-medium">
             <%= event.event_type %>
           </span>
-          <% if event.licence.present? %>
-            <span class="bg-indigo-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+          <% if event&.licence.present? && event&.licence == "MSUK Licence" %>
+            <span class="bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-medium ml-1">
+              <%= event.licence %>
+            </span>
+          <% elsif event&.licence.present? && event&.licence == "Non Licensed" %>
+            <span class="bg-rose-500 text-white px-2 py-1 rounded-full text-xs font-medium ml-1">
               <%= event.licence %>
             </span>
           <% end %>
-          </div>
+        </div>
           <h5 class="block mb-2 font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
             <% if event.championship&.logo.present? %>
               <%= image_tag event.championship.logo, alt: "Championship", class: "w-30 h-10 object-contain" %>
