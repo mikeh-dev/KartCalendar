@@ -25,6 +25,10 @@ Rails.application.routes.draw do
 		end
 	end
 
+	resources :engines do
+    resources :service_records
+  end
+
 	resources :contacts, only: [:new, :create]
 	
   if Rails.env.development? || Rails.env.test?
