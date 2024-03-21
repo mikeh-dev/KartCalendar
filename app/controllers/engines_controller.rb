@@ -10,7 +10,7 @@ class EnginesController < ApplicationController
     @engine = Engine.new(engine_params)
     @engine.user = current_user
     if @engine.save
-      redirect_to new_engine_path, notice: 'Engine added successfully'
+      redirect_to engine_path(@engine), notice: 'Engine added successfully'
     else
       render :new, status: :unprocessable_entity
     end
@@ -27,9 +27,8 @@ class EnginesController < ApplicationController
   end
 
   def update
-    @engine = Engine.find(params[:id])
     if @engine.update(engine_params)
-      redirect_to engines_path, notice: 'Engine updated successfully'
+      redirect_to engine_path(@engine), notice: 'Engine updated successfully'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -43,7 +42,7 @@ class EnginesController < ApplicationController
   private
 
   def engine_params
-    params.require(:engine).permit(:engine_number, :engine_make, :engine_model, :barrel_number, :seal_number, :year_manufactured, photos: [])
+    params.require(:engine).permit(:engine_number, :engine_make, :engine_model, :barrel_number, :seal_number, :year_manufactured, engine_photos: [], dyno_sheet: [])
   end
   
 

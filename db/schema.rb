@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_20_231355) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_21_115851) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -159,6 +159,19 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_20_231355) do
     t.index ["user_id"], name: "index_follows_on_user_id"
   end
 
+  create_table "service_records", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "engine_id", null: false
+    t.date "date"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "engine_builder"
+    t.text "notes"
+    t.index ["engine_id"], name: "index_service_records_on_engine_id"
+    t.index ["user_id"], name: "index_service_records_on_user_id"
+  end
+
   create_table "tracks", force: :cascade do |t|
     t.string "name"
     t.string "address"
@@ -209,4 +222,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_20_231355) do
   add_foreign_key "events", "championships"
   add_foreign_key "events", "tracks"
   add_foreign_key "follows", "users"
+  add_foreign_key "service_records", "engines"
+  add_foreign_key "service_records", "users"
 end
