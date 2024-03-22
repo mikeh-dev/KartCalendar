@@ -8,6 +8,11 @@ window.Stimulus   = application
 
 export { application }
 
+<script
+  type="text/javascript"
+  src="https://app.termly.io/resource-blocker/58c10cd6-92f4-45f5-acd4-be2f48703bc5?autoBlock=on"
+></script>
+
 document.addEventListener("turbo:load", function(event) {
   window.dataLayer = window.dataLayer || []
   function gtag(){dataLayer.push(arguments)}
