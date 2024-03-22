@@ -10,6 +10,11 @@
     <%= stylesheet_link_tag "application", "https://unpkg.com/trix@2.0.0/dist/trix.css", "data-turbo-track": "reload" %>
 
     <!-- Google tag (gtag.js) -->
+    <%= render "shared/fonts" %>
+    <%= render "shared/meta" %>
+    <%= custom_colors_css %>
+    <%= yield :head %>
+  </head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-2Q5VPDS4LY"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -18,13 +23,6 @@
 
       gtag('config', 'G-2Q5VPDS4LY');
     </script>
-
-
-    <%= render "shared/fonts" %>
-    <%= render "shared/meta" %>
-    <%= custom_colors_css %>
-    <%= yield :head %>
-  </head>
 
   <body class="rui">
     <%= render "shared/flash" %>
