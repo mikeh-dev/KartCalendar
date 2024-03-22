@@ -71,6 +71,24 @@ RSpec.describe 'User Permissions', type: :system do
       visit championship_path(championship)
       expect(page).not_to have_selector(:link_or_button, 'Delete')
     end
+
+    it 'does allow a non-admin user to create an engine' do
+      visit dashboard_index_path
+      expect(page).to have_selector(:link_or_button, 'Add Engine')
+      click_on 'Add Engine'
+      expect(page).to have_current_path(new_engine_path)
+      fill_in 'Name', with: 'New Engine'
+      fill_in 'Engine number', with: '123456'
+      fill_in 'Engine make', with: 'New Engine Make'
+      fill_in 'Engine model', with: 'New Engine Model'
+      fill_in 'Year manufactured', with: '2021'
+      fill_in 'Barrel number', with: '123456'
+      fill_in 'Seal number', with: '123456'
+      fill_in 'Notes', with: 'New Engine Notes'
+      attach_file 'engine_engine_photos', Rails.root + 'spec/fixtures/files/test_image.jpg'
+      click_on 'Save Engine'
+      expect(page).to have_content('Engine was successfully created.')
+    end
   end
 
   context 'when an admin user is logged in' do
