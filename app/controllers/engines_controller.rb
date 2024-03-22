@@ -42,7 +42,7 @@ class EnginesController < ApplicationController
   private
 
   def engine_params
-    params.require(:engine).permit(:engine_number, :engine_make, :engine_model, :barrel_number, :seal_number, :year_manufactured, engine_photos: [], dyno_sheet: [])
+    params.require(:engine).permit(:name, :engine_number, :engine_make, :engine_model, :barrel_number, :seal_number, :year_manufactured, :notes, :logbook_cover, engine_photos: [], dyno_sheet: [])
   end
   
 

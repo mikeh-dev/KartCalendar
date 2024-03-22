@@ -21,8 +21,8 @@
               <%= link_to track.name, track_path(track) %>
             </h3>
             <p class="text-gray-600"><strong>Location</strong> - <%= track.location %></p>
-            <p class="text-gray-600">Next Test Day <%=  %></p>
-            <p class="text-gray-600">Next Race <%=  %></p>
+            <p class="text-gray-600"><strong>Next Test Day </strong> - <%= track&.events.first %></p>
+            <p class="text-gray-600"><strong>Next Race </strong><%= track&.events.first %> - </p>
             </div>
             </div>
         <% end %>
@@ -48,7 +48,7 @@
             <h3 class="font-semibold text-lg text-blue-800 mb-2">
               <%= link_to championship.name, championship_path(championship) %>
             </h3>
-              <p class="text-gray-600">Next Race: <%= championship.events.first.title %>: <%= championship.events.first.start_date.strftime("%B %d, %Y") %></p>
+              <p class="text-gray-600"><strong>Next Race:</strong> <%= championship.events.first.title %>: <%= championship.events.first.start_date.strftime("%B %d, %Y") %></p>
             </div>
           </div>
         <% end %>
@@ -78,9 +78,9 @@
               <%= link_to event.title, event_path(event) %>
             </h3>
             <p class="text-gray-600"><strong>Date:</strong> <%= event.start_date.strftime("%B %d, %Y") %></p>
-            <p class="text-gray-600">Track: <%= (event.track&.name || 'No track assigned').truncate(20) %></p>
+            <p class="text-gray-600"><strong>Track:</strong> <%= (event.track&.name || 'No track assigned').truncate(20) %></p>
             <% if event.championship.present? %>
-            <p class="text-gray-600">Championship: <%= event.championship.name %></p>
+            <p class="text-gray-600"><strong>Championship:</strong> <%= event.championship.name %></p>
             <% end %>
             </div>
           </div>
@@ -93,14 +93,6 @@
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           <p class="text-gray-600">You don't have any engines stored yet.</p>
           <%= link_to "Add Engine", new_engine_path, class: "btn btn-primary text-white" %>
-      </div>
-  </div>
-
-
-  <div class="mb-6">
-      <h2 class="text-2xl font-semibold text-gray-700 mb-4">My Chassis</h2>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <p class="text-gray-600">You don't have any chassis' stored yet.</p>
       </div>
   </div>
 
