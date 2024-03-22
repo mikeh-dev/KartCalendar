@@ -8,9 +8,9 @@ window.Stimulus   = application
 
 export { application }
 
-document.addEventListener("turbo:load", function(event) {
-  window.dataLayer = window.dataLayer || []
-  function gtag(){dataLayer.push(arguments)}
-  gtag('js', new Date())
-  gtag('config', 'G-2Q5VPDS4LY', {'page_location': event.detail.url})
-}, false)
+  document.addEventListener("turbo:load", function(event) {
+    window.dataLayer = window.dataLayer || []
+    function gtag(){dataLayer.push(arguments)}
+    gtag('js', new Date())
+    gtag('config', 'G-2Q5VPDS4LY', {'page_location': event.detail.url})
+  }, false)

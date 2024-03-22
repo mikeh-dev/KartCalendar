@@ -8,5 +8,6 @@ FactoryBot.define do
     event_type { "Race" }
     track { FactoryBot.create(:track) }
     championship { FactoryBot.create(:championship) }
+    licence { "MSUK Licence" }
   end
 end

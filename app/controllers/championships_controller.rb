@@ -57,7 +57,7 @@ class ChampionshipsController < ApplicationController
   end
 
   def championship_params
-    params.require(:championship).permit(:name, :description, :image, :logo, :price, :champ_type, :short_name, :long_name, :website, :email, :contact_number, :race_fee, :test_fee, :champ_fee, :tagline, :mobile, :social_media => {})
+    params.require(:championship).permit(:name, :description, :image, :logo, :price, :champ_type, :short_name, :licence,:long_name, :website, :email, :contact_number, :race_fee, :test_fee, :champ_fee, :tagline, :mobile, :social_media => {})
   end
 
 end
