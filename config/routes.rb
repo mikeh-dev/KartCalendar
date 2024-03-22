@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 	get 'privacy', to: 'page#privacy'
 	get 'about', to: 'page#about'
 	get 'home', to: 'page#home'
+	get 'cookie', to: 'page#cookie'
 
 	resources :dashboard, only: [:index] do
 		collection do
