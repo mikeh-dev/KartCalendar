@@ -101,7 +101,28 @@
   <div class="mb-6">
       <h2 class="text-2xl font-semibold text-gray-700 mb-4">My Engines</h2>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <p class="text-gray-600">You don't have any engines stored yet.</p>
+        <% if @engines.empty? %>
+          <p class="text-gray-600">You have no engines added yet.</p>
+        <% else %>
+          <% @engines.each do |engine| %>
+            <div class="bg-white rounded-lg shadow-lg flex">
+              <div class="flex-none w-1/3">
+                <%= image_tag(engine.engine_photos.first, alt: engine.name, class: "object-cover h-48 rounded-l-lg") if engine.engine_photos.present? %>
+              </div>
+              <div class="p-4 w-2/3">
+                <h3 class="font-semibold text-lg text-blue-800 mb-2">
+                  <%= link_to engine.name, engine_path(engine) %>
+                </h3>
+                <p class="text-gray-600"><strong>Make:</strong> <%= engine.engine_make %></p>
+                <p class="text-gray-600"><strong>Model:</strong> <%= engine.engine_model %></p>
+                <p class="text-gray-600"><strong>Year:</strong> <%= engine.year_manufactured %></p>
+                <p class="text-gray-600"><strong>Barrel Number:</strong> <%= engine.barrel_number %></p>
+                <p class="text-gray-600"><strong>Last Rebuild Date:</strong> </p>
+                <p class="text-gray-600"><strong>Current Seal:</strong> <%= engine.seal_number %></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
           <%= link_to "Add Engine", new_engine_path, class: "btn btn-primary text-white" %>
       </div>
   </div>

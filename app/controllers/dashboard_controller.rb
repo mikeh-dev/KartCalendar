@@ -13,6 +13,7 @@ class DashboardController < ApplicationController
                         .order('start_date ASC')
                         .where("start_date >= ?", Date.today)
                         .limit(15)
+    @engines = current_user.engines
   end
 
   def check
