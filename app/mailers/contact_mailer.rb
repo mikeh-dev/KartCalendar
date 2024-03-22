@@ -3,7 +3,7 @@ class ContactMailer < ApplicationMailer
 
   def contact_email(contact)
     @contact = contact
-    mail(to: 'support@gmail.com', subject: 'New Contact Message')
+    mail(to: 'support@kartstream.co.uk', subject: 'New Contact Message')
   end
 
   def confirmation_email(contact)
