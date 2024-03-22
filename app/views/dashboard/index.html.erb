@@ -107,7 +107,7 @@
           <% @engines.each do |engine| %>
             <div class="bg-white rounded-lg shadow-lg flex">
               <div class="flex-none w-1/3">
-                <%= image_tag(engine.engine_photos.first, alt: engine.name, class: "object-cover h-48 rounded-l-lg") if engine.engine_photos.present? %>
+                <%= image_tag(engine.engine_photos.first, alt: engine.name, class: "object-cover h-full rounded-l-lg") if engine.engine_photos.present? %>
               </div>
               <div class="p-4 w-2/3">
                 <h3 class="font-semibold text-lg text-blue-800 mb-2">
