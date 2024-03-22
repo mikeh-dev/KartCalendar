@@ -1,4 +1,5 @@
 FactoryBot.define do
+
   factory :engine do
     engine_number { "0987" }
     engine_make { "Rotax" }
