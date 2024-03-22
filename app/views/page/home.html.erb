@@ -73,9 +73,9 @@
         <p class="text-slate-400">
           If you're already part of the Karting community you can stop browing through different websites to find out about Test Days and Race Weekends, Kartstream aims to be up to date and offer all the relevant information in one place. You can also follow your favourite tracks, championships and add events to your own calendar and view your schedule on your User Dashboard.
         </p>
-        <h3 class="text-white font-extrabold text-lg my-2">Free to try</h3>
+        <h3 class="text-white font-extrabold text-lg my-2">Coming Soon - Free to try</h3>
         <p class="text-slate-400">
-          For now, Signing up for an account is free and will give you access to all the features KartStream has to offer. You can also help us by submitting any data corrections you may notice are incorrect.
+          When the user features go live, Signing up for an account will be free and will give you access to all the features KartStream has to offer. You can also help us by submitting any data corrections you may notice are incorrect.
         </p>
         <h3 class="text-white font-extrabold text-lg my-2">...and a Bonus feature</h3>
         <p class="text-slate-400">
@@ -90,11 +90,6 @@
               View Track Directory
             <% end %>
           </div>  
-          <div class="p-4 space-x-4 flex justify-center">
-            <% unless user_signed_in? %>
-              <%= link_to "Sign Up for an Account", new_user_registration_path, class: "btn btn-primary font-medium text-white dark:text-white flex items-center group mb-5" %>
-            <% end %>  
-          </div>
         </div>
       </div>
     </div>
