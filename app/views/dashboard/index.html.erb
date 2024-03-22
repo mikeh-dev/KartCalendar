@@ -21,8 +21,18 @@
               <%= link_to track.name, track_path(track) %>
             </h3>
             <p class="text-gray-600"><strong>Location</strong> - <%= track.location %></p>
-            <p class="text-gray-600"><strong>Next Test Day </strong> - <%= track&.events.first %></p>
-            <p class="text-gray-600"><strong>Next Race </strong><%= track&.events.first %> - </p>
+            <p class="text-gray-600"><strong>Next Test Day </strong> - <% next_event = track.events.where(event_type: 'Test').order(start_date: :asc).find { |event| event.start_date >= Date.today } %>
+            <% if next_event.present? %>
+              <%= next_event.title %> on <%= next_event.start_date.strftime("%B %d, %Y") %>
+            <% else %>
+              No Upcoming Test Days
+            <% end %></p>
+            <p class="text-gray-600"><strong>Next Race </strong><% next_event = track.events.where(event_type: 'Race').order(start_date: :asc).find { |event| event.start_date >= Date.today } %>
+            <% if next_event.present? %>
+              <%= next_event.title %> on <%= next_event.start_date.strftime("%B %d, %Y") %>
+            <% else %>
+              No Upcoming Race Days
+            <% end %></p>
             </div>
             </div>
         <% end %>
