@@ -5,9 +5,11 @@ class ServiceRecordsController < ApplicationController
 
   def new
     @service_record = @engine.service_records.new
+    @engines = current_user.engines
   end
 
   def create
+    @engine = current_user.engines.find(params[:id])
     @service_record = @engine.service_records.new(service_record_params)
     @service_record.user = current_user
     if @service_record.save
@@ -26,6 +28,7 @@ class ServiceRecordsController < ApplicationController
   end
 
   def edit
+    engines = current_user.engines
   end
 
   def update
@@ -52,7 +55,7 @@ class ServiceRecordsController < ApplicationController
   end
 
   def service_record_params
-    params.require(:service_record).permit(:date, :description, :invoice, dyno_sheets: [])
+    params.require(:service_record).permit(:date, :description, :invoice, :engine_builder, :notes, :engine_id, dyno_sheets: [])
   end
 
 end
