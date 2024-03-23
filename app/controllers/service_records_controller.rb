@@ -9,12 +9,13 @@ class ServiceRecordsController < ApplicationController
   end
 
   def create
-    @engine = current_user.engines.find(params[:id])
+    @engine = current_user.engines.find_by(id: params[:service_record][:engine_id])
     @service_record = @engine.service_records.new(service_record_params)
     @service_record.user = current_user
     if @service_record.save
       redirect_to [@engine, @service_record], notice: 'Service record added successfully'
     else
+      @engines = current_user.engines
       render :new, status: :unprocessable_entity
     end
   end
@@ -28,7 +29,7 @@ class ServiceRecordsController < ApplicationController
   end
 
   def edit
-    engines = current_user.engines
+    @engines = current_user.engines
   end
 
   def update
@@ -48,6 +49,7 @@ class ServiceRecordsController < ApplicationController
 
   def set_engine
     @engine = current_user.engines.find(params[:engine_id])
+    logger.debug "Engine: #{@engine}"
   end
 
   def set_service_record
