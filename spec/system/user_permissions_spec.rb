@@ -221,13 +221,6 @@ RSpec.describe 'User Permissions', type: :system do
       click_on 'Save Engine'
       expect(page).to have_content('Engine added successfully')
       expect(page).to have_current_path(engine_path(Engine.last))
-
-
-
-
-
-
-
     end
   end
 end 
