@@ -39,11 +39,12 @@ RSpec.describe 'Engine Permissions', type: :system do
     end
 
     it 'does not allow a user to edit or view an engine which does not belong to them' do
-      visit engine_path(engine2)
-      expect(page).not_to have_selector(:link_or_button, 'Edit')
-      expect(page).to have_content('You are not authorized to perform this action.')
       visit edit_engine_path(engine2)
       expect(page).to have_content('You are not authorized to perform this action.')
+      visit engine_path(engine2)
+      expect(page).to have_content('You are not authorized to perform this action.')
     end
+
+
   end
 end

@@ -2,6 +2,7 @@ class ServiceRecordsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_engine
   before_action :set_service_record, only: [:show, :edit, :update, :destroy]
+  before_action -> { authorize_user(@service_record) }, only: [:show, :edit, :update, :destroy]
 
   def new
     @service_record = @engine.service_records.new

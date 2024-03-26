@@ -1,6 +1,7 @@
 class EnginesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_engine, only: [:show, :edit, :update, :destroy]
+  before_action -> { authorize_user(@engine) }, only: [:show, :edit, :update, :destroy]
 
   def new
     @engine = Engine.new
@@ -49,5 +50,7 @@ class EnginesController < ApplicationController
   def set_engine
     @engine = Engine.find(params[:id])
   end
+
+  
 
 end
