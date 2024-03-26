@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Engine, type: :model do
   let(:engine) { FactoryBot.create(:engine) }
-  let(:service_record) { FactoryBot.create(:service_record, engine: engine) }
 
   describe "associations" do
     it { should belong_to(:user) }
