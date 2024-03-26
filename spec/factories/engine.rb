@@ -1,11 +1,27 @@
 FactoryBot.define do
-
   factory :engine do
-    engine_number { "0987" }
-    engine_make { "Rotax" }
-    engine_model { "Max" }
-    barrel_number { "1234" }
-    seal_number { "5678" }
-    year_manufactured { 2021 }
+    association :user
+    association :service_record
+    engine_number { "EN#{rand(1000..9999)}" } # Unique engine number
+    engine_make { ["MakeA", "MakeB", "MakeC"].sample } # Example engine makes
+    engine_model { "Model#{rand(1..5)}" } # Example engine models
+    barrel_number { "BN#{rand(100..999)}" }
+    seal_number { "SN#{rand(1000..9999)}" }
+    year_manufactured { rand(1990..2020).to_s }
+    name { "Engine #{rand(1..100)}" }
+    notes { "Some notes about the engine." }
+
+    after(:build) do |engine|
+      # Attach engine photos
+      2.times do
+        engine.engine_photos.attach(io: File.open('path/to/default/engine_photo.jpg'), filename: 'engine_photo.jpg', content_type: 'image/jpeg')
+      end
+
+      # Attach dyno sheet
+      engine.dyno_sheet.attach(io: File.open('path/to/default/dyno_sheet.jpg'), filename: 'dyno_sheet.jpg', content_type: 'image/jpeg')
+
+      # Attach logbook cover
+      engine.logbook_cover.attach(io: File.open('path/to/default/logbook_cover.jpg'), filename: 'logbook_cover.jpg', content_type: 'image/jpeg')
+    end
   end
 end
