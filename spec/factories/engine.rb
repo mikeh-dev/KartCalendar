@@ -9,18 +9,5 @@ FactoryBot.define do
     year_manufactured { rand(1990..2020).to_s }
     name { "Engine #{rand(1..100)}" }
     notes { "Some notes about the engine." }
-
-    after(:build) do |engine|
-      # Attach engine photos
-      2.times do
-        engine.engine_photos.attach(io: File.open('spec/fixtures/files/test_image.jpg'), filename: 'engine_photo.jpg', content_type: 'image/jpeg')
-      end
-
-      # Attach dyno sheet
-      engine.dyno_sheet.attach(io: File.open('spec/fixtures/files/test_image.jpg'), filename: 'dyno_sheet.jpg', content_type: 'image/jpeg')
-
-      # Attach logbook cover
-      engine.logbook_cover.attach(io: File.open('spec/fixtures/files/test_image.jpg'), filename: 'logbook_cover.jpg', content_type: 'image/jpeg')
-    end
   end
 end
