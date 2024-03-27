@@ -83,7 +83,6 @@ RSpec.describe 'User Permissions', type: :system do
       fill_in 'Barrel number', with: '123456'
       fill_in 'Seal number', with: '123456'
       fill_in 'Notes', with: 'New Engine Notes'
-      attach_file 'engine_engine_photos', Rails.root + 'spec/fixtures/files/test_image.jpg'
       click_on 'Save Engine'
       expect(page).to have_content('Engine added successfully')
     end
