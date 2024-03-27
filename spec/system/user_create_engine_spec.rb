@@ -1,19 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe 'Engine Permissions', type: :system do
-  let(:admin) { FactoryBot.create(:user, :admin) }
+  
   let(:non_admin) { FactoryBot.create(:user) }
-  let(:another_user) { FactoryBot.create(:user) }
-  let(:engine) { FactoryBot.create(:engine, user: non_admin) }
-  let(:engine2) { FactoryBot.create(:engine, user: another_user) }
 
   before do
     login_as(non_admin, scope: :user)
   end
 
   context 'when a non admin user is logged in' do
-    it 'allows an admin user to create an engine' do
-      visit new_engine_path
+    it 'allows a non admin user to create an engine' do
+      visit dashboard_path
+      expect(page).to have_selector(:link_or_button, 'Add Engine')
+      click_on 'Add Engine'
       expect(page).to have_current_path(new_engine_path)
       fill_in 'Name', with: 'New Engine'
       fill_in 'Engine make', with: 'New Engine Make'
