@@ -31,7 +31,6 @@
     <div class="bg-white shadow-lg rounded-lg p-6">
       <h1 class="text-3xl font-semibold mb-4 text-gray-800"><%= @engine.engine_make %> <%= @engine.engine_model %></h1>
       <div class="border-b border-gray-200 mb-4"></div>
-      
       <div class="text-gray-700 space-y-2">
         <p><strong>Engine Number:</strong> <%= @engine.engine_number %></p>
         <p><strong>Barrel Number:</strong> <%= @engine.barrel_number %></p>
@@ -52,6 +51,15 @@
         <h2 class="text-xl font-semibold mb-2 text-gray-800">Notes</h2>
         <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
       </div>
+
+      <%= link_to "Edit Engine", edit_engine_path(@engine), class: "mt-6 inline-flex items-center justify-center px-6 py-3 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition ease-in-out duration-150" %>
+
+      <%= link_to "Delete Engine", @engine, method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this engine?" }, class: "mt-6 inline-flex items-center justify-center px-6 py-3 bg-red-600 text-white rounded-md hover:bg-red-700 transition ease-in-out duration-150" %>
+
+      <%= link_to "Back to Engines", engines_path, class: "mt-6 inline-flex items-center justify-center px-6 py-3 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition ease-in-out duration-150" %>
+
+
+
     </div>
   </div>
 </div>

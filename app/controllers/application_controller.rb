@@ -26,8 +26,9 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize_user(resource)
-    if resource.user != current_user
-      redirect_to root_path, alert: 'You are not authorized to perform this action.'
+    unless current_user.admin? || resource.user == current_user
+      flash[:alert] = "You are not authorized to perform this action."
+      redirect_to(root_path) and return
     end
   end
   

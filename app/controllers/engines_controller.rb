@@ -1,7 +1,8 @@
 class EnginesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_engine, only: [:show, :edit, :update, :destroy]
-  before_action -> { authorize_user(@engine) }, only: [:show, :edit, :update, :destroy]
+  before_action -> { authorize_user(@engine) }, only: [:show, :edit, :update, :destroy, :index, :new, :create]
+  
 
   def new
     @engine = Engine.new
@@ -21,7 +22,7 @@ class EnginesController < ApplicationController
   end
 
   def index
-    @engines = current_user.engines
+    @engines = current_user.admin? ? Engine.all : current_user.engines
   end
 
   def edit
