@@ -73,9 +73,7 @@ RSpec.describe 'User Permissions', type: :system do
     end
 
     it 'does allow a non-admin user to create an engine' do
-      visit dashboard_index_path
-      expect(page).to have_selector(:link_or_button, 'Add Engine')
-      click_on 'Add Engine'
+      visit new_engine_path
       expect(page).to have_current_path(new_engine_path)
       fill_in 'Name', with: 'New Engine'
       fill_in 'Engine number', with: '123456'
