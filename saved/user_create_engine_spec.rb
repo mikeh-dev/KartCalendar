@@ -39,7 +39,5 @@ RSpec.describe 'Engine Permissions', type: :system do
       visit engine_path(engine2)
       expect(page).to have_content('You are not authorized to perform this action.')
     end
-
-
   end
 end

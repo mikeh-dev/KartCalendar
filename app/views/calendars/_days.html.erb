@@ -2,7 +2,6 @@
 <% bottom_right_day = range.count - 1 %>
 
 <% range.each_with_index do |date, index| %>
-<% puts "Today: #{Date.today}, Date being processed: #{date}, Comparison result: #{Date.today == date}" %>
   <% round_class = case index
       when 0; "rounded-tl-lg";
       when 6; "rounded-tr-lg";
