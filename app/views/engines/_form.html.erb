@@ -64,9 +64,28 @@
     </div>
 
     <div class="mb-4">
+      <h3>Current Dyno Sheets</h3>
+        <% @engine.dyno_sheet.each_with_index do |dyno, index| %>
+          <div class="field">
+            <% if dyno.content_type == "application/pdf" %>
+              <%= link_to 'View PDF', rails_blob_url(dyno), target: '_blank' %> |
+            <% else %>
+              <%= image_tag dyno.variant(resize_to_limit: [100, 100]) %>
+            <% end %>
+            <%= check_box_tag "engine[dyno_sheet_ids_to_delete][]", dyno.id %>
+            <%= label_tag "Remove" %>
+          </div>
+        <% end %>
+    </div>
+
+    <div class="mb-4">
       <%= form.label :logbook_cover, class: "block mb-2 text-sm font-medium text-gray-500" %>
       <%= form.file_field :logbook_cover, class: "form-input" %>
     </div>
+
+    <% @engine.dyno_sheet.each do |image| %>
+      <%= form.hidden_field :dyno_sheet, multiple: true, value: image.signed_id %>
+    <% end %>
 
     <% @engine.engine_photos.each do |image| %>
       <%= form.hidden_field :engine_photos, multiple: true, value: image.signed_id %>
