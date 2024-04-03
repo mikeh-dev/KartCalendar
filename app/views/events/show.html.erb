@@ -1,7 +1,7 @@
 <div class="container mx-auto sm:py-4 pb-5 px-4 relative z-10 flex flex-wrap items-center justify-between">
   <div class="xl:w-2/5 w-full xl:text-left text-center xl:pr-16">
     <p class="text-indigo-600 text-2xl mb-6 lg:mt-0 mt-2 dark:text-indigo-500">
-      <%= @championship.present? ? @event.championship.name : "Championship" %>
+      <%= @championship.present? ? @event.championship.name : "Event" %>
     </p>
     <h1 class="sm:text-5xl text-4xl font-extrabold"><%= @event.title %> - <%= @event.track.name %></h1>
     <p class="my-6 text-slate-700 dark:text-slate-400 text-lg"><%= @event.description %></p>

@@ -18,6 +18,10 @@ class Event < ApplicationRecord
 
   scope :upcoming_based_on_date, -> { where("start_date > ?", Date.today).order("start_date ASC") }
 
+  def self.upcoming_based_on_date
+    where('start_date >= ?', Date.today).order(:start_date)
+  end
+
   def self.next_based_on_date
     upcoming_based_on_date.first
   end

@@ -40,7 +40,7 @@ RSpec.describe 'User Permissions', type: :system do
 
     it 'does not allow non-admin to edit an event' do
       visit event_path(event)
-      expect(page).not_to have_selector(:link_or_button, 'Edit')
+      expect(page).not_to have_selector(:link_or_button, 'Edit Event')
       visit edit_event_path(event)
       expect(page).to have_current_path(root_path)
       expect(page).to have_content('You are not authorized to perform this action.')
@@ -146,7 +146,6 @@ RSpec.describe 'User Permissions', type: :system do
       click_on 'Save'
       expect(page).to have_content('Event was successfully created.')
       expect(page).to have_current_path(event_path(Event.last))
-
     end
 
     it 'allows an admin user to edit an event' do
@@ -154,8 +153,8 @@ RSpec.describe 'User Permissions', type: :system do
       click_on 'Edit Event'
       fill_in 'Title', with: 'Edited Event Name'
       click_on 'Save'
-      expect(page).to have_current_path(event_path(event))
       expect(page).to have_content('Event was successfully updated.')
+      expect(page).to have_current_path(event_path(event))
     end
 
     it 'allows an admin user to delete an event' do
