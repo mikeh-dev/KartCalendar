@@ -63,8 +63,8 @@
             <h3 class="font-semibold text-lg text-blue-800 mb-2">
               <%= link_to championship.name, championship_path(championship) %>
             </h3>
-              <p class="text-gray-600"><strong>Next Race:</strong> <%= championship.events.first.title %>: <%= championship.events.first.start_date.strftime("%B %d, %Y") %></p>
-              <p class="text-gray-600 mt-4"><strong>at</strong> <%= championship.events.first.track.name %></p>
+              <p class="text-gray-600"><strong>Next Race:</strong> <%= championship.next_champ_event.title %>: <%= championship.next_champ_event.start_date.strftime("%B %d, %Y") %></p>
+              <p class="text-gray-600 mt-4"><strong>at</strong> <%= championship.next_champ_event.track.name %></p>
               <div class="flex mt-4">
                   <%= link_to championship_path(championship), class: "rounded border-2 border-gray-400 px-7 pb-[8px] pt-[10px] text-sm font-medium uppercase leading-normal text-gray-700 transition duration-150 ease-in-out hover:border-neutral-100 hover:bg-gray-600 hover:text-neutral-100 focus:border-neutral-100 focus:text-neutral-100 focus:outline-none focus:ring-0 active:border-neutral-200 active:text-neutral-200" do %>
                     View
