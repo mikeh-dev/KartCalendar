@@ -15,7 +15,7 @@ class TrackPolicy < ApplicationPolicy
   end
 
   def update?
-    user.admin? || user.manager? && record.user_id == user.id
+    user.manager? && @track.user_id == user.id
   end
 
   def edit?

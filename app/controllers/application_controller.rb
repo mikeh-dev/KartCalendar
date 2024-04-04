@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
 
   def pundishing_user
     flash[:notice] = "You are not authorized to perform this action."
-    redirect_to article_path
+    redirect_to root_path
   end
 
 end

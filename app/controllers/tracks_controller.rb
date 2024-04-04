@@ -1,7 +1,7 @@
 class TracksController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_track, only: [:show, :edit, :update, :destroy]
-  before_action :ensure_admin_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :ensure_admin_user!, only: [:new, :create, :destroy]
 
   def index
     @tracks = Track.includes(:events, main_image_attachment: :blob).order(:name)
@@ -39,6 +39,7 @@ class TracksController < ApplicationController
   end
 
   def edit
+    authorize @track
   end
 
   def update
