@@ -29,9 +29,7 @@ gem 'nokogiri', '>= 1.16.2'
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 gem "image_processing", "~> 1.2"
-gem "mini_magick"
-gem 'ruby-vips'
-
+gem "mini_magick", "~> 4.11"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
