@@ -401,6 +401,7 @@ DEPENDENCIES
   railsui!
   redis (~> 4.0)
   rspec-rails (~> 5.0.0)
+  ruby-vips (~> 2.0)
   selenium-webdriver
   shoulda-matchers
   sprockets-rails
