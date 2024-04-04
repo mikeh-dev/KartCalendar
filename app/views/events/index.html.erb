@@ -26,9 +26,11 @@
         </div>
           <h5 class="block mb-2 font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
             <% if event.championship&.logo.present? %>
-              <%= image_tag event.championship.logo, alt: "Championship", class: "w-30 h-10 object-contain" %>
+              <%= image_tag event.championship.logo, alt: "Championship Logo", class: "w-30 h-10 object-contain" %>
             <% elsif event.championship.present? %>
               <%= event.championship.name %>
+            <% elsif event.track&.logo.present? %>
+              <%= image_tag event.track.logo, alt: "Track Logo", class: "w-30 h-10 object-contain" %>
             <% end %>
           </h5>
           <h4 class="block mb-2 font-sans text-1xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
