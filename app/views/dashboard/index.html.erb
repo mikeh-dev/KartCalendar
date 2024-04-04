@@ -54,12 +54,12 @@
           <div class="bg-white rounded-lg shadow-lg flex">
             <div class="flex-none w-1/3">
             <% if championship.image.present? %>
-              <%= image_tag(championship.image, alt: championship.name, class: "object-cover rounded-l-lg w-38") if championship.image.present? %>
+              <%= image_tag(championship.image, alt: championship.name, class: "object-cover h-full w-full rounded-l-lg") if championship.image.present? %>
             <% else %>
-              <%= image_tag random_default_image, alt: championship.name, class: "object-cover rounded-l-lg h-full w-38" %>
+              <%= image_tag random_default_image, alt: championship.name, class: "object-cover h-full w-full rounded-l-lg" %>
             <% end %>
             </div>
-            <div class="p-4 w-2/3">
+            <div class="p-4 flex-grow">
             <h3 class="font-semibold text-lg text-blue-800 mb-2">
               <%= link_to championship.name, championship_path(championship) %>
             </h3>
@@ -86,12 +86,12 @@
           <div class="bg-white rounded-lg shadow-lg flex">
             <div class="flex-none w-1/3">
             <% if event.image.attached? %>
-              <%= image_tag(event.image, alt: event.title, class: "object-cover h-full rounded-l-lg h-48 w-38") %>
+              <%= image_tag(event.image, alt: event.title, class: "object-cover h-full w-full rounded-l-lg") %>
             <% else %>
-              <%= image_tag random_default_image, alt: event.title, class: "object-cover h-full rounded-l-lg w-38" %>
+              <%= image_tag random_default_image, alt: event.title, class: "object-cover h-full w-full rounded-l-lg" %>
             <% end %>
             </div>
-            <div class="p-4 w-2/3">
+            <div class="p-4 flex-grow">
             <h3 class="font-semibold text-lg text-blue-800 mb-2">
             <% if event.championship.present? %>
               <%= link_to event.championship.name, event_path(event) %> -
