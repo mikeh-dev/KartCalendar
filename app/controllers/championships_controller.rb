@@ -4,7 +4,7 @@ class ChampionshipsController < ApplicationController
   before_action :ensure_admin_user!, except: %i[index show]
 
   def index
-    @championships = Championship.all.order(name: :asc).includes(image_attachment: :blob, logo_attachment: :blob, :events)
+    @championships = Championship.all.order(name: :asc).includes(:image_attachment, :logo_attachment, :events)
   end
 
   def new
