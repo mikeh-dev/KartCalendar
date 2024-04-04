@@ -392,7 +392,7 @@ DEPENDENCIES
   letter_opener
   mapkick-rb
   meta-tags
-  mini_magick
+  mini_magick (~> 4.11)
   name_of_person
   nokogiri (>= 1.16.2)
   pg (~> 1.2)
@@ -401,7 +401,6 @@ DEPENDENCIES
   railsui!
   redis (~> 4.0)
   rspec-rails (~> 5.0.0)
-  ruby-vips
   selenium-webdriver
   shoulda-matchers
   sprockets-rails
