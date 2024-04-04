@@ -44,10 +44,17 @@
       <%= form.select :event_type, ['Race', 'Test'], {}, class: 'form-select' %>
     </div>
 
+    <% if current_user.manager? && current_user.tracks.count == 1 %>
+    <div class="mb-4">
+      <%= form.hidden_field :track_id, value: @event.track_id %>
+      <p>Track: <%= @event.track.name %></p>
+    </div>
+    <% else %>
     <div class="mb-4">
       <%= form.label :track, class: "block text-gray-700 text-sm font-bold mb-2" %>
       <%= form.collection_select(:track_id, Track.all, :id, :name, {:prompt => 'Select a Track'}, { class: "mt-1 block w-full py-2 px-3 border rounded-md shadow-sm focus:ring focus:ring-opacity-50 text-white-800 bg-inherit" }) %>
-    </div>    
+    </div>   
+    <% end %>
 
     <div class="mb-4">
       <%= form.label :championship, class: "block text-gray-700 text-sm font-bold mb-2" %>

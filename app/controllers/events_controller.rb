@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: %i[index show test_events race_events check check_race check_test]
-  before_action :ensure_admin_user!, except: %i[index show test_events race_events check check_race check_test]
+  before_action :ensure_admin_user!, except: %i[index show test_events race_events check check_race check_test create update new edit]
 
   def test_events
     @test_events = Event.where(event_type: 'Test')
@@ -46,12 +46,14 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    authorize @event, :new?
+    @event.track = current_user.tracks.first if current_user.manager? && current_user.tracks.count == 1
   end
 
   def create
     @event = Event.new(event_params)
     @event.image = params[:event][:image]
-    
+    authorize @event, :create?
     if @event.save
       redirect_to @event, notice: 'Event was successfully created.'
     else
@@ -60,10 +62,11 @@ class EventsController < ApplicationController
   end
 
   def edit
-    
+    authorize @event, :edit?
   end
 
   def update
+    authorize @event, :update?
     if @event.update(event_params)
       redirect_to @event, notice: 'Event was successfully updated.'
     else
