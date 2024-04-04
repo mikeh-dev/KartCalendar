@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   helper Railsui::ThemeHelper
+  include Pundit::Authorization
+
   before_action :set_all_models
 
   before_action :configure_permitted_parameters, if: :devise_controller?
