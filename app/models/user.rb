@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :engines
   has_many :service_records
 
+  has_many :tracks
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
   validates :first_name, :last_name, presence: true, length: { minimum: 2, maximum: 50 }
@@ -32,6 +34,10 @@ class User < ApplicationRecord
 
   def followed_events
     Event.joins(:follows).where(follows: { user_id: id })
+  end
+
+  def manager?
+    role == 'manager'
   end
 
 end

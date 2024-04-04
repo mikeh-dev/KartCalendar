@@ -42,6 +42,7 @@ class TracksController < ApplicationController
   end
 
   def update
+    authorize @track
     if @track.update(track_params)
       redirect_to @track, notice: 'Track was successfully updated.'
     else

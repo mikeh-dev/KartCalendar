@@ -1,4 +1,5 @@
 class Track < ApplicationRecord
+  belongs_to :user
   has_many :events
   has_many :follows, as: :followable, dependent: :destroy
   has_and_belongs_to_many :categories
