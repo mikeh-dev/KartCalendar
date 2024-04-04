@@ -11,5 +11,6 @@ FactoryBot.define do
     website { Faker::Internet.domain_name }
     latitude { "53.31032"}
     longitude { "-2.94163" }
+    user_id { nil }
   end
 end
