@@ -226,7 +226,7 @@
           <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
             <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white rounded-lg">
               <% if @next_race_event.present? %>
-                    Next Race Day - <%= @next_race_event.start_date.strftime("%A #{ @track_race_events.last.start_date } %B %Y")%> - <%= @next_race_event.title %> - <%= @next_race_event.championship&.name %>
+                    Next Race Day - <%= @next_race_event.start_date.strftime("%A #{ @track_race_events.last.start_date } %B %Y")%> - <%= @next_race_event.title %> - <%= @next_race_event.championship.present? ? @next_race_event.championship.name : 'No Championship' %>
               <% else %>
                 Currently No Race Days Scheduled
               <% end %>
@@ -319,6 +319,7 @@
         <div class="p-4">
           <h2 class="text-gray-800 text-xl font-semibold mb-2"><%= track_event.title %></h2>
           <p class="text-gray-800"><%= track_event.description %></p>
+          <p class="text-gray-800"><%= track_event.start_date.strftime("%A %-d %B %Y") %></p>
         </div>
         <div class="bg-gray-100 p-4">
           <%= link_to "View Event", event_path(track_event), class: "text-white-500 hover:underline btn btn-primary" %>
