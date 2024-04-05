@@ -7,7 +7,7 @@ class EventPolicy < ApplicationPolicy
   end
 
   def create?
-    user.admin? || (user.manager? && user.tracks.include?(event.track))
+    user&.admin? || (user&.manager? && user.tracks.include?(event.track))
   end
 
   def show?
@@ -23,22 +23,22 @@ class EventPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.admin? || (user.manager? && user.tracks.include?(event.track))
+    user&.admin? || (user&.manager? && user.tracks.include?(event.track))
   end
 
   def new?
-    user.admin? || user.manager?
+    user.admin? || user&.manager?
   end
 
   def edit?
-    user.admin? || (user.manager? && user.tracks.include?(event.track))
+    user&.admin? || (user&.manager? && user.tracks.include?(event.track))
   end
 
   class Scope < Scope
     def resolve
-      if user.admin?
+      if user&.admin?
         scope.all
-      elsif user.manager?
+      elsif user&.manager?
         scope.where(track: user.tracks)
       else
         scope.none # or scope.where(public: true) for public events

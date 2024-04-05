@@ -11,11 +11,11 @@ class TrackPolicy < ApplicationPolicy
   end
 
   def create?
-    user.admin?
+    user&.admin?
   end
 
   def update?
-    user.admin? || (user.manager? && track.user_id == user.id)
+    user&.admin? || (user&.manager? && track.user_id == user.id)
   end
 
   def edit?
@@ -23,7 +23,7 @@ class TrackPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.admin?
+    user&.admin?
   end
 
   def index?
@@ -32,7 +32,7 @@ class TrackPolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-     if user.admin?
+     if user&.admin?
        scope.all
      else
        scope.where(user: @user)
