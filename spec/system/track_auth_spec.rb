@@ -53,6 +53,7 @@ RSpec.describe "TrackAuth", type: :system do
   context 'as a manager user' do
     before do
       login_as manager
+      track2
     end
 
     it 'denies access to edit any tracks' do
@@ -71,8 +72,16 @@ RSpec.describe "TrackAuth", type: :system do
     end
 
     it 'allows access to edit their own tracks' do
+      visit dashboard_index_path
+      expect(page).to have_content('Edit Track')
       visit edit_track_path(track2)
       expect(page).to have_content('Edit Track')
     end
+
+    it 'allows access for a track manager to create event for their own track' do
+      visit dashboard_index_path
+      expect(page).to have_content('Create Event')
+    end
+
   end
 end

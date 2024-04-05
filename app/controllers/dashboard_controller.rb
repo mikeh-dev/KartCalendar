@@ -14,6 +14,7 @@ class DashboardController < ApplicationController
                         .where("start_date >= ?", Date.today)
                         .limit(15)
     @engines = current_user.engines
+    @managed_tracks = current_user.managed_tracks
   end
 
   def check

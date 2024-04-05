@@ -40,4 +40,8 @@ class User < ApplicationRecord
     role == 'manager'
   end
 
+  def managed_tracks
+    Track.where(user_id: self)
+  end
+
 end
