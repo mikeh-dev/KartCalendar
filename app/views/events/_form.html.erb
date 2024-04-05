@@ -52,14 +52,23 @@
     <% else %>
     <div class="mb-4">
       <%= form.label :track, class: "block text-gray-700 text-sm font-bold mb-2" %>
-      <%= form.collection_select(:track_id, Track.all, :id, :name, {:prompt => 'Select a Track'}, { class: "mt-1 block w-full py-2 px-3 border rounded-md shadow-sm focus:ring focus:ring-opacity-50 text-white-800 bg-inherit" }) %>
+      <%= form.collection_select(:track_id, current_user.managed_tracks, :id, :name, {:prompt => 'Select a Track'}, { class: "mt-1 block w-full py-2 px-3 border rounded-md shadow-sm focus:ring focus:ring-opacity-50 text-white-800 bg-inherit" }) %>
     </div>   
     <% end %>
 
-    <div class="mb-4">
-      <%= form.label :championship, class: "block text-gray-700 text-sm font-bold mb-2" %>
-      <%= form.collection_select(:championship_id, Championship.all, :id, :name, { include_blank: 'Select an option' }, { class: "mt-1 block w-full py-2 px-3 border rounded-md shadow-sm focus:ring focus:ring-opacity-50 text-white-800 bg-inherit" }) %>
-    </div>
+    <% if current_user.manager? %>
+      <% managed_track_ids = current_user.managed_tracks.pluck(:id) %>
+      <% filtered_championships = Championship.where(home_track_id: managed_track_ids) %>
+      <div class="mb-4">
+        <%= form.label :championship, class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.collection_select(:championship_id, filtered_championships, :id, :name, { include_blank: 'Select an option' }, { class: "mt-1 block w-full py-2 px-3 border rounded-md shadow-sm focus:ring focus:ring-opacity-50 text-black bg-white" }) %>
+      </div>
+    <% else %>
+      <div class="mb-4">
+        <%= form.label :championship, class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.collection_select(:championship_id, Championship.all, :id, :name, { include_blank: 'Select an option' }, { class: "mt-1 block w-full py-2 px-3 border rounded-md shadow-sm focus:ring focus:ring-opacity-50 text-white-800 bg-inherit" }) %>
+      </div>
+    <% end %>
 
     <div class="mb-4">
       <%= form.label :image, class: "block text-gray-700 text-sm font-bold mb-2" %>
