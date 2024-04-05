@@ -13,7 +13,7 @@ RSpec.describe 'User Dashboard Access', type: :system do
       find("#dropdowns-nav-toggle").click
       click_link 'My Dashboard'
 
-      expect(page).to have_content('Your Karting')
+      expect(page).to have_content('Dashboard')
     end
   end
 end

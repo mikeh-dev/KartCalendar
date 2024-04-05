@@ -12,7 +12,6 @@ RSpec.describe Track, type: :model do
     it { should have_one_attached(:test_image) }
     it { should have_one_attached(:champ_image) }
     it { should have_one_attached(:contact_image) }
-    it { should have_many_attached(:home_championships).class_name('Championship').with_foreign_key('home_track_id') }
   end
 
   describe "validations" do

@@ -49,11 +49,16 @@
       <%= form.hidden_field :track_id, value: @event.track_id %>
       <p>Track: <%= @event.track.name %></p>
     </div>
+    <% elsif current_user.admin? %>
+    <div class="mb-4">
+      <%= form.label :track, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.collection_select(:track_id, Track.all, :id, :name, {:prompt => 'Select a Track'}, { class: "mt-1 block w-full py-2 px-3 border rounded-md shadow-sm focus:ring focus:ring-opacity-50 text-white-800 bg-inherit" }) %>
+    </div>
     <% else %>
     <div class="mb-4">
       <%= form.label :track, class: "block text-gray-700 text-sm font-bold mb-2" %>
       <%= form.collection_select(:track_id, current_user.managed_tracks, :id, :name, {:prompt => 'Select a Track'}, { class: "mt-1 block w-full py-2 px-3 border rounded-md shadow-sm focus:ring focus:ring-opacity-50 text-white-800 bg-inherit" }) %>
-    </div>   
+    </div>
     <% end %>
 
     <% if current_user.manager? %>
@@ -75,11 +80,17 @@
       <%= form.file_field :image, class: "form-input" %>
     </div>
 
-    <div class="field">
-      <%= form.label :category_ids, "Categories", class: "block text-gray-700 text-sm font-bold mb-2" %><br>
-      <%= form.collection_select :category_ids, Category.all, :id, :name, {}, { multiple: true, class: "select-multiple text-black" } %>
+    <div class="mb-4">
+      <%= form.label :categories, "Select Categories", class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <% Category.all.each do |category| %>
+          <div>
+            <%= check_box_tag "event[category_ids][]", category.id, @event.category_ids.include?(category.id), id: dom_id(category), class: "form-checkbox h-5 w-5 text-blue-600" %>
+            <%= label_tag dom_id(category), category.name, class: "ml-2 text-sm font-medium text-white" %>
+          </div>
+        <% end %>
+      </div>
     </div>
-
 
     <div class="flex items-center">
       <%= form.submit "Save", class: "btn btn-primary" %>
