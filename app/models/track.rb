@@ -39,11 +39,11 @@ class Track < ApplicationRecord
   end
 
   def next_race_event
-    race_events.first
+    race_events.where('start_date >= ?', Date.today).order(start_date: :asc).first
   end
 
   def next_test_event
-    test_events.first
+    test_events.where('start_date >= ?', Date.today).order(start_date: :asc).first
   end
 
   def address_for_geocoding
