@@ -19,7 +19,7 @@
       <div class="mt-8 flex flex-wrap gap-4 md:justify-center sm:justify-center">
         <%= link_to "Track Calendar", "#track-calendar", class: "block w-full rounded bg-rose-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto" %>
         <%= link_to "Contact", "#contact", class: "block w-full rounded bg-white px-12 py-3 text-sm font-medium text-rose-600 shadow hover:text-rose-700 focus:outline-none over:bg-rose-700 focus:ring active:text-rose-500 sm:w-auto" %>
-        <% if current_user&.admin? %>
+        <% if current_user&.admin? || current_user&.role == 'manager' %>
         <%= link_to "Edit Track", edit_track_path(@track), class: "block w-full rounded bg-white px-12 py-3 text-sm font-medium text-rose-600 shadow hover:text-rose-700 focus:outline-none over:bg-rose-700 focus:ring active:text-rose-500 sm:w-auto" %>
         <% end %>
       </div>
@@ -345,7 +345,7 @@
               <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
             </svg>
           <% end %>
-          <% if current_user&.admin? %>
+          <% if current_user&.admin? || current_user&.role == 'manager' %>
             <%= link_to "Edit Event", edit_event_path(event), class: "btn btn-dark" %> 
           <% end %>
         </div>

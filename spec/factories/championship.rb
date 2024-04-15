@@ -5,5 +5,6 @@ FactoryBot.define do
     description { Faker::Lorem.paragraph }
     short_name { "Short Name #{rand(1000)}" }
     long_name { "Long Name #{rand(1000)}" }
+    user_id { nil }
   end
 end

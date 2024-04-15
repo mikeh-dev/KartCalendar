@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_05_222804) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_08_204032) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -96,8 +96,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_05_222804) do
     t.text "social_media"
     t.string "licence"
     t.bigint "home_track_id"
+    t.bigint "user_id"
     t.index ["event_id"], name: "index_championships_on_event_id"
     t.index ["home_track_id"], name: "index_championships_on_home_track_id"
+    t.index ["user_id"], name: "index_championships_on_user_id"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -224,6 +226,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_05_222804) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "championships", "events"
   add_foreign_key "championships", "tracks", column: "home_track_id"
+  add_foreign_key "championships", "users"
   add_foreign_key "engines", "users"
   add_foreign_key "event_users", "events"
   add_foreign_key "event_users", "users"

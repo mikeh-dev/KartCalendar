@@ -1,7 +1,6 @@
 class ChampionshipsController < ApplicationController
   before_action :set_championship, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: %i[index show]
-  before_action :ensure_admin_user!, except: %i[index show]
 
   def index
     @championships = Championship.all.order(name: :asc).includes(:image_attachment, :logo_attachment, :events)
@@ -9,6 +8,7 @@ class ChampionshipsController < ApplicationController
 
   def new
     @championship = Championship.new
+    authorize @championship, :create?
   end
 
   def show
@@ -21,6 +21,7 @@ class ChampionshipsController < ApplicationController
   def create
     @championship = Championship.new(championship_params)
     @championship.image = params[:championship][:image]
+    authorize @championship, :create?
 
     if @championship.save
       redirect_to @championship, notice: 'Championship was successfully created.'
@@ -30,9 +31,11 @@ class ChampionshipsController < ApplicationController
   end
 
   def edit
+    authorize @championship, :edit?
   end
 
   def update
+    authorize @championship, :update?
     social_media_params = params[:championship][:social_media] || {}
     @championship.social_media = {} unless @championship.social_media.is_a?(Hash)
     @championship.social_media[:facebook] = social_media_params[:facebook]
@@ -46,6 +49,7 @@ class ChampionshipsController < ApplicationController
   end
 
   def destroy
+    authorize @championship, :destroy?
     @championship.destroy
     redirect_to championships_url, notice: 'Championship was successfully destroyed.'
   end

@@ -101,7 +101,7 @@ RSpec.describe 'User Permissions', type: :system do
       fill_in 'Name', with: 'New Track'
       fill_in 'Address', with: '123 Track Lane'
       fill_in 'Contact number', with: "1234567890"
-      fill_in 'Length', with: '1122'
+      fill_in 'Length (metres)', with: '1122'
       fill_in 'Description', with: 'New Track Description'
       fill_in 'Location', with: 'New Track Location'
       fill_in 'Short desc', with: 'New Track Short Desc'

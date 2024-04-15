@@ -75,7 +75,7 @@
     </div>
 
     <div class="mb-4">
-      <%= form.label :length, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.label :length, 'Length (metres)', class: "block text-gray-700 text-sm font-bold mb-2" %>
       <%= form.number_field :length, class: "form-input" %>
     </div>
 
@@ -117,23 +117,38 @@
     </div>
 
     <div class="mb-4">
-        <%= form.label :facilities %>
-        <%= form.select :facilities, options_for_select(Track::FACILITIES.reject(&:blank?), @track.facilities), {}, { multiple: true, size: 5, class: "bg-white text-black border-gray-300" } %>
+      <%= form.label :facilities, "Select Facilities", class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <% Track::FACILITIES.each do |facility| %>
+          <div>
+            <%= form.check_box :facilities, { multiple: true }, facility, nil %>
+            <%= form.label facility %>
+          </div>
+        <% end %>
+      </div>
     </div>
 
-    <div class="field">
-      <%= form.label :category_ids, "Categories", class: "block text-gray-700 text-sm font-bold mb-2" %><br>
-      <%= form.collection_select :category_ids, Category.all, :id, :name, {}, { multiple: true, class: "select-multiple text-black" } %>
+
+    <div class="mb-4">
+      <%= form.label :categories, "Select Categories", class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <% Category.all.each do |category| %>
+          <div>
+            <%= check_box_tag "track[category_ids][]", category.id, @track.category_ids.include?(category.id), id: dom_id(category), class: "form-checkbox h-5 w-5 text-blue-600" %>
+            <%= label_tag dom_id(category), category.name, class: "ml-2 text-sm font-medium text-white" %>
+          </div>
+        <% end %>
+      </div>
     </div>
 
     <div class="mb-4">
-      <%= form.label :static_map_url, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.label :google_static_map_url, class: "block text-gray-700 text-sm font-bold mb-2" %>
       <%= form.text_field :static_map_url, class: "form-input" %>
     </div>
 
-    <div class="flex items-center justify-between">
+    <div class="flex items-center">
       <%= form.submit "Save Track", class: "btn btn-primary" %>
+      <%= link_to 'Back', tracks_path, class: "btn btn-primary ml-4" %>
     </div>
-  
   <% end %>
 </div>

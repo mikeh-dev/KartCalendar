@@ -80,7 +80,7 @@ RSpec.describe "TrackAuth", type: :system do
 
     it 'allows access for a track manager to create event for their own track' do
       visit dashboard_index_path
-      expect(page).to have_content('Create Event')
+      expect(page).to have_link('Create event')
     end
 
   end

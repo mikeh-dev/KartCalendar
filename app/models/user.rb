@@ -44,4 +44,8 @@ class User < ApplicationRecord
     Track.where(user_id: self)
   end
 
+  def managed_championships
+    Championship.where(user_id: self)
+  end
+
 end

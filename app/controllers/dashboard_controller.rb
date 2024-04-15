@@ -14,7 +14,8 @@ class DashboardController < ApplicationController
                         .where("start_date >= ?", Date.today)
                         .limit(15)
     @engines = current_user.engines
-    @managed_tracks = current_user.managed_tracks
+    @managed_tracks = current_user.managed_tracks.includes(:events)
+    @managed_championships = current_user.managed_championships.includes(:events)
   end
 
   def check
