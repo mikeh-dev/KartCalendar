@@ -12,6 +12,21 @@
       <% end %>
     </div>
 
+    <% if current_user.admin? %>
+      <div class="mb-6">
+        <h2 class="text-2xl font-semibold text-gray-700 mb-4">Admin</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">App Stats</h5>
+            <p class="text-white-600"><%= User.all.count %><strong> - Users</strong></p>
+            <p class="text-white-600"><%= Track.all.count %><strong> - Tracks</strong></p>
+            <p class="text-white-600"><%= Event.all.count %><strong> - Events</strong></p>
+            <p class="text-white-600"><%= Championship.all.count %><strong> - Championships</strong></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  
     <% if current_user.role == 'manager' %>
       <div class="mb-6">
         <h2 class="text-2xl font-semibold text-gray-700 mb-4">Manage</h2>
