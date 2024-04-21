@@ -11,11 +11,11 @@ class ChampionshipPolicy < ApplicationPolicy
   end
 
   def new?
-    user.admin? || user&.manager?
+    user&.admin? || user&.manager?
   end
 
   def create?
-    user.admin? || user&.manager?
+    user&.admin? || user&.manager?
   end
 
   def update?

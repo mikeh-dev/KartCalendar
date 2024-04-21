@@ -47,6 +47,6 @@ RSpec.describe ChampionshipPolicy do
       it { is_expected.not_to permit_action(:destroy) }
       it { is_expected.to permit_action(:index) }
       it { is_expected.to permit_action(:show) }
-      it { is_expected.not_to permit_action(:new) }
+      it { is_expected.to permit_action(:new) }
     end
 end

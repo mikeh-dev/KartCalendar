@@ -8,7 +8,7 @@ class ChampionshipsController < ApplicationController
 
   def new
     @championship = Championship.new
-    authorize @championship, :create?
+    authorize @championship
   end
 
   def show
@@ -21,7 +21,7 @@ class ChampionshipsController < ApplicationController
   def create
     @championship = Championship.new(championship_params)
     @championship.image = params[:championship][:image]
-    authorize @championship, :create?
+    authorize @championship
 
     if @championship.save
       redirect_to @championship, notice: 'Championship was successfully created.'
