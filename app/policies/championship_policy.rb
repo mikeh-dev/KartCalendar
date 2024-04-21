@@ -10,8 +10,12 @@ class ChampionshipPolicy < ApplicationPolicy
     true
   end
 
+  def new?
+    user.admin? || user&.manager?
+  end
+
   def create?
-    user&.admin?
+    user.admin? || user&.manager?
   end
 
   def update?
