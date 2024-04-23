@@ -332,6 +332,8 @@
               <%= image_tag event.championship.logo, alt: "Championship", class: "w-30 h-12 object-contain" %>
             <% elsif event.championship.present? %>
               <%= event.championship.name %>
+            <% elsif event.track&.logo.present? %>
+              <%= image_tag event.track.logo %>
             <% end %>
           </h5>
         </div>
