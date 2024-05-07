@@ -19,6 +19,7 @@ module.exports = {
         success: colors.green,
         warning: colors.yellow,
         danger: colors.red,
+        'brand-blue': '#007bff'
       },
       borderWidth: {
         DEFAULT: '1px',
