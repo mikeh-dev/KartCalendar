@@ -2,7 +2,7 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
-gem "rails", "~> 7.0.7", ">= 7.0.7.2"
+gem "rails", "~> 7.0.7"
 gem "sprockets-rails"
 gem "pg", "~> 1.2"
 gem "puma", "~> 5.0"
