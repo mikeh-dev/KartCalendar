@@ -26,7 +26,6 @@ gem 'activerecord-import'
 gem 'nokogiri', '>= 1.16.2'
 gem 'pundit'
 
-
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 gem "image_processing", "~> 1.2"

@@ -33,7 +33,7 @@ Rails.application.routes.draw do
 		end
 	end
 	
-	resources :tracks 
+	resources :tracks
 	resources :championships
 	resource :calendars, only: [:show]
 

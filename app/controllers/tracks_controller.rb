@@ -4,8 +4,10 @@ class TracksController < ApplicationController
   before_action :ensure_admin_user!, only: [:new, :create, :destroy]
 
   def index
-    @tracks = Track.includes(:events, main_image_attachment: :blob).order(:name)
+    @tracks = Track.all
+   
     @upcoming_track_events = Track.joins(:events).where("events.start_date >= ? AND events.start_date <= ?", Date.today, Date.today + 6.days).distinct
+    
   end
 
   def show

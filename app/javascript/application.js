@@ -5,4 +5,3 @@ import "trix"
 import "@rails/actiontext"
 import './custom'
 import "mapkick/bundle"
-//= require map
