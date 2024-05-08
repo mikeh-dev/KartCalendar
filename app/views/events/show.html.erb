@@ -3,8 +3,8 @@
     <p class="text-indigo-600 text-2xl mb-6 lg:mt-0 mt-2 dark:text-indigo-500">
       <%= @championship.present? ? @event.championship.name : "Event" %>
     </p>
-    <h1 class="sm:text-5xl text-4xl font-extrabold"><%= @event.title %> - <%= @event.track.name %></h1>
-    <p class="my-6 text-slate-700 dark:text-slate-400 text-lg"><%= @event.description %></p>
+    <h1 class="sm:text-4xl text-4xl font-extrabold mb-4"><%= @event.title %> - <%= @event.track.name %></h1>
+    <p class="mb-10"><strong>Date - </strong> <%= @event.start_date.strftime('%d/%m/%Y') %> - <%= @event.end_date.strftime('%d/%m/%Y')     %> </p>
   </div>
   <div class="xl:w-3/5 w-full xl:my-0 mt-6">
     <div class="flex justify-center relative p-4 sm:p-0 sm:px-0">
@@ -69,6 +69,10 @@
         <div class="mb-8 mt-4">
           <h2 class="text-xl font-semibold text-white mb-2">Non-Member Entry Fee</h2>
           <p class="text-gray-300">Check with Track for more Info..</p>
+        </div>
+        <div class="mb-8 mt-4">
+          <h2 class="text-xl font-semibold text-white mb-2">Description</h2>
+          <p class="text-gray-300"><%= @event.description %></p>
         </div>     
         <div class="mb-8 mt-4">
           <h2 class="text-xl font-semibold text-white mb-2">Classes</h2>
