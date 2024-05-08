@@ -15,7 +15,7 @@ environment ENV.fetch("RAILS_ENV") { "production" }
 pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 
 # Number of workers to use in production
-workers ENV.fetch("WEB_CONCURRENCY") { 0 }
+workers 2
 
 # Preload app for better worker memory management
 preload_app!
