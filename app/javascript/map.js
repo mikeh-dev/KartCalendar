@@ -1,17 +1,25 @@
 import mapboxgl from 'mapbox-gl';
 
-document.addEventListener('DOMContentLoaded', () => {
-    const mapElement = document.getElementById('map');
-    const accessToken = mapElement.getAttribute('data-mapbox-token');
+window.onload = function() {
+    initializeMap();
+};
 
+function initializeMap() {
+    const mapElement = document.getElementById('map');
+    if (!mapElement) {
+        console.error('Map element not found. Make sure the element exists and has the correct ID.');
+        return;
+    }
+
+    const accessToken = mapElement.getAttribute('data-mapbox-token');
     mapboxgl.accessToken = accessToken;
     const map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
-        center: [-3.5, 54.5],  // Center on the UK
+        center: [-3.5, 54.5],
         zoom: 5
     });
-
+}
     // Fetch track data from server
     fetch('/tracks.json')  // Ensure the URL matches your routes configuration
         .then(response => {
@@ -29,5 +37,4 @@ document.addEventListener('DOMContentLoaded', () => {
                     .addTo(map);
             });
         })
-        .catch(error => console.error('Error loading track data:', error));
-});
+        .catch(error => console.error('Error loading track data:', error));    
