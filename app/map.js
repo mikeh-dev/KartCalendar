@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
         center: [longitude, latitude], // Replace these with actual values
-        zoom: 10
+        zoom: 10,
+        scrollZoom: true
     });
 
     new mapboxgl.Marker()
