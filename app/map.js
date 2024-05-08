@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
         style: 'mapbox://styles/mapbox/streets-v11',
         center: [longitude, latitude], // Replace these with actual values
         zoom: 10,
-        scrollZoom: true
+        scrollZoom: true,
+        touchZoomRotate: true
     });
 
     new mapboxgl.Marker()
