@@ -4,8 +4,8 @@ class TracksController < ApplicationController
   before_action :ensure_admin_user!, only: [:new, :create, :destroy]
 
   def index
-    @tracks = Track.all.includes(:events)
-   
+    @tracks = Track.includes(:events).all
+    @mapbox_access_token = ENV['MAPBOX_ACCESS_TOKEN']
     @upcoming_track_events = Track.joins(:events).where("events.start_date >= ? AND events.start_date <= ?", Date.today, Date.today + 6.days).distinct
   end
 
