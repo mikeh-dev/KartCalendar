@@ -18,6 +18,7 @@ gem "httparty"
 gem 'bundler-audit', require: false
 gem 'brakeman', require: false
 gem 'aws-sdk-s3', require: false
+gem "mapkick-rb"
 gem "gmaps4rails"
 gem "geocoder", "~> 1.8"
 gem 'csv'
