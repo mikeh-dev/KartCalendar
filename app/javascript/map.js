@@ -22,7 +22,7 @@ document.addEventListener('turbo:load', () => {
         })
         .then(tracksData => {
             tracksData.forEach(track => {
-                const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(track.tooltip);
+                const popup = new mapboxgl.Popup({ offset: 5 }).setHTML(track.tooltip);
                 new mapboxgl.Marker()
                     .setLngLat([track.longitude, track.latitude])
                     .setPopup(popup)
