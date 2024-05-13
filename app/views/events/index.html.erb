@@ -1,7 +1,7 @@
 <div class="container mx-auto sm:py-24 pb-10 px-4 relative z-10 flex flex-wrap items-center justify-between">
   <div class="w-full text-center mb-6">
     <p class="text-indigo-600 font-medium mb-3 lg:mt-0 mt-2 dark:text-indigo-500">Next Up</p>
-    <h1 class="sm:text-5xl text-4xl font-extrabold">This Weekends Events</h1>
+    <h1 class="sm:text-5xl text-4xl font-extrabold">This Weeks Events</h1>
   </div>
   <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
     <% @this_weekends_events.each do |event| %>
@@ -50,14 +50,12 @@
               <%= event.start_date.strftime('%d') %> - <%= event.end_date.strftime('%d %B %Y') %>
             </span>
           </p>
-          
           <%= link_to event_path(event), class: "border inline-flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none hover:bg-gray-900/10 active:bg-gray-900/20" do %>
             <span>View Event</span>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="w-4 h-4">
               <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
             </svg>
           <% end %>
-          
         </div>
       </div>
     <% end %>
