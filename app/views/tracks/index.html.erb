@@ -4,7 +4,7 @@
     <h1 class="sm:text-6xl text-4xl font-extrabold">Tracks</h1>
   </div>
 
-  <div class="mt-4" id="map" style="width: 100%; height: 750px;" data-mapbox-token="<%= @mapbox_access_token %>"></div>
+  <div class="mt-4" id="map" style="width: 100%; height: 750px; border-radius: 10px;" data-mapbox-token="<%= @mapbox_access_token %>"></div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-0">
     <% @tracks.each do |track| %>
