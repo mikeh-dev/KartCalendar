@@ -105,24 +105,25 @@
   </div>
 </div>
 
-<%= js_map [{lat: @event.track.latitude , lon: @event.track.longitude }], zoom: 11 %>
+<section id ="event-local-info" class="bg-gray-800">
+  <%= js_map [{lat: @event.track.latitude , lon: @event.track.longitude }], zoom: 11 %>
 
-<div class="container flex flex-wrap mx-auto">
+    <div class="container flex flex-wrap mx-auto mt-10">
     <div class="w-full md:w-1/2 px-2 my-4">
       <h2 class="text-2xl font-bold text-white-800 mb-4 text-center">Nearest Hotels</h2>
         <% if @hotels.present? %>
           <% @hotels['features'].each do |hotel| %>
             <div class="bg-white shadow-lg rounded-lg overflow-hidden mb-2">
               <div class="p-4">
-                <h2 class="text-gray-800 text-xl font-semibold mb-2"><%= hotel['text'] %></h2>
-                <p class="text-gray-800"><%= hotel['properties']['address'] %></p>
-                <% if hotel['geometry'] && hotel['geometry']['coordinates'] %>
-                  <% coords = hotel['geometry']['coordinates'] %>
-                  <a href="https://www.google.com/maps/dir/?api=1&destination=<%= coords[1] %>,<%= coords[0] %>" target="_blank" class="text-blue-500 hover:text-blue-600">Get Directions</a>
-                <% end %>
-                <% if hotel['properties']['website'] %>
-                  <a href="<%= hotel['properties']['website'] %>" target="_blank" class="text-blue-500 hover:text-blue-600">Visit Website</a>
-                <% end %>
+              <h2 class="text-gray-800 text-xl font-semibold mb-2"><%= hotel['text'] %></h2>
+              <% place_name_parts = hotel['place_name'].split(', ') %>
+              <% address_without_country = place_name_parts[1..-2].join(', ') %>
+              <p class="text-gray-600"><%= address_without_country %></p>
+              <% if hotel['geometry'] && hotel['geometry']['coordinates'] %>
+                <% coords = hotel['geometry']['coordinates'] %>
+                <% origin_address = @event.track.address %>
+                <a href="https://www.google.com/maps/dir/?api=1&origin=<%= origin_address %>&destination=<%= coords[1] %>,<%= coords[0] %>" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:text-blue-600">Get Directions</a>
+              <% end %>
               </div>
             </div>
           <% end %>
@@ -131,6 +132,7 @@
         <% end %>
     </div>
 
+
     <div class="w-full md:w-1/2 px-2 my-4">
       <h2 class="text-2xl font-bold text-white-800 mb-4 text-center">Nearest Fuel Stations</h2>
         <% if @fuel_stations.present? %>
@@ -138,19 +140,21 @@
             <div class="bg-white shadow-lg rounded-lg overflow-hidden mb-2">
               <div class="p-4">
                 <h2 class="text-gray-800 text-xl font-semibold mb-2"><%= station['text'] %></h2>
-                <p class="text-gray-800"><%= station['properties']['address'] %></p>
-                <% if station['geometry'] && station['geometry']['coordinates'] %>
-                  <% coords = station['geometry']['coordinates'] %>
-                  <a href="https://www.google.com/maps/dir/?api=1&destination=<%= coords[1] %>,<%= coords[0] %>" target="_blank" class="text-blue-500 hover:text-blue-600">Get Directions</a>
-                <% end %>
+                <% place_name_parts = station['place_name'].split(', ') %>
+                  <% address_without_country = place_name_parts[1..-2].join(', ') %>
+                  <p class="text-gray-600"><%= address_without_country %></p>
+                  <% if station['geometry'] && station['geometry']['coordinates'] %>
+                    <% coords = station['geometry']['coordinates'] %>
+                    <% origin_address = @event.track.address %>
+                    <a href="https://www.google.com/maps/dir/?api=1&origin=<%= origin_address %>&destination=<%= coords[1] %>,<%= coords[0] %>" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:text-blue-600">Get Directions</a>
+                  <% end %>
               </div>
             </div>
           <% end %>
         <% else %>
-          <p>No fuel station information available...</p>
+          <p>No fuel station information available.</p>
         <% end %>
     </div>
-  </div>
 </section>
 
 <% if @championship.present? %>
