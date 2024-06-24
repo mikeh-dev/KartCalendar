@@ -1,118 +1,317 @@
-<div class="relative">
-  <% if @event.image.attached? %>
-      <%= image_tag @event.image, alt: "Events", class: "absolute inset-0 object-cover w-full h-full" %>
-    <% else %>
-      <%= image_tag random_default_image, alt: "Events", class: "absolute inset-0 object-cover w-full h-full" %>
-  <% end %> 
-  <div class="relative bg-gray-900 bg-opacity-75">
-    <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-      <div class="flex flex-col items-center justify-between xl:flex-row">
-        <div class="w-full max-w-xl mb-12 xl:mb-0 xl:pr-16 xl:w-7/12">
-          <% if @event.event_type.present? %>
-            <span class="inline-block mb-4 text-xl font-semibold tracking-wider text-teal-accent-400 uppercase dark:text-teal-accent-400"><%= @event.event_type %></span>
-          <% end %>
-           <% if @event.championship&.logo.present? %>
-              <%= image_tag championship.logo, alt: "Championship", class: "w-30 h-10 object-contain" %>
-              <%= @event.championship.name %>
-            <% else %>
-              <% if @event.track.logo.present? %>
-                <%= image_tag @event.track.logo, alt: "Track", class: "w-30 h-10
-                object-contain mb-5" %>
-              <% end %>
+<section id="event-hero-section">
+  <div class="relative">
+    <%= image_tag @event.image.attached? ? @event.image : random_default_image, alt: "Events", class: "absolute inset-0 object-cover w-full h-full" %>
+    <div class="relative bg-gray-900 bg-opacity-75">
+      <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+        <div class="flex flex-col items-center justify-between xl:flex-row">
+          <div class="w-full max-w-xl mb-12 xl:mb-0 xl:pr-16 xl:w-7/12">
+            <% if @event.event_type.present? %>
+              <span class="inline-block mb-4 text-xl font-semibold tracking-wider text-teal-accent-400 uppercase dark:text-teal-accent-400"><%= @event.event_type %></span>
             <% end %>
-          <% if @event.championship.present? %>
-            <h1 class="text-4xl font-extrabold text-white sm:text-5xl md:text-6xl">
+            <% if @event.championship&.logo.present? %>
+              <%= image_tag @event.championship.logo, alt: "Championship", class: "w-30 h-10 object-contain" %>
               <%= @event.championship.name %>
-            </h1>
-          <% end %>
-          <p class="max-w-xl mb-4 text-base text-gray-400 md:text-lg">
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudan, totam rem aperiam, eaque ipsa quae.
-          </p>
-          <% if @event.start_date == @event.end_date %>
-            <p class="mb-10 text-xl "><strong>Date - </strong> <%= @event.start_date.strftime('%d/%m/%Y') %> </p>
-          <% else %>
-            <p class="mb-10 text-xl "><strong>Date - </strong> <%= @event.start_date.strftime('%d/%m/%Y') %> - <%= @event.end_date.strftime('%d/%m/%Y')     %> </p>
-          <% end %>
-          <a href="/" aria-label="" class=" hidden inline-flex items-center font-semibold tracking-wider transition-colors duration-200 text-teal-accent-400 hover:text-teal-accent-700">
-            Learn more
-            <svg class="inline-block w-3 ml-2" fill="currentColor" viewBox="0 0 12 12">
-              <path d="M9.707,5.293l-5-5A1,1,0,0,0,3.293,1.707L7.586,6,3.293,10.293a1,1,0,1,0,1.414,1.414l5-5A1,1,0,0,0,9.707,5.293Z"></path>
-            </svg>
-          </a>
-        </div>
-        <div class="w-full max-w-xl xl:px-8 xl:w-5/12">
-          <div class="bg-white rounded shadow-2xl p-7 sm:p-10">
-            <h3 class="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl text-gray-800">
-              Weather Forecast
-            </h3>
-            <div class="max-w-md p-8 mx-auto rounded-lg dark:bg-gray-50 dark:text-gray-800">
-            
-            
-            <div class="flex justify-between space-x-8">
-              <div class="flex flex-col items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-24 h-24 p-2 dark:text-yellow-600 fill-current">
-                  <path d="M256,104c-83.813,0-152,68.187-152,152s68.187,152,152,152,152-68.187,152-152S339.813,104,256,104Zm0,272A120,120,0,1,1,376,256,120.136,120.136,0,0,1,256,376Z"></path>
-                  <rect width="32" height="48" x="240" y="16"></rect>
-                  <rect width="32" height="48" x="240" y="448"></rect>
-                  <rect width="48" height="32" x="448" y="240"></rect>
-                  <rect width="48" height="32" x="16" y="240"></rect>
-                  <rect width="32" height="45.255" x="400" y="393.373" transform="rotate(-45 416 416)"></rect>
-                  <rect width="32.001" height="45.255" x="80" y="73.373" transform="rotate(-45 96 96)"></rect>
-                  <rect width="45.255" height="32" x="73.373" y="400" transform="rotate(-45.001 96.002 416.003)"></rect>
-                  <rect width="45.255" height="32.001" x="393.373" y="80" transform="rotate(-45 416 96)"></rect>
-                </svg>
-                <h1 class="text-xl font-semibold"><%= @event.track.name %></h1>
-              </div>
-              <span class="font-bold text-8xl">14°</span>
-            </div>
-            <div class="flex justify-between mt-8 space-x-4 dark:text-gray-600">
-              <div class="flex flex-col items-center space-y-1">
-                <span class="uppercase">wed</span>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-8 h-8 fill-current">
-                  <path d="M398.2,137.208a144.013,144.013,0,0,0-284.545.979,122.364,122.364,0,0,0-64.357,32.926A109.4,109.4,0,0,0,16,249.619c0,31.119,12.789,60.762,36.01,83.469q2.84,2.776,5.845,5.347l11.327-33.981C56.091,289.3,48,270.017,48,249.619c0-42.362,35.724-78.015,81.329-81.168l14.055-.972.814-14.065a111.995,111.995,0,0,1,223.589-.22l.891,14.888,14.913.155c46.592.488,80.409,34.714,80.409,81.382,0,33.152-16.706,61.38-41.84,75.9L409.032,364.9a110.012,110.012,0,0,0,54.938-32.358C484.625,310.339,496,280.889,496,249.619,496,190.507,454.859,144.4,398.2,137.208Z"></path>
-                  <polygon points="126.029 496 159.817 496 223.153 309.136 192.847 298.864 126.029 496"></polygon>
-                  <polygon points="294.029 496 327.817 496 391.153 309.136 360.847 298.864 294.029 496"></polygon>
-                  <polygon points="290.11 251.033 225.781 448 259.445 448 320.529 260.967 290.11 251.033"></polygon>
-                  <polygon points="128.791 251.033 64.461 448 98.125 448 159.209 260.967 128.791 251.033"></polygon>
-                </svg>
-                <span>11°</span>
-              </div>
-              <div class="flex flex-col items-center space-y-1">
-                <span class="uppercase">thu</span>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-8 h-8 fill-current">
-                  <path d="M382.76,432H136c-30.732,0-61.371-12.725-84.061-34.912-23.221-22.707-36.009-52.35-36.009-83.469A109.4,109.4,0,0,1,49.136,235.2a122.281,122.281,0,0,1,62.794-32.707V200c0-79.4,64.6-144,144-144s144,64.6,144,144v1.453c55.716,7.939,96,53.729,96,112.166,0,31.27-11.375,60.72-32.031,82.927A109.747,109.747,0,0,1,382.76,432ZM255.93,88a112.127,112.127,0,0,0-112,112v31.405l-14.864,1.059c-45.5,3.239-81.136,38.887-81.136,81.155C47.93,359.635,89.084,400,136,400H382.76c45.515,0,81.17-37.943,81.17-86.381,0-46.566-33.731-80.791-80.2-81.379l-15.8-.2V200A112.127,112.127,0,0,0,255.93,88Z"></path>
-                </svg>
-                <span>17°</span>
-              </div>
-              <div class="flex flex-col items-center space-y-1">
-                <span class="uppercase">fri</span>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-8 h-8 fill-current">
-                  <path d="M399.667,264.875v-3.813c0-79.4-64.6-144-144-144-2.2,0-4.391.057-6.569.156A116.689,116.689,0,1,0,112.315,247.444c-.422,4.484-.648,9.025-.648,13.618v3.813A116.633,116.633,0,0,0,132.287,496.3H379.046a116.633,116.633,0,0,0,20.621-231.427ZM48.75,132.688a84.677,84.677,0,0,1,168.705-10.47,144.606,144.606,0,0,0-98.59,93.876A84.807,84.807,0,0,1,48.75,132.688ZM379.046,464.3H132.287a84.619,84.619,0,0,1-3.9-169.148l15.277-.69v-33.4a112,112,0,1,1,224,0v33.4l15.277.69a84.619,84.619,0,0,1-3.9,169.148Z"></path>
-                </svg>
-                <span>8°</span>
-              </div>
-              <div class="flex flex-col items-center space-y-1">
-                <span class="uppercase">sat</span>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-8 h-8 fill-current">
-                  <polygon points="135.279 206.728 224.136 258.323 144.097 304.797 48.308 279.129 48.308 312.259 123.155 332.313 102.99 407.571 131.68 424.135 155.518 335.169 240 286.115 240 374.402 168.823 445.579 197.513 462.144 258 401.657 317.135 460.792 345.826 444.228 272 370.402 272 286.115 355.002 334.31 379.279 424.914 407.97 408.349 387.596 332.313 464 311.841 464 278.712 367.508 304.567 287.864 258.323 376.327 206.957 464 230.449 464 197.32 394.346 178.657 413.576 106.888 384.886 90.323 361.196 178.739 272 230.53 272 130.568 338.833 63.735 310.143 47.171 254.971 102.343 200.664 48.037 171.974 64.601 240 132.627 240 230.53 149.325 177.88 126.073 91.103 97.382 107.667 116.404 178.657 48.308 196.903 48.308 230.032 135.279 206.728"></polygon>
-                </svg>
-                <span>-2°</span>
-              </div>
-              <div class="flex flex-col items-center space-y-1">
-                <span class="uppercase">sun</span>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-8 h-8 fill-current">
-                  <path d="M382.76,432H136c-30.732,0-61.371-12.725-84.061-34.912-23.221-22.707-36.009-52.35-36.009-83.469A109.4,109.4,0,0,1,49.136,235.2a122.281,122.281,0,0,1,62.794-32.707V200c0-79.4,64.6-144,144-144s144,64.6,144,144v1.453c55.716,7.939,96,53.729,96,112.166,0,31.27-11.375,60.72-32.031,82.927A109.747,109.747,0,0,1,382.76,432ZM255.93,88a112.127,112.127,0,0,0-112,112v31.405l-14.864,1.059c-45.5,3.239-81.136,38.887-81.136,81.155C47.93,359.635,89.084,400,136,400H382.76c45.515,0,81.17-37.943,81.17-86.381,0-46.566-33.731-80.791-80.2-81.379l-15.8-.2V200A112.127,112.127,0,0,0,255.93,88Z"></path>
-                </svg>
-                <span>4°</span>
-              </div>
-            </div>
+            <% elsif @event.track.logo.present? %>
+              <%= image_tag @event.track.logo, alt: "Track", class: "w-30 h-10 object-contain mb-5" %>
+            <% end %>
+            <% if @event.championship.present? %>
+              <h1 class="text-4xl font-extrabold text-white sm:text-5xl md:text-6xl"><%= @event.championship.name %></h1>
+            <% end %>
+            <p class="max-w-xl mb-4 text-base text-gray-400 md:text-lg">
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudan, totam rem aperiam, eaque ipsa quae.
+            </p>
+            <p class="mb-10 text-xl"><strong>Date - </strong> <%= @event.start_date == @event.end_date ? @event.start_date.strftime('%d/%m/%Y') : "#{@event.start_date.strftime('%d/%m/%Y')} - #{@event.end_date.strftime('%d/%m/%Y')}" %></p>
+            <a href="/" aria-label="" class="hidden inline-flex items-center font-semibold tracking-wider transition-colors duration-200 text-teal-accent-400 hover:text-teal-accent-700">
+              Learn more
+              <svg class="inline-block w-3 ml-2" fill="currentColor" viewBox="0 0 12 12">
+                <path d="M9.707,5.293l-5-5A1,1,0,0,0,3.293,1.707L7.586,6,3.293,10.293a1,1,0,1,0,1.414,1.414l5-5A1,1,0,0,0,9.707,5.293Z"></path>
+              </svg>
+            </a>
           </div>
-                    </div>
+          <div class="w-full max-w-xl xl:px-8 xl:w-5/12">
+            <div class="bg-white rounded shadow-2xl p-7 sm:p-10">
+              <h3 class="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl text-gray-800">Weather Forecast</h3>
+              <div class="max-w-md p-8 mx-auto rounded-lg dark:bg-gray-50 dark:text-gray-800">
+                <div class="flex justify-between space-x-8">
+                  <div class="flex flex-col items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-24 h-24 p-2 dark:text-yellow-600 fill-current">
+                      <path d="M256,104c-83.813,0-152,68.187-152,152s68.187,152,152,152,152-68.187,152-152S339.813,104,256,104Zm0,272A120,120,0,1,1,376,256,120.136,120.136,0,0,1,256,376Z"></path>
+                      <rect width="32" height="48" x="240" y="16"></rect>
+                      <rect width="32" height="48" x="240" y="448"></rect>
+                      <rect width="48" height="32" x="448" y="240"></rect>
+                      <rect width="48" height="32" x="16" y="240"></rect>
+                      <rect width="32" height="45.255" x="400" y="393.373" transform="rotate(-45 416 416)"></rect>
+                      <rect width="32.001" height="45.255" x="80" y="73.373" transform="rotate(-45 96 96)"></rect>
+                      <rect width="45.255" height="32" x="73.373" y="400" transform="rotate(-45.001 96.002 416.003)"></rect>
+                      <rect width="45.255" height="32.001" x="393.373" y="80" transform="rotate(-45 416 96)"></rect>
+                    </svg>
+                    <h1 class="text-xl font-semibold"><%= @event.track.name %></h1>
                   </div>
+                  <span class="font-bold text-8xl">14°</span>
+                </div>
+                <div class="flex justify-between mt-8 space-x-4 dark:text-gray-600">
+                  <% ["wed", "thu", "fri", "sat", "sun"].each_with_index do |day, i| %>
+                    <div class="flex flex-col items-center space-y-1">
+                      <span class="uppercase"><%= day %></span>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-8 h-8 fill-current">
+                        <% if i == 0 %>
+                          <path d="M398.2,137.208a144.013,144.013,0,0,0-284.545.979,122.364,122.364,0,0,0-64.357,32.926A109.4,109.4,0,0,0,16,249.619c0,31.119,12.789,60.762,36.01,83.469q2.84,2.776,5.845,5.347l11.327-33.981C56.091,289.3,48,270.017,48,249.619c0-42.362,35.724-78.015,81.329-81.168l14.055-.972.814-14.065a111.995,111.995,0,0,1,223.589-.22l.891,14.888,14.913.155c46.592.488,80.409,34.714,80.409,81.382,0,33.152-16.706,61.38-41.84,75.9L409.032,364.9a110.012,110.012,0,0,0,54.938-32.358C484.625,310.339,496,280.889,496,249.619,496,190.507,454.859,144.4,398.2,137.208Z"></path>
+                          <polygon points="126.029 496 159.817 496 223.153 309.136 192.847 298.864 126.029 496"></polygon>
+                          <polygon points="294.029 496 327.817 496 391.153 309.136 360.847 298.864 294.029 496"></polygon>
+                          <polygon points="290.11 251.033 225.781 448 259.445 448 320.529 260.967 290.11 251.033"></polygon>
+                          <polygon points="128.791 251.033 64.461 448 98.125 448 159.209 260.967 128.791 251.033"></polygon>
+                        <% elsif i == 1 %>
+                          <path d="M382.76,432H136c-30.732,0-61.371-12.725-84.061-34.912-23.221-22.707-36.009-52.35-36.009-83.469A109.4,109.4,0,0,1,49.136,235.2a122.281,122.281,0,0,1,62.794-32.707V200c0-79.4,64.6-144,144-144s144,64.6,144,144v1.453c55.716,7.939,96,53.729,96,112.166,0,31.27-11.375,60.72-32.031,82.927A109.747,109.747,0,0,1,382.76,432ZM255.93,88a112.127,112.127,0,0,0-112,112v31.405l-14.864,1.059c-45.5,3.239-81.136,38.887-81.136,81.155C47.93,359.635,89.084,400,136,400H382.76c45.515,0,81.17-37.943,81.17-86.381,0-46.566-33.731-80.791-80.2-81.379l-15.8-.2V200A112.127,112.127,0,0,0,255.93,88Z"></path>
+                        <% elsif i == 2 %>
+                          <path d="M399.667,264.875v-3.813c0-79.4-64.6-144-144-144-2.2,0-4.391.057-6.569.156A116.689,116.689,0,1,0,112.315,247.444c-.422,4.484-.648,9.025-.648,13.618v3.813A116.633,116.633,0,0,0,132.287,496.3H379.046a116.633,116.633,0,0,0,20.621-231.427ZM48.75,132.688a84.677,84.677,0,0,1,168.705-10.47,144.606,144.606,0,0,0-98.59,93.876A84.807,84.807,0,0,1,48.75,132.688ZM379.046,464.3H132.287a84.619,84.619,0,0,1-3.9-169.148l15.277-.69v-33.4a112,112,0,1,1,224,0v33.4l15.277.69a84.619,84.619,0,0,1-3.9,169.148Z"></path>
+                        <% elsif i == 3 %>
+                          <polygon points="135.279 206.728 224.136 258.323 144.097 304.797 48.308 279.129 48.308 312.259 123.155 332.313 102.99 407.571 131.68 424.135 155.518 335.169 240 286.115 240 374.402 168.823 445.579 197.513 462.144 258 401.657 317.135 460.792 345.826 444.228 272 370.402 272 286.115 355.002 334.31 379.279 424.914 407.97 408.349 387.596 332.313 464 311.841 464 278.712 367.508 304.567 287.864 258.323 376.327 206.957 464 230.449 464 197.32 394.346 178.657 413.576 106.888 384.886 90.323 361.196 178.739 272 230.53 272 130.568 338.833 63.735 310.143 47.171 254.971 102.343 200.664 48.037 171.974 64.601 240 132.627 240 230.53 149.325 177.88 126.073 91.103 97.382 107.667 116.404 178.657 48.308 196.903 48.308 230.032 135.279 206.728"></polygon>
+                        <% else %>
+                          <path d="M382.76,432H136c-30.732,0-61.371-12.725-84.061-34.912-23.221-22.707-36.009-52.35-36.009-83.469A109.4,109.4,0,0,1,49.136,235.2a122.281,122.281,0,0,1,62.794-32.707V200c0-79.4,64.6-144,144-144s144,64.6,144,144v1.453c55.716,7.939,96,53.729,96,112.166,0,31.27-11.375,60.72-32.031,82.927A109.747,109.747,0,0,1,382.76,432ZM255.93,88a112.127,112.127,0,0,0-112,112v31.405l-14.864,1.059c-45.5,3.239-81.136,38.887-81.136,81.155C47.93,359.635,89.084,400,136,400H382.76c45.515,0,81.17-37.943,81.17-86.381,0-46.566-33.731-80.791-80.2-81.379l-15.8-.2V200A112.127,112.127,0,0,0,255.93,88Z"></path>
+                        <% end %>
+                      </svg>
+                      <span><%= i == 0 ? "11°" : i == 1 ? "17°" : i == 2 ? "8°" : i == 3 ? "-2°" : "4°" %></span>
+                    </div>
+                  <% end %>
                 </div>
               </div>
             </div>
-          </div>  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="relative isolate overflow-hidden bg-gray-900 mt-10 sm:py-32" id="track_info">
+  <div class="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl" aria-hidden="true">
+  </div>
+  <div class="absolute -top-52 left-1/2 -z-10 -translate-x-1/2 transform-gpu blur-3xl sm:top-[-28rem] sm:ml-16 sm:translate-x-0 sm:transform-gpu" aria-hidden="true">
+    <div class="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-20" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+  </div>
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto">
+      <h2 class="text-4xl font-bold tracking-tight text-white sm:text-4xl"><%= @event.title %></h2>
+
+      <div class="mb-8">
+        <% if @event.track.main_image.attached? %>
+          <div class="bg-cover bg-center my-4 rounded" style="background-image: url('<%= url_for(@event.track.main_image) %>')">
+            <div class="bg-[hsla(0,0%,0%,0.6)]">
+          <% else %>
+            <div class="bg-cover bg-center my-4 rounded" style="background-image: url('<%= asset_url('placeholder.webp') %>')">
+            <div class="bg-[hsla(0,0%,0%,0.6)]">
+        <% end %>
+        
+        <div class="px-10 py-10 mb-4 sm:flex sm:justify-between">      
+          <h2 class=" text-4xl font-bold mb-2"><%= @event.track.name %>, <%= @event.track.location %></h2>
+            <%= link_to "View Track", @event.track, class: "btn btn-primary" %>
+        </div>
+            </div>
+            </div>
+            </div>   
+      </div>
+
+
+    <div class="mx-auto max-w-2xl lg:mx-0">
+
+    <div class="flex">
+        <% if current_user %> 
+        <% button_text = @followable.is_a?(Championship) ? ['Follow', 'Unfollow'] : ['Add to my Tracks', 'Remove from my Tracks'] %>
+          <%= turbo_frame_tag dom_id(@event, "follow_#{dom_class(@event)}"), class: "w-auto" do %>
+            <% if current_user.following?(@event) %>
+              <%= link_to button_text[1], follow_path(id: current_user.follows.find_by(followable: @event).id), method: :delete, class: "btn bg-rose-600", data: { turbo_method: :delete } %>
+            <% else %>
+              <%= link_to button_text[0], follows_path(followable_type: @event.class.name, followable_id: @event.id), method: :post, class: "btn btn-primary", data: { turbo_method: :post } %>
+            <% end %>
+          <% end %>
+        <% end %>
+        </div>
+    </div>
+    
+    <div class="mx-auto mt-10 mb-10 max-w-2xl lg:mx-0 lg:max-w-none border-b-2 border-slate-700">
+      <dl class="mb-16 grid grid-cols-2 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="flex flex-col-reverse">
+          <dt class="text-base leading-7 text-gray-300">Track Length</dt>
+          <dd class="text-2xl font-bold leading-9 tracking-tight text-white"><%= @event.title%>m</dd>
+        </div>
+        <div class="flex flex-col-reverse">
+          <dt class="text-base leading-7 text-gray-300">Next Test Day</dt>
+          <dd class="text-2xl font-bold leading-9 tracking-tight text-white"><%= @next_test_event.present? ? @next_test_event.start_date.strftime("%-d/%m/%Y") : "Not Listed" %></dd>
+        </div>
+        <div class="flex flex-col-reverse">
+          <dt class="text-base leading-7 text-gray-300">Next Race Day</dt>
+          <dd class="text-2xl font-bold leading-9 tracking-tight text-white"><%= @next_race_event.present? ? @next_race_event.start_date.strftime("%-d/%m/%Y") : "Not Listed" %></dd>
+        </div>
+          <div class="flex flex-col-reverse">
+            <dt class="text-base leading-7 text-gray-300">Track Surface</dt>
+            <dd class="text-2xl font-bold leading-9 tracking-tight text-white"></dd>
+          </div>
+        <% if @event.live_timing_link.present? %>
+          <div class="flex flex-col-reverse">
+            <dt class="text-base leading-7 text-gray-300">Click Here</dt>
+            <dd class="text-2xl font-bold leading-9 tracking-tight text-white">
+              <% if @event.live_timing_link.present? %>
+                <%= link_to @event.live_timing_link, target: "_blank", class: "text-blue hover:text-blue-600", rel: "noopener noreferrer" do %>
+                  Live Timing Link
+                <% end %>
+              <% else %>
+                No Live Timing Available
+              <% end %>
+            </dd>
+          </div>
+        <% end %>
+      </dl>
+    </div>
+
+  <div class="mx-auto pb-10 mt-10 mb-10 max-w-2xl lg:mx-0 lg:max-w-none border-b-2 border-slate-700">
+    <h2 class="text-white mb-5 font-semibold text-2xl">Facilities</h2>
+      <div class="grid grid-cols-2 gap-x-4 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+      <% @event.track.facilities.each do |facility| %>
+          <% unless facility.blank? %>
+        <div>
+          <p> - <%= facility %></p>
+        </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="mx-auto mt-10 mb-10 max-w-2xl lg:mx-0 lg:max-w-none pb-10 border-b-2 border-slate-700">
+    <h2 class="text-white mb-2 text-2xl font-semibold">Classes</h2>
+      <div class="flex flex-wrap gap-2">
+        <% @event.categories.each do |category| %>
+          <span class="bg-indigo-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+            <%= category.name %>
+              </span>
+            <% end %>
+      </div>
+    </div>
+
+  <section id="contact">
+  <div class="relative isolate overflow-hidden bg-gray-900 mx-auto mt-10">
+  <div class="mx-auto max-w-7xl">
+     <div class="mx-auto max-w-2xl lg:mx-0">
+      <h2 class="text-white font-semibold text-2xl">Contact Details</h2>
+    </div>
+    
+    <div class="mx-auto mt-5 max-w-2xl lg:mx-0 lg:max-w-none">
+      <dl class="mb-8 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="flex flex-col-reverse">
+          <dt class="text-base leading-7 text-gray-300">Track Address</dt>
+          <dd class="text-1xl font-bold leading-9 tracking-tight text-white"><%= @event.track.address %></dd>
+        </div>
+        <div class="flex flex-col-reverse">
+          <dt class="text-base leading-7 text-gray-300">Contact Number</dt>
+          <dd class="text-1xl font-bold leading-9 tracking-tight text-white"><%= @event.track.contact_number %></dd>
+        </div>
+        <div class="flex flex-col-reverse">
+          <dt class="text-base leading-7 text-gray-300">Email Address</dt>
+          <dd class="text-1xl font-bold leading-9 tracking-tight text-white"><%= @event.track.email %></dd>
+        </div>
+        <% if @event.paddock_booking_contact.present? %>
+          <div class="flex flex-col-reverse">
+            <dt class="text-base leading-7 text-gray-300">Paddock Booking Email</dt>
+            <dd class="text-1xl font-bold leading-9 tracking-tight text-white"><%= @event.paddock_booking_contact %></dd>
+          </div>
+        <% end %>
+        <div class="flex flex-col-reverse">
+          <dt class="text-base leading-7 text-gray-300">Website</dt>
+          
+          </dd>
+        </div>
+      
+        <div class="flex flex-col-reverse">
+          <dt class="text-base leading-7 text-gray-300 mt-2">Social Media</dt>
+          <dd class="flex flex-row items-center justify-start space-x-4 text-1xl font-bold leading-9 tracking-tight text-white">
+            <% if @event.track.facebook.present? %>
+            <%= link_to @event.track.facebook, target: "_blank", rel: "noopener noreferrer" do %>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955 .192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
+              </svg>
+            <% end %>
+            <% end %>
+            <% if @event.track.instagram.present? %>
+              <%= link_to @event.track.instagram, target: "_blank", rel: "noopener noreferrer" do %>
+              <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 "
+                  fill="currentColor"
+                  viewBox="0 0 24 24">
+                  <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                </svg>
+              <% end %>
+            <% end %>
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</div>
+</section>
+  <div class="relative mx-auto max-w-screen-xl px-4 sm:px-6 lg:flex lg:items-center lg:px-8 mt-2 line-clamp-none hover:line-clamp-none">
+    <p class="text-lg leading-8 text-gray-300 "><%= @event.description %></p>
+  </div>
+</div>
+
+<section id="events">
+  <div class="max-w-screen-xl px-4 py-8 mx-auto sm:px-6 sm:py-8 lg:px-8">
+    <header class="text-center">
+      <h2 class="text-3xl font-bold sm:text-4xl">
+        Racing and Testing at <%= @event.title %>
+      </h2>
+
+      <p class="max-w-md mx-auto mt-4 text-gray-500">
+        The next scheduled events at <%= @event.title %>
+      </p>
+    </header>
+
+  <ul class="grid grid-cols-1 gap-4 mt-8 grid-cols-2">
+    <li>
+      <%= link_to @event.track.events.last, class: "relative block group" do %>
+        <% if @event.track.test_image.present? %>
+          <%= image_tag @event.test_image, alt: "next race event photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
+        <% else %>
+          <%= image_tag random_default_image, alt: "next test event photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90 h-38 w-38" %>
+        <% end %>
+          <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
+            <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white rounded-lg ">
+                <% if @next_test_event.present? %>
+                    Next Test Day - <%= @next_test_event.start_date.strftime("%A #{ @track_test_events.last.start_date } %B %Y")%> - <%= @next_test_event.title %>
+              <% else %>
+                Currently No Test Days Scheduled
+              <% end %>
+            </span>
+          </div>
+        <% end %>
+    </li>
+
+    <li>
+      <%= link_to @next_race_event, class: "relative block group" do %>
+        <% if @next_race_event&.image.present? %>
+          <%= image_tag @next_race_event.image, alt: "about photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
+        <% else %>
+          <%= image_tag random_default_image, alt: "about photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
+        <% end %>
+          <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
+            <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white rounded-lg">
+              <% if @next_race_event.present? %>
+                    Next Race Day - <%= @next_race_event.start_date.strftime("%A #{ @track_race_events.last.start_date } %B %Y")%> - <%= @next_race_event.title %> - <%= @next_race_event.championship.present? ? @next_race_event.championship.name : 'No Championship' %>
+              <% else %>
+                Currently No Race Days Scheduled
+              <% end %>
+            </span>
+          </div>
+        <% end %>
+      </li>
+  </ul>
+  </div>
+
+  <div class="container flex mx-auto justify-center mb-10">
+    <%= link_to "View Full Calendar", "#track-calendar", class: "block w-full rounded bg-rose-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto" %>
+  </div>
+</section>
 
     <div class="container mx-auto py-8 max-w-full xl:max-w-2xl 2xl:max-w-3xl object-cover rounded-3xl relative z-20 p-6">
         <h4 class="text-indigo-600 text-lg mb-1 lg:mt-0 mt-2 dark:text-indigo-500 text-center"><span class="bg-indigo-600 text-white px-3 py-1 rounded-full text-sm font-medium">

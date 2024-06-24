@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_08_204032) do
+ActiveRecord::Schema[7.0].define(version: 2024_06_24_145310) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -148,6 +148,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_08_204032) do
     t.date "start_date"
     t.date "end_date"
     t.string "licence"
+    t.string "member_entry_fee"
+    t.string "non_member_entry_fee"
+    t.text "arrival_instructions"
+    t.text "nominated_fuel_station"
+    t.string "paddock_booking_contact"
+    t.string "live_timing_link"
     t.index ["championship_id"], name: "index_events_on_championship_id"
     t.index ["end_date"], name: "index_events_on_end_date"
     t.index ["start_date"], name: "index_events_on_start_date"
