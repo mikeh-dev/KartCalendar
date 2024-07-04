@@ -36,6 +36,7 @@ Rails.application.routes.draw do
 	resources :tracks
 	resources :championships
 	resource :calendars, only: [:show]
+	
 
 	get 'categories/search ', to: 'categories#search', as: 'search_categories'
   post 'categories/find_events', to: 'categories#find_events', as: 'find_category_events'

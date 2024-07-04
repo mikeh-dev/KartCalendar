@@ -28,16 +28,27 @@
               </svg>
             </a>
           </div>
+
           <div class="w-full max-w-xl xl:px-8 xl:w-5/12">
             <div class="bg-white rounded shadow-2xl p-7 sm:p-10">
               <h3 class="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl text-gray-800">Weather Forecast</h3>
               <div class="max-w-md p-8 mx-auto rounded-lg dark:bg-gray-50 dark:text-gray-800">
                 <div class="flex justify-between space-x-8">
                   <div class="flex flex-col items-center">
-                    <%= wi_icon(:day_sunny, class: 'text-yellow-500 text-6xl') %>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-24 h-24 p-2 dark:text-yellow-600 fill-current">
+                      <path d="M256,104c-83.813,0-152,68.187-152,152s68.187,152,152,152,152-68.187,152-152S339.813,104,256,104Zm0,272A120,120,0,1,1,376,256,120.136,120.136,0,0,1,256,376Z"></path>
+                      <rect width="32" height="48" x="240" y="16"></rect>
+                      <rect width="32" height="48" x="240" y="448"></rect>
+                      <rect width="48" height="32" x="448" y="240"></rect>
+                      <rect width="48" height="32" x="16" y="240"></rect>
+                      <rect width="32" height="45.255" x="400" y="393.373" transform="rotate(-45 416 416)"></rect>
+                      <rect width="32.001" height="45.255" x="80" y="73.373" transform="rotate(-45 96 96)"></rect>
+                      <rect width="45.255" height="32" x="73.373" y="400" transform="rotate(-45.001 96.002 416.003)"></rect>
+                      <rect width="45.255" height="32.001" x="393.373" y="80" transform="rotate(-45 416 96)"></rect>
+                    </svg>
                     <h1 class="text-xl font-semibold"><%= @event.track.name %></h1>
                   </div>
-                  <span class="font-bold text-8xl">14°</span>
+                  <span class="font-bold text-8xl"><%= @weather[:temperature].round %>°</span>
                 </div>
                 <div class="flex justify-between mt-8 space-x-4 dark:text-gray-600">
                   <% ["wed", "thu", "fri", "sat", "sun"].each_with_index do |day, i| %>
@@ -67,12 +78,23 @@
               </div>
             </div>
           </div>
+      
+
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<% if @weather %>
+  <h3>Current Weather for <%= @weather[:city] %></h3>
+  <p>Temperature: <%= @weather[:temperature] %>°C</p>
+  <p>Conditions: <%= @weather[:conditions] %></p>
+  <p>Wind: <%= @weather[:wind] %> km/h</p>
+  <p>Humidity: <%= @weather[:humidity] %>%</p>
+<% else %>
+  <p>Weather data not available.</p>
+<% end %>
 
 <div class="relative isolate overflow-hidden bg-gray-900 mt-10 sm:py-32" id="track_info">
   <div class="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl" aria-hidden="true">

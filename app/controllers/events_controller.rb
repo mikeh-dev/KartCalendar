@@ -42,6 +42,17 @@ class EventsController < ApplicationController
     @hotels = JSON.parse(hotel_response.body) if hotel_response.success?
     fuel_response = mapbox_service.search_category(@event.track.longitude, @event.track.latitude, 'fuel')
     @fuel_stations = JSON.parse(fuel_response.body) if fuel_response.success?
+  
+    openweathermap_service = WeatherService.new
+    weather_response = openweathermap_service.weather_by_lat_lon(@event.track.longitude, @event.track.latitude)
+    weather_data = weather_response.parsed_response
+        @weather = {
+          city: weather_data['name'],
+          temperature: (weather_data['main']['temp'] - 273.15).round(2), # Converting Kelvin to Celsius
+          conditions: weather_data['weather'][0]['description'],
+          wind: weather_data['wind']['speed'],
+          humidity: weather_data['main']['humidity']
+        }
   end
 
   def new
