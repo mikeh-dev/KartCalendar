@@ -51,7 +51,8 @@ class EventsController < ApplicationController
           temperature: (weather_data['main']['temp'] - 273.15).round(2), # Converting Kelvin to Celsius
           conditions: weather_data['weather'][0]['description'],
           wind: weather_data['wind']['speed'],
-          humidity: weather_data['main']['humidity']
+          humidity: weather_data['main']['humidity'],
+          icon: weather_data['weather'][0]['icon']
         }
   end
 

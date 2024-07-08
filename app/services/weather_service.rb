@@ -1,7 +1,6 @@
 class WeatherService
   include HTTParty
   base_uri 'https://api.openweathermap.org/data/2.5'
-  logger ::Logger.new(STDOUT), :info, :apache
 
 
   def initialize(api_key = ENV['OPENWEATHERMAP_API_KEY'])
