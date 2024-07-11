@@ -169,11 +169,15 @@
   <div class="mx-auto mt-10 mb-10 max-w-2xl lg:mx-0 lg:max-w-none pb-10 border-b-2 border-slate-700">
     <h2 class="text-white mb-2 text-2xl font-semibold">Classes</h2>
       <div class="flex flex-wrap gap-2">
+      <% if @event.categories.empty? %>
+        <p class="text-white">Contact Event organisers for more information on <%= @event.championship.email.present? ? @event.championship.email : @event.track.email %></p>
+      <% else %>
         <% @event.categories.each do |category| %>
           <span class="bg-indigo-600 text-white px-3 py-1 rounded-full text-sm font-medium">
             <%= category.name %>
               </span>
-            <% end %>
+        <% end %>
+      <% end %>
       </div>
     </div>
 
