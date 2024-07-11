@@ -47,8 +47,16 @@ class EventsController < ApplicationController
     weather_response = openweathermap_service.forecast_by_lat_lon(@event.track.longitude, @event.track.latitude)
     weather_data = weather_response.parsed_response
     
-    @weather_forecast = weather_data['list'].group_by { |entry| entry['dt_txt'].to_date }
+    if weather_data['list']
+      @weather_forecast = weather_data['list'].group_by { |entry| entry['dt_txt'].to_date }
+    else
+      @weather_forecast = {}
     end
+  end
+
+  
+
+
 
   def new
     @event = Event.new
