@@ -7,8 +7,8 @@ class WeatherService
     @api_key = api_key
   end
 
-  def weather_by_lat_lon(longitude, latitude)
-    options = { query: { lat: latitude, lon: longitude, appid: @api_key } }
-    self.class.get('/weather', options)
+  def forecast_by_lat_lon(longitude, latitude)
+    options = { query: { lat: latitude, lon: longitude, appid: @api_key, units: 'metric' } }
+    self.class.get('/forecast', options)
   end
 end

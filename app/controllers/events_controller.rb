@@ -44,17 +44,11 @@ class EventsController < ApplicationController
     @fuel_stations = JSON.parse(fuel_response.body) if fuel_response.success?
   
     openweathermap_service = WeatherService.new
-    weather_response = openweathermap_service.weather_by_lat_lon(@event.track.longitude, @event.track.latitude)
+    weather_response = openweathermap_service.forecast_by_lat_lon(@event.track.longitude, @event.track.latitude)
     weather_data = weather_response.parsed_response
-        @weather = {
-          city: weather_data['name'],
-          temperature: (weather_data['main']['temp'] - 273.15).round(2), # Converting Kelvin to Celsius
-          conditions: weather_data['weather'][0]['description'],
-          wind: weather_data['wind']['speed'],
-          humidity: weather_data['main']['humidity'],
-          icon: weather_data['weather'][0]['icon']
-        }
-  end
+    
+    @weather_forecast = weather_data['list'].group_by { |entry| entry['dt_txt'].to_date }
+    end
 
   def new
     @event = Event.new
