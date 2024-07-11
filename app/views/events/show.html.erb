@@ -376,7 +376,7 @@
 </section>
 
 <% if @championship.present? %>
-  <div class="container mx-auto px-4">
+  <div class="container mx-auto px-4 pt-10">
     <h1 class="text-3xl font-semibold mb-4">Other events in <%= @championship.name %></h1>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <% @events.select { |event| event.championship == @championship }.each do |event| %>
