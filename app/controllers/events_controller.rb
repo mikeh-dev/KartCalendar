@@ -54,10 +54,6 @@ class EventsController < ApplicationController
     end
   end
 
-  
-
-
-
   def new
     @event = Event.new
     authorize @event, :new?

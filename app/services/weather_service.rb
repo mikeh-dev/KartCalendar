@@ -2,7 +2,6 @@ class WeatherService
   include HTTParty
   base_uri 'https://api.openweathermap.org/data/2.5'
 
-
   def initialize(api_key = ENV['OPENWEATHERMAP_API_KEY'])
     @api_key = api_key
   end
