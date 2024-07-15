@@ -10,7 +10,6 @@
             <% end %>
             <% if @event.championship&.logo.present? %>
               <%= image_tag @event.championship.logo, alt: "Championship", class: "w-30 h-10 object-contain" %>
-              <%= @event.championship.name %>
             <% elsif @event.track.logo.present? %>
               <%= image_tag @event.track.logo, alt: "Track", class: "w-30 h-10 object-contain mb-5" %>
             <% end %>
