@@ -6,7 +6,24 @@
         <div class="flex flex-col items-center justify-between xl:flex-row">
           <div class="w-full max-w-xl mb-12 xl:mb-0 xl:pr-16 xl:w-7/12">
             <% if @event.event_type.present? %>
-              <span class="inline-block mb-4 text-xl font-semibold tracking-wider text-teal-accent-400 uppercase dark:text-teal-accent-400"><%= @event.event_type %></span>
+                <% if @event.event_type == "Test" %>
+                  <span class="bg-green-500 text-white px-2 py-2 rounded-full text-sm font-medium">
+                    <%= @event.event_type %>
+                  </span>
+                <% elsif @event.event_type == "Race" %>
+                  <span class="bg-indigo-600 text-white px-2 py-2 rounded-full text-sm font-medium">
+                    <%= @event.event_type %>
+                  </span>
+                <% end %>
+                <% if @event&.licence.present? && event&.licence == "MSUK Licence" %>
+                  <span class="bg-blue-500 text-white px-2 py-2 rounded-full text-sm font-medium ml-1">
+                    <%= @event.licence %>
+                  </span>
+                <% elsif @event&.licence.present? && event&.licence == "Non Licensed" %>
+                  <span class="bg-rose-500 text-white px-2 py-2 rounded-full text-sm font-medium ml-1">
+                    <%= @event.licence %>
+                  </span>
+                <% end %>
             <% end %>
             <% if @event.championship&.logo.present? %>
               <%= image_tag @event.championship.logo, alt: "Championship", class: "w-30 h-10 object-contain" %>
