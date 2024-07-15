@@ -25,12 +25,14 @@
                   </span>
                 <% end %>
             <% end %>
-            <% if @event.championship&.logo.present? %>
-              <%= image_tag @event.championship.logo, alt: "Championship", class: "w-30 h-10 object-contain" %>
-            <% elsif @event.track.logo.present? %>
-              <%= image_tag @event.track.logo, alt: "Track", class: "w-30 h-10 object-contain mb-5" %>
-            <% end %>
+          
             <% if @event.championship.present? %>
+              <% if @event.championship&.logo.present? %>
+                <%= image_tag @event.championship.logo, alt: "Championship", class: "w-30 h-10 object-contain mt-5" %>
+              <% elsif @event.track.logo.present? %>
+                <%= image_tag @event.track.logo, alt: "Track", class: "w-30 h-10 object-contain mb-5 mt-5" %>
+              <% end %>
+            <% else %>
               <h1 class="text-4xl font-extrabold text-white sm:text-5xl md:text-6xl"><%= @event.championship.name %></h1>
             <% end %>
             <p class="max-w-xl mb-4 text-base text-gray-400 md:text-lg">
@@ -182,7 +184,7 @@
           </div>
           <div class="flex flex-col-reverse">
             <dt class="text-base leading-7 text-gray-300">Email Address</dt>
-            <dd class="text-1xl font-bold leading-9 tracking-tight text-white"><%= @event.track.email %></dd>
+            <dd class="text-1xl font-bold leading-9 tracking-tight text-white"><%= @event.championship.email %></dd>
           </div>
           <div class="flex flex-col-reverse">
             <dt class="text-base leading-7 text-gray-300">Website</dt>
