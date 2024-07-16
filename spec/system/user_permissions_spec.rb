@@ -149,8 +149,7 @@ RSpec.describe 'User Permissions', type: :system do
     end
 
     it 'allows an admin user to edit an event' do
-      visit event_path(event)
-      click_on 'Edit Event'
+      visit edit_event_path(event)
       fill_in 'Title', with: 'Edited Event Name'
       click_on 'Save'
       expect(page).to have_content('Event was successfully updated.')
@@ -158,8 +157,7 @@ RSpec.describe 'User Permissions', type: :system do
     end
 
     it 'allows an admin user to delete an event' do
-      visit event_path(event)
-      click_on 'Edit Event'
+      visit edit_event_path(event)
       accept_confirm do
         click_on 'Delete Event'
       end
