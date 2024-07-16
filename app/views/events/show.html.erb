@@ -186,7 +186,7 @@
           </div>
           <div class="flex flex-col-reverse">
             <dt class="text-base leading-7 text-gray-300">Email Address</dt>
-            <dd class="text-1xl font-bold leading-9 tracking-tight text-white"><%= @event.championship.email %></dd>
+            <dd class="text-1xl font-bold leading-9 tracking-tight text-white"><%= @event.championship.present? ? @event.championship.email : "Not Listed" %></dd>
           </div>
           <div class="flex flex-col-reverse">
             <dt class="text-base leading-7 text-gray-300">Website</dt>
