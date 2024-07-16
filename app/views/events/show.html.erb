@@ -31,9 +31,11 @@
                 <%= image_tag @event.championship.logo, alt: "Championship", class: "w-30 h-10 object-contain mt-5" %>
               <% elsif @event.track.logo.present? %>
                 <%= image_tag @event.track.logo, alt: "Track", class: "w-30 h-10 object-contain mb-5 mt-5" %>
+              <% else %>
+                <h1 class="text-4xl font-extrabold text-white sm:text-5xl md:text-6xl"><%= @event.championship.name %></h1>
               <% end %>
             <% else %>
-              <h1 class="text-4xl font-extrabold text-white sm:text-5xl md:text-6xl"><%= @event.championship.name %></h1>
+              <h1 class="text-4xl font-extrabold text-white sm:text-5xl md:text-6xl"><%= @event.track.name %></h1>
             <% end %>
             <p class="max-w-xl mb-4 text-base text-gray-400 md:text-lg">
             </p>
