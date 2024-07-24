@@ -7,20 +7,20 @@
           <div class="w-full max-w-xl mb-12 xl:mb-0 xl:pr-16 xl:w-7/12">
             <% if @event.event_type.present? %>
                 <% if @event.event_type == "Test" %>
-                  <span class="bg-green-500 text-white px-2 py-2 rounded-full text-sm font-medium">
+                  <span class="bg-green-500 text-white px-2 py-1 rounded-full text-sm font-medium">
                     <%= @event.event_type %>
                   </span>
                 <% elsif @event.event_type == "Race" %>
-                  <span class="bg-indigo-600 text-white px-2 py-2 rounded-full text-sm font-medium">
+                  <span class="bg-indigo-600 text-white px-2 py-1 rounded-full text-sm font-medium">
                     <%= @event.event_type %>
                   </span>
                 <% end %>
                 <% if @event&.licence.present? && @event&.licence == "MSUK Licence" %>
-                  <span class="bg-blue-500 text-white px-2 py-2 rounded-full text-sm font-medium ml-1">
+                  <span class="bg-blue-500 text-white px-2 py-1 rounded-full text-sm font-medium ml-1">
                     <%= @event.licence %>
                   </span>
                 <% elsif @event&.licence.present? && @event&.licence == "Non Licensed" %>
-                  <span class="bg-rose-500 text-white px-2 py-2 rounded-full text-sm font-medium ml-1">
+                  <span class="bg-rose-500 text-white px-2 py-1 rounded-full text-sm font-medium ml-1">
                     <%= @event.licence %>
                   </span>
                 <% end %>
@@ -29,17 +29,20 @@
             <% if @event.championship.present? %>
               <% if @event.championship&.logo.present? %>
                 <%= image_tag @event.championship.logo, alt: "Championship", class: "w-30 h-10 object-contain mt-5" %>
-              <% elsif @event.track.logo.present? %>
-                <%= image_tag @event.track.logo, alt: "Track", class: "w-30 h-10 object-contain mb-5 mt-5" %>
               <% else %>
-                <h1 class="text-4xl font-extrabold text-white sm:text-5xl md:text-6xl"><%= @event.championship.name %></h1>
+                <h1 class="text-4xl font-extrabold text-white sm:text-5xl md:text-6xl mt-5"><%= @event.championship.name %></h1>
+                <h3 class="text-2xl font-normal text-white mt-5">at <%= @event.track.name %></h3>
               <% end %>
             <% else %>
-              <h1 class="text-4xl font-extrabold text-white sm:text-5xl md:text-6xl"><%= @event.track.name %></h1>
+              <% if @event.track.logo.present? %>
+                <%= image_tag @event.track.logo, alt: "Track", class: "w-30 h-10 object-contain mb-5 mt-5" %>
+              <% else %>
+                <h1 class="text-4xl font-extrabold text-white sm:text-5xl md:text-6xl mt-5"><%= @event.track.name %></h1>
+              <% end %>
             <% end %>
             <p class="max-w-xl mb-4 text-base text-gray-400 md:text-lg">
             </p>
-            <p class="mb-10 text-xl"><strong>Date - </strong> <%= @event.start_date == @event.end_date ? @event.start_date.strftime('%d/%m/%Y') : "#{@event.start_date.strftime('%d/%m/%Y')} - #{@event.end_date.strftime('%d/%m/%Y')}" %></p>
+            <p class="mb-10 text-xl"><strong>Date - </strong> <%= @event.start_date == @event.end_date ? @event.start_date.strftime('%d/%m/%Y') : "#{@event.start_date.strftime('%d')} - #{@event.end_date.strftime('%d/%m/%Y')}" %></p>
             <a href="/" aria-label="" class="hidden inline-flex items-center font-semibold tracking-wider transition-colors duration-200 text-teal-accent-400 hover:text-teal-accent-700">
               Learn more
               <svg class="inline-block w-3 ml-2" fill="currentColor" viewBox="0 0 12 12">
