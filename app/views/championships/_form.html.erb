@@ -78,9 +78,9 @@
       <%= form.select :champ_type, ['Club', 'Series'], {}, class: 'form-select' %>
     </div>
 
-     <div class="mb-4">
-      <%= form.label :license, "Licence", as: :label, class: "block text-gray-700 text-sm font-bold mb-2" %>
-      <%= form.select :champ_type, ['MSUK Licensed', 'Non Licensed'], {}, class: 'form-select' %>
+    <div class="mb-4">
+      <%= form.label :licence, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.select :licence, ['NA', 'MSUK Licence', 'Non Licensed'], {}, class: 'form-select' %>
     </div>
 
     <% if current_user.manager? && current_user.tracks.count == 1 %>
