@@ -86,44 +86,6 @@
   </div>
 </div>
 
-
-<div class="container mx-auto px-4 mb-10" id="next-champ-round">
-  <h1 class="text-4xl font-semibold text-center">Next Event</h1>
-    <div class="w-full grid md:grid-cols-1 %>">
-      <% future_champ_event = @future_champ_events.first %>
-      <% if future_champ_event.present? %>
-        <div class="flex flex-col items-center text-center mt-3">
-          <div class="flex justify-center relative mt-6 mx-4">
-            <% if future_champ_event&.image&.attached? %>
-              <%= image_tag future_champ_event.image, alt: "Events", class: "lg:max-h-fit max-w-full object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
-            <% else %>
-              <%= image_tag random_default_image, alt: "Events", class: "max-w-full object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
-            <% end %>
-          </div>
-          <div class="w-full text-center mt-6 space-y-2">
-            <p class="text-l text-slate-700 dark:text-slate-400"><%= future_champ_event.championship.long_name %></p>
-            <h1 class="text-3xl"><%= future_champ_event.title %></h1>
-            <h1 class="text-2xl"><%= future_champ_event.track.name %></h1>
-            <p class="text-sm"><%= future_champ_event.start_date.strftime("%A, %B %e") %> - <%= future_champ_event.end_date.strftime("%A, %B %e") %></p>
-            <%= link_to "View Details", (event_path(future_champ_event)), class: "btn btn-primary text-white-500 mt-2" %>
-          </div>
-      </div>
-      <% else %>
-        <div class="flex flex-col items-center text-center mt-3">
-          <div class="flex justify-center relative mt-6 mx-4">
-            <%= image_tag random_default_image, alt: "Events", class: "max-w-full object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-5020" %>
-          </div>
-          <div class="w-full text-center mt-6 space-y-2">
-            <p class="text-l text-slate-700 dark:text-slate-400">No Upcoming Events</p>
-            <h1 class="text-3xl">Check back soon</h1>
-          </div>
-        </div>
-      <% end %>
-  </div>
-</div>
-
-
-
 <div class="container mx-auto px-4 mt-10 mb-10" id="champ-calendar">
   <h1 class="text-3xl font-semibold mb-4 text-center mb-5"><%= @championship.long_name %> Calendar</h1>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
