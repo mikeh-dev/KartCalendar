@@ -112,29 +112,6 @@
   </div>
 </div>
 
-<div class="container mx-auto px-4" id="champ-past-events">
-  <h1 class="text-3xl font-semibold mb-4 text-center mb-5"><%= @championship.name %> Past Events</h1>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-    <% @past_champ_events.each do |past_champ_event| %>
-      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-      <% if past_champ_event.image.attached? %>
-        <%= image_tag past_champ_event.image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
-      <% else %>
-        <%= image_tag random_default_image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
-      <% end %>
-        <div class="p-4">
-          <h2 class="text-gray-800 text-xl font-semibold mb-2"><%= past_champ_event.title %> - <%= past_champ_event.track.name %></h2>
-          <p class="text-gray-800 mb-2"><span class="font-semibold">Date -</span> <%= past_champ_event.start_date.strftime('%d/%m/%y') %></p>
-          <p class="text-gray-800"><%= past_champ_event.description %></p>
-        </div>
-        <div class="bg-gray-100 p-4">
-          <%= link_to "View Event", event_path(past_champ_event), class: "text-white-500 hover:underline btn btn-primary" %>
-          <% if current_user&.admin? %>
-            <%= link_to "Edit Event", edit_event_path(past_champ_event), class: "btn btn-dark" %> 
-          <% end %>
-        </div>
-      </div>
-    <% end %>
-  </div>
+
 </div>
 
