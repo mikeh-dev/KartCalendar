@@ -95,7 +95,8 @@ RSpec.describe 'User Permissions', type: :system do
 
     let!(:track_to_edit) { FactoryBot.create(:track, name: "Editable Track", address: "Editable Address", description: "Editable Description") }
     let!(:event_to_edit) { FactoryBot.create(:event, title: "Editable Event", start_date: "2021-12-30", end_date: "2021-12-31", description: "Editable Description", event_type: "Editable Event Type") }
-
+    let!(:championship_to_edit) { FactoryBot.create(:championship, name: "Editable Championship", description: "Editable Description", tagline: "Editable Tagline", short_name: "Editable Short Name", long_name: "Editable Long Name", champ_type: "Club") }
+    
     it 'allows an admin user to create a track' do
       visit new_track_path
       fill_in 'Name', with: 'New Track'
@@ -173,6 +174,8 @@ RSpec.describe 'User Permissions', type: :system do
       fill_in 'Tagline', with: 'New Championship Tagline'
       fill_in 'Short name', with: 'New Champ'
       fill_in 'Long name', with: 'New Championship Name'
+      select 'Club', from: 'Championship Type'
+      select 'Editable Track', from: 'Home Track'
   
       click_on 'Save'
       expect(page).to have_content('Championship was successfully created.')
@@ -183,6 +186,7 @@ RSpec.describe 'User Permissions', type: :system do
       visit championship_path(championship)
       click_on 'Edit Championship'
       fill_in 'Name', with: 'Updated Championship Name'
+      select 'Editable Track', from: 'Home Track'
       click_on 'Save'
       expect(page).to have_current_path(championship_path(championship))
       expect(page).to have_content('Championship was successfully updated.')

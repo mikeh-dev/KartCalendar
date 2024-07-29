@@ -3,8 +3,8 @@ class Track < ApplicationRecord
   has_many :events
   has_many :follows, as: :followable, dependent: :destroy
   has_and_belongs_to_many :categories
+  has_one :club_championship, -> { where(champ_type: 'Club') }, class_name: 'Championship', foreign_key: 'home_track_id'
 
-  after_validation :geocode, if: ->(obj) { obj.address.present? and obj.address_changed? }
   geocoded_by :address_for_geocoding
 
   VALID_EMAIL = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

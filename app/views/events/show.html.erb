@@ -145,16 +145,21 @@
         </dl>
       </div>
     
-    <% if @event.nominated_fuel_station.present? %>
+    
       <div class="mx-auto mt-10 mb-10 max-w-2xl lg:mx-0 lg:max-w-none pb-10 border-b-2 border-slate-700">
         <h2 class="text-white mb-2 text-2xl font-semibold">Nominated Fuel Station</h2>
         <div class="flex flex-wrap gap-2">
+          <% if @event.nominated_fuel_station.present? %>
             <p class="txt-white">
               Please ensure you collect fuel and bring your reciept to the event from: <%= @event.nominated_fuel_station %>
             </p>
+          <% else %>
+            <p class="text-white">
+              Open Fuel
+            </p>
+          <% end %>
         </div>
       </div>
-    <% end %>
 
       <div class="mx-auto mt-10 mb-10 max-w-2xl lg:mx-0 lg:max-w-none pb-10 border-b-2 border-slate-700">
         <h2 class="text-white mb-2 text-2xl font-semibold">Classes</h2>
@@ -173,7 +178,15 @@
           <% end %>
         </div>
       </div>
+
+       <div class="mx-auto mt-10 mb-10 max-w-2xl lg:mx-0 lg:max-w-none pb-10 border-b-2 border-slate-700">
+        <h2 class="text-white mb-2 text-2xl font-semibold">Tyre Regulations</h2>
+        <div class="flex flex-wrap gap-2">
+          <p>Coming soon...
+        </div>
+      </div>
     
+    <% if @event.championship&.champ_type.present? == "Series" %>
     <section id="contact">
     <div class="relative isolate overflow-hidden bg-gray-900 mx-auto mt-10">
     <div class="mx-auto max-w-7xl">
@@ -225,6 +238,8 @@
     </div>
   </div>
   </section>
+  <% end %>
+
 </section>
 
 <section id="event-track-info">
@@ -255,80 +270,11 @@
             <dt class="text-base leading-7 text-gray-300">Track Length</dt>
             <dd class="text-2xl font-bold leading-9 tracking-tight text-white"><%= @event.track.length%>m</dd>
           </div>
-          <div class="flex flex-col-reverse">
-            <dt class="text-base leading-7 text-gray-300">Next Test Day</dt>
-            <dd class="text-2xl font-bold leading-9 tracking-tight text-white"><%= @next_test_event.present? ? @next_test_event.start_date.strftime("%-d/%m/%Y") : "Not Listed" %></dd>
-          </div>
-          <div class="flex flex-col-reverse">
-            <dt class="text-base leading-7 text-gray-300">Next Race Day</dt>
-            <dd class="text-2xl font-bold leading-9 tracking-tight text-white"><%= @next_race_event.present? ? @next_race_event.start_date.strftime("%-d/%m/%Y") : "Not Listed" %></dd>
-          </div>
             <div class="flex flex-col-reverse">
               <dt class="text-base leading-7 text-gray-300">Track Surface</dt>
               <dd class="text-2xl font-bold leading-9 tracking-tight text-white"><%= @event.track.track_surface? ? @event.track.track_surface : "Not Listed" %></dd>
             </div>
-          <% if @event.live_timing_link.present? %>
             <div class="flex flex-col-reverse">
-              <dt class="text-base leading-7 text-gray-300">Click Here</dt>
-              <dd class="text-2xl font-bold leading-9 tracking-tight text-white">
-                <% if @event.live_timing_link.present? %>
-                  <%= link_to @event.live_timing_link, target: "_blank", class: "text-blue hover:text-blue-600", rel: "noopener noreferrer" do %>
-                    Live Timing Link
-                  <% end %>
-                <% else %>
-                  No Live Timing Available
-                <% end %>
-              </dd>
-            </div>
-          <% end %>
-        </dl>
-      </div>
-
-    <div class="mx-auto pb-10 mt-10 mb-10 max-w-2xl lg:mx-0 lg:max-w-none border-b-2 border-slate-700">
-      <h2 class="text-white mb-5 font-semibold text-2xl">Facilities</h2>
-        <div class="grid grid-cols-2 gap-x-4 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
-        <% @event.track.facilities.each do |facility| %>
-            <% unless facility.blank? %>
-          <div>
-            <p> - <%= facility %></p>
-          </div>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-
-      <div class="mx-auto mt-10 mb-10 max-w-2xl lg:mx-0 lg:max-w-none pb-10 border-b-2 border-slate-700">
-        <h2 class="text-white mb-2 text-2xl font-semibold">Classes</h2>
-        <div class="flex flex-wrap gap-2">
-          <% if @event.categories.empty? %>
-            <p class="text-white">
-              Contact Event organisers for more information on 
-              <%= @event.championship&.email.present? ? @event.championship.email : @event.track&.email %>
-            </p>
-          <% else %>
-            <% @event.categories.each do |category| %>
-              <span class="bg-indigo-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-                <%= category.name %>
-              </span>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-
-    <section id="contact">
-    <div class="relative isolate overflow-hidden bg-gray-900 mx-auto mt-10">
-    <div class="mx-auto max-w-7xl">
-      <div class="mx-auto max-w-2xl lg:mx-0">
-        <h2 class="text-white font-semibold text-2xl">Contact Details</h2>
-      </div>
-      
-      <div class="mx-auto mt-5 max-w-2xl lg:mx-0 lg:max-w-none">
-        <dl class="mb-8 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          <div class="flex flex-col-reverse">
-            <dt class="text-base leading-7 text-gray-300">Track Address</dt>
-            <dd class="text-1xl font-bold leading-9 tracking-tight text-white"><%= @event.track.address %></dd>
-          </div>
-          <div class="flex flex-col-reverse">
             <dt class="text-base leading-7 text-gray-300">Contact Number</dt>
             <dd class="text-1xl font-bold leading-9 tracking-tight text-white"><%= @event.track.contact_number %></dd>
           </div>
@@ -336,12 +282,15 @@
             <dt class="text-base leading-7 text-gray-300">Email Address</dt>
             <dd class="text-1xl font-bold leading-9 tracking-tight text-white"><%= @event.track.email %></dd>
           </div>
-          <% if @event.paddock_booking_contact.present? %>
-            <div class="flex flex-col-reverse">
-              <dt class="text-base leading-7 text-gray-300">Paddock Booking Email</dt>
-              <dd class="text-1xl font-bold leading-9 tracking-tight text-white"><%= @event.paddock_booking_contact %></dd>
-            </div>
-          <% end %>
+        </dl>
+        <dl>
+        <div class="mx-auto mt-5 max-w-2xl lg:mx-0 lg:max-w-none">
+        <dl class="mb-8 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="flex flex-col-reverse">
+            <dt class="text-base leading-7 text-gray-300">Track Address</dt>
+            <dd class="text-1xl font-bold leading-9 tracking-tight text-white"><%= @event.track.address %></dd>
+          </div>
+          
           <div class="flex flex-col-reverse">
             <dt class="text-base leading-7 text-gray-300">Website</dt>
             <dd class="text-1xl font-bold leading-9 tracking-tight text-white"><%= @event.track.website %></dd>
@@ -371,75 +320,32 @@
               <% end %>
             </dd>
           </div>
+
+          <% if @event.track.club_championship.present? %>
+          <div class="flex flex-col-reverse">
+            <dt class="text-base leading-7 text-gray-300 mt-2">Club Championship</dt>
+              <div class="flex flex-row items-center justify-start space-x-4 text-1xl font-bold leading-9 tracking-tight text-white">
+                <%= link_to "View", @event.track.club_championship, class: "btn btn-primary" %>
+              </div>
+            <% end %>
+          </div>
         </dl>
       </div>
-    </div>
-  </div>
-  </section>
-</section>
+      </dl>
 
-<section id="events">
-  <div class="max-w-screen-xl px-4 py-8 mx-auto sm:px-6 sm:py-8 lg:px-8">
-    <header class="text-center">
-      <h2 class="text-3xl font-bold sm:text-4xl">
-        Racing and Testing at <%= @event.track.name %>
-      </h2>
-      <p class="max-w-md mx-auto mt-4 text-gray-500">
-        The next scheduled events at <%= @event.track.name %>
-      </p>
-    </header>
-
-  <ul class="grid grid-cols-1 gap-4 mt-8 grid-cols-2">
-    <li>
-      <%= link_to @event.track.events.last, class: "relative block group" do %>
-        <% if @event.track.test_image.present? %>
-          <%= image_tag @event.test_image, alt: "next race event photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
-        <% else %>
-          <%= image_tag random_default_image, alt: "next test event photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90 h-38 w-38" %>
-        <% end %>
-          <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
-            <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white rounded-lg ">
-                <% if @next_test_event.present? %>
-                    Next Test Day - <%= @next_test_event.start_date.strftime("%A #{ @track_test_events.last.start_date } %B %Y")%> - <%= @next_test_event.title %>
-              <% else %>
-                Currently No Test Days Scheduled
-              <% end %>
-            </span>
+    <div class="mx-auto pb-10 mt-10 mb-10 max-w-2xl lg:mx-0 lg:max-w-none border-b-2 border-slate-700">
+      <h2 class="text-white mb-5 font-semibold text-2xl">Facilities</h2>
+        <div class="grid grid-cols-2 gap-x-4 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+        <% @event.track.facilities.each do |facility| %>
+            <% unless facility.blank? %>
+          <div>
+            <p> - <%= facility %></p>
           </div>
-        <% end %>
-    </li>
-
-    <li>
-      <%= link_to @next_race_event, class: "relative block group" do %>
-        <% if @next_race_event&.image.present? %>
-          <%= image_tag @next_race_event.image, alt: "about photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
-        <% else %>
-          <%= image_tag random_default_image, alt: "about photo", class: "object-cover w-full transition duration-500 aspect-square group-hover:opacity-90" %>
-        <% end %>
-          <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
-            <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white rounded-lg">
-              <% if @next_race_event.present? %>
-                    Next Race Day - <%= @next_race_event.start_date.strftime("%A #{ @track_race_events.last.start_date } %B %Y")%> - <%= @next_race_event.title %> - <%= @next_race_event.championship.present? ? @next_race_event.championship.name : 'No Championship' %>
-              <% else %>
-                Currently No Race Days Scheduled
-              <% end %>
-            </span>
-          </div>
-        <% end %>
-      </li>
-  </ul>
-  </div>
-
-  <div class="container flex mx-auto justify-center mb-10">
-    <%= link_to "View Full Calendar", "#track-calendar", class: "block w-full rounded bg-rose-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto" %>
-  </div>
-</section>
-
-        <div class="">
-          <% if @championship.present? %>
-            <%= link_to "View Championship", championship_path(@event.championship), class: "btn btn-primary" %>
           <% end %>
-        </div>
+        <% end %>
+      </div>
+    </div>
+</section>
 
       </div>
     </div>

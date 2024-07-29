@@ -74,9 +74,26 @@
     </div>
 
     <div class="mb-4">
-      <%= form.label :championship_type, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.label :champ_type, "Championship Type", as: :label, class: "block text-gray-700 text-sm font-bold mb-2" %>
       <%= form.select :champ_type, ['Club', 'Series'], {}, class: 'form-select' %>
     </div>
+
+    <% if current_user.manager? && current_user.tracks.count == 1 %>
+      <div class="mb-4">
+        <%= form.hidden_field :home_track_id, value: current_user.tracks.first.id %>
+        <p>Track: <%= current_user.tracks.first.name %></p>
+      </div>
+    <% elsif current_user.admin? %>
+      <div class="mb-4">
+        <%= form.label :home_track_id, "Home Track", class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.collection_select(:home_track_id, Track.all, :id, :name, {prompt: 'Select a Track'}, {class: "mt-1 block w-full py-2 px-3 border rounded-md shadow-sm focus:ring focus:ring-opacity-50 text-gray-800 bg-white"}) %>
+      </div>
+    <% else %>
+      <div class="mb-4">
+        <%= form.label :home_track_id, "Home Track", class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.collection_select(:home_track_id, current_user.managed_tracks, :id, :name, {prompt: 'Select a Track'}, {class: "mt-1 block w-full py-2 px-3 border rounded-md shadow-sm focus:ring focus:ring-opacity-50 text-gray-800 bg-white"}) %>
+      </div>
+    <% end %>
 
     <div class="mb-4 ">
       <%= form.label :image, class: "block text-white-700 text-sm font-bold mb-2" %>
