@@ -29,6 +29,7 @@
           <h5 class="block mb-2 font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
             <% if championship&.logo.present? %>
               <%= image_tag championship.logo, alt: "Championship", class: "w-30 h-10 object-contain" %>
+              <%= championship.short_name %>
             <% else %>
               <%= championship.name %>
             <% end %>
