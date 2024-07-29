@@ -73,9 +73,9 @@
           <p class="text-gray-300"><%= @championship.description %></p>
         </div>
         <div class="mb-8">
-          <p class="mb-2"><strong>Championship Entry Fee:</strong> £<%= @championship.champ_fee %></p>
+          <% if @championship.champ_fee.present? %><p class="mb-2"><strong>Championship Entry Fee:</strong> £<%= @championship.champ_fee %></p><% end %>
           <p class="mb-2"><strong>Race Fee:</strong> £<%= @championship.race_fee %> </p>
-          <p class="mb-2"><strong>Non Member Race Fee:</strong> £<%= @championship.non_member_race_fee %> </p>
+          <% if @championship.non_member_race_fee.present? %><p class="mb-2"><strong>Non Member Race Fee:</strong> £<%= @championship.non_member_race_fee %></p><% end %>
           <p class="mb-2"><strong>Test Day Fee:</strong> £<%= @championship.test_fee %> </p>
         </div>
         <%= link_to "Back to Events", championships_path, class: "btn btn-primary" %>
