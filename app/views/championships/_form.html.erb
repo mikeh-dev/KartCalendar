@@ -60,17 +60,22 @@
 
     <div class="mb-4">
       <%= form.label :championship_entry_fee, class: "block text-gray-700 text-sm font-bold mb-2" %>
-      <%= form.number_field :champ_fee, class: "form-input" %>
+      <%= form.text_field :champ_fee, class: "form-input" %>
     </div>
 
     <div class="mb-4">
       <%= form.label :race_entry_fee, class: "block text-gray-700 text-sm font-bold mb-2" %>
-      <%= form.number_field :race_fee, class: "form-input" %>
+      <%= form.text_field :race_fee, class: "form-input" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :non_member_race_fee, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_field :non_member_race_fee, class: "form-input" %>
     </div>
 
     <div class="mb-4">
       <%= form.label :test_fee, class: "block text-gray-700 text-sm font-bold mb-2" %>
-      <%= form.number_field :test_fee, class: "form-input" %>
+      <%= form.text_field :test_fee, class: "form-input" %>
     </div>
 
     <div class="mb-4">
