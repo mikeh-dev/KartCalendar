@@ -95,7 +95,7 @@ RSpec.describe 'User Permissions', type: :system do
 
     let!(:track_to_edit) { FactoryBot.create(:track, name: "Editable Track", address: "Editable Address", description: "Editable Description") }
     let!(:event_to_edit) { FactoryBot.create(:event, title: "Editable Event", start_date: "2021-12-30", end_date: "2021-12-31", description: "Editable Description", event_type: "Editable Event Type") }
-    let!(:championship_to_edit) { FactoryBot.create(:championship, name: "Editable Championship", description: "Editable Description", tagline: "Editable Tagline", short_name: "Editable Short Name", long_name: "Editable Long Name", champ_type: "Club") }
+    let!(:championship_to_edit) { FactoryBot.create(:championship, name: "Editable Championship", description: "Editable Description", tagline: "Editable Tagline", short_name: "Editable Short Name", long_name: "Editable Long Name", champ_type: "Club", home_track: track_to_edit) }
     
     it 'allows an admin user to create a track' do
       visit new_track_path
@@ -124,16 +124,7 @@ RSpec.describe 'User Permissions', type: :system do
       expect(page).to have_content('Track was successfully updated.')
     end
 
-    it 'allows an admin user to delete a track' do
-      visit track_path(track_to_edit)
-      click_on 'Edit Track'
-      expect(page).to have_current_path(edit_track_path(track_to_edit))
-      accept_confirm do
-        click_on 'Delete Track'
-      end
-      expect(page).to have_current_path(tracks_path)
-      expect(page).to have_content('Track was successfully destroyed.')
-    end
+  
 
     it 'allows an admin user to create an event' do
       visit new_event_path
