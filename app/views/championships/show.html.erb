@@ -5,7 +5,7 @@
   <div class="xl:w-2/5 w-full xl:text-left text-center xl:pr-16">
   <% if @championship.logo.attached? %>
     <div class="flex justify-center relative">
-      <%= image_tag @championship.logo, alt: "Events", class: "max-w-1/3 object-cover rounded-3xl relative z-20 shadow-2xl shadow-slate-500/20 bg-white p-2" %>
+      <%= image_tag @championship.logo, alt: "Events", class: "max-w-1/4 object-cover rounded-1xl relative z-20 shadow-2xl shadow-slate-500/20 bg-white p-2" %>
     </div>
   <% else %>
     <h1 class="sm:text-6xl text-4xl font-extrabold text-white text-center"><%= @championship.name %></h1>
