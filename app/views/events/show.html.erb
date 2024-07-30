@@ -122,7 +122,13 @@
           </div>
             <div class="flex flex-col-reverse">
               <dt class="text-base leading-7 text-gray-300">Live Timing Link</dt>
-              <dd class="text-2xl font-bold leading-9 tracking-tight text-white"><%= @event.live_timing_link? ? @event.live_timing_link : "Not Listed" %></dd>
+              <dd class="text-2xl font-bold leading-9 tracking-tight text-white">
+                <% if @event.live_timing_link.present? %>
+                  <a href="<%= @event.live_timing_link %>" class="text-blue-500 underline">Click Here</a>
+                <% else %>
+                  Not Listed
+                <% end %>
+              </dd>
             </div>
         </dl>
         <dl class="mb-16 grid grid-cols-2 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
