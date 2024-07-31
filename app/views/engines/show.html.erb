@@ -38,8 +38,9 @@
 
       <!-- Engine Actions with Flex Layout -->
       <div class="flex justify-center gap-4 mt-8">
-        <%= link_to "Edit Engine", edit_engine_path(@engine), class: "btn btn-primary text-white" %>
-        <%= link_to "Back to Engines", engines_path, class: "btn btn-primary" %>
+        <%= link_to "Edit Engine", edit_engine_path(@engine), class: "btn btn-light" %>
+        <%= link_to "Back to Engines", engines_path, class: "btn btn-light" %>
+        <%= link_to "Delete Engine", @engine, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-red" %>
       </div>
     </div>
   </div>
