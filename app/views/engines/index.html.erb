@@ -1,6 +1,6 @@
 <% content_for :title, 'Your Engines' %>
-<div class="text-center mx-auto">
-  <h1 class="text-3xl font-bold mx-auto">Your Engines</h1>
+<div class="bg-gray-100 text-center mx-auto pt-8">
+  <h1 class="text-3xl font-bold mx-auto text-gray-700">Your Engines</h1>
   <% if @engines.empty? %>
     <p class="text-lg">You have no engines yet. <a href="<%= new_engine_path %>">Create one</a></p>
   <% else %>
@@ -14,8 +14,7 @@
 <div class="bg-gray-100 min-h-screen pt-8">
   <div class="container mx-auto px-4">
 
-  <div class="mb-6">
-      <h2 class="text-2xl font-semibold text-gray-700 mb-4">My Engines</h2>
+  <div class="mb-6 min-h-screen">
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         <% if @engines.empty? %>
           <p class="text-gray-600">You have no engines added yet.</p>
