@@ -1,6 +1,4 @@
-<% content_for :title, "Property" %>
-
-<div class="md:py-16 py-6 px-4">
+<div class="md:pb-6 pb-6 pt-16 md:pt-16 px-4">
   <div class="container mx-auto">
     <nav class="font-heading text-sm mb-6 text-zinc-700 dark:text-zinc-300">
       <ul class="flex items-center space-x-3">
@@ -30,7 +28,7 @@
     </div>
   </div>
 
-  <div class="pb-6 container mx-auto relative" data-controller="gallery">
+  <div class="pb-6 container mx-auto relative" data-controller="engine-gallery">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div>
         <a href="<%= image_url('image1.jpg') %>" data-pswp-width="2500" data-pswp-height="1667" target="_blank">
@@ -55,7 +53,7 @@
     </div>
   </div>
 
-  <div class="container mx-auto px-4 pb-24 pt-8">
+  <div class="container mx-auto px-4 pb-6 pt-8">
     <div class="pb-6">
       <h1 class="pb-1 text-2xl font-semibold font-heading text-zinc-900 dark:text-zinc-100 tracking-tight">Engine Details - <%= @engine.name %></h1>
     </div>
@@ -121,8 +119,7 @@
       </div>
     </div>
 
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8 pb-24 pt-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8 pt-8">
       <div>
         <div class="flex items-center space-x-3">
           <%= icon "home-modern", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
@@ -130,6 +127,68 @@
         </div>
         <span class="pl-8 text-zinc-600 dark:text-zinc-300"><%= @engine.notes %></span>
       </div>
-      
+    </div>
+  </div>
+</div>
+
+
+
+  <div class="md:py-6 py-6 px-4">
+    <div class="pb-6 container mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <div class="mt-5">
+            <div class="pb-6">
+              <h1 class="pb-1 text-2xl font-semibold font-heading text-zinc-900 dark:text-zinc-100 tracking-tight text-center">Dyno Details</h1>
+            </div>
+            <a href="<%= image_url('dyno-for-website_orig.jpg') %>" data-pswp-width="2500" data-pswp-height="1667" target="_blank">
+              <%= image_tag "dyno-for-website_orig.jpg", class: "rounded-xl w-full object-cover h-full" %>
+            </a>
+          </div>
+
+          <div class="mt-12 md:mt-5">
+            <div class="pb-6">
+              <h1 class="pb-1 text-2xl font-semibold font-heading text-zinc-900 dark:text-zinc-100 tracking-tight text-center">Service Records</h1>
+            </div>
+            
+
+            <div class="">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Engine Builder
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Date
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Seal Number
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                PDF
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                Force Motorsport
+                            </th>
+                            <td class="px-6 py-4">
+                                17/4/2024
+                            </td>
+                            <td class="px-6 py-4">
+                                FM17637
+                            </td>
+                            <td class="px-6 py-4">
+                              <%= icon "document-arrow-down" %>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+          </div>
+        </div>
     </div>
   </div>
