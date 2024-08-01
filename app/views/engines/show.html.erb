@@ -1,47 +1,135 @@
-<!-- Simplified Engine Details View -->
-<div class="flex flex-wrap justify-center py-12 px-4">
+<% content_for :title, "Property" %>
 
-  
-
-  <!-- Engine Details Section with Card Style -->
-  <div class="w-full lg:w-1/2 px-4">
-    <div class="bg-white shadow-lg rounded-lg p-6">
-      <h1 class="text-3xl font-semibold mb-4 text-gray-800"><%= @engine.engine_make %> <%= @engine.engine_model %></h1>
-      <!-- Engine Images Display with a Grid Style -->
-        <div class="w-full lg:w-full grid grid-cols-4 gap-4 mb-4">
-          <% if @engine.engine_photos.attached? %>
-            <% @engine.engine_photos.first(4).each do |photo| %>
-              <a href="<%= url_for(photo) %>" target="_blank" class="shadow-lg rounded-lg w-full h-auto">
-                <%= image_tag photo.variant(resize: "200x200").processed, class: 'rounded-lg w-full h-auto' %>
-              </a>
-            <% end %>
-          <% else %>
-            <div class="col-span-2 shadow-lg rounded-lg bg-gray-200 flex items-center justify-center w-full h-60">
-              <span class="text-lg text-gray-500">No Images Available</span>
-            </div>
-          <% end %>
+<div class="md:py-16 py-6 px-4">
+  <div class="container mx-auto">
+    <nav class="font-heading text-sm mb-6 text-zinc-700 dark:text-zinc-300">
+      <ul class="flex items-center space-x-3">
+        <li class="after:content-['/'] after:relative after:text-zinc-300 after:left-1 dark:after:text-zinc-500">
+          <%= link_to "Engines", (defined?(engines_path) ? engines_path : "#"), class: "text-primary-600 hover:text-primary-700 dark:text-primary-500 dark:hover:text-primary-600" %>
+        </li>
+        <li>
+          <p><%= @engine.name %></p>
+        </li>
+      </ul>
+    </nav>
+    <div class="flex flex-wrap items-center justify-between pb-6 md:pb-0">
+      <div class="flex items-center space-x-3 mb-6 flex-1">
+        <%= image_tag demo_avatar_url(id: "10", variant: "men"), alt: "Ethan", class: "w-16 h-16 rounded-full border-2 border-white" %>
+        <div>
+          <h1 class="pb-1 text-4xl font-semibold font-heading text-zinc-900 dark:text-zinc-100 tracking-tight"><%= @engine.name %></h1>
+          <div class="text-sm text-zinc-600 pl-1 pb-1 dark:text-zinc-400">
+            <%= link_to "View All Engines", engines_path, class: "text-primary-600 hover:text-primary-700 dark:text-primary-500 dark:hover:text-primary-600" %>
+          </div>
         </div>
-      <div class="border-b border-gray-200 mb-4"></div>
-      
-      <div class="text-gray-700 space-y-2">
-        <p><strong>Engine Number:</strong> <%= @engine.engine_number %></p>
-        <p><strong>Barrel Number:</strong> <%= @engine.barrel_number %></p>
-        <p><strong>Seal Number:</strong> <%= @engine.seal_number %></p>
-        <p><strong>Year Manufactured:</strong> <%= @engine.year_manufactured %></p>
       </div>
-
-      <!-- Engine Description with Padded Block -->
-      <div class="mt-8 py-4 px-6 bg-gray-50 rounded-lg">
-        <h2 class="text-xl font-semibold mb-2 text-gray-800">Notes</h2>
-        <p class="text-gray-700"><%= @engine.notes  %></p>
-      </div>
-
-      <!-- Engine Actions with Flex Layout -->
-      <div class="flex justify-center gap-4 mt-8">
-        <%= link_to "Edit Engine", edit_engine_path(@engine), class: "btn btn-light" %>
-        <%= link_to "Back to Engines", engines_path, class: "btn btn-light" %>
-        <%= link_to "Delete Engine", @engine, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-red" %>
+      <div class="flex md:justify-end space-x-3 md:w-auto w-full">
+        <% if current_user.admin? %>
+          <%= link_to "Edit Engine", edit_engine_path(@engine), class: "btn btn-white" %>
+        <% end %>
       </div>
     </div>
   </div>
-</div>
+
+  <div class="pb-6 container mx-auto relative" data-controller="gallery">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <a href="<%= image_url('image1.jpg') %>" data-pswp-width="2500" data-pswp-height="1667" target="_blank">
+          <%= image_tag "image1.jpg", class: "rounded-xl w-full object-cover h-full" %>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <a href="<%= image_url('image1.jpg') %>" data-pswp-width="2000" data-pswp-height="1333" target="_blank">
+          <%= image_tag "image1.jpg", class: "rounded-xl w-full object-cover lg:h-[248px] h-[140px]" %>
+        </a>
+        <a href="<%= image_url('image1.jpg') %>" data-pswp-width="2000" data-pswp-height="1333" target="_blank">
+          <%= image_tag "image1.jpg", class: "rounded-xl w-full object-cover lg:h-[248px] h-[140px]" %>
+        </a>
+        <a href="<%= image_url('image1.jpg') %>" data-pswp-width="2000" data-pswp-height="3000" target="_blank">
+          <%= image_tag "image1.jpg", class: "rounded-xl  w-full object-cover lg:h-[248px] h-[140px]" %>
+        </a>
+        <a href="<%= image_url('image1.jpg') %>" data-pswp-width="2000" data-pswp-height="2588" target="_blank">
+          <%= image_tag "image1.jpg", class: "rounded-xl w-full object-cover lg:h-[248px] h-[140px]" %>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mx-auto px-4 pb-24 pt-8">
+    <div class="pb-6">
+      <h1 class="pb-1 text-2xl font-semibold font-heading text-zinc-900 dark:text-zinc-100 tracking-tight">Engine Details - <%= @engine.name %></h1>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-x-6 gap-y-8">
+      <div>
+        <div class="flex items-center space-x-3">
+          <%= icon "home-modern", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
+          <p class="font-heading dark:text-zinc-50">Make</p>
+        </div>
+        <span class="pl-8 text-zinc-600 dark:text-zinc-300"><%= @engine.engine_make.capitalize %></span>
+      </div>
+      <div>
+        <div class="flex items-center space-x-3">
+          <%= icon "calendar-days", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
+          <p class="font-heading dark:text-zinc-50">Model</p>
+        </div>
+        <span class="pl-8 text-zinc-600 dark:text-zinc-300">12 Months</span>
+      </div>
+
+      <div>
+        <div class="flex items-center space-x-3">
+          <%= icon "clock", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
+          <p class="font-heading dark:text-zinc-50">Year</p>
+        </div>
+        <span class="pl-8 text-zinc-600 dark:text-zinc-300">1/1/2024</span>
+      </div>
+
+      <div>
+        <div class="flex items-center space-x-3">
+          <%= icon "clock", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
+          <p class="font-heading dark:text-zinc-50">Last Service</p>
+        </div>
+        <span class="pl-8 text-zinc-600 dark:text-zinc-300">31/12/2024</span>
+      </div>
+
+      <div>
+        <div class="flex items-center space-x-3">
+          <%= icon "banknotes", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
+          <p class="font-heading dark:text-zinc-50">Barrel Number</p>
+        </div>
+        <span class="pl-8 text-zinc-600 dark:text-zinc-300">£850</span>
+      </div>
+      <div>
+        <div class="flex items-center space-x-3">
+          <%= icon "user-group", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
+          <p class="font-heading dark:text-zinc-50">Current Seal</p>
+        </div>
+        <span class="pl-8 text-zinc-600 dark:text-zinc-300">Tenant Name</span>
+      </div>
+      <div>
+        <div class="flex items-center space-x-3">
+          <%= icon "sparkles", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
+          <p class="font-heading dark:text-zinc-50">Last Serviced by</p>
+        </div>
+        <span class="pl-8 text-zinc-600 dark:text-zinc-300">£950</span>
+      </div>
+      <div>
+        <div class="flex items-center space-x-3">
+          <%= icon "information-circle", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
+          <p class="font-heading dark:text-zinc-50">Notice Period</p>
+        </div>
+        <span class="pl-8 text-zinc-600 dark:text-zinc-300">1 Month</span>
+      </div>
+    </div>
+
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8 pb-24 pt-8">
+      <div>
+        <div class="flex items-center space-x-3">
+          <%= icon "home-modern", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
+          <p class="font-heading dark:text-zinc-50">Notes</p>
+        </div>
+        <span class="pl-8 text-zinc-600 dark:text-zinc-300"><%= @engine.notes %></span>
+      </div>
+      
+    </div>
+  </div>
