@@ -30,7 +30,21 @@
 
   <div class="pb-6 container mx-auto relative" data-controller="engine-gallery">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <% if @engine.engine_photos.present? %>
       <div>
+        <a href="<%= image_url('image1.jpg') %>" data-pswp-width="2500" data-pswp-height="1667" target="_blank">
+          <%= image_tag @engine.engine_photos.first, class: "rounded-xl w-full object-contain lg:h-[496px] h-[280px]" %>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+          <%= image_tag @engine.engine_photos.first, class: "rounded-xl w-full object-contain lg:h-[248px] h-[140px]" %>
+          <%= image_tag @engine.engine_photos.second, class: "rounded-xl w-full object-contain lg:h-[248px] h-[140px]" %>
+          <%= image_tag @engine.engine_photos.third, class: "rounded-xl  w-full object-contain lg:h-[248px] h-[140px]" %>
+          <%= image_tag @engine.engine_photos.fourth, class: "rounded-xl w-full object-contain lg:h-[248px] h-[140px]" %>
+      </div>
+      <% else %>
+        <div>
         <a href="<%= image_url('image1.jpg') %>" data-pswp-width="2500" data-pswp-height="1667" target="_blank">
           <%= image_tag "image1.jpg", class: "rounded-xl w-full object-cover h-full" %>
         </a>
@@ -46,10 +60,9 @@
         <a href="<%= image_url('image1.jpg') %>" data-pswp-width="2000" data-pswp-height="3000" target="_blank">
           <%= image_tag "image1.jpg", class: "rounded-xl  w-full object-cover lg:h-[248px] h-[140px]" %>
         </a>
-        <a href="<%= image_url('image1.jpg') %>" data-pswp-width="2000" data-pswp-height="2588" target="_blank">
-          <%= image_tag "image1.jpg", class: "rounded-xl w-full object-cover lg:h-[248px] h-[140px]" %>
-        </a>
+        
       </div>
+      <% end %>
     </div>
   </div>
 
