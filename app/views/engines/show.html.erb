@@ -23,47 +23,36 @@
     </div>
   </div>
 
-  <div class="container mx-auto relative" data-controller="engine-gallery">
+
+<div class="container mx-auto relative" data-controller="engine-gallery">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <!-- Check if the engine has a first photo and render it, otherwise render the placeholder -->
-    <% if @engine.engine_photos.attached? %>
-      <% first_photo = @engine.engine_photos.first %>
-      <%= image_tag url_for(first_photo), class: 'lg:h-72 h-72 w-full object-cover rounded-lg' %>
-    <% else %>
-      <% if current_user.admin? ||  current_user == @engine.user %>
-        <%= link_to edit_engine_path(@engine) do %>
-          <div class="lg:h-72 h-72 bg-gray-500 rounded-lg flex items-center justify-center text-center text-white text-lg">
-            Add an Engine Image
-          </div>
-        <% end %>
-      <% else %>
+    <% displayed_images = 0 %>
+    <!-- Render up to 4 photos -->
+    <% if @engine.engine_photos.attached? && @engine.engine_photos.any? %>
+      <% @engine.engine_photos.limit(4).each do |photo| %>
+        <%= image_tag url_for(photo), class: 'lg:h-72 h-72 w-full object-cover rounded-lg' %>
+        <% displayed_images += 1 %>
+      <% end %>
+    <% end %>
+
+    <!-- Add one placeholder if there are fewer than 4 images and the current user is the owner or admin -->
+    <% if displayed_images < 4 && (current_user.admin? || current_user == @engine.user) %>
+      <%= link_to edit_engine_path(@engine) do %>
         <div class="lg:h-72 h-72 bg-gray-500 rounded-lg flex items-center justify-center text-center text-white text-lg">
-          No more images available
+          Add an Engine Image
         </div>
       <% end %>
     <% end %>
 
-    <div>
-      <div class="grid grid-cols-2 gap-2">
-        <!-- Render the rest of the photos in a smaller photo grid, or placeholders if no photos are present -->
-        <% if @engine.engine_photos.attached? && @engine.engine_photos.size > 1 %>
-          <% @engine.engine_photos[1..-1].each do |photo| %>
-            <%= image_tag url_for(photo), class: 'h-24 w-full object-cover rounded-lg' %>
-          <% end %>
-        <% end %>
-
-        <!-- Add placeholders if there are not enough photos -->
-        <% (5 - @engine.engine_photos.size).times do %>
-          <%= link_to edit_engine_path(@engine) do %>
-            <div class="h-36 bg-gray-500 rounded-lg flex items-center justify-center text-center text-white text-sm">
-              Add an Engine Image
-            </div>
-          <% end %>
-        <% end %>
+    <!-- Message for non-owners if there are no images -->
+    <% if displayed_images == 0 && !(current_user.admin? || current_user == @engine.user) %>
+      <div class="lg:h-72 h-72 bg-gray-500 rounded-lg flex items-center justify-center text-center text-white text-lg">
+        No images available
       </div>
-    </div>
+    <% end %>
   </div>
 </div>
+
 
   <div class="container mx-auto px-4 pb-6 pt-8">
     <div class="pb-6">
