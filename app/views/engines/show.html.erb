@@ -12,7 +12,7 @@
     </nav>
     <div class="flex flex-wrap items-center justify-between pb-6 md:pb-0">
       <div class="flex items-center space-x-3 mb-6 flex-1">
-        <%= image_tag demo_avatar_url(id: "10", variant: "men"), alt: "Ethan", class: "w-16 h-16 rounded-full border-2 border-white" %>
+        <%= image_tag demo_avatar_url(id: "10", variant: "men"), alt: "Ethan", class: "w-16 h-16 rounded-full border-2 border-white hidden" %>
         <div>
           <h1 class="pb-1 text-4xl font-semibold font-heading text-zinc-900 dark:text-zinc-100 tracking-tight"><%= @engine.name %></h1>
           <div class="text-sm text-zinc-600 pl-1 pb-1 dark:text-zinc-400">
@@ -20,51 +20,40 @@
           </div>
         </div>
       </div>
-      <div class="flex md:justify-end space-x-3 md:w-auto w-full">
-        <% if current_user.admin? %>
-          <%= link_to "Edit Engine", edit_engine_path(@engine), class: "btn btn-white" %>
+    </div>
+  </div>
+
+  <div class="container mx-auto relative" data-controller="engine-gallery">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <!-- Check if the engine has a first photo and render it, otherwise render the placeholder -->
+    <% if @engine.engine_photos.attached? %>
+      <% first_photo = @engine.engine_photos.first %>
+      <%= image_tag url_for(first_photo), class: 'lg:h-72 h-72 w-full object-cover rounded-lg' %>
+    <% else %>
+      <div class="lg:h-72 h-72 bg-gray-500 rounded-lg flex items-center justify-center text-center text-white text-lg">
+        Add an Engine Image
+      </div>
+    <% end %>
+
+    <div>
+      <div class="grid grid-cols-2 gap-2">
+        <!-- Render the rest of the photos in a smaller photo grid, or placeholders if no photos are present -->
+        <% if @engine.engine_photos.attached? && @engine.engine_photos.size > 1 %>
+          <% @engine.engine_photos[1..-1].each do |photo| %>
+            <%= image_tag url_for(photo), class: 'h-24 w-full object-cover rounded-lg' %>
+          <% end %>
+        <% end %>
+
+        <!-- Add placeholders if there are not enough photos -->
+        <% (5 - @engine.engine_photos.size).times do %>
+          <div class="h-36 bg-gray-500 rounded-lg flex items-center justify-center text-center text-white text-sm">
+            Add an Engine Image
+          </div>
         <% end %>
       </div>
     </div>
   </div>
-
-  <div class="pb-6 container mx-auto relative" data-controller="engine-gallery">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <% if @engine.engine_photos.present? %>
-      <div>
-        <a href="<%= image_url('image1.jpg') %>" data-pswp-width="2500" data-pswp-height="1667" target="_blank">
-          <%= image_tag @engine.engine_photos.first, class: "rounded-xl w-full object-contain lg:h-[496px] h-[280px]" %>
-        </a>
-      </div>
-
-      <div class="grid grid-cols-2 gap-4">
-          <%= image_tag @engine.engine_photos.first, class: "rounded-xl w-full object-contain lg:h-[248px] h-[140px]" %>
-          <%= image_tag @engine.engine_photos.second, class: "rounded-xl w-full object-contain lg:h-[248px] h-[140px]" %>
-          <%= image_tag @engine.engine_photos.third, class: "rounded-xl  w-full object-contain lg:h-[248px] h-[140px]" %>
-          <%= image_tag @engine.engine_photos.fourth, class: "rounded-xl w-full object-contain lg:h-[248px] h-[140px]" %>
-      </div>
-      <% else %>
-        <div>
-        <a href="<%= image_url('image1.jpg') %>" data-pswp-width="2500" data-pswp-height="1667" target="_blank">
-          <%= image_tag "image1.jpg", class: "rounded-xl w-full object-cover h-full" %>
-        </a>
-      </div>
-
-      <div class="grid grid-cols-2 gap-4">
-        <a href="<%= image_url('image1.jpg') %>" data-pswp-width="2000" data-pswp-height="1333" target="_blank">
-          <%= image_tag "image1.jpg", class: "rounded-xl w-full object-cover lg:h-[248px] h-[140px]" %>
-        </a>
-        <a href="<%= image_url('image1.jpg') %>" data-pswp-width="2000" data-pswp-height="1333" target="_blank">
-          <%= image_tag "image1.jpg", class: "rounded-xl w-full object-cover lg:h-[248px] h-[140px]" %>
-        </a>
-        <a href="<%= image_url('image1.jpg') %>" data-pswp-width="2000" data-pswp-height="3000" target="_blank">
-          <%= image_tag "image1.jpg", class: "rounded-xl  w-full object-cover lg:h-[248px] h-[140px]" %>
-        </a>
-        
-      </div>
-      <% end %>
-    </div>
-  </div>
+</div>
 
   <div class="container mx-auto px-4 pb-6 pt-8">
     <div class="pb-6">
@@ -73,14 +62,14 @@
     <div class="grid grid-cols-1 md:grid-cols-4 gap-x-6 gap-y-8">
       <div>
         <div class="flex items-center space-x-3">
-          <%= icon "home-modern", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
+          <%= icon "folder", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
           <p class="font-heading dark:text-zinc-50">Make</p>
         </div>
         <span class="pl-8 text-zinc-600 dark:text-zinc-300"><%= @engine.engine_make.capitalize %></span>
       </div>
       <div>
         <div class="flex items-center space-x-3">
-          <%= icon "calendar-days", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
+          <%= icon "folder", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
           <p class="font-heading dark:text-zinc-50">Model</p>
         </div>
         <span class="pl-8 text-zinc-600 dark:text-zinc-300">12 Months</span>
@@ -88,7 +77,7 @@
 
       <div>
         <div class="flex items-center space-x-3">
-          <%= icon "clock", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
+          <%= icon "calendar", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
           <p class="font-heading dark:text-zinc-50">Year</p>
         </div>
         <span class="pl-8 text-zinc-600 dark:text-zinc-300">1/1/2024</span>
@@ -96,7 +85,7 @@
 
       <div>
         <div class="flex items-center space-x-3">
-          <%= icon "clock", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
+          <%= icon "wrench", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
           <p class="font-heading dark:text-zinc-50">Last Service</p>
         </div>
         <span class="pl-8 text-zinc-600 dark:text-zinc-300">31/12/2024</span>
@@ -104,38 +93,32 @@
 
       <div>
         <div class="flex items-center space-x-3">
-          <%= icon "banknotes", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
+          <%= icon "identification", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
           <p class="font-heading dark:text-zinc-50">Barrel Number</p>
         </div>
         <span class="pl-8 text-zinc-600 dark:text-zinc-300">£850</span>
       </div>
       <div>
         <div class="flex items-center space-x-3">
-          <%= icon "user-group", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
+          <%= icon "identification", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
           <p class="font-heading dark:text-zinc-50">Current Seal</p>
         </div>
         <span class="pl-8 text-zinc-600 dark:text-zinc-300">Tenant Name</span>
       </div>
       <div>
         <div class="flex items-center space-x-3">
-          <%= icon "sparkles", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
+          <%= icon "wrench", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
           <p class="font-heading dark:text-zinc-50">Last Serviced by</p>
         </div>
         <span class="pl-8 text-zinc-600 dark:text-zinc-300">£950</span>
       </div>
-      <div>
-        <div class="flex items-center space-x-3">
-          <%= icon "information-circle", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
-          <p class="font-heading dark:text-zinc-50">Notice Period</p>
-        </div>
-        <span class="pl-8 text-zinc-600 dark:text-zinc-300">1 Month</span>
-      </div>
+      
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8 pt-8">
       <div>
         <div class="flex items-center space-x-3">
-          <%= icon "home-modern", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
+          <%= icon "pencil-square", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
           <p class="font-heading dark:text-zinc-50">Notes</p>
         </div>
         <span class="pl-8 text-zinc-600 dark:text-zinc-300"><%= @engine.notes %></span>
@@ -144,6 +127,14 @@
   </div>
 </div>
 
+
+  <div class="container mx-auto px-4 pb-6 pt-8">
+      <div class="flex space-x-3 md:w-auto w-full">
+        <% if current_user.admin? %>
+          <%= link_to "Edit Engine", edit_engine_path(@engine), class: "btn btn-white" %>
+        <% end %>
+      </div>
+    </div>    
 
 
   <div class="md:py-6 py-6 px-4">
