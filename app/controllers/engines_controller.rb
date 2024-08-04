@@ -28,19 +28,26 @@ class EnginesController < ApplicationController
   end
 
   def update
+    # Remove selected photos
+    if params[:engine][:existing_photos]
+      params[:engine][:existing_photos].each do |photo_id|
+        @engine.engine_photos.find(photo_id).purge
+      end
+    end
+
+    # Attach new photos
     if params[:engine][:engine_photos]
       params[:engine][:engine_photos].each do |photo|
         @engine.engine_photos.attach(photo)
       end
     end
 
-    if @engine.update(engine_params.except(:engine_photos))
+    if @engine.update(engine_params.except(:engine_photos, :existing_photos))
       redirect_to @engine, notice: 'Engine was successfully updated.'
     else
       render :edit
     end
   end
-
 
   def destroy
     @engine.destroy
