@@ -82,7 +82,7 @@
           <%= icon "folder", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
           <p class="font-heading dark:text-zinc-50">Model</p>
         </div>
-        <span class="pl-8 text-zinc-600 dark:text-zinc-300">12 Months</span>
+        <span class="pl-8 text-zinc-600 dark:text-zinc-300"><%= @engine.engine_model.capitalize %></span>
       </div>
 
       <div>
@@ -90,7 +90,7 @@
           <%= icon "calendar", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
           <p class="font-heading dark:text-zinc-50">Year</p>
         </div>
-        <span class="pl-8 text-zinc-600 dark:text-zinc-300">1/1/2024</span>
+        <span class="pl-8 text-zinc-600 dark:text-zinc-300"><%= @engine.year_manufactured %></span>
       </div>
 
       <div>
@@ -98,7 +98,7 @@
           <%= icon "wrench", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
           <p class="font-heading dark:text-zinc-50">Last Service</p>
         </div>
-        <span class="pl-8 text-zinc-600 dark:text-zinc-300">31/12/2024</span>
+        <span class="pl-8 text-zinc-600 dark:text-zinc-300"><%= @engine.service_records.any? ? @engine.service_record.last : "No Record" %></span>
       </div>
 
       <div>
@@ -106,21 +106,21 @@
           <%= icon "identification", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
           <p class="font-heading dark:text-zinc-50">Barrel Number</p>
         </div>
-        <span class="pl-8 text-zinc-600 dark:text-zinc-300">£850</span>
+        <span class="pl-8 text-zinc-600 dark:text-zinc-300"><%= @engine.barrel_number %></span>
       </div>
       <div>
         <div class="flex items-center space-x-3">
           <%= icon "identification", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
           <p class="font-heading dark:text-zinc-50">Current Seal</p>
         </div>
-        <span class="pl-8 text-zinc-600 dark:text-zinc-300">Tenant Name</span>
+        <span class="pl-8 text-zinc-600 dark:text-zinc-300"><%= @engine.seal_number %></span>
       </div>
       <div>
         <div class="flex items-center space-x-3">
           <%= icon "wrench", classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
           <p class="font-heading dark:text-zinc-50">Last Serviced by</p>
         </div>
-        <span class="pl-8 text-zinc-600 dark:text-zinc-300">£950</span>
+        <span class="pl-8 text-zinc-600 dark:text-zinc-300"><%= @engine.service_records.any? ? @engine.service_record.last.engine_builder : "No Record" %></span>
       </div>
       
     </div>
