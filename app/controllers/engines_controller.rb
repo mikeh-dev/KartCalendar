@@ -28,12 +28,19 @@ class EnginesController < ApplicationController
   end
 
   def update
-    if @engine.update(engine_params)
-      redirect_to engine_path(@engine), notice: 'Engine updated successfully'
+    if params[:engine][:engine_photos]
+      params[:engine][:engine_photos].each do |photo|
+        @engine.engine_photos.attach(photo)
+      end
+    end
+
+    if @engine.update(engine_params.except(:engine_photos))
+      redirect_to @engine, notice: 'Engine was successfully updated.'
     else
-      render :edit, status: :unprocessable_entity
+      render :edit
     end
   end
+
 
   def destroy
     @engine.destroy

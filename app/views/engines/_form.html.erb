@@ -54,7 +54,16 @@
     </div>
 
     <div class="mb-4">
-      <%= form.label :engine_photos, class: "block mb-2 text-sm font-medium text-gray-500" %>
+      <h3 class="block mb-2 text-sm font-medium text-gray-500">Existing Photos</h3>
+      <% @engine.engine_photos.each do |photo| %>
+        <div class="flex items-center mb-2">
+          <%= image_tag url_for(photo), class: 'h-24 w-24 object-cover rounded-lg mr-2' %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :engine_photos, "Add New Photos", class: "block mb-2 text-sm font-medium text-gray-500" %>
       <%= form.file_field :engine_photos, multiple: true, class: "block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" %>
     </div>
 
