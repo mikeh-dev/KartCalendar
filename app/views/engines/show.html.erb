@@ -30,9 +30,17 @@
       <% first_photo = @engine.engine_photos.first %>
       <%= image_tag url_for(first_photo), class: 'lg:h-72 h-72 w-full object-cover rounded-lg' %>
     <% else %>
-      <div class="lg:h-72 h-72 bg-gray-500 rounded-lg flex items-center justify-center text-center text-white text-lg">
-        Add an Engine Image
-      </div>
+      <% if current_user.admin? ||  current_user == @engine.user %>
+        <%= link_to edit_engine_path(@engine) do %>
+          <div class="lg:h-72 h-72 bg-gray-500 rounded-lg flex items-center justify-center text-center text-white text-lg">
+            Add an Engine Image
+          </div>
+        <% end %>
+      <% else %>
+        <div class="lg:h-72 h-72 bg-gray-500 rounded-lg flex items-center justify-center text-center text-white text-lg">
+          No more images available
+        </div>
+      <% end %>
     <% end %>
 
     <div>
@@ -46,9 +54,11 @@
 
         <!-- Add placeholders if there are not enough photos -->
         <% (5 - @engine.engine_photos.size).times do %>
-          <div class="h-36 bg-gray-500 rounded-lg flex items-center justify-center text-center text-white text-sm">
-            Add an Engine Image
-          </div>
+          <%= link_to edit_engine_path(@engine) do %>
+            <div class="h-36 bg-gray-500 rounded-lg flex items-center justify-center text-center text-white text-sm">
+              Add an Engine Image
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>
