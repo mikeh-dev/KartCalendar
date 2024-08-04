@@ -1,15 +1,17 @@
 class EnginesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_engine, only: [:show, :edit, :update, :destroy]
-  before_action -> { authorize_user(@engine) }, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_engine, only: [:show, :edit, :update, :destroy]
 
   def new
     @engine = Engine.new
+    authorize @engine
   end
 
   def create
     @engine = Engine.new(engine_params)
     @engine.user = current_user
+    authorize @engine
     if @engine.save
       redirect_to engine_path(@engine), notice: 'Engine added successfully'
     else
@@ -28,14 +30,12 @@ class EnginesController < ApplicationController
   end
 
   def update
-    # Remove selected photos
     if params[:engine][:existing_photos]
       params[:engine][:existing_photos].each do |photo_id|
         @engine.engine_photos.find(photo_id).purge
       end
     end
 
-    # Attach new photos
     if params[:engine][:engine_photos]
       params[:engine][:engine_photos].each do |photo|
         @engine.engine_photos.attach(photo)
@@ -59,12 +59,12 @@ class EnginesController < ApplicationController
   def engine_params
     params.require(:engine).permit(:name, :engine_number, :engine_make, :engine_model, :barrel_number, :seal_number, :year_manufactured, :notes, :logbook_cover, engine_photos: [], dyno_sheet: [])
   end
-  
 
   def set_engine
     @engine = Engine.find(params[:id])
   end
 
-  
-
+  def authorize_engine
+    authorize @engine
+  end
 end

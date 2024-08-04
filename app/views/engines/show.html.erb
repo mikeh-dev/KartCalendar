@@ -131,6 +131,9 @@
       <div class="flex space-x-3 md:w-auto w-full">
         <% if current_user.admin? %>
           <%= link_to "Edit Engine", edit_engine_path(@engine), class: "btn btn-white" %>
+          <%= link_to "Delete Engine", engine_path(@engine), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn bg-red-700" %>
+        <% elsif current_user == @engine.user %>
+          <%= link_to "Edit Engine", edit_engine_path(@engine), class: "btn btn-white" %>
         <% end %>
       </div>
     </div>    
