@@ -1,4 +1,5 @@
 <% content_for :title, 'Your Engines' %>
+<div class="bg-gray-100">
 <div class="bg-gray-100 text-center mx-auto pt-8">
   <h1 class="text-3xl font-bold mx-auto text-gray-700">Your Engines</h1>
   <% if @engines.empty? %>
@@ -11,10 +12,10 @@
 </div>
 </div>
 
-<div class="bg-gray-100 min-h-screen pt-8">
+<div class="bg-gray-100 pt-8">
   <div class="container mx-auto px-4">
 
-  <div class="mb-6 min-h-screen">
+  <div class="mb-6 ">
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         <% if @engines.empty? %>
           <p class="text-gray-600">You have no engines added yet.</p>
@@ -43,3 +44,51 @@
           <%= link_to "Add Engine", new_engine_path, class: "btn btn-primary text-white" %>
       </div>
   </div>
+</div>
+</div>
+
+
+<% if current_user.admin? %>
+    <div class="md:py-6 py-6 px-4 bg-gray-100">
+      <div class="pb-6 container mx-auto">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th scope="col" class="px-6 py-3">
+                Engine Name
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Engine Number
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Engine Make
+              </th>
+              <th scope="col" class="px-6 py-3">
+                View
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @all_engines.each do |engine| %>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <td class="px-6 py-4">
+                <%= engine.name %>
+              </td>
+              <td class="px-6 py-4">
+                <%= engine.engine_number %>
+              </td>
+              <td class="px-6 py-4">
+                <%= engine.engine_make %>
+              </td>
+              <td class="px-6 py-4">
+                <%= link_to "View", engine_path(engine), class: "btn btn-primary text-white" %>
+              </td>
+            <% end %>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+<% end %>
+</div>

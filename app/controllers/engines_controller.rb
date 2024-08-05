@@ -24,6 +24,7 @@ class EnginesController < ApplicationController
 
   def index
     @engines = current_user.engines
+    @all_engines = Engine.all
   end
 
   def edit
