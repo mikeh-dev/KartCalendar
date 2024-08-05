@@ -13,14 +13,21 @@
       </div>
     <% end %>
 
-    <div class="mb-4">
-      <%= form.label :engine_id, "Select Engine", class: "block text-gray-500 text-sm font-bold mb-2" %>
-      <%= form.collection_select(:engine_id, @engines.all, :id, :engine_number, {:prompt => 'Select an Engine'}, { class: "mt-1 block w-full py-2 px-3 border rounded-md shadow-sm focus:ring focus:ring-opacity-50 text-white-800 bg-inherit" }) %>
-    </div>
+    <%= form.hidden_field :engine_id, value: @engine.id %>
 
     <div class="mb-4">
       <%= form.label :service_date, class: "block text-gray-500 text-sm font-bold mb-2" %>
       <%= form.date_field :date, class: "form-input" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :engine_builder, class: "block text-gray-500 text-sm font-bold mb-2" %>
+      <%= form.text_field, :engine_builder class: "form-input" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :seal_number, class: "block text-gray-500 text-sm font-bold mb-2" %>
+      <%= form.text_field :seal_number, class: "form-input" %>
     </div>
 
     <div class="mb-4">
