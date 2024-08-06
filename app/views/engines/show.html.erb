@@ -42,7 +42,7 @@
         <% if displayed_images < 4 && (current_user.admin? || current_user == @engine.user) %>
           <%= link_to edit_engine_path(@engine) do %>
             <div class="lg:h-36 h-36 bg-gray-500 rounded-lg flex items-center justify-center text-center text-white text-lg">
-              Add an Engine Image
+              Add more Engine images
             </div>
           <% end %>
         <% end %>
@@ -106,18 +106,20 @@
       <div class="pb-6">
         <h1 class="pb-1 text-2xl font-semibold font-heading text-zinc-900 dark:text-zinc-100 tracking-tight text-center">Dyno Details</h1>
       </div>
-      <% if @engine.dyno_sheet.attached? %>
-        <a href="<%= url_for(@engine.dyno_sheet) %>" data-pswp-width="2500" data-pswp-height="1667" target="_blank">
-          <%= image_tag @engine.dyno_sheet, class: "rounded-xl w-full object-cover h-full" %>
-        </a>
-      <% elsif @engine.service_records.any? && @engine.service_records.last.dyno_sheets.attached? %>
-        <a href="<%= url_for(@engine.service_records.last.dyno_sheets.first) %>" data-pswp-width="2500" data-pswp-height="1667" target="_blank">
-          <%= image_tag @engine.service_records.last.dyno_sheets.first, class: "rounded-xl w-full object-cover h-full" %>
-        </a>
+      <% if @engine.service_records.any? %>
+        <% last_service_record = @engine.service_records.last %>
+        <% if last_service_record.dyno_sheets.attached? %>
+          <a href="<%= url_for(last_service_record.dyno_sheets.first) %>" data-pswp-width="2500" data-pswp-height="1667" target="_blank">
+            <%= image_tag last_service_record.dyno_sheets.first, class: "rounded-xl w-full object-cover h-full" %>
+          </a>
+        <% end %>
       <% else %>
-        <%= link_to "Add a Dyno Sheet", edit_engine_path(@engine), class: "h-36 bg-gray-500 rounded-lg flex items-center justify-center text-center text-white text-lg" %>
+        <!-- Handle the case where there are no service records -->
+        <p>No service records available.</p>
       <% end %>
     </div>
+
+
 
 
           <div class="mt-12 md:mt-5">
