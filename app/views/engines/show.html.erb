@@ -41,7 +41,7 @@
         <!-- Add one placeholder if there are fewer than 4 images and the current user is the owner or admin -->
         <% if displayed_images < 4 && (current_user.admin? || current_user == @engine.user) %>
           <%= link_to edit_engine_path(@engine) do %>
-            <div class="lg:h-72 h-72 bg-gray-500 rounded-lg flex items-center justify-center text-center text-white text-lg">
+            <div class="lg:h-36 h-36 bg-gray-500 rounded-lg flex items-center justify-center text-center text-white text-lg">
               Add an Engine Image
             </div>
           <% end %>
@@ -59,9 +59,9 @@
     <!-- Engine Details Section -->
     <div class="container mx-auto">
       <div class="pb-6">
-        <h1 class="text-center pb-1 text-2xl font-semibold font-heading text-zinc-900 dark:text-zinc-100 tracking-tight">Engine Details - <%= @engine.name %></h1>
+        <h1 class="text-center pb-1 text-2xl font-semibold font-heading text-zinc-900 dark:text-zinc-100 tracking-tight"><%= @engine.name %></h1>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8">
+      <div class="grid grid-cols-2 md:grid-cols-2 gap-x-6 gap-y-8">
         <% details = [
           { icon: "folder", label: "Make", value: @engine.engine_make.capitalize },
           { icon: "folder", label: "Model", value: @engine.engine_model.capitalize },
@@ -73,7 +73,7 @@
           { icon: "wrench", label: "Last Serviced by", value: @engine.service_records.any? ? @engine.service_records.last.engine_builder : "No Record" }
         ] %>
         <% details.each do |detail| %>
-          <div class="flex flex-col md:items-center items-start">
+          <div class="flex flex-col items-start md:ml-24">
             <div class="flex items-center space-x-3">
               <%= icon detail[:icon], classes: "w-5 h-5 text-zinc-500 dark:text-zinc-300" %>
               <p class="font-heading dark:text-zinc-50"><%= detail[:label] %></p>
@@ -95,19 +95,7 @@
     </div>
 
   </div>
-</div>
-
-
-  <div class="container mx-auto px-4 pb-6 pt-8">
-      <div class="flex space-x-3 md:w-auto w-full">
-        <% if current_user.admin? %>
-          <%= link_to "Edit Engine", edit_engine_path(@engine), class: "btn btn-white" %>
-          <%= link_to "Delete Engine", engine_path(@engine), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn bg-red-700" %>
-        <% elsif current_user == @engine.user %>
-          <%= link_to "Edit Engine", edit_engine_path(@engine), class: "btn btn-white" %>
-        <% end %>
-      </div>
-    </div>    
+</div> 
 
 
   <div class="md:py-6 py-6 px-4">
@@ -123,13 +111,11 @@
           <%= image_tag @engine.dyno_sheet, class: "rounded-xl w-full object-cover h-full" %>
         </a>
       <% elsif @engine.service_records.any? && @engine.service_records.last.dyno_sheets.attached? %>
-        <a href="<%= url_for(@engine.service_records.last.dyno_sheet) %>" data-pswp-width="2500" data-pswp-height="1667" target="_blank">
-          <%= image_tag @engine.service_records.last.dyno_sheet, class: "rounded-xl w-full object-cover h-full" %>
+        <a href="<%= url_for(@engine.service_records.last.dyno_sheets.first) %>" data-pswp-width="2500" data-pswp-height="1667" target="_blank">
+          <%= image_tag @engine.service_records.last.dyno_sheets.first, class: "rounded-xl w-full object-cover h-full" %>
         </a>
       <% else %>
-        <div class="h-72 bg-gray-500 rounded-lg flex items-center justify-center text-center text-white text-lg">
-          <%= link_to "Add a Dyno Sheet", edit_engine_path(@engine), class: "text-white" %>
-        </div>
+        <%= link_to "Add a Dyno Sheet", edit_engine_path(@engine), class: "h-36 bg-gray-500 rounded-lg flex items-center justify-center text-center text-white text-lg" %>
       <% end %>
     </div>
 
@@ -161,13 +147,13 @@
                     <tbody>
                       <% @engine.service_records.each do |service_record| %>
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 <%= service_record.engine_builder %>
-                            </th>
-                            <td class="px-6 py-4">
+                            </td>
+                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 <%= service_record.date.strftime("%d %b %y") %>
                             </td>
-                            <td class="px-6 py-4">
+                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 <%= service_record.seal_number %>
                             </td>
                             <td class="px-6 py-4">
@@ -190,3 +176,14 @@
     </div>
   </div>
 </div>
+
+  <div class="container mx-auto px-4 pb-6 pt-8">
+      <div class="flex space-x-3 md:w-auto w-full">
+        <% if current_user.admin? %>
+          <%= link_to "Edit Engine", edit_engine_path(@engine), class: "btn btn-white" %>
+          <%= link_to "Delete Engine", engine_path(@engine), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn bg-red-700" %>
+        <% elsif current_user == @engine.user %>
+          <%= link_to "Edit Engine", edit_engine_path(@engine), class: "btn btn-white" %>
+        <% end %>
+      </div>
+    </div>   

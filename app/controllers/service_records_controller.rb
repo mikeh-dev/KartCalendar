@@ -34,7 +34,7 @@ class ServiceRecordsController < ApplicationController
 
   def update
     if @service_record.update(service_record_params)
-      redirect_to engine_service_records_path(@engine), notice: 'Service record updated successfully'
+      redirect_to engine_path(@engine), notice: 'Service record updated successfully'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -42,7 +42,7 @@ class ServiceRecordsController < ApplicationController
 
   def destroy
     @service_record.destroy
-    redirect_to service_records_path, notice: 'Service record deleted successfully'
+    redirect_to engine_path(@engine), notice: 'Service record deleted successfully'
   end
 
   private
@@ -57,7 +57,7 @@ class ServiceRecordsController < ApplicationController
   end
 
   def service_record_params
-    params.require(:service_record).permit(:date, :description, :invoice, :engine_builder, :notes, :engine_id, dyno_sheets: [])
+    params.require(:service_record).permit(:date, :description, :invoice, :engine_builder, :notes, :seal_number, :engine_id, dyno_sheets: [])
   end
 
 end
