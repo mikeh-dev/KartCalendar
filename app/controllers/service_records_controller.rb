@@ -48,8 +48,11 @@ class ServiceRecordsController < ApplicationController
   private
 
   def set_engine
-    @engine = current_user.engines.find(params[:engine_id])
-    logger.debug "Engine: #{@engine}"
+    if current_user.admin?
+      @engine = Engine.find(params[:engine_id]) # Admin can access any engine
+    else
+      @engine = current_user.engines.find(params[:engine_id]) # Regular users only access their own engines
+    end
   end
 
   def set_service_record

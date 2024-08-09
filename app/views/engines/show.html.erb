@@ -107,16 +107,17 @@
         <h1 class="pb-1 text-2xl font-semibold font-heading text-zinc-900 dark:text-zinc-100 tracking-tight text-center">Dyno Details</h1>
       </div>
       <% if @engine.service_records.any? %>
-        <% last_service_record = @engine.service_records.last %>
-        <% if last_service_record.dyno_sheets.attached? %>
-          <a href="<%= url_for(last_service_record.dyno_sheets.first) %>" data-pswp-width="2500" data-pswp-height="1667" target="_blank">
-            <%= image_tag last_service_record.dyno_sheets.first, class: "rounded-xl w-full object-cover h-full" %>
-          </a>
+          <% last_service_record_with_dyno = @engine.service_records.order(date: :desc).find { |record| record.dyno_sheets.attached? } %>
+          <% if last_service_record_with_dyno %>
+            <%= image_tag last_service_record_with_dyno.dyno_sheets.first, class: "rounded-xl w-full object-cover h-full" %>
+          <% else %>
+            <!-- Handle the case where no service records with a dyno sheet are found -->
+            <p>Add a Service Record with a DynoSheet.</p>
+          <% end %>
+        <% else %>
+          <!-- Handle the case where there are no service records at all -->
+          <p>No service records to add a DynoSheet</p>
         <% end %>
-      <% else %>
-        <!-- Handle the case where there are no service records -->
-        <p>No Dyno infornation from service records available.</p>
-      <% end %>
     </div>
 
 

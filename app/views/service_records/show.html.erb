@@ -110,7 +110,7 @@
           <%= image_tag @service_record.dyno_sheets.first, class: "rounded-xl w-full object-cover h-full" %>
         </a>
       <% else %>
-        <%= link_to "Add a Dyno Sheet", edit_engine_path(@engine), class: "h-36 bg-gray-500 rounded-lg flex items-center justify-center text-center text-white text-lg" %>
+        <%= link_to "Add a Dyno Sheet", edit_engine_service_record_path(@engine, @service_record), class: "h-36 bg-gray-500 rounded-lg flex items-center justify-center text-center text-white text-lg" %>
       <% end %>
     </div>
 
@@ -132,22 +132,28 @@
                                 Date
                             </th>
                             <th scope="col" class="px-6 py-3">
+                                Seal
+                            </th>
+                            <th scope="col" class="px-6 py-3">
                                 View
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                      <% @engine.service_records.each do |service_record| %>
+                      <% @engine.service_records.where.not(id: @service_record.id).each do |service_record| %>
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                <%= service_record.engine_builder %>
-                            </td>
-                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                <%= service_record.date.strftime("%d %b %y") %>
-                            </td>
-                            <td class="px-6 py-4">
-                                <%= link_to "View", engine_service_record_path(@engine, service_record), class: "text-primary-600 hover:text-primary-700 dark:text-primary-500 dark:hover:text-primary-600" %>
-                            </td>
+                          <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <%= service_record.engine_builder %>
+                          </td>
+                          <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <%= service_record.date.strftime("%d %b %y") %>
+                          </td>
+                          <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <%= service_record.new_seal_number %>
+                          </td>
+                          <td class="px-6 py-4">
+                            <%= link_to "View", engine_service_record_path(@engine, service_record), class: "text-primary-600 hover:text-primary-700 dark:text-primary-500 dark:hover:text-primary-600" %>
+                          </td>
                         </tr>
                       <% end %>
                     </tbody>
