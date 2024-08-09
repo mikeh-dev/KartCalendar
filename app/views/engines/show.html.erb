@@ -69,7 +69,7 @@
           { icon: "calendar", label: "Year", value: @engine.year_manufactured },
           { icon: "wrench", label: "Last Service", value: @engine.service_records.any? ? @engine.service_records.last.date.strftime("%d %b %y") : "No Record" },
           { icon: "identification", label: "Barrel Number", value: @engine.barrel_number },
-          { icon: "identification", label: "Current Seal", value: @engine.service_records.any? ? @engine.service_records.last.seal_number : "No Record" },
+          { icon: "identification", label: "Current Seal", value: @engine.seal_number.present? ? @engine.seal_number : "No Record" },
           { icon: "wrench", label: "Last Serviced by", value: @engine.service_records.any? ? @engine.service_records.last.engine_builder : "No Record" }
         ] %>
         <% details.each do |detail| %>
@@ -156,7 +156,7 @@
                                 <%= service_record.date.strftime("%d %b %y") %>
                             </td>
                             <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                <%= service_record.seal_number %>
+                                <%= service_record.new_seal_number %>
                             </td>
                             <td class="px-6 py-4">
                                 <%= link_to "View", engine_service_record_path(@engine, service_record), class: "text-primary-600 hover:text-primary-700 dark:text-primary-500 dark:hover:text-primary-600" %>

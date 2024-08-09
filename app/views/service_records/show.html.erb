@@ -32,7 +32,7 @@
             <%= image_tag @service_record.invoice, class: 'lg:h-72 h-72 w-full object-cover rounded-lg' %>
         <% else %>
           <div class="lg:h-72 h-72 bg-gray-500 rounded-lg flex items-center justify-center text-center text-white text-lg">
-            No Invoices available
+            No Invoice available
           </div>
         <% end %>
 
@@ -42,7 +42,7 @@
 
         <%= link_to edit_engine_service_record_path(@engine, @service_record) do %>
             <div class="lg:h-36 h-36 bg-gray-500 rounded-lg flex items-center justify-center text-center text-white text-lg">
-              Add a Logbook Image
+              Add a Logbook Stamp Image
             </div>
         <% end %>
 
@@ -67,8 +67,8 @@
           { icon: "calendar", label: "Service Date", value: @service_record.date.strftime("%d %b %y") },
           { icon: "wrench", label: "Last Service", value: @engine.service_records.any? ? @engine.service_records.last.date.strftime("%d %b %y") : "No Record" },
           { icon: "identification", label: "Barrel Number", value: @engine.barrel_number },
-          { icon: "identification", label: "Old Seal", value: @engine.service_records.any? ? @engine.service_records.last.seal_number : "No Record" },
-          { icon: "identification", label: "New Seal", value: @engine.service_records.any? ? @service_record.seal_number : "No Record" },
+          { icon: "identification", label: "Old Seal", value: @engine.service_records.any? ? @engine.service_records.last.old_seal_number : "No Record" },
+          { icon: "identification", label: "New Seal", value: @engine.service_records.any? ? @service_record.new_seal_number : "No Record" },
           { icon: "wrench", label: "Serviced by", value: @engine.service_records.any? ? @engine.service_records.last.engine_builder : "No Record" }
         ] %>
         <% details.each do |detail| %>
