@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 	get 'about', to: 'page#about'
 	get 'home', to: 'page#home'
 	get 'cookie', to: 'page#cookie'
+	get 'new_dash', to: 'dashboard#new_dash'
+
 
 	resources :dashboard, only: [:index] do
 		collection do

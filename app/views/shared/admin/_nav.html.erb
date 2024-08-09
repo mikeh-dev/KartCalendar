@@ -2,14 +2,6 @@
   <div class="lg:flex flex-wrap items-center justify-start container mx-auto border-b border-slate-700 pb-4">
     <div class="flex items-center justify-between">
 
-      <%= link_to root_path do %>
-        <svg class="fill-current text-indigo-500 sm:w-10 w-6" width="32" height="42" viewBox="0 0 32 42" fill="none"
-          xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" clip-rule="evenodd"
-            d="M7.17241 0C3.2112 0 0 3.2112 0 7.17241V22.0065C0 25.9678 3.2112 29.1789 7.17241 29.1789C11.1336 29.1789 14.3448 25.9678 14.3448 22.0065V7.17241C14.3448 3.2112 11.1336 0 7.17241 0ZM24.8276 0C20.8664 0 17.6552 3.2112 17.6552 7.17241V34.8276C17.6552 38.7888 20.8664 42 24.8276 42C28.7888 42 32 38.7888 32 34.8276V7.17241C32 3.2112 28.7888 0 24.8276 0Z" />
-        </svg>
-      <% end %>
-
       <button id="admin-nav-toggle" data-action="click->nav#toggle"
         class="lg:hidden block px-1 py-px rounded focus:ring-2 focus:ring-slate-100/30 focus:bg-slate-700 focus:shadow-sm active:bg-slate-700 group dark:focus:bg-slate-800 dark:focus:ring-slate-600 dark:focus:shadow-sm"
         role="Mobile navigation toggle">
@@ -33,7 +25,7 @@
       </nav>
 
       <%# Notifications Dropdown %>
-      <div class="sm:flex justify-end flex-1 md:mr-6 mr-3 md:mt-3 relative" data-controller="dropdown">
+      <div class="sm:flex justify-end flex-1 md:mr-6 mr-3 md:mt-3 relative hidden" data-controller="dropdown">
 
         <button type="button" class="flex group sm:justify-center items-center md:w-auto w-full px-2 py-3 md:p-0"
           data-action="click->dropdown#toggle click@window->dropdown#hide">
@@ -148,15 +140,5 @@
       </div>
     </div>
   </div>
-  <div class="<%= local_assigns[:header_title].present? ? 'container mx-auto lg:pt-16 pt-6' : 'container mx-auto' %>">
-    <div class="flex flex-wrap items-center justify-between relative">
-      <% if local_assigns[:header_title].present? %>
-        <h1 class="lg:h2 h3 text-white flex-1">
-          <%= local_assigns[:header_title] %>
-        </h1>
-      <% end %>
-
-      <%= yield %>
-    </div>
-  </div>
+  
 </header>
