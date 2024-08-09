@@ -57,7 +57,7 @@ class ServiceRecordsController < ApplicationController
   end
 
   def service_record_params
-    params.require(:service_record).permit(:date, :description, :invoice, :engine_builder, :notes, :seal_number, :engine_id, dyno_sheets: [])
+    params.require(:service_record).permit(:date, :description, :invoice, :engine_builder, :notes, :old_seal_number, :new_seal_number, :engine_id, dyno_sheets: [])
   end
 
 end

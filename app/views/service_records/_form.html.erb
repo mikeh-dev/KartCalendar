@@ -26,8 +26,15 @@
     </div>
 
     <div class="mb-4">
-      <%= form.label :seal_number, class: "block text-gray-500 text-sm font-bold mb-2" %>
-      <%= form.text_field :seal_number, class: "form-input" %>
+      <%= form.label :old_seal_number, class: "block text-gray-500 text-sm font-bold mb-2" %>
+      <%= form.text_field :old_seal_number, 
+          class: "form-input", 
+          value: @engine.seal_number if @engine&.seal_number.present? %>
+    </div>
+
+     <div class="mb-4">
+      <%= form.label :new_seal_number, class: "block text-gray-500 text-sm font-bold mb-2" %>
+      <%= form.text_field :new_seal_number, class: "form-input" %>
     </div>
 
     <div class="mb-4">
