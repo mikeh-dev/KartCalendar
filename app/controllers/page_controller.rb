@@ -12,6 +12,7 @@ class PageController < ApplicationController
 		
 	end
 
+
 	def team
 		render layout: 'admin'
 	end

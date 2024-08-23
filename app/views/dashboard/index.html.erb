@@ -1,37 +1,73 @@
   <div class="grid grid-cols-12 md:gap-6 gap-4 mt-4 px-4 container mx-auto mb-24">
     <div
-      class="md:col-span-12 lg:col-span-6 col-span-12 rounded-lg shadow-sm border border-slate-200 bg-white dark:bg-slate-800 dark:border-none p-4">
+      class="md:col-span-12 lg:col-span-4 col-span-4 rounded-lg shadow-sm border border-slate-200 bg-white dark:bg-slate-800 dark:border-none p-4">
       <div class="flex items-start space-x-3">
         <div class="rounded-full w-10 h-10 flex items-center justify-center bg-indigo-50 dark:bg-indigo-600/30">
-          <%= icon "envelope-open", classes: "w-5 h-5 text-indigo-600 stroke-current dark:text-indigo-300" %>
+          <%= icon "flag", classes: "w-5 h-5 text-indigo-600 stroke-current dark:text-indigo-300" %>
         </div>
         <div class="flex-1">
           <span class="text-indigo-500 dark:text-indigo-400/90 text-sm font-medium">Events for this Month</span>
           <div class="flex items-center space-x-2 mt-1 mb-2">
-            <h3 class="h2 tracking-tight">32</h3>
-            <p class="text-red-600">-2</p>
+            <h3 class="h2 tracking-tight"><%= @followed_events.where(start_date: Date.today.beginning_of_month..Date.today.end_of_month).count %></h3>
           </div>
           <p class="text-sm text-slate-400">vs last month: <strong
-              class="text-slate-600 dark:text-slate-400">34</strong>
+              class="text-slate-600 dark:text-slate-400"><%= @followed_events.where(start_date: Date.today.prev_month.beginning_of_month..Date.today.prev_month.end_of_month).count %></strong></p>
           </p>
         </div>
       </div>
     </div>
     <div
-      class="md:col-span-12 lg:col-span-6 col-span-12 rounded-lg shadow-sm border border-slate-200 bg-white dark:bg-slate-800 dark:border-none p-4">
+      class="md:col-span-12 lg:col-span-4 col-span-4 rounded-lg shadow-sm border border-slate-200 bg-white dark:bg-slate-800 dark:border-none p-4">
       <div class="flex items-start space-x-3">
-        <div class="rounded-full w-10 h-10 flex items-center justify-center bg-red-50 dark:bg-red-500/20">
-          <%= icon "exclamation-circle", classes: "w-6 h-6 text-red-600 stroke-current dark:text-red-400/90" %>
+        <div class="rounded-full w-10 h-10 flex items-center justify-center bg-yellow-50 dark:bg-yellow-75">
+          <%= icon "flag", classes: "w-6 h-6 text-red-600 stroke-current dark:text-red-400/90" %>
         </div>
         <div class="flex-1">
-          <span class="text-red-400 dark:text-red-400/90 text-sm font-medium">Next Event</span>
-          <div class="flex items-center space-x-2 mt-1 mb-2">
-            <h3 class="h2 tracking-tight">40</h3>
-            <p class="text-green-600">+1</p>
+          <span class="text-yellow-100 dark:text-yellow-100 text-sm font-medium">Last Event</span>
+          <div class="flex items-center space-x-2 mt-1 mb-1">
+            <% if @followed_events.where('end_date < ?', Date.today).order(end_date: :desc).first.present? %>
+              <h3 class="h2 tracking-tight"><%= @followed_events.where('end_date < ?', Date.today).order(end_date: :desc).first&.track&.name %></h3>
+              <p> - </p>
+              <h3 class="h2 tracking-tight"><%= @followed_events.where('end_date < ?', Date.today).order(end_date: :desc).first&.track&.name %></h3>
+              <p> - </p>
+              <p class="h2 tracking-tight"><%= @followed_events.where('end_date < ?', Date.today).order(end_date: :desc).first&.track&.name %></p>
+            <% else %>
+              <h3 class="h2 tracking-tight">No Events</h3>
+            <% end %>
+            
           </div>
+          <p class="text-sm text-slate-400">Race Result: <strong
+              class="text-slate-600 dark:text-slate-400">Coming Soon</strong></p>
+          </p>
         </div>
       </div>
     </div>
+    <div
+      class="md:col-span-12 lg:col-span-4 col-span-4 rounded-lg shadow-sm border border-slate-200 bg-white dark:bg-slate-800 dark:border-none p-4">
+      <div class="flex items-start space-x-3">
+        <div class="rounded-full w-10 h-10 flex items-center justify-center bg-red-50 dark:bg-red-500/20">
+          <%= icon "flag", classes: "w-6 h-6 text-red-600 stroke-current dark:text-red-400/90" %>
+        </div>
+        <div class="flex-1">
+          <span class="text-red-400 dark:text-red-400/90 text-sm font-medium">Next Event</span>
+          <div class="flex items-center space-x-2 mt-1 mb-1">
+            <% if @followed_events.where(start_date: Date.today..Date.today.end_of_month).order(:start_date).first.present? %>
+              <h3 class="h2 tracking-tight"><%= @followed_events.where(start_date: Date.today..Date.today.end_of_month).order(:start_date).first&.track.name %></h3>
+              <p> - </p>
+              <h3 class="h2 tracking-tight"><%= @followed_events.where(start_date: Date.today..Date.today.end_of_month).order(:start_date).first&.title %></h3>
+              <p> - </p>
+              <p class="text-green-600"><%= @followed_events.where(start_date: Date.today..Date.today.end_of_month).order(:start_date).first&.start_date&.strftime("%b %d, %Y") %></p>
+            <% else %>
+              <h3 class="h2 tracking-tight">No Events</h3>
+            <% end %>
+          </div>
+          <p class="text-sm text-slate-400">Last Result Here: <strong
+              class="text-slate-600 dark:text-slate-400">Coming Soon</strong></p>
+          </p>
+        </div>
+      </div>
+    </div>
+    
 
 
     <div
@@ -41,52 +77,26 @@
         <% if respond_to?(:engines_path) %>
           <%= link_to "View all", engines_path, class: "font-medium text-sm hover:text-indigo-600 text-slate-600 dark:text-slate-400 dark:hover:text-indigo-300" %>
         <% else %>
-          <%= link_to "View all", "#", class: "hidden font-medium text-sm hover:text-indigo-600 text-slate-600 dark:text-slate-400 dark:hover:text-indigo-300" %>
+          <%= link_to "Add Engine", new_engines_path, class: "hidden font-medium text-sm hover:text-indigo-600 text-slate-600 dark:text-slate-400 dark:hover:text-indigo-300" %>
         <% end %>
       </div>
 
       <div class="space-y-4 divide-y dark:divide-slate-600">
-      <% [
-          {
-            img: {id: "85", variant: "women"},
-            name: "Jackie Hacky",
-            tag: "Contacted",
-            tag_classes: "bg-yellow-100 text-yellow-800 font-medium px-2 py-1 leading-tight text-xs inline-block sm:mb-0 rounded md:ml-9 dark:bg-yellow-300/10 dark:text-yellow-500/80",
-            address: "123 Easy Street",
-            close_date: "Jan 18, 2024"
-          },
-          {
-            img: {id: "83", variant: "women"},
-            name: "Jane Myers",
-            tag: "Contacted",
-            tag_classes: "bg-yellow-100 text-yellow-800 font-medium px-2 py-1 leading-tight text-xs inline-block sm:mb-0 rounded md:ml-9 dark:bg-yellow-300/10 dark:text-yellow-500/80",
-            address: "456 Sunny Estate",
-            close_date: "Jan 18, 2024"
-          },
-          {
-            img: {id: "32", variant: "men"},
-            name: "Josh Scandal",
-            tag: "Qualified Lead",
-            tag_classes: "bg-green-100 text-green-800 font-medium px-2 py-1 leading-tight text-xs inline-block sm:mb-0 rounded md:ml-9 dark:bg-green-500/20 dark:text-green-300/80",
-            address: "563 Saucy Ave",
-            close_date: "Jan 18, 2024"
-          }
-        ].each do | deal | %>
-          <%= link_to "#", class: "p-2 flex flex-wrap items-center group" do %>
+      <% @engines.each do | engine | %>
+          <%= link_to engine_path(engine), class: "p-2 flex flex-wrap items-center group" do %>
             <div class="md:flex-1 md:block flex justify-between w-full">
               <div class="flex items-center space-x-3">
-                <%= image_tag demo_avatar_url(id: deal[:img][:id], variant: deal[:img][:variant]), alt: deal[:name], class: "md:w-6 w-8 md:h-6 h-8 rounded-full" %>
-                <p class="font-medium hover:text-indigo-600 flex-1"><%= deal[:name] %></p>
+                <p class="font-medium hover:text-indigo-600 flex-1"><%= engine.name %></p>
               </div>
               <div class="text-left">
-                <span class="<%= deal[:tag_classes] %>"><%= deal[:tag] %></span>
+                <span class="bg-green-100 text-green-800 font-medium px-2 py-1 leading-tight text-xs inline-block sm:mb-0 rounded md:ml-9 dark:bg-green-500/20 dark:text-green-300/80">Engine Number - <%= engine.engine_number %></span>
               </div>
             </div>
 
             <div
               class="md:text-right text-left md:group-hover:-translate-x-1 md:group-hover:transition duration-200 md:group-hover:transform md:w-auto w-full md:pt-0 pt-3">
-              <p class="font-medium text-slate-600 dark:text-slate-300"><%= deal[:address] %></p>
-              <p class="text-xs text-slate-500 dark:text-slate-400">Closing date: <%= deal[:close_date] %></p>
+              <p class="font-medium text-slate-600 dark:text-slate-300">Current Seal: <%= engine.seal_number %></p>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Last Service Date: <%= engine.service_records.last.date %></p>
             </div>
             <div
               class="opacity-0 group-hover:opacity-100 transition ease-in-out group-hover:transform group-hover:translate-x-1 md:block hidden">
@@ -96,52 +106,40 @@
         <% end %>
       </div>
     </div>
+
     <div
       class="lg:col-span-6 md:cols-span-12 col-span-12 rounded-lg shadow-sm border border-slate-200 bg-white dark:bg-slate-800 dark:border-none p-6">
       <div class="flex items-center justify-between mb-4">
-        <h4 class="font-medium text-slate-800 dark:text-slate-300 tracking-tight text-xl m-0">Recent Engine Service</h4>
-        <%= link_to "View all", "#", class: "font-medium text-sm hover:text-indigo-600 text-slate-600 dark:text-slate-400 dark:hover:text-indigo-300" %>
+        <h4 class="text-lg font-medium">Engine Service Records</h4>
       </div>
 
-      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      <% [
-        {
-          title: "Enhanced User Authentication System",
-          description: "Lorem ipsum dolor sit amet consectetur, adipisicing
-              elit. Aliquam consectetur harum, consequatur nemo numquam repudiandae, aut similique dolores",
-        },
-        {
-          title: "Automated Data Migration Tool",
-          description: "Lorem ipsum dolor sit amet consectetur, adipisicing
-              elit. Aliquam consectetur harum, consequatur nemo numquam repudiandae, aut similique dolores ipsum",
-        },
-        {
-          title: "Real-time Data Visualization Dashboard",
-          description: "Lorem ipsum dolor sit amet consectetur, adipisicing
-              elit. Aliquam consectetur harum, consequatur nemo numquam repudiandae, aut similique dolores ipsum",
-        },
-        {
-          title: "Intelligent Chatbot for Customer Support",
-          description: "Lorem ipsum dolor sit amet consectetur, adipisicing
-              elit. Aliquam consectetur harum, consequatur nemo numquam repudiandae, aut similique dolores ipsum"
-        }
-      ].each do |project| %>
-        <li>
-          <% if respond_to?(:admin_project_path) %>
-            <%= link_to admin_project_path, class: "border border-slate-300/80 hover:border-slate-400/70 rounded-lg shadow-sm p-4 focus:ring-4 focus:ring-indigo-200/50 bg-white block group dark:bg-slate-700 dark:border-none dark:focus:ring-slate-500/20" do %>
-              <p class="font-medium dark:group-hover:text-indigo-300 group-hover:text-indigo-600 line-clamp-1 mb-2"><%= project[:title] %></p>
-              <p class="line-clamp-2 text-sm text-slate-500"><%= project[:description] %></p>
-            <% end %>
-          <% else %>
-              <%= link_to "#", class: "border border-slate-300/80 hover:border-slate-400/70 rounded-lg shadow-sm p-4 focus:ring-4 focus:ring-indigo-200/50 bg-white block group dark:bg-slate-700 dark:border-none dark:focus:ring-slate-500/20" do %>
-              <p class="font-medium dark:group-hover:text-indigo-300 group-hover:text-indigo-600 line-clamp-1 mb-2"><%= project[:title] %></p>
-              <p class="line-clamp-2 text-sm text-slate-500"><%= project[:description] %></p>
-            <% end %>
+      <div class="space-y-4 divide-y dark:divide-slate-600">
+      <% @service_records.each do | record | %>
+          <%= link_to engine_service_record_path(record.engine, record), class: "p-2 flex flex-wrap items-center group" do %>
+            <div class="md:flex-1 md:block flex justify-between w-full">
+              <div class="flex items-center space-x-3">
+                <p class="font-medium hover:text-indigo-600 flex-1"><%= record.engine.name %></p>
+              </div>
+              <div class="text-left">
+                <span class="bg-green-100 text-green-800 font-medium px-2 py-1 leading-tight text-xs inline-block sm:mb-0 rounded md:ml-9 dark:bg-green-500/20 dark:text-green-300/80">Engine Number - <%= record.engine.engine_number %></span>
+              </div>
+            </div>
+
+            <div
+              class="md:text-right text-left md:group-hover:-translate-x-1 md:group-hover:transition duration-200 md:group-hover:transform md:w-auto w-full md:pt-0 pt-3">
+              <p class="font-medium text-slate-600 dark:text-slate-300">Current Seal: <%= record.new_seal_number %></p>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Last Service Date: <%= record.date %></p>
+            </div>
+            <div
+              class="opacity-0 group-hover:opacity-100 transition ease-in-out group-hover:transform group-hover:translate-x-1 md:block hidden">
+              <%= icon "chevron-right", classes: "w-4 h-4 stroke-current text-slate-500 group-hover:text-indigo-600 dark:group-hover:text-indigo-300" %>
+            </div>
           <% end %>
-        </li>
         <% end %>
-      </ul>
+      </div>
     </div>
+
+    
        <div
       class="p-6 lg:col-span-12 md:col-span-6 col-span-12 rounded-lg shadow-sm border border-slate-200 bg-white dark:bg-slate-800 dark:border-none dark:text-slate-300">
         <div id="calendar-section" class="mb-6">

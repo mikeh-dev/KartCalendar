@@ -26,6 +26,7 @@ class ServiceRecordsController < ApplicationController
   def index
     @engine = current_user.engines.find(params[:engine_id])
     @service_records = @engine.service_records
+    @all_service_records = current_user.service_records
   end
 
   def edit
