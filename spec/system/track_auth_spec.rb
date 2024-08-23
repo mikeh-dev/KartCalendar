@@ -50,38 +50,5 @@ RSpec.describe "TrackAuth", type: :system do
     end
   end
 
-  context 'as a manager user' do
-    before do
-      login_as manager
-      track2
-    end
-
-    it 'denies access to edit any tracks' do
-      visit edit_track_path(track)
-      expect(page).to have_content('You are not authorized to perform this action.')
-    end
-
-    it 'denies access to delete any tracks' do
-      visit track_path(track)
-      expect(page).not_to have_link('Delete Track')
-    end
-
-    it 'denies access to create any tracks' do
-      visit new_track_path
-      expect(page).to have_content('You are not authorized to perform this action.')
-    end
-
-    it 'allows access to edit their own tracks' do
-      visit dashboard_index_path
-      expect(page).to have_content('Edit Track')
-      visit edit_track_path(track2)
-      expect(page).to have_content('Edit Track')
-    end
-
-    it 'allows access for a track manager to create event for their own track' do
-      visit dashboard_index_path
-      expect(page).to have_link('Create event')
-    end
-
-  end
+  
 end

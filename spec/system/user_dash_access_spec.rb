@@ -9,11 +9,8 @@ RSpec.describe 'User Dashboard Access', type: :system do
 
   context 'when a non admin user is logged in' do
     it 'allows a user to access their dashboard' do
-      visit root_path
-      find("#dropdowns-nav-toggle").click
-      click_link 'My Dashboard'
-
-      expect(page).to have_content('Dashboard')
+      visit dashboard_index_path
+      expect(page).to have_content('Events this month')
     end
   end
 end

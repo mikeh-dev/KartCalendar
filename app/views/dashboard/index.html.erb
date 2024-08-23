@@ -6,7 +6,7 @@
           <%= icon "flag", classes: "w-5 h-5 text-indigo-600 stroke-current dark:text-indigo-300" %>
         </div>
         <div class="flex-1">
-          <span class="text-indigo-500 dark:text-indigo-400/90 text-sm font-medium">Events for this Month</span>
+          <span class="text-indigo-500 dark:text-indigo-400/90 text-sm font-medium">Events this Month</span>
           <div class="flex items-center space-x-2 mt-1 mb-2">
             <h3 class="h2 tracking-tight"><%= @followed_events.where(start_date: Date.today.beginning_of_month..Date.today.end_of_month).count %></h3>
           </div>
