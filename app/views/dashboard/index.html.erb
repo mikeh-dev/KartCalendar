@@ -1,6 +1,6 @@
   <div class="grid grid-cols-12 md:gap-6 gap-4 mt-4 px-4 container mx-auto mb-24">
     <div
-      class="md:col-span-6 lg:col-span-3 col-span-12 rounded-lg shadow-sm border border-slate-200 bg-white dark:bg-slate-800 dark:border-none p-4">
+      class="md:col-span-12 lg:col-span-6 col-span-12 rounded-lg shadow-sm border border-slate-200 bg-white dark:bg-slate-800 dark:border-none p-4">
       <div class="flex items-start space-x-3">
         <div class="rounded-full w-10 h-10 flex items-center justify-center bg-indigo-50 dark:bg-indigo-600/30">
           <%= icon "envelope-open", classes: "w-5 h-5 text-indigo-600 stroke-current dark:text-indigo-300" %>
@@ -18,7 +18,7 @@
       </div>
     </div>
     <div
-      class="md:col-span-6 lg:col-span-3 col-span-12 rounded-lg shadow-sm border border-slate-200 bg-white dark:bg-slate-800 dark:border-none p-4">
+      class="md:col-span-12 lg:col-span-6 col-span-12 rounded-lg shadow-sm border border-slate-200 bg-white dark:bg-slate-800 dark:border-none p-4">
       <div class="flex items-start space-x-3">
         <div class="rounded-full w-10 h-10 flex items-center justify-center bg-red-50 dark:bg-red-500/20">
           <%= icon "exclamation-circle", classes: "w-6 h-6 text-red-600 stroke-current dark:text-red-400/90" %>
@@ -32,44 +32,7 @@
         </div>
       </div>
     </div>
-    <div
-      class="md:col-span-6 lg:col-span-3 col-span-12 rounded-lg shadow-sm border border-slate-200 bg-white dark:bg-slate-800 dark:border-none p-4">
-      <div class="flex items-start space-x-3">
-        <div class="rounded-full w-10 h-10 flex items-center justify-center bg-blue-50 dark:bg-blue-500/20">
-          <%= icon "phone-arrow-up-right", classes: "w-5 h-5 text-blue-600 stroke-current dark:text-blue-400/80" %>
-        </div>
-        <div class="flex-1">
-          <span class="text-blue-500 dark:text-blue-300/90 text-sm font-medium">Calls today</span>
-          <div class="flex items-center space-x-2 mt-1 mb-2">
-            <h3 class="h2 tracking-tight">25</h3>
-            <p class="text-green-600">+7</p>
-          </div>
-          <p class="text-sm text-slate-500">vs yesterday: <strong
-              class="text-slate-600 dark:text-slate-400">18</strong>
-          </p>
-        </div>
-      </div>
 
-    </div>
-    <div
-      class="md:col-span-6 lg:col-span-3 col-span-12 rounded-lg shadow-sm border border-slate-200 bg-white dark:bg-slate-800 dark:border-none p-4">
-      <div class="flex items-start space-x-3">
-        <div class="rounded-full w-10 h-10 flex items-center justify-center bg-green-50 dark:bg-green-500/20">
-          <%= icon "currency-dollar", classes: "w-6 h-6 text-green-600 stroke-current dark:text-green-400/80" %>
-        </div>
-        <div class="flex-1">
-          <span class="text-green-500 dark:text-green-400/90 text-sm font-medium">Revenue this month</span>
-
-          <div class="flex items-center space-x-2 mt-1 mb-2">
-            <h3 class="h3 tracking-tight">$125,302</h3>
-            <p class="text-green-600">+2%</p>
-          </div>
-          <p class="text-sm text-slate-500">vs last month: <strong
-              class="text-slate-600 dark:text-slate-400">$102,103</strong>
-          </p>
-        </div>
-      </div>
-    </div>
 
     <div
       class="lg:col-span-6 md:cols-span-12 col-span-12 rounded-lg shadow-sm border border-slate-200 bg-white dark:bg-slate-800 dark:border-none p-6">
@@ -180,10 +143,12 @@
       </ul>
     </div>
        <div
-      class=" px-4 lg:col-span-12 md:col-span-6 col-span-12 rounded-lg shadow-sm border border-slate-200 bg-white dark:bg-slate-800 dark:border-none dark:text-slate-300">
+      class="p-6 lg:col-span-12 md:col-span-6 col-span-12 rounded-lg shadow-sm border border-slate-200 bg-white dark:bg-slate-800 dark:border-none dark:text-slate-300">
         <div id="calendar-section" class="mb-6">
-          <h2 class="text-2xl font-semibold text-gray-200 text-center">My Calendar</h2>
-          <p class="text-gray-200 text-center text-sm">Click a date to see what's happening</p>  
+        <div class="flex items-center justify-between mb-4">
+              <h4 class="font-medium text-slate-800 dark:text-slate-300 tracking-tight text-xl m-0">Calendar</h4>
+              <%= link_to "View all Events", "#", class: "font-medium text-sm hover:text-indigo-600 text-slate-600 dark:text-slate-400 dark:hover:text-indigo-300" %>
+            </div>          
           <%= turbo_frame_tag :calendar, src: calendars_path(date: Date.today) %>
         </div>
     </div>   

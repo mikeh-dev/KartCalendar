@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 	get 'cookie', to: 'page#cookie'
 	get 'new_dash', to: 'dashboard#new_dash'
 
+	get 'calendar', to: 'page#calendar'
+
 
 	resources :dashboard, only: [:index] do
 		collection do
