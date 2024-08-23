@@ -10,7 +10,7 @@ RSpec.describe 'User Dashboard Access', type: :system do
   context 'when a non admin user is logged in' do
     it 'allows a user to access their dashboard' do
       visit dashboard_index_path
-      expect(page).to have_content('Events this month')
+      expect(page).to have_content('Events this Month')
     end
   end
 end

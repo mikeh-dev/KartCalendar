@@ -11,8 +11,7 @@
     %>
   <% button_class = anchor_date.month == date.month ? "bg-slate-800 text-slate-100 hover:bg-slate-600 py-4" : "bg-slate-900 hover:bg-slate-700 py-4 text-slate-500" %>
   <% today_class = Date.today == date ? "font-semibold text-indigo-600 border border-indigo-600 p-1" : "" %>
-  <% followed_class = current_user.followed_events.exists?(['start_date <= ? AND end_date >= ?', date, date]) ? "bg-indigo-500 text-white" : "" %>
-  <% combined_class = ["py-1.5 text-gray-400 hover:bg-gray-100 focus:z-10", round_class, button_class, today_class, followed_class].join(" ") %>
+  <% combined_class = ["py-1.5 text-gray-400 hover:bg-gray-100 focus:z-10", round_class, button_class, today_class].join(" ") %>
 
   <%= link_to events_path(date: date), "data-action": "calendar#clickLink", "data-turbo-frame": :events, class: combined_class do %>
     <%= content_tag :time, "data-calendar-target": :day, datetime: date, class: ["mx-auto flex h-7 w-7 items-center justify-center rounded-full"].join(" ") do %>
