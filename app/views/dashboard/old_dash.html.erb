@@ -1,0 +1,216 @@
+<div class="bg-gray-100 min-h-screen pt-8">
+  <div class="container mx-auto px-4">
+
+    <div class="mb-10">
+      <h1 class="text-4xl font-bold text-gray-800 text-center">Dashboard</h1>
+      <% if current_user.role == 'manager' %>
+        <p class="text-gray-600 text-center">Welcome to your Dashboard. Here you can manage your Track, Events and Championships.</p>
+      <% elsif current_user.admin? %>
+        <p class="text-gray-600 text-center">Admin Dashboard</p>
+      <% else %>
+        <p class="text-gray-600 text-center">Welcome to your Dashboard. Here you can view your Tracks, Championships and Events.</p>
+      <% end %>
+    </div>
+
+    <% if current_user.admin? %>
+      <div class="mb-6">
+        <h2 class="text-2xl font-semibold text-gray-700 mb-4">Admin</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">App Stats</h5>
+            <p class="text-white-600"><%= User.all.count %><strong> - Users</strong></p>
+            <p class="text-white-600"><%= Track.all.count %><strong> - Tracks</strong></p>
+            <p class="text-white-600"><%= Event.all.count %><strong> - Events</strong></p>
+            <p class="text-white-600"><%= Championship.all.count %><strong> - Championships</strong></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  
+    <% if current_user.role == 'manager' %>
+      <div class="mb-6">
+        <h2 class="text-2xl font-semibold text-gray-700 mb-4">Manage</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <% @managed_tracks.each do |track| %>
+            <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= track.name %></h5>
+              <%= link_to edit_track_path(track), class: "inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-green-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" do %>
+                Edit Track
+              <% end %>
+              <%= link_to track_path(track), class: "mt-4 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" do %>
+                View Track
+              <% end %>
+            </div>
+          <% end %>
+           <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Events</h5>
+          <div class="mb-6">
+            <% if @managed_tracks.empty? %>
+              <p class="text-gray-600">You are not managing any tracks or events yet.</p>
+            <% else %>
+              <% @managed_tracks.each do |track| %>
+                <% if track.events.any? %>
+                  <h6 class="text-xl font-bold text-gray-900 mt-4 mb-2 dark:text-white"><%= track.name %></h6>
+                  <ul class="divide-y divide-gray-200 dark:divide-gray-700">
+                    <% track.events.each do |event| %>
+                      <li class="py-4 flex justify-between items-center">
+                        <%= link_to event.title, event_path(event), class: "text-white hover:text-blue-600 font-medium" %>
+                        <div>
+                          <%= link_to 'View', event_path(event), class: "inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+                          <%= link_to 'Edit', edit_event_path(event), class: "ml-2 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" %>
+                        </div>
+                      </li>
+                    <% end %>
+                  </ul>
+                <% else %>
+                  <p class="text-gray-600">No events found for <%= track.name %>.</p>
+                <% end %>
+              <% end %>
+            <% end %>
+            <%= link_to new_event_path, class: "mt-4 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" do %>
+              Create event
+            <% end %>
+          </div>
+        </div>
+          <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Championships</h5>
+            <div class="mb-6">
+              <% if @managed_championships.empty? %>
+                <p class="text-gray-600">You are not managing any championships yet.</p>
+              <% else %>
+                <ul class="divide-y divide-gray-200 dark:divide-gray-700">
+                  <% @managed_championships.each do |championship| %>
+                    <li class="py-4 flex justify-between items-center">
+                      <%= link_to championship.name, championship_path(championship), class: "text-white hover:text-blue-600 font-medium" %>
+                      <div>
+                        <%= link_to 'View', championship_path(championship), class: "inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+                        <%= link_to 'Edit', edit_championship_path(championship), class: "ml-2 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" %>
+                      </div>
+                    </li>
+                  <% end %>
+                </ul>
+              <% end %>
+              <%= link_to new_championship_path, class: "inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" do %>
+              Create Championship
+            <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="mb-6 mt-6">
+      <h2 class="text-2xl font-semibold text-gray-700 mb-4">My Tracks</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <% if @followed_tracks.empty? %>
+        <p class="text-gray-600">You are not following any tracks yet.</p>
+      <% end %>
+        <% @followed_tracks.each do |track| %>
+          <div class="bg-white rounded-lg shadow-lg flex">
+            <div class="flex-none w-1/3">
+              <%= image_tag(track.main_image, alt: track.name, class: "object-cover h-full w-full rounded-l-lg") if track.main_image.present? %>
+            </div>
+            <div class="p-4 flex-grow">
+            <h3 class="font-semibold text-lg text-blue-800 mb-2 h-fit">
+              <%= link_to track.name, track_path(track) %>
+            </h3>
+            <p class="text-gray-600"><strong>Location</strong> - <%= track.location %></p>
+            <p class="text-gray-600"><strong>Next Test Day </strong> - <% next_event = track.events.where(event_type: 'Test').order(start_date: :asc).find { |event| event.start_date >= Date.today } %>
+            <% if next_event.present? %>
+              <%= next_event.title %> on <%= next_event.start_date.strftime("%B %d, %Y") %>
+            <% else %>
+              No Upcoming Test Days
+            <% end %></p>
+            <p class="text-gray-600"><strong>Next Race </strong><% next_event = track.events.where(event_type: 'Race').order(start_date: :asc).find { |event| event.start_date >= Date.today } %>
+            <% if next_event.present? %>
+              <%= next_event.title %> on <%= next_event.start_date.strftime("%B %d, %Y") %>
+            <% else %>
+              No Upcoming Race Days
+            <% end %></p>
+            <div class="flex mt-4">
+              <%= link_to track_path(track), class: "btn btn-primary" do %>
+                View
+              <% end %>
+          </div>
+            </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="mb-6">
+      <h2 class="text-2xl font-semibold text-gray-700 mb-4">My Championships</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <% if @followed_championships.empty? %>
+          <p class="text-gray-600">You are not following any championships yet.</p>
+        <% end %>
+        <% @followed_championships.each do |championship| %>
+          <div class="bg-white rounded-lg shadow-lg flex">
+            <div class="flex-none w-1/3">
+            <% if championship.image.present? %>
+              <%= image_tag(championship.image, alt: championship.name, class: "object-cover h-full w-full rounded-l-lg") if championship.image.present? %>
+            <% else %>
+              <%= image_tag random_default_image, alt: championship.name, class: "object-cover h-full w-full rounded-l-lg" %>
+            <% end %>
+            </div>
+            <div class="p-4 flex-grow">
+            <h3 class="font-semibold text-lg text-blue-800 mb-2">
+              <%= link_to championship.name, championship_path(championship) %>
+            </h3>
+              <p class="text-gray-600"><strong>Next Race:</strong> <%= championship.next_champ_event.title %>: <%= championship.next_champ_event.start_date.strftime("%B %d, %Y") %></p>
+              <p class="text-gray-600 mt-4"><strong>at</strong> <%= championship.next_champ_event.track.name %></p>
+              <div class="flex mt-4">
+                  <%= link_to championship_path(championship), class: "rounded border-2 border-gray-400 px-7 pb-[8px] pt-[10px] text-sm font-medium uppercase leading-normal text-gray-700 transition duration-150 ease-in-out hover:border-neutral-100 hover:bg-gray-600 hover:text-neutral-100 focus:border-neutral-100 focus:text-neutral-100 focus:outline-none focus:ring-0 active:border-neutral-200 active:text-neutral-200" do %>
+                    View
+                  <% end %>
+                </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="mb-6">
+      <h2 class="text-2xl font-semibold text-gray-700 mb-4">Your Next Events...</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <% if @timeline_events.empty? %>
+          <p class="text-gray-600">You have nothing planned this weeekend...</p>
+        <% end %>
+        <% @timeline_events.each do |event| %>
+          <div class="bg-white rounded-lg shadow-lg flex">
+            <div class="flex-none w-1/3">
+            <% if event.image.attached? %>
+              <%= image_tag(event.image, alt: event.title, class: "object-cover h-full w-full rounded-l-lg") %>
+            <% else %>
+              <%= image_tag random_default_image, alt: event.title, class: "object-cover h-full w-full rounded-l-lg" %>
+            <% end %>
+            </div>
+            <div class="p-4 flex-grow">
+            <h3 class="font-semibold text-lg text-blue-800 mb-2">
+            <% if event.championship.present? %>
+              <%= link_to event.championship.name, event_path(event) %> -
+            <% end %>
+              <%= link_to event.title, event_path(event) %>
+            </h3>
+            <p class="text-gray-600 mb-4"><strong>Date:</strong> <%= event.start_date.strftime("%B %d, %Y") %></p>
+            <p class="text-gray-600 mb-4"><strong>Track:</strong> <%= (event.track&.name || 'No track assigned').truncate(20) %></p>
+            <% if event.championship.present? %>
+            <p class="text-gray-600"><strong>Championship:</strong> <%= event.championship.name %></p>
+                <div class="flex mt-4">
+                  <%= link_to event_path(event), class: "rounded border-2 border-gray-400 px-7 pb-[8px] pt-[10px] text-sm font-medium uppercase leading-normal text-gray-700 transition duration-150 ease-in-out hover:border-neutral-100 hover:bg-gray-600 hover:text-neutral-100 focus:border-neutral-100 focus:text-neutral-100 focus:outline-none focus:ring-0 active:border-neutral-200 active:text-neutral-200" do %>
+                    View
+                  <% end %>
+                </div>
+            <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+  <div id="calendar-section" class="mb-6">
+    <h2 class="text-2xl font-semibold text-gray-600 text-center">My Calendar</h2>
+    <p class="text-gray-700 text-center text-sm">Click a date to see what's happening</p>  
+    <%= turbo_frame_tag :calendar, src: calendars_path(date: Date.today) %>
+  </div>
+</div>

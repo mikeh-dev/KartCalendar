@@ -18,6 +18,7 @@ class DashboardController < ApplicationController
                         .where("start_date >= ?", Date.today)
                         .limit(15)
     @engines = current_user.engines
+    @service_records = ServiceRecord.joins(:engine).where(engines: { user_id: current_user.id }).order('date DESC')
     @managed_tracks = current_user.managed_tracks.includes(:events)
     @managed_championships = current_user.managed_championships.includes(:events)
   end
