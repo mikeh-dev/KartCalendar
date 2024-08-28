@@ -36,6 +36,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'erb_lint'
   gem 'letter_opener'
+  gem 'rack-mini-profiler'
 end
 
 group :development do
