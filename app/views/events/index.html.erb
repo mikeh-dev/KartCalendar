@@ -71,15 +71,19 @@
     <% end %>
   </div>
 </div>
-
-  <div id="calendar-section" class="w-full flex flex-wrap justify-center items-center mt-8">
-    <div class="w-full text-center">
-      <p class="text-indigo-600 font-medium mb-1 lg:mt-0 mt-2 dark:text-indigo-500">Events</p>
-      <h1 class="text-4xl font-bold text-center">Calendar</h1>
-      <%= turbo_frame_tag :calendar, src: calendars_path(date: Date.today) %>
-    </div>
-  </div>
 </div>
+
+<div
+      class="p-6 lg:col-span-12 md:col-span-12 col-span-12 rounded-lg shadow-sm border border-slate-200 bg-white dark:bg-slate-800 dark:border-none dark:text-slate-300">
+        <div id="calendar-section" class="mb-6">
+        <div class="flex items-center justify-between mb-4">
+              <h4 class="font-medium text-slate-800 dark:text-slate-300 tracking-tight text-xl m-0">Calendar</h4>
+              <%= link_to "View all Events", "#", class: "font-medium text-sm hover:text-indigo-600 text-slate-600 dark:text-slate-400 dark:hover:text-indigo-300" %>
+            </div>          
+          <%= turbo_frame_tag :calendar, src: calendars_path(date: Date.today) %>
+        </div>
+    </div>   
+  </div>
 
   <%= turbo_frame_tag :events do %>
     <%= render @events %>
