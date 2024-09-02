@@ -20,6 +20,9 @@ Rails.application.routes.draw do
 	resources :engines do
 		resources :service_records
 		
+		member do
+			delete :remove_image
+		end
 	end
 
 	resources :contacts, only: [:new, :create]

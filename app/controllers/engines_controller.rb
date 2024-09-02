@@ -43,10 +43,10 @@ class EnginesController < ApplicationController
     redirect_to engines_path, notice: 'Engine deleted successfully'
   end
 
-  def remove_engine_photo
-    engine = Engine.find(params[:engine_id])
-    engine.engine_photos.find(params[:photo_id]).purge
-    redirect_to edit_engine_path(engine), notice: 'Photo removed successfully'
+  def remove_image
+    @image = ActiveStorage::Attachment.find(params[:id])
+    @image.purge_later
+    redirect_to edit_engine_path(@image.record), notice: 'Image removed successfully'
   end
 
   private

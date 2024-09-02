@@ -59,6 +59,8 @@
       <% if @engine.engine_images.attached? %>
         <% @engine.engine_images.each do |image| %>
           <%= form.hidden_field :engine_images, multiple: true, value: image.signed_id %>
+          <%= image_tag image, class: "w-24 h-24 object-cover rounded-lg" %>
+          <%= link_to "Remove", remove_image_engine_path(image), data: { confirm: "Are you sure?", turbo_method: :delete }, class: "btn btn-danger" %>
         <% end %>
       <% end %>
 
