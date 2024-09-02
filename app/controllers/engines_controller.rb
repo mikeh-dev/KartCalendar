@@ -31,18 +31,6 @@ class EnginesController < ApplicationController
   end
 
   def update
-    if params[:engine][:existing_photos]
-      params[:engine][:existing_photos].each do |photo_id|
-        @engine.engine_photos.find(photo_id).purge
-      end
-    end
-
-    if params[:engine][:engine_photos]
-      params[:engine][:engine_photos].each do |photo|
-        @engine.engine_photos.attach(photo)
-      end
-    end
-
     if @engine.update(engine_params.except(:engine_photos, :existing_photos))
       redirect_to @engine, notice: 'Engine was successfully updated.'
     else
@@ -55,10 +43,16 @@ class EnginesController < ApplicationController
     redirect_to engines_path, notice: 'Engine deleted successfully'
   end
 
+  def remove_engine_photo
+    engine = Engine.find(params[:engine_id])
+    engine.engine_photos.find(params[:photo_id]).purge
+    redirect_to edit_engine_path(engine), notice: 'Photo removed successfully'
+  end
+
   private
 
   def engine_params
-    params.require(:engine).permit(:name, :engine_number, :engine_make, :engine_model, :barrel_number, :seal_number, :year_manufactured, :notes, :logbook_cover, engine_photos: [], dyno_sheet: [])
+    params.require(:engine).permit(:name, :engine_number, :engine_make, :engine_model, :barrel_number, :seal_number, :year_manufactured, :notes, :logbook_cover, engine_images: [], dyno_sheet: [])
   end
 
   def set_engine

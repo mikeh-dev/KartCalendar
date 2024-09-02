@@ -31,9 +31,9 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <% displayed_images = 0 %>
         <!-- Render up to 4 photos -->
-        <% if @engine.engine_photos.attached? && @engine.engine_photos.any? %>
-          <% @engine.engine_photos.limit(4).each do |photo| %>
-            <%= image_tag url_for(photo), class: 'lg:h-72 h-72 w-full object-cover rounded-lg' %>
+        <% if @engine.engine_images.attached? && @engine.engine_images.any? %>
+          <% @engine.engine_images.limit(4).each do |image| %>
+            <%= image_tag url_for(image), class: 'lg:h-72 h-72 w-full object-cover rounded-lg' %>
             <% displayed_images += 1 %>
           <% end %>
         <% end %>

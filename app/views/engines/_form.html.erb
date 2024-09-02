@@ -48,27 +48,21 @@
       <%= form.text_field :year_manufactured, class: "form-input" %>
     </div>
 
-    <div class="mb-4">
+    <div class="form-group">
       <%= form.label :notes, class: "block text-gray-500 text-sm font-bold mb-2" %>
       <%= form.text_area :notes, class: "form-input" %>
     </div>
     
-  <!-- Existing Photos Section -->
-    <h3 class="block mb-2 text-sm font-medium text-gray-500">Existing Photos</h3>
-    <div class="mb-4">
-      <% @engine.engine_photos.each do |photo| %>
-        <div class="flex items-center mb-2">
-          <%= image_tag url_for(photo), class: 'h-24 w-24 object-cover rounded-lg mr-2' %>
-          <%= check_box_tag "engine[existing_photos][]", photo.id %>
-          <%= label_tag "engine_existing_photos_#{photo.id}", 'Remove' %>
-        </div>
-      <% end %>
-    </div>
+    <div class="form-group">
+      <%= form.label :engine_image, class: "form-label" %>
 
-    <!-- New Photos Section -->
-    <div class="mb-4">
-      <%= form.label :engine_photos, "Add New Photos", class: "block mb-2 text-sm font-medium text-gray-500" %>
-      <%= form.file_field :engine_photos, multiple: true, class: "block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" %>
+      <% if @engine.engine_images.attached? %>
+        <% @engine.engine_images.each do |image| %>
+          <%= form.hidden_field :engine_images, multiple: true, value: image.signed_id %>
+        <% end %>
+      <% end %>
+
+      <%= form.file_field :engine_images, multiple: true, class: "form-file" %>
     </div>
     
     <div class="mb-4">

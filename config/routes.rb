@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
 	resources :engines do
 		resources :service_records
+		
 	end
 
 	resources :contacts, only: [:new, :create]
