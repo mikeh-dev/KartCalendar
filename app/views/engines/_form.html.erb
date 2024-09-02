@@ -54,8 +54,8 @@
     </div>
     
   <!-- Existing Photos Section -->
+    <h3 class="block mb-2 text-sm font-medium text-gray-500">Existing Photos</h3>
     <div class="mb-4">
-      <h3 class="block mb-2 text-sm font-medium text-gray-500">Existing Photos</h3>
       <% @engine.engine_photos.each do |photo| %>
         <div class="flex items-center mb-2">
           <%= image_tag url_for(photo), class: 'h-24 w-24 object-cover rounded-lg mr-2' %>
