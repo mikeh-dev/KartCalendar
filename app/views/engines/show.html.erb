@@ -108,17 +108,32 @@
             <div class="pb-6">
               <h1 class="pb-1 text-2xl font-semibold font-heading text-zinc-900 dark:text-zinc-100 tracking-tight text-center">Dyno Details</h1>
             </div>
-            <% if @engine.service_records.any? %>
-                <% last_service_record_with_dyno = @engine.service_records.order(date: :desc).find { |record| record.dyno_sheets.attached? } %>
-                <% if last_service_record_with_dyno %>
-                  <%= image_tag last_service_record_with_dyno.dyno_sheets.first, class: "rounded-xl w-full object-cover h-full" %>
+              <% if @engine.service_records.any? %>
+                  <% last_service_record_with_dyno = @engine.service_records.order(date: :desc).find { |record| record.dyno_sheets.attached? } %>
+                  <% if last_service_record_with_dyno %>
+                    <div class="flex space-x-4">
+                      <% last_service_record_with_dyno.dyno_sheets.each_with_index do |image, index| %>
+                        <% break if index >= 3 %> <!-- Stop after the third image -->
+                        <%= image_tag url_for(image), class: "rounded-xl object-cover h-48 w-48" %>
+                      <% end %>
+                    </div>
+                  <% else %>
+                    <!-- Handle the case where no service records with a dyno sheet are found -->
+                    <p>Add a Service Record with a DynoSheet.</p>
+                  <% end %>
                 <% else %>
-                  <!-- Handle the case where no service records with a dyno sheet are found -->
-                  <p>Add a Service Record with a DynoSheet.</p>
+                  <!-- Handle the case where there are no service records at all -->
+                  <p>No service records to add a DynoSheet.</p>
                 <% end %>
+          </div>
+          <div class="mt-5">
+            <div class="pb-6">
+              <h1 class="pb-1 text-2xl font-semibold font-heading text-zinc-900 dark:text-zinc-100 tracking-tight text-center">LogBook</h1>
+            </div>
+              <% if @engine.logbook_cover.attached? %>
+                  <%= image_tag @engine.logbook_cover, class: "rounded-xl w-full object-cover h-96" %>
               <% else %>
-                <!-- Handle the case where there are no service records at all -->
-                <p>No service records to add a DynoSheet</p>
+                <p>No Logbook Cover attached</p>
               <% end %>
           </div>
         </div>
