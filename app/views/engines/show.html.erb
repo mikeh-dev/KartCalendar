@@ -27,8 +27,8 @@
       <div class="flex md:justify-end space-x-3 md:w-auto w-full">
         <% if current_user.admin? %>
           <%= link_to "Back to Dashboard", dashboard_index_path, class: "btn btn-white" %>
-          <%= link_to "Edit Engine", engine_path(@engine), class: "btn btn-white" %>
-          <%= link_to "Delete Engine", engine_path(@engine), class: "btn btn-red" %>
+          <%= link_to "Edit Engine", edit_engine_path(@engine), class: "btn btn-white" %>
+          <%= link_to "Delete Engine", engine_path(@engine), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure?" }, class: "btn bg-red-700" %>
         <% elsif current_user == @engine.user %>
           <%= link_to "Back to Dashboard", dashboard_index_path, class: "btn btn-white" %>
           <%= link_to "Edit Engine", edit_engine_path(@engine), class: "btn btn-white" %>
@@ -52,17 +52,8 @@
           <% end %>
         <% end %>
 
-        <!-- Add one placeholder if there are fewer than 4 images and the current user is the owner or admin -->
-        <% if displayed_images < 4 && (current_user.admin? || current_user == @engine.user) %>
-          <%= link_to edit_engine_path(@engine) do %>
-            <div class="lg:h-36 h-36 bg-gray-500 rounded-lg flex items-center justify-center text-center text-white text-lg">
-              Add more Engine images
-            </div>
-          <% end %>
-        <% end %>
-
         <!-- Message for non-owners if there are no images -->
-        <% if displayed_images == 0 && !(current_user.admin? || current_user == @engine.user) %>
+        <% if displayed_images == 0 %>
           <div class="lg:h-72 h-72 bg-gray-500 rounded-lg flex items-center justify-center text-center text-white text-lg">
             No images available
           </div>
