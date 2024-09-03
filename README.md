@@ -1,24 +1,13 @@
-# README
+KartCalendar - KartStream in it's current state...
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Self Guided Solo Rails project to serve the Owner Driver Karting World in the UK.
 
-Things you may want to cover:
+Rails 7... a little Hotwire here and there, PostGres, Pundit, Devise, Image Processing and a few API's for weather, maps, locations etc
 
-* Ruby version
+It's not perfect, it's not pretty but I did it.
 
-* System dependencies
+Allows Driver, Parents, Team Owners and Mechanics to View information on all Tracks, Events and Championships available to them. Also added a feature for them to create an account, follow some tracks/events etc and then it will create them their own calendar on their dashboard. Helps them refer to dates quickly, check race clashes etc
 
-* Configuration
+Also recently working on a feature to allow them to create an engine in their account so they can store it's information and also the records of it service's carried out and Dyno performance, sorts of acts like a digital logbook.a
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+More to come...
