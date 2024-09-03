@@ -16,7 +16,11 @@ Rails.application.routes.draw do
 	end
 
 	resources :engines do
-		resources :service_records
+		resources :service_records do
+			member do
+				delete :remove_engine_service_record_image, to: 'service_records#remove_image', as: :remove_image
+			end
+		end
 		
 		member do
 			delete :remove_image

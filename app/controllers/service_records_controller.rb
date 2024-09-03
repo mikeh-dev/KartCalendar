@@ -35,7 +35,7 @@ class ServiceRecordsController < ApplicationController
 
   def update
     if @service_record.update(service_record_params)
-      redirect_to engine_path(@engine), notice: 'Service record updated successfully'
+      redirect_to [@engine, @service_record], notice: 'Service record updated successfully'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -45,6 +45,19 @@ class ServiceRecordsController < ApplicationController
     @service_record.destroy
     redirect_to engine_path(@engine), notice: 'Service record deleted successfully'
   end
+
+  def remove_image
+    @service_record = @engine.service_records.find(params[:id])
+    @image = @service_record.dyno_sheets.attachments.find_by(blob_id: params[:image_id])
+
+    if @image
+      @image.purge_later
+      redirect_to edit_engine_service_record_path(@engine, @service_record), notice: 'Image removed successfully'
+    else
+      redirect_to edit_engine_service_record_path(@engine, @service_record), alert: 'Image could not be found'
+    end
+  end
+
 
   private
 
