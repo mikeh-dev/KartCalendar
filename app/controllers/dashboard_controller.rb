@@ -10,6 +10,7 @@ class DashboardController < ApplicationController
   end
 
   def index
+    
     @followed_tracks = current_user.followed_tracks.includes(:events)
     @display_month = params[:month] ? Date.parse(params[:month]) : Date.today
     @timeline_events = Event.where(championship: @followed_championships)
