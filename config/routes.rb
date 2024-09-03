@@ -7,9 +7,7 @@ Rails.application.routes.draw do
 	get 'new_dash', to: 'dashboard#new_dash'
 	get 'billing', to: 'page#billing'
 
-
 	get 'calendar', to: 'page#calendar'
-
 
 	resources :dashboard, only: [:index] do
 		collection do
@@ -47,7 +45,6 @@ Rails.application.routes.draw do
 	resources :championships
 	resource :calendars, only: [:show]
 	
-
 	get 'categories/search ', to: 'categories#search', as: 'search_categories'
   post 'categories/find_events', to: 'categories#find_events', as: 'find_category_events'
 
