@@ -6,7 +6,7 @@ RSpec.describe Engine, type: :model do
   describe "associations" do
     it { should belong_to(:user) }
     it { should have_many(:service_records).dependent(:nullify) }
-    it { should have_many_attached(:engine_photos) }
+    it { should have_many_attached(:engine_images) }
     it { should have_one_attached(:logbook_cover) }
   end
 
