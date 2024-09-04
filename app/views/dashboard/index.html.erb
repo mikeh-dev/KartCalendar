@@ -48,7 +48,7 @@
               <p> - </p>
               <h3 class="h2 tracking-tight"><%= @followed_events.where('end_date < ?', Date.today).order(end_date: :desc).first&.title %></h3>
               <p> - </p>
-              <p class="h2 tracking-tight"><%= @followed_events.where('end_date < ?', Date.today).order(end_date: :desc).first&.start_date.strftime('%d %B  %Y') %></p>
+              <p class="text-green-600"><%= @followed_events.where('end_date < ?', Date.today).order(end_date: :desc).first&.start_date.strftime('%d %B  %Y') %></p>
             <% else %>
               <h3 class="h2 tracking-tight">No Events</h3>
             <% end %>
