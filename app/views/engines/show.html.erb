@@ -110,12 +110,17 @@
         <div class="pb-6">
           <h1 class="pb-1 text-2xl font-semibold font-heading text-zinc-900 dark:text-zinc-100 tracking-tight text-center">Dyno Details</h1>
         </div>
+
         <% if @engine.service_records.any? %>
           <% last_service_record_with_dyno = @engine.service_records.order(date: :desc).find { |record| record.dyno_sheets.attached? } %>
+
           <% if last_service_record_with_dyno %>
             <div class="flex justify-center space-x-4">
-              <% last_service_record_with_dyno.dyno_sheets.first(2).each do |image| %> <!-- Limit to 2 images -->
-                <%= image_tag url_for(image), class: "rounded-xl object-cover h-48 w-48" %>
+              <% last_service_record_with_dyno.dyno_sheets.first(2).each do |image| %>
+                <!-- Each image is clickable -->
+                <a href="#!" onclick="openModal('<%= url_for(image) %>')">
+                  <%= image_tag url_for(image), class: "rounded-xl object-cover h-48 w-48 cursor-pointer" %>
+                </a>
               <% end %>
             </div>
           <% else %>
@@ -125,6 +130,26 @@
           <p class="text-center">No service records to add a DynoSheet.</p>
         <% end %>
       </div>
+
+      <!-- Modal Section -->
+      <div id="imageModal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50">
+        <div class="relative">
+          <span onclick="closeModal()" class="absolute top-0 right-0 text-white text-5xl cursor-pointer">&times;</span>
+          <img id="modalImage" src="" class="rounded-xl max-w-full max-h-screen">
+        </div>
+      </div>
+
+      <script>
+        function openModal(imageSrc) {
+          document.getElementById("modalImage").src = imageSrc;
+          document.getElementById("imageModal").classList.remove("hidden");
+        }
+
+        function closeModal() {
+          document.getElementById("imageModal").classList.add("hidden");
+        }
+      </script>
+
 
       <!-- LogBook Section -->
       <div class="mt-5">
