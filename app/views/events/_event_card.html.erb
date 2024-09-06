@@ -44,6 +44,8 @@
                   <%= link_to button_text[0], follows_path(followable_type: event.class.name, followable_id: event.id), method: :post, class: "btn btn-primary whitespace-nowrap", data: { turbo_method: :post } %>
                 <% end %>
               <% end %>
+            <% else %>
+              <%= link_to "Add to my Calendar", new_user_session_path, class: "btn btn-primary whitespace-nowrap" %>
             <% end %>
           </div>
         </div>
