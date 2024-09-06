@@ -1,0 +1,35 @@
+<div class="flex space-x-2">
+  <% if event.event_type == "Test" %>
+    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-200 text-green-900">
+      <svg class="mr-1.5 h-2 w-2 text-green-500" fill="currentColor" viewBox="0 0 8 8">
+        <circle cx="4" cy="4" r="3" />
+      </svg>
+      <%= event.event_type %>
+    </span>
+  <% elsif event.event_type == "Race" %>
+    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-200 text-indigo-900">
+      <svg class="mr-1.5 h-2 w-2 text-indigo-500" fill="currentColor" viewBox="0 0 8 8">
+        <circle cx="4" cy="4" r="3" />
+      </svg>
+      <%= event.event_type %>
+    </span>
+  <% end %>
+
+  <% if event&.licence.present? %>
+    <% if event.licence == "MSUK Licence" %>
+      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-200 text-blue-900">
+        <svg class="mr-1.5 h-2 w-2 text-blue-500" fill="currentColor" viewBox="0 0 8 8">
+          <circle cx="4" cy="4" r="3" />
+        </svg>
+        <%= event.licence %>
+      </span>
+    <% elsif event.licence == "Non Licensed" %>
+      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-rose-200 text-rose-900">
+        <svg class="mr-1.5 h-2 w-2 text-rose-500" fill="currentColor" viewBox="0 0 8 8">
+          <circle cx="4" cy="4" r="3" />
+        </svg>
+        <%= event.licence %>
+      </span>
+    <% end %>
+  <% end %>
+</div>

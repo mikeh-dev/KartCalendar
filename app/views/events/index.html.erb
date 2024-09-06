@@ -5,76 +5,13 @@
   </div>
   <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-4 mt-5">
     <% @this_weekends_events.each do |event| %>
-      <div class="relative flex bg-clip-border rounded-xl bg-white text-gray-700 shadow-md w-full max-w-[48rem] ">
-        <div class="relative w-2/5 m-0 overflow-hidden text-gray-700 bg-white rounded-r-none bg-clip-border rounded-xl shrink-0">
-          <%= image_tag random_default_image, alt: "Events", class: "object-cover w-full h-full" %>
-        </div>
-        <div class="p-4">
-          <div class="mb-3">
-          <% if event.event_type == "Test" %>
-            <span class="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium">
-              <%= event.event_type %>
-            </span>
-          <% elsif event.event_type == "Race" %>
-            <span class="bg-indigo-600 text-white px-2 py-1 rounded-full text-xs font-medium">
-              <%= event.event_type %>
-            </span>
-          <% end %>
-          <% if event&.licence.present? && event&.licence == "MSUK Licence" %>
-            <span class="bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-medium ml-1">
-              <%= event.licence %>
-            </span>
-          <% elsif event&.licence.present? && event&.licence == "Non Licensed" %>
-            <span class="bg-rose-500 text-white px-2 py-1 rounded-full text-xs font-medium ml-1">
-              <%= event.licence %>
-            </span>
-          <% end %>
-        </div>
-          <h5 class="block mb-2 font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-            <% if event.championship&.logo.present? %>
-              <%= image_tag event.championship.logo, alt: "Championship Logo", class: "w-30 h-10 object-contain" %>
-            <% elsif event.championship.present? %>
-              <%= event.championship.name %>
-            <% elsif event.track&.logo.present? %>
-              <%= image_tag event.track.logo, alt: "Track Logo", class: "w-30 h-10 object-contain" %>
-            <% else %>
-              <%= event.track.name %>
-            <% end %>
-          </h5>
-          <h4 class="block mb-2 font-sans text-1xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-            <%= event.title %>
-          </h4>
-          <p class="block mb-4 font-sans text-base antialiased font-extrabold leading-relaxed text-gray-700 text-wrap">
-            at <%= event.track.name %>
-          </p>
-          <p class="block mb-4 font-sans text-base antialiased font-normal leading-relaxed text-gray-700 text-wrap">
-            <%= event.description.truncate(80, omission: '...') %>
-          </p>
-          <p class="mb-6 mt-6">
-            <span class="bg-gray-700 text-white text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded me-2 border border-gray-500 ">
-              <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
-              </svg>
-              <% if event.start_date.strftime('%d %B, %Y') == event.end_date.strftime('%d %B, %Y') %>
-                <%= event.start_date.strftime("#{event.start_date.day.ordinalize} %B %Y") %>
-              <% else %>
-                <%= event.start_date.strftime("#{event.start_date.day.ordinalize} ") %> - <%= event.end_date.strftime("#{event.end_date.day.ordinalize} %B %Y") %>
-              <% end %>
-            </span>
-          </p>
-          <%= link_to event_path(event), class: "btn-event" do %>
-              <span class="font-sans">View Event</span>
-              <%= svg_icon %>
-          <% end %>
-        </div>
-      </div>
+        <%= render "event_card", event: event %>
     <% end %>
   </div>
 </div>
 </div>
 
-<div
-      class="p-6 lg:col-span-12 md:col-span-12 col-span-12 rounded-lg shadow-sm border border-slate-200 bg-white dark:bg-slate-800 dark:border-none dark:text-slate-300">
+<div class="p-6 lg:col-span-12 md:col-span-12 col-span-12 rounded-lg shadow-sm border border-slate-200 bg-white dark:bg-slate-800 dark:border-none dark:text-slate-300">
         <div id="calendar-section" class="mb-6">
         <div class="flex items-center justify-between mb-4">
               <h4 class="font-medium text-slate-800 dark:text-slate-300 tracking-tight text-xl m-0">Calendar</h4>
