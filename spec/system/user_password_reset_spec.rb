@@ -10,7 +10,6 @@ RSpec.describe 'PasswordReset', type: :system do
   context 'when user is signed in' do
     it 'allows a user to change their password' do
       visit root_path
-      find("#dropdowns-nav-toggle").click
       find("#profile-button").click
       click_link 'Edit account'
       fill_in 'Password', with: 'newpassword'

@@ -8,7 +8,6 @@ RSpec.describe 'User account cancellation', type: :system do
     it 'allows a user to cancel their account' do
       login_as user
       visit root_path
-      find("#dropdowns-nav-toggle", visible: true).click
       find("#profile-button").click
       click_link 'Edit account'
 
