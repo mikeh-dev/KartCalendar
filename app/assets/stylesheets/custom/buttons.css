@@ -72,6 +72,6 @@
   }
 
   .btn-event {
-    @apply border border-gray-300 inline-flex items-center gap-2 px-6 py-3 text-xs font-bold uppercase text-gray-900 rounded-lg transition-all duration-200 ease-in-out cursor-pointer bg-transparent hover:bg-gray-900/10 active:bg-gray-900/20 disabled:opacity-50 disabled:pointer-events-none;
+    @apply bg-blue-600 text-white inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-md transition-all duration-200 ease-in-out cursor-pointer hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 active:bg-blue-800 disabled:opacity-50 disabled:pointer-events-none;
   }
 }
