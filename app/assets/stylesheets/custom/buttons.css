@@ -72,6 +72,25 @@
   }
 
   .btn-event {
-    @apply bg-blue-600 text-white inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-md transition-all duration-200 ease-in-out cursor-pointer hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 active:bg-blue-800 disabled:opacity-50 disabled:pointer-events-none;
+    @apply bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-300
+           inline-flex items-center gap-2 
+           py-2 px-4 text-sm font-semibold rounded 
+           transition-all duration-200 ease-in-out 
+           focus:ring-4
+           active:bg-blue-800 
+           disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .btn-event.btn-lg {
+    @apply py-3 px-5 text-lg;
+  }
+
+  .btn-event.btn-sm {
+    @apply py-1 px-2 text-xs;
+  }
+
+  .btn-event.btn-outline {
+    @apply bg-transparent text-blue-600 border-2 border-blue-600
+           hover:bg-blue-600 hover:text-white;
   }
 }
