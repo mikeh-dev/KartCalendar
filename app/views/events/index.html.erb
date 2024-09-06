@@ -3,7 +3,7 @@
     <p class="text-indigo-600 font-medium mb-3 lg:mt-0 mt-2 dark:text-indigo-500">Next Up</p>
     <h1 class="sm:text-5xl text-4xl font-extrabold">This Week in Karting..</h1>
   </div>
-  <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-4 mt-5">
+  <div class="w-full grid grid-cols-1 xl:grid-cols-2 gap-4 mt-5">
     <% @this_weekends_events.each do |event| %>
         <%= render "event_card", event: event %>
     <% end %>
