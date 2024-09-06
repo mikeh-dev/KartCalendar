@@ -1,5 +1,5 @@
-      <div class="relative flex flex-col md:flex-row bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
-        <div class="relative w-full md:w-2/5 h-48 md:h-auto">
+      <div class="relative flex flex-row bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
+        <div class="relative w-full md:w-2/5 h-auto">
           <%= image_tag random_default_image, alt: "Event Image", class: "object-cover w-full h-full" %>
           <div class="absolute top-0 left-0 m-4">
             <%= render 'events/event_badges', event: event %>
@@ -20,9 +20,9 @@
             </div>
           </div>
         </div>
-        <div class="p-6 flex flex-col justify-between w-full md:w-3/5">
+        <div class="p-4 flex flex-col justify-between w-full md:w-3/5">
           <div>
-            <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center justify-between mb-1">
               <h5 class="text-xl font-bold text-gray-900 truncate">
                 <% if event.championship&.logo.present? %>
                   <%= image_tag event.championship.logo, alt: "Championship Logo", class: "h-8 object-contain" %>
@@ -36,10 +36,9 @@
               </h5>
             </div>
             <h4 class="text-lg font-semibold text-gray-900 mb-1"><%= event.title %></h4>
-            <p class="text-sm text-gray-600 mb-2">at <%= event.track.name %></p>
             <p class="text-sm text-gray-700 mb-4"><%= event.description.truncate(100, omission: '...') %></p>
           </div>
-          <div class="flex items-center justify-center space-x-4 mt-4">
+          <div class="flex flex-col md:flex-row md:space-y-0 space-y-2 items-center justify-center space-x-2 mt-2">
             <%= link_to event_path(event), class: "btn-event inline-block" do %>
               <span class="font-sans">View Event</span>
             <% end %>
