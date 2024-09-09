@@ -23,7 +23,7 @@
           </svg><%= track.location %></p>
         <% end %>
         <%= link_to "View Track", track, class: "btn btn-primary" %>
-        <% if current_user&.admin? %>
+        <% if current_user.admin? %>
           <%= link_to "Edit Track", edit_track_path(track), class: "btn btn-secondary" %>
         <% end %>
       </div>
