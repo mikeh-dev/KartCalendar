@@ -9,7 +9,7 @@ document.addEventListener('turbo:load', () => {
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
         center: [-3.5, 54.5],  // Center on the UK
-        zoom: 5
+        zoom: 5,
     });
 
     // Fetch track data from server

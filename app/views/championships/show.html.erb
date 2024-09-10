@@ -11,7 +11,7 @@
     <h1 class="sm:text-6xl text-4xl font-extrabold text-white text-center"><%= @championship.name %></h1>
   <% end %>
     <p class="my-6 text-slate-700 dark:text-slate-400 text-lg text-center"><%= @championship.tagline %></p>
-    <div class="flex grid grid-cols-1 gap-4">
+    <div class="grid grid-cols-1 gap-4">
       <%= link_to "View the Calendar", "#champ-calendar", class: "btn btn-primary btn-lg" %>
     </div>
   </div>
@@ -87,7 +87,7 @@
 </div>
 
 <div class="container mx-auto px-4 mt-10 mb-10" id="champ-calendar">
-  <h1 class="text-3xl font-semibold mb-4 text-center mb-5"><%= @championship.long_name %> Calendar</h1>
+  <h1 class="text-3xl font-semibold mb-4 text-center"><%= @championship.long_name %> Calendar</h1>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
     <% @future_champ_events.each do |future_champ_event| %>
       <div class="bg-white shadow-lg rounded-lg overflow-hidden">

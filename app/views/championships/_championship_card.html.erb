@@ -18,12 +18,12 @@
             <h4 class="block mb-2 font-sans text-base antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
             <%= championship.events.count %> Event<%= "s" if championship.events.count != 1 %>
             </h4>
-            <p class="block mb-2 font-sans text-base antialiased text-sm font-extrabold leading-relaxed text-gray-700 text-wrap">
+            <p class="block mb-2 font-sans text-base antialiased font-extrabold leading-relaxed text-gray-700 text-wrap">
             <% if championship.events.present? %>
             Starts - <span class="font-normal"><%= championship.events.first.start_date.strftime("%B") %></span>
             <% end %>
             </p>
-            <p class="block mb-2 font-sans text-base antialiased text-sm font-extrabold leading-relaxed text-gray-700 text-wrap">
+            <p class="block mb-2 font-sans text-base antialiased font-extrabold leading-relaxed text-gray-700 text-wrap">
             Championship Entry Fee - <span class="font-normal">£<%= championship.champ_fee %><span>
             </p>
             <div class="flex">
