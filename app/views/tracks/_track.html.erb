@@ -16,13 +16,10 @@
             </svg>
             <%= track.location %>
           </p>
-
-          <% if track.next_race_event.present? %>
             <p class="mb-2 text-sm">
-              <span class="font-semibold">Next Race Meeting:</span> -
-              <%= track.next_race_event.start_date.strftime("%A #{track.next_race_event.start_date.day.ordinalize} %B") %>
+              <span class="font-semibold">Next Race:</span> -
+              <%= track.next_race_event.present? ? track.next_race_event.start_date.strftime("%A #{track.next_race_event.start_date.day.ordinalize} %B") : "No upcoming races" %>
             </p>
-          <% end %>
         </div>
       </div>
     </div>
