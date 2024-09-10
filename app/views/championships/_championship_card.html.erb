@@ -1,0 +1,31 @@
+<div class="relative flex bg-clip-border rounded-xl bg-white text-gray-700 shadow-md w-full max-w-[48rem] ">
+  <div class="relative w-1/5 m-0 overflow-hidden text-gray-700 bg-white rounded-r-none bg-clip-border rounded-xl shrink-0">
+    <%= image_tag random_default_image, alt: "Events", class: "object-cover w-full h-full" %>
+  </div>
+  <div class="p-4">
+    <div class="mb-3">
+      <%= render 'championship_badges', championship: championship %>
+    </div>
+    <h5 class="block mb-2 font-sans text-lg antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+      <% if championship&.logo.present? %>
+        <%= image_tag championship.logo, alt: "Championship", class: "w-30 h-10 object-contain" %>
+        <%= championship.short_name %>
+      <% else %>
+        <%= championship.name %>
+      <% end %>
+    </h5>
+    <h4 class="block mb-2 font-sans text-base antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+      <%= championship.events.count %> Event<%= "s" if championship.events.count != 1 %>
+    </h4>
+    <p class="block mb-2 font-sans text-base antialiased text-sm font-extrabold leading-relaxed text-gray-700 text-wrap">
+    <% if championship.events.present? %>
+      Starts - <span class="font-normal"><%= championship.events.first.start_date.strftime("%B") %></span>
+    <% end %>
+    </p>
+     <p class="block mb-2 font-sans text-base antialiased text-sm font-extrabold leading-relaxed text-gray-700 text-wrap">
+      Championship Entry Fee - <span class="font-normal">£<%= championship.champ_fee %><span>
+    </p>
+    <div class="flex">
+    </div>
+  </div>
+</div>

@@ -1,60 +1,13 @@
-<div class="container mx-auto sm:py-18 pb-10 px-4 relative z-10 flex flex-wrap items-center justify-between">
+<div class="container mx-auto sm:py-18 pb-10 px-2 relative z-10 flex flex-wrap items-center justify-between">
   <div class="w-full text-center my-10">
     <p class="text-indigo-600 font-medium mb-1 lg:mt-0 mt-2 dark:text-indigo-500">National and Club</p>
     <h1 class="sm:text-6xl text-4xl font-extrabold">Championships </h1>
   </div>
 
 <div class="container mx-auto mt-8 px-4">
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 px-4">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
     <% @championships.each do |championship| %>
-      <div class="relative flex bg-clip-border rounded-xl bg-white text-gray-700 shadow-md w-full max-w-[48rem] ">
-        <div class="relative w-2/5 m-0 overflow-hidden text-gray-700 bg-white rounded-r-none bg-clip-border rounded-xl shrink-0">
-          <%= image_tag random_default_image, alt: "Events", class: "object-cover w-full h-full" %>
-        </div>
-        <div class="p-4">
-          <div class="mb-3">
-          <span class="bg-indigo-600 text-white px-2 py-1 rounded-full text-xs font-medium">
-            <%= championship.champ_type %>
-          </span>
-          <% if championship&.licence.present? && championship&.licence == "MSUK Licence" %>
-            <span class="bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-medium ml-1">
-              <%= championship.licence %>
-            </span>
-          <% elsif championship&.licence.present? && championship&.licence == "Non Licensed" %>
-            <span class="bg-rose-500 text-white px-2 py-1 rounded-full text-xs font-medium ml-1">
-              <%= championship.licence %>
-            </span>
-          <% end %>
-        </div>
-          <h5 class="block mb-2 font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-            <% if championship&.logo.present? %>
-              <%= image_tag championship.logo, alt: "Championship", class: "w-30 h-10 object-contain" %>
-              <%= championship.short_name %>
-            <% else %>
-              <%= championship.name %>
-            <% end %>
-          </h5>
-          <h4 class="block mb-2 font-sans text-1xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-            <%= championship.events.count %> Events
-          </h4>
-          <p class="block mb-2 font-sans text-base antialiased text-sm font-extrabold leading-relaxed text-gray-700 text-wrap">
-          <% if championship.events.present? %>
-            Starts - <span class="font-normal"><%= championship.events.first.start_date.strftime("%B") %></span>
-          <% end %>
-          </p>
-           <p class="block mb-2 font-sans text-base antialiased text-sm font-extrabold leading-relaxed text-gray-700 text-wrap">
-            Championship Entry Fee - <span class="font-normal">£<%= championship.champ_fee %><span>
-          </p>
-          <p class="block mb-4 font-sans text-base antialiased text-sm font-normal leading-relaxed text-gray-700 text-wrap">
-            <%= championship.tagline %>
-          </p>
-          <div class="flex">
-          <%= link_to championship_path(championship), class: "rounded border-2 border-gray-400 px-7 pb-[8px] pt-[10px] text-sm font-medium uppercase leading-normal text-gray-700 transition duration-150 ease-in-out hover:border-neutral-100 hover:bg-gray-600 hover:text-neutral-100 focus:border-neutral-100 focus:text-neutral-100 focus:outline-none focus:ring-0 active:border-neutral-200 active:text-neutral-200" do %>
-            View
-          <% end %>
-          </div>
-        </div>
-      </div>
+      <%= render 'championship_card', championship: championship %>
     <% end %>
   </div>
 </div>
