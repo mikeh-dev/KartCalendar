@@ -20,3 +20,5 @@ class FollowChampionshipEventsService
     Follow.insert_all(new_follows) if new_follows.any?
   end
 end
+
+# I used this service to follow all events in a championship for a user.
