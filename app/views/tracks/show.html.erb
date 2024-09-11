@@ -36,7 +36,7 @@
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-2xl lg:mx-0">
       <h2 class="text-4xl font-bold tracking-tight text-white sm:text-6xl"><%= @track.name %></h2>
-      <p class="text-3xl font-bold mt-6 mb-6 text-lg leading-8 text-gray-300 sm:text-3xl"><%= @track.short_desc %></p>  
+      <p class="font-bold mt-6 mb-6 text-lg leading-8 text-gray-300 sm:text-3xl"><%= @track.short_desc %></p>  
     </div>
     <div class="mx-auto max-w-2xl lg:mx-0">
 
@@ -185,7 +185,7 @@
       </p>
     </header>
 
-  <ul class="grid grid-cols-1 gap-4 mt-8 grid-cols-2">
+  <ul class="grid grid-cols-1 gap-4 mt-8">
     <li>
       <%= link_to @track_test_events.last, class: "relative block group" do %>
         <% if @track.test_image.present? %>
