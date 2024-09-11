@@ -2,17 +2,16 @@ class TracksController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_track, only: [:show, :edit, :update, :destroy]
   before_action :ensure_admin_user!, only: [:new, :create, :destroy]
-
+  
   def index
-    @tracks = Track.includes(:events)
-                   .order(:name)
+    @tracks = Track.select(:id, :name, :location)
+                   .includes(:main_image_attachment)
+                   .left_joins(:events)
+                   .group('tracks.id')
+                   .order('tracks.name')
+
+    @mapbox_access_token = mapbox_access_token
     
-    @mapbox_access_token = ENV['MAPBOX_ACCESS_TOKEN']
-    
-    @upcoming_track_events = Track.joins(:events)
-                                  .where(events: { start_date: Date.today..6.days.from_now })
-                                  .distinct
-                                  .limit(10)
   end
 
   def show
@@ -72,5 +71,8 @@ class TracksController < ApplicationController
   def track_params
     params.require(:track).permit(:name, :address, :contact_number, :main_image, :length, :email, :race_image, :description, :location, :logo, :short_desc, :test_image, :champ_image, :tagline, :website, :mobile, :contact_image, :static_map_url, :facebook, :instagram, :latitude, :longitude, facilities: [], category_ids: [])
   end
-  
+
+  def mapbox_access_token
+    @mapbox_access_token ||= ENV['MAPBOX_ACCESS_TOKEN']
+  end
 end

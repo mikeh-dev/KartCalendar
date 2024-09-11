@@ -5,7 +5,9 @@ class PageController < ApplicationController
 	end
 
 	def home
-		
+		@tracks_count = Track.count
+    @championships_count = Championship.count
+    @events_count = Event.count
 	end
 
 	def contact
