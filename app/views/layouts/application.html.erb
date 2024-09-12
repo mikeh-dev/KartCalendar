@@ -9,6 +9,8 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <%= stylesheet_link_tag "application", "https://unpkg.com/trix@2.0.0/dist/trix.css", "data-turbo-track": "reload" %>
 
+     <script async src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&loading=async&callback=initMap"></script>
+
     <% if Rails.env.production? %>
       <script type="text/javascript" src="https://app.termly.io/resource-blocker/58c10cd6-92f4-45f5-acd4-be2f48703bc5?autoBlock=on" ></script>
     <% end %>
