@@ -19,6 +19,9 @@ application.register("dropdown", DropdownController)
 import FollowController from "./follow_controller"
 application.register("follow", FollowController)
 
+import GoogleMapController from "./google_map_controller"
+application.register("google-map", GoogleMapController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
