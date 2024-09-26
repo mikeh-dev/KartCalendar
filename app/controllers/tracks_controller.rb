@@ -4,15 +4,11 @@ class TracksController < ApplicationController
   before_action :ensure_admin_user!, only: [:new, :create, :destroy]
 
   def index
-    @tracks = Track.includes(:events)
+    @tracks = Track.includes(:events, main_image_attachment: :blob)
+                   .joins(:events)
+                   .where('events.start_date >= ? AND events.event_type = ?', Date.today, 'Race')
                    .order(:name)
-    
-    @mapbox_access_token = ENV['MAPBOX_ACCESS_TOKEN']
-    
-    @upcoming_track_events = Track.joins(:events)
-                                  .where(events: { start_date: Date.today..6.days.from_now })
-                                  .distinct
-                                  .limit(10)
+                   .distinct
   end
 
   def show
