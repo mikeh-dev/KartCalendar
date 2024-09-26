@@ -16,7 +16,6 @@ class Event < ApplicationRecord
   scope :this_weekends_events, -> { future_events.where('end_date >= ? AND end_date <= ?', Date.today, Date.today + 7.days).includes(:track) }
   scope :on_date, -> (date) { where('start_date <= ? AND end_date >= ?', date, date) }
 
-
   def self.followed_by(user)
     followed_event_ids = user.follows.where(followable_type: 'Event').pluck(:followable_id)
     where(id: followed_event_ids)
@@ -35,5 +34,4 @@ class Event < ApplicationRecord
       errors.add(:end_date, "must be after the start date")
     end
   end
-
 end
