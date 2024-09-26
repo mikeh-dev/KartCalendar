@@ -3,33 +3,11 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show test_events race_events check check_race check_test]
   before_action :ensure_admin_user!, except: %i[index show test_events race_events check check_race check_test create update new edit]
 
-  def test_events
-    @test_events = Event.where(event_type: 'Test')
-                      .where("start_date >= ?", Date.today)
-                      .order(start_date: :asc)
-    @this_weekends_test_events = Event.where(event_type: 'Test')
-                      .where("start_date >= ? AND start_date <= ?", Date.today, Date.today + 6.days)
-                      .order(start_date: :asc)
-  end
-
-  def race_events
-    @race_events = Event.where(event_type: 'Race')
-                      .where("start_date >= ?", Date.today)
-                      .order(start_date: :asc)
-    @this_weekends_race_events = Event.where(event_type: 'Race')
-                      .where("start_date >= ? AND start_date <= ?", Date.today, Date.today + 6.days)
-                      .order(start_date: :asc)
-  end
-
   def index
     selected_date = params[:date]
-
-    @all_events = Event.all.order(start_date: :asc).limit(20)
-    @future_events = Event.where('start_date >= ?', Date.today + 10.days).order(start_date: :asc).limit(6)
-    
-    @events = Event.where('start_date <= ? AND end_date >= ?', selected_date, selected_date)
-    @today = Date.today
-    @this_weekends_events = Event.where('end_date >= ? AND end_date <= ?', Date.today, Date.today + 7.days).includes(:track)
+    @future_events = Event.future_events
+    @events = Event.on_date(selected_date)
+    @this_weekends_events = Event.this_weekends_events
   end
 
   def show

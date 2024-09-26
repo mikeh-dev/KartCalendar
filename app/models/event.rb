@@ -13,9 +13,9 @@ class Event < ApplicationRecord
   scope :future_events, -> { where('start_date >= ?', Date.today).order(:start_date) }
   scope :future_race_events, -> { future_events.where(event_type: 'Race') }
   scope :future_test_events, -> { future_events.where(event_type: 'Test') }
+  scope :this_weekends_events, -> { future_events.where('end_date >= ? AND end_date <= ?', Date.today, Date.today + 7.days).includes(:track) }
+  scope :on_date, -> (date) { where('start_date <= ? AND end_date >= ?', date, date) }
 
-  #this needs reviewing to either be called "this week" or refactored to be more efficient, it's used to show events in the events pageshappening in the next week.
-  scope :starting_within_next_six_days, -> { where(start_date: Date.today..(Date.today + 6.days)) }
 
   def self.followed_by(user)
     followed_event_ids = user.follows.where(followable_type: 'Event').pluck(:followable_id)
