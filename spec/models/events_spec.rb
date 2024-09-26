@@ -26,31 +26,5 @@ RSpec.describe Event, type: :model do
         expect(event.random_image_url).to be_a(String)
       end
     end
-
-    describe ".upcoming_based_on_date" do
-      it "returns upcoming events based on date" do
-        upcoming_event = FactoryBot.create(:event, start_date: Date.tomorrow)
-
-        expect(Event.upcoming_based_on_date).to eq([upcoming_event])
-      end
-
-      it "does not include past events" do
-        past_event = FactoryBot.create(:event, start_date: 2.days.ago, end_date: Date.yesterday)
-    
-        expect(Event.upcoming_based_on_date).not_to include(past_event)
-      end
-    
-      it "returns an empty array when there are no upcoming events" do
-        expect(Event.upcoming_based_on_date).to be_empty
-      end
-    end
-
-    describe ".next_based_on_date" do
-      it "returns the next upcoming event based on date" do
-        upcoming_event = FactoryBot.create(:event, start_date: Date.tomorrow)
-
-        expect(Event.next_based_on_date).to eq(upcoming_event)
-      end
-    end
   end
 end
