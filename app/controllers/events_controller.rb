@@ -11,20 +11,34 @@ class EventsController < ApplicationController
   end
 
   def show
+    @event = Event.includes(:championship, :track).find(params[:id])
     @championship = @event.championship
-    @events = Event.where(championship: @championship)
-                 .where('start_date >= ? AND id != ?', Date.today, @event.id)
-                 .order(start_date: :asc)
-    mapbox_service = MapboxService.new
-    hotel_response = mapbox_service.search_category(@event.track.longitude, @event.track.latitude, 'hotel')
-    @hotels = JSON.parse(hotel_response.body) if hotel_response.success?
-    fuel_response = mapbox_service.search_category(@event.track.longitude, @event.track.latitude, 'fuel')
-    @fuel_stations = JSON.parse(fuel_response.body) if fuel_response.success?
-  
-    openweathermap_service = WeatherService.new
-    weather_response = openweathermap_service.forecast_by_lat_lon(@event.track.longitude, @event.track.latitude)
-    weather_data = weather_response.parsed_response
     
+    @events = Event.future_events
+                   .where(championship: @championship)
+                   .where.not(id: @event.id)
+                   .order(start_date: :asc)
+  
+    mapbox_service = MapboxService.new
+    weather_service = WeatherService.new
+  
+    hotel_response = mapbox_service.search_category(@event.track.longitude, @event.track.latitude, 'hotel')
+    if hotel_response.success?
+      @hotels = JSON.parse(hotel_response.body)
+    else
+      @hotel_error = "Unable to fetch hotels. Please try again later."
+    end
+  
+    fuel_response = mapbox_service.search_category(@event.track.longitude, @event.track.latitude, 'fuel')
+    if fuel_response.success?
+      @fuel_stations = JSON.parse(fuel_response.body)
+    else
+      @fuel_error = "Unable to fetch fuel stations. Please try again later."
+    end
+  
+    weather_response = weather_service.forecast_by_lat_lon(@event.track.longitude, @event.track.latitude)
+    weather_data = weather_response.parsed_response
+  
     if weather_data['list']
       @weather_forecast = weather_data['list'].group_by { |entry| entry['dt_txt'].to_date }
     else

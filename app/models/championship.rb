@@ -13,8 +13,6 @@ class Championship < ApplicationRecord
 
   has_many :follows, as: :followable
   
-  has_many :events
-
   store :social_media, accessors: [ :facebook, :instagram ]
 
   def next_champ_event
