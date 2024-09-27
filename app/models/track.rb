@@ -22,6 +22,16 @@ class Track < ApplicationRecord
 
   FACILITIES = ['Parking', 'Electric Hook-Up', 'Wi-Fi', 'Cafe', 'Kart Shop', 'Bar', 'Arrive & Drive Karting', 'Overnight Camping', 'Digital Timing Screen', 'Floodlights', 'Toilets'].freeze
 
+  def next_race_event
+    events.future_race_events.order(start_date: :asc).first
+  end
+
+  def next_test_event
+    events.future_test_events.order(start_date: :asc).first
+  end
+
+  #began to refactor above here
+
   def future_events
     events.where('start_date >= ?', Date.today).order(start_date: :asc)
   end
@@ -32,18 +42,6 @@ class Track < ApplicationRecord
 
   def test_events
     events.where(event_type: "Test")
-  end
-
-  def next_track_event
-    future_events.first
-  end
-
-  def next_race_event
-    race_events.where('start_date >= ?', Date.today).order(start_date: :asc).first
-  end
-
-  def next_test_event
-    test_events.where('start_date >= ?', Date.today).order(start_date: :asc).first
   end
 
   def address_for_geocoding

@@ -5,20 +5,18 @@ class TracksController < ApplicationController
 
   def index
     @tracks = Track.includes(:events, main_image_attachment: :blob)
-                   .joins(:events)
-                   .where('events.start_date >= ? AND events.event_type = ?', Date.today, 'Race')
-                   .order(:name)
-                   .distinct
   end
 
   def show
-    @future_track_events = @track.future_events
-    @next_event = @track.next_track_event
-    @track_events = @track.events.order(start_date: :asc)
-    @track_race_events = @track.race_events
-    @track_test_events = @track.test_events
+    @track = Track.includes(:events, main_image_attachment: :blob).find(params[:id])
+
+    @future_track_events = @track.events.future_events
+
+    @next_event = @future_track_events.first
     @next_race_event = @track.next_race_event
     @next_test_event = @track.next_test_event
+
+    @track_events = @track.events.order(start_date: :asc)
 
     mapbox_service = MapboxService.new
     hotel_response = mapbox_service.search_category(@track.longitude, @track.latitude, 'hotel')
