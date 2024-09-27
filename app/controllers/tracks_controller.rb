@@ -14,10 +14,8 @@ class TracksController < ApplicationController
     @next_test_event = @track.next_test_event
 
     mapbox_service = MapboxService.new
-    hotel_response = mapbox_service.search_category(@track.longitude, @track.latitude, 'hotel')
-    @hotels = JSON.parse(hotel_response.body) if hotel_response.success?
-    fuel_response = mapbox_service.search_category(@track.longitude, @track.latitude, 'fuel')
-    @fuel_stations = JSON.parse(fuel_response.body) if fuel_response.success?
+    @hotels = mapbox_service.fetch_hotels(@track.longitude, @track.latitude)
+    @fuel_stations = mapbox_service.fetch_fuel_stations(@track.longitude, @track.latitude)
   end
 
   def new

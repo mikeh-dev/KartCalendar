@@ -10,4 +10,15 @@ class WeatherService
     options = { query: { lat: latitude, lon: longitude, appid: @api_key, units: 'metric' } }
     self.class.get('/forecast', options)
   end
+
+  def parsed_weather_forecast(longitude, latitude)
+    response = forecast_by_lat_lon(longitude, latitude)
+    weather_data = response.parsed_response
+
+    if weather_data['list']
+      weather_data['list'].group_by { |entry| entry['dt_txt'].to_date }
+    else
+      {}
+    end
+  end
 end

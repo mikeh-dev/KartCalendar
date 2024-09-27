@@ -8,10 +8,8 @@ class Track < ApplicationRecord
   geocoded_by :address_for_geocoding
 
   VALID_EMAIL = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, format: { with: VALID_EMAIL }
-
-  validates :name, length: { minimum: 2, maximum: 50 }, presence: true
-  validates :address, :contact_number, :length, :description, :location, :short_desc, :website, presence: true
+  validates :email, format: { with: VALID_EMAIL }, presence: true
+  validates :address, :contact_number, :length, :description, :location, :short_desc, :website, :name, length: { minimum: 2, maximum: 50 }, presence: true
 
   has_one_attached :main_image
   has_one_attached :logo
