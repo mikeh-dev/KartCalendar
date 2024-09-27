@@ -9,14 +9,9 @@ class TracksController < ApplicationController
 
   def show
     @track = Track.includes(:events, main_image_attachment: :blob).find(params[:id])
-
     @future_track_events = @track.events.future_events
-
-    @next_event = @future_track_events.first
     @next_race_event = @track.next_race_event
     @next_test_event = @track.next_test_event
-
-    @track_events = @track.events.order(start_date: :asc)
 
     mapbox_service = MapboxService.new
     hotel_response = mapbox_service.search_category(@track.longitude, @track.latitude, 'hotel')
