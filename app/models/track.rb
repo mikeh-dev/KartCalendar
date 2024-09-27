@@ -31,19 +31,6 @@ class Track < ApplicationRecord
   end
 
   #began to refactor above here
-
-  def future_events
-    events.where('start_date >= ?', Date.today).order(start_date: :asc)
-  end
-
-  def race_events
-    events.where(event_type: "Race")
-  end
-
-  def test_events
-    events.where(event_type: "Test")
-  end
-
   def address_for_geocoding
     address[-8..]
   end
