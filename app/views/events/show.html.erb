@@ -396,9 +396,9 @@
 <% if @event.championship.present? %>
   <div class="container mx-auto px-4 pt-10">
     <h1 class="text-3xl font-semibold mb-4">Other events in <%= @event.championship.name %></h1>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <% @future_championship_events.select { |event| event.championship_id == @event.championship_id }.each do |event| %>
-          <%= render "event_card", event: event %>
+          <%= render "events/event", event: event %>
       <% end %>
     </div>
   </div>
@@ -407,7 +407,7 @@
       <h1 class="text-3xl font-semibold mb-4">Other Events at <%= @event.track.name %></h1>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <% @future_track_events.select { |event| event.track == @event.track }.each do |event| %>
-          <%= render "event_card", event: event %>
+          <%= render "event", event: event %>
         <% end %>
       </div>
     </div>

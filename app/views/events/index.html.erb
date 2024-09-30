@@ -27,7 +27,7 @@
   </div>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4 px-4">
     <% @next_week_events.each do |event| %>
-      <%= render "event_card", event: event %>
+      <%= render "events/event", event: event %>
     <% end %>
   </div>
 </div>
