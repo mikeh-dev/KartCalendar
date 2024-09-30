@@ -9,8 +9,9 @@ class Track < ApplicationRecord
 
   VALID_EMAIL = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, format: { with: VALID_EMAIL }, presence: true
-  validates :address, :contact_number, :length, :description, :location, :short_desc, :website, :name, length: { minimum: 2, maximum: 50 }, presence: true
-
+  validates :address, :contact_number, :length, :description, :location, :short_desc, :website, presence: true
+  validates :name, length: { minimum: 2, maximum: 50 }
+  
   has_one_attached :main_image
   has_one_attached :logo
   has_one_attached :race_image
