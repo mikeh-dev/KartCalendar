@@ -90,7 +90,7 @@
   <h1 class="text-3xl font-semibold mb-4 text-center"><%= @championship.long_name %> Calendar</h1>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
     <% @champ_events.each do |champ_event| %>
-      <%= render "events/event_card", event: champ_event %>
+      <%= render "events/event", event: champ_event %>
     <% end %>
   </div>
 </div>
