@@ -12,7 +12,6 @@ class ChampionshipsController < ApplicationController
   end
 
   def show
-    @championships = Championship.all #need to refactor this to only fetch the championships that have events and needed to be displayed
     @champ_events = @championship.events
     @future_champ_events = @champ_events.where("start_date >= ?", Date.tomorrow).order(start_date: :asc)
     @past_champ_events = @champ_events.where("end_date < ?", Date.today).order(start_date: :desc)

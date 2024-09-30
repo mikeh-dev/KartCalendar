@@ -88,26 +88,9 @@
 
 <div class="container mx-auto px-4 mt-10 mb-10" id="champ-calendar">
   <h1 class="text-3xl font-semibold mb-4 text-center"><%= @championship.long_name %> Calendar</h1>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-    <% @future_champ_events.each do |future_champ_event| %>
-      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-      <% if future_champ_event.image.attached? %>
-        <%= image_tag future_champ_event.image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
-      <% else %>
-        <%= image_tag random_default_image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
-      <% end %>
-        <div class="p-4">
-          <h2 class="text-gray-800 text-xl font-semibold mb-2"><%= future_champ_event.title %> - <%= future_champ_event.track.name %></h2>
-          <p class="text-gray-800 mb-2"><span class="font-semibold">Date -</span> <%= future_champ_event.start_date.strftime('%d/%m/%y') %></p>
-          <p class="text-gray-800"><%= future_champ_event.description %></p>
-        </div>
-        <div class="p-4">
-          <%= link_to "View Event", event_path(future_champ_event), class: "text-white-500 hover:underline btn btn-primary" %>
-          <% if current_user&.admin? %>
-            <%= link_to "Edit Event", edit_event_path(future_champ_event), class: "btn btn-dark" %> 
-          <% end %>
-        </div>
-      </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <% @champ_events.each do |champ_event| %>
+      <%= render "events/event_card", event: champ_event %>
     <% end %>
   </div>
 </div>
