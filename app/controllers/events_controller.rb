@@ -5,7 +5,7 @@ class EventsController < ApplicationController
 
   def index
     selected_date = params[:date]
-    @future_events = Event.future_events.limit(6)
+    @next_week_events = Event.next_week_events.limit(6)
     @events = Event.on_date(selected_date)
     @this_weekends_events = Event.this_weekends_events
   end

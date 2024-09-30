@@ -398,52 +398,16 @@
     <h1 class="text-3xl font-semibold mb-4">Other events in <%= @event.championship.name %></h1>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <% @future_championship_events.select { |event| event.championship_id == @event.championship_id }.each do |event| %>
-        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-        <% if event.image.attached? %>
-          <%= image_tag event.image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
-        <% else %>
-          <%= image_tag random_default_image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
-        <% end %>
-          <div class="p-4">
-            <h2 class="text-gray-800 text-xl font-semibold mb-2"><%= event.title %> <% if @event.championship.present? %>- <%= event.championship.name %><% end %></h2>
-            <p class="text-gray-600 mb-2"><%= event.track.name %></p>
-            <p class="text-gray-600 mb-2"><%= event.start_date.strftime('%B %d, %Y') %></p>
-            <p class="text-gray-800"><%= event.description.truncate(150, omission: '...') %></p>
-          </div>
-          <div class="bg-white p-4">
-            <%= link_to "View Event", event_path(event), class: "text-white-500 btn btn-primary" %>
-            <% if current_user&.admin? %>
-              <%= link_to "Edit Event", edit_event_path(event), class: "btn btn-primary" %> 
-            <% end %>
-          </div>
-        </div>
+          <%= render "event_card", event: event %>
       <% end %>
     </div>
   </div>
   <% else %>
     <div class="container mx-auto px-4 pt-10">
       <h1 class="text-3xl font-semibold mb-4">Other Events at <%= @event.track.name %></h1>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <% @future_track_events.select { |event| event.track == @event.track }.each do |event| %>
-          <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-          <% if event.image.attached? %>
-            <%= image_tag event.image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
-          <% else %>
-            <%= image_tag random_default_image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
-          <% end %>
-            <div class="p-4">
-              <h2 class="text-gray-800 text-xl font-semibold mb-2"><%= event.title %> <% if @event.championship.present? %>- <%= event.championship.name %><% end %></h2>
-              <p class="text-gray-600 mb-2"><%= event.track.name %></p>
-              <p class="text-gray-600 mb-2"><%= event.start_date.strftime('%B %d, %Y') %></p>
-              <p class="text-gray-800"><%= event.description.truncate(150, omission: '...') %></p>
-            </div>
-            <div class="p-4 bg-white">
-              <%= link_to "View Event", event_path(event), class: "text-white-500 btn btn-primary" %>
-              <% if current_user&.admin? %>
-                <%= link_to "Edit Event", edit_event_path(event), class: "btn btn-primary" %> 
-              <% end %>
-            </div>
-          </div>
+          <%= render "event_card", event: event %>
         <% end %>
       </div>
     </div>

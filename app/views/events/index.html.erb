@@ -11,11 +11,7 @@
 
 </div>
     <div class="p-6 lg:col-span-12 md:col-span-12 col-span-12 rounded-lg shadow-sm border border-slate-200 bg-white dark:bg-slate-800 dark:border-none dark:text-slate-300">
-      <div id="calendar-section" class="mb-6">
-        <div class="flex items-center justify-between mb-4">
-          <h4 class="font-medium text-slate-800 dark:text-slate-300 tracking-tight text-xl m-0">Calendar</h4>
-          <%= link_to "View all Events", "#", class: "font-medium text-sm hover:text-indigo-600 text-slate-600 dark:text-slate-400 dark:hover:text-indigo-300" %>
-        </div>          
+      <div id="calendar-section" class="mb-6">        
           <%= turbo_frame_tag :calendar, src: calendars_path(date: Date.today) %>
     </div>
   </div>   
@@ -29,39 +25,9 @@
     <p class="text-indigo-600 font-medium mb-3 lg:mt-0 mt-2 dark:text-indigo-500">Coming Soon</p>
     <h1 class="text-4xl font-extrabold">Future Events</h1>
   </div>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
-    <% @future_events.each do |event| %>
-      <div class="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col">
-        <% if event.image.present? %>
-          <%= image_tag event.image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
-        <% else %>
-          <%= image_tag random_default_image, alt: "Events", class: "w-full h-36 object-cover object-center" %>
-        <% end %>
-        <div class="p-4">
-        <div class="flex justify-center items-center">
-          <h5 class="block mb-2 font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-            <% if event.championship&.logo.present? %>
-              <%= image_tag event.championship.logo, alt: "Championship", class: "w-30 h-12 object-contain" %>
-            <% elsif event.championship.present? %>
-              <%= event.championship.name %>
-            <% end %>
-          </h5>
-        </div>
-          <h2 class="text-xl text-gray-800 font-semibold mb-2 text-center"><%= event.title %> at <%= event.track.name %></h2>
-          <p class="text-gray-600 mb-2 text-center"><%= event.start_date.strftime('%d %B, %Y') %></p>
-        </div>
-        <div class="bg-white pb-4 space-x-4 flex justify-center">
-          <%= link_to event_path(event), class: "border flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none hover:bg-gray-900/10 active:bg-gray-900/20" do %>
-            <span>View Event</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="w-4 h-4">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
-            </svg>
-          <% end %>
-          <% if current_user&.admin? %>
-            <%= link_to "Edit Event", edit_event_path(event), class: "btn btn-dark" %> 
-          <% end %>
-        </div>
-      </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 px-4">
+    <% @next_week_events.each do |event| %>
+      <%= render "event_card", event: event %>
     <% end %>
   </div>
 </div>
