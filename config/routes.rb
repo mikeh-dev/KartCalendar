@@ -4,14 +4,10 @@ Rails.application.routes.draw do
 	get 'about', to: 'page#about'
 	get 'home', to: 'page#home'
 	get 'cookie', to: 'page#cookie'
-	get 'new_dash', to: 'dashboard#new_dash'
-	get 'billing', to: 'page#billing'
-
-	get 'calendar', to: 'page#calendar'
 
 	resources :dashboard, only: [:index] do
 		collection do
-			get :check # Example route for fetching events via JS
+			get :check
 		end
 	end
 
@@ -48,14 +44,7 @@ Rails.application.routes.draw do
 	resources :tracks
 	resources :championships
 	resource :calendars, only: [:show]
-	
-	get 'categories/search ', to: 'categories#search', as: 'search_categories'
-  post 'categories/find_events', to: 'categories#find_events', as: 'find_category_events'
-
 	resources :follows, only: [:create, :destroy]
-
-	get 'test_events', to: 'events#test_events', as: 'test_events'
-	get 'race_events', to: 'events#race_events', as: 'race_events'
 
 	get '*unmatched_route', to: 'application#not_found', constraints: lambda { |req|
   req.path.exclude? 'rails/active_storage'
