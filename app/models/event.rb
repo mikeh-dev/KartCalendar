@@ -16,6 +16,8 @@ class Event < ApplicationRecord
   scope :this_weekends_events, -> { future_events.where('end_date >= ? AND end_date <= ?', Date.today, Date.today + 7.days).includes(:track) }
   scope :next_week_events, -> { future_events.where('start_date >= ?', Date.today + 7.days) }
   scope :on_date, -> (date) { where('start_date <= ? AND end_date >= ?', date, date) }
+  scope :by_category, ->(category_id) { joins(:categories).where(categories: { id: category_id }) }
+
 
   def self.followed_by(user)
     followed_event_ids = user.follows.where(followable_type: 'Event').pluck(:followable_id)
