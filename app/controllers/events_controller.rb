@@ -6,13 +6,15 @@ class EventsController < ApplicationController
   def index
     selected_date = params[:date]
     category_id = params[:category_id]
+    event_type = params[:event_type]
+
     @next_week_events = Event.next_week_events.limit(6)
     @events = Event.on_date(selected_date)
-    @this_weekends_events = if category_id.present?
-                              Event.this_weekends_events.by_category(category_id)
-                            else
-                              Event.this_weekends_events
-                            end
+    @this_weekends_events = Event.this_weekends_events
+    @this_weekends_events = @this_weekends_events.by_category(category_id) if category_id.present?
+    @this_weekends_events = @this_weekends_events.by_event_type(event_type) if event_type.present?
+    @no_events = @this_weekends_events.empty?
+
     respond_to do |format|
       format.html
       format.turbo_stream

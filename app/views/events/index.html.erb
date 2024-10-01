@@ -9,12 +9,21 @@
     <% end %>
     <%= link_to 'Clear Filters', events_path, data: { turbo_frame: "filtered-events" }, class: "bg-gray-700 text-white px-3 py-1 m-0.5 rounded-full text-sm font-medium" %>
   </div>
-  <turbo-frame id="filtered-events">
-  <div class="w-full grid grid-cols-1 xl:grid-cols-2 gap-4 mt-5">
-    <% @this_weekends_events.each do |event| %>
-        <%= render "events/event", event: event %>
-    <% end %>
+  <div class="w-full flex flex-wrap justify-center mb-5">
+    <%= link_to 'Test Events', events_path(event_type: 'Test', category_id: params[:category_id]), data: { turbo_frame: "filtered-events" }, class: "bg-green-200 text-green-900 px-3 py-1 m-0.5 rounded-full text-sm font-medium" %>
+    <%= link_to 'Race Events', events_path(event_type: 'Race', category_id: params[:category_id]), data: { turbo_frame: "filtered-events" }, class: "bg-indigo-200 text-indigo-900 px-3 py-1 m-0.5 rounded-full text-sm font-medium" %>
+    <%= link_to 'All Events', events_path(category_id: params[:category_id]), data: { turbo_frame: "filtered-events" }, class: "bg-gray-700 text-white px-3 py-1 m-0.5 rounded-full text-sm font-medium" %>
   </div>
+  <turbo-frame id="filtered-events">
+    <div class="w-full grid grid-cols-1 xl:grid-cols-2 gap-4 mt-5">
+      <% if @no_events %>
+        <p class="text-center text-gray-500">No events found for the selected criteria.</p>
+      <% else %>
+        <% @this_weekends_events.each do |event| %>
+          <%= render "events/event", event: event %>
+        <% end %>
+      <% end %>
+    </div>
   </turbo-frame>
 </div>
     <div class="p-6 lg:col-span-12 md:col-span-12 col-span-12 rounded-lg shadow-sm border border-slate-200 bg-white dark:bg-slate-800 dark:border-none dark:text-slate-300">
