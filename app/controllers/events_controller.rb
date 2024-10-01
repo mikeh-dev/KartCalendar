@@ -5,9 +5,18 @@ class EventsController < ApplicationController
 
   def index
     selected_date = params[:date]
+    category_id = params[:category_id]
     @next_week_events = Event.next_week_events.limit(6)
     @events = Event.on_date(selected_date)
-    @this_weekends_events = Event.this_weekends_events
+    @this_weekends_events = if category_id.present?
+                              Event.this_weekends_events.by_category(category_id)
+                            else
+                              Event.this_weekends_events
+                            end
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   def show
