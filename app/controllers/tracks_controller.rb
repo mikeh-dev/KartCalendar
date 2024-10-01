@@ -1,5 +1,5 @@
 class TracksController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :search]
   before_action :set_track, only: [:show, :edit, :update, :destroy]
   before_action :ensure_admin_user!, only: [:new, :create, :destroy]
 
@@ -49,6 +49,22 @@ class TracksController < ApplicationController
     @track.destroy
     redirect_to tracks_url, notice: 'Track was successfully destroyed.'
   end
+
+  def search
+    @tracks = if params[:query].present?
+                Track.where("name ILIKE ?", "%#{params[:query]}%")
+              else
+                Track.all
+              end
+  
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace("tracks_results", partial: "tracks/results", locals: { tracks: @tracks })
+      end
+      format.html { render :index }
+    end
+  end
+
 
   private
 

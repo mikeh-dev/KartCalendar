@@ -31,6 +31,9 @@ application.register("modal", ModalController)
 import NavController from "./nav_controller"
 application.register("nav", NavController)
 
+import SearchController from "./search_controller"
+application.register("search", SearchController)
+
 import TabsController from "./tabs_controller"
 application.register("tabs", TabsController)
 

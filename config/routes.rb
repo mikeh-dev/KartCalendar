@@ -34,7 +34,11 @@ Rails.application.routes.draw do
 
 	devise_for :users
 	resources :contacts, only: [:new, :create]
-	resources :tracks
+	resources :tracks do
+		collection do
+			get :search
+		end
+	end
 	resources :championships
 	resource :calendars, only: [:show]
 	resources :follows, only: [:create, :destroy]
