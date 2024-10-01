@@ -44,7 +44,7 @@ Rails.application.routes.draw do
 	}
 
 	if Rails.env.development? || Rails.env.test?
-    mount Railsui::Engine, at: "/railsui"
-  end
+		mount Railsui::Engine, at: "/railsui"
+	end
 
 end
