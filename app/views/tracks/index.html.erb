@@ -16,7 +16,7 @@
 
   <div class="mt-4" id="map" style="width: 100%; height: 100px; border-radius: 10px;" data-mapbox-token="<%= mapbox_access_token %>"></div>
 
-  <div id="search-results" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-0">
+  <div id="search-results">
     <%= render partial: "tracks/results", locals: { tracks: @tracks } %>
   </div>
 
