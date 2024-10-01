@@ -11,8 +11,7 @@ class EventsController < ApplicationController
     @next_week_events = Event.next_week_events.limit(6)
     @events = Event.on_date(selected_date)
     @this_weekends_events = Event.this_weekends_events
-    @this_weekends_events = @this_weekends_events.by_category(category_id) if category_id.present?
-    @this_weekends_events = @this_weekends_events.by_event_type(event_type) if event_type.present?
+    @this_weekends_events = event_type.present? ? @this_weekends_events.by_event_type(event_type) : Event.this_weekends_events
     @no_events = @this_weekends_events.empty?
 
     respond_to do |format|
