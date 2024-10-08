@@ -1,6 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="calendar-populate"
 export default class extends Controller {
   static values = {
     startDate: String,
@@ -10,16 +9,13 @@ export default class extends Controller {
   connect() {
     let fetchUrl = "";
   
-    // Check if the URL includes 'dashboard'
     if (window.location.pathname.includes('/dashboard')) {
       fetchUrl = `/dashboard/check?start_date=${this.startDateValue}&end_date=${this.endDateValue}`;
     } 
-    // Check if the URL is for the events index
     else if (window.location.pathname === '/events' || window.location.pathname === '/events/') {
       fetchUrl = `/events/check?start_date=${this.startDateValue}&end_date=${this.endDateValue}`;
-    } 
+    }
   
-    // Only proceed if fetchUrl was set
     if (fetchUrl) {
       fetch(fetchUrl)
         .then(response => response.json())
