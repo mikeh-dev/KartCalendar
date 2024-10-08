@@ -39,3 +39,6 @@ application.register("tabs", TabsController)
 
 import TooltipController from "./tooltip_controller"
 application.register("tooltip", TooltipController)
+
+import TracksController from "./tracks_controller"
+application.register("tracks", TracksController)

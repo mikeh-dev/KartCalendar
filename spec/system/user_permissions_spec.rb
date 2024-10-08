@@ -124,8 +124,6 @@ RSpec.describe 'User Permissions', type: :system do
       expect(page).to have_content('Track was successfully updated.')
     end
 
-  
-
     it 'allows an admin user to create an event' do
       visit new_event_path
       fill_in 'Title', with: 'New Event'

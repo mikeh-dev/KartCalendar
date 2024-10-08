@@ -12,11 +12,6 @@ class EventsController < ApplicationController
     @this_weekends_events = Event.this_weekends_events
     @this_weekends_events = @this_weekends_events.by_event_type(event_type) if event_type.present?
     @no_events = @this_weekends_events.empty?
-
-    respond_to do |format|
-      format.html
-      format.turbo_stream
-    end
   end
 
   def show

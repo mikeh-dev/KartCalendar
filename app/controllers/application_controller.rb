@@ -3,16 +3,7 @@ class ApplicationController < ActionController::Base
   include Pundit::Authorization
 
   rescue_from Pundit::NotAuthorizedError, with: :pundishing_user
-
-  before_action :set_all_models
-
   before_action :configure_permitted_parameters, if: :devise_controller?
-
-  def set_all_models
-    @championships = Championship.all
-    @tracks = Track.all
-    @events = Event.all
-  end
 
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
