@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: %i[index show test_events race_events check check_race check_test]
-  before_action :ensure_admin_user!, except: %i[index show test_events race_events check check_race check_test create update new edit]
+  before_action :authenticate_user!, except: %i[index show test_events race_events check]
+  before_action :ensure_admin_user!, except: %i[index show test_events race_events check create update new edit]
 
   def index
     selected_date = params[:date]
@@ -82,38 +82,14 @@ class EventsController < ApplicationController
     }
   end
 
-  def check_race
-    start_date = Date.parse(params[:start_date])
-    end_date = Date.parse(params[:end_date])
-    events = Event.where('start_date <= :end_date AND end_date >= :start_date AND event_type = :event_type', start_date: start_date, end_date: end_date, event_type: "Race").select(:start_date, :end_date)
-    render json: (start_date..end_date).map { |date|
-      {
-        date: date,
-        events: events.any? { |e| e.start_date <= date && e.end_date >= date }
-      }
-    }
-  end
-
-  def check_test
-    start_date = Date.parse(params[:start_date])
-    end_date = Date.parse(params[:end_date])
-    events = Event.where('start_date <= :end_date AND end_date >= :start_date AND event_type = :event_type', start_date: start_date, end_date: end_date, event_type: "Test").select(:start_date, :end_date)
-    render json: (start_date..end_date).map { |date|
-      {
-        date: date,
-        events: events.any? { |e| e.start_date <= date && e.end_date >= date }
-      }
-    }
-  end
-
 private
 
-def set_event
-  @event = Event.includes(:categories).find(params[:id])
-end
+  def set_event
+    @event = Event.includes(:categories).find(params[:id])
+  end
 
-def event_params
-  params.require(:event).permit(:title, :description, :price, :event_type, :image, :championship_id, :track_id, :start_date, :end_date, :licence, category_ids: [])
-end
+  def event_params
+    params.require(:event).permit(:title, :description, :price, :event_type, :image, :championship_id, :track_id, :start_date, :end_date, :licence, category_ids: [])
+  end
   
 end

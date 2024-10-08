@@ -18,14 +18,6 @@ export default class extends Controller {
     else if (window.location.pathname === '/events' || window.location.pathname === '/events/') {
       fetchUrl = `/events/check?start_date=${this.startDateValue}&end_date=${this.endDateValue}`;
     } 
-    // Check if the URL is for the race_events index
-    else if (window.location.pathname === '/race_events' || window.location.pathname === '/race_events/') {
-      fetchUrl = `/events/check_race?start_date=${this.startDateValue}&end_date=${this.endDateValue}`;
-    }
-
-    else if (window.location.pathname === '/test_events' || window.location.pathname === '/test_events/') {
-      fetchUrl = `/events/check_test?start_date=${this.startDateValue}&end_date=${this.endDateValue}`;
-    }
   
     // Only proceed if fetchUrl was set
     if (fetchUrl) {

@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
 	root action: :home, controller: "page"
-
 	get 'privacy', to: 'page#privacy'
 	get 'about', to: 'page#about'
 	get 'home', to: 'page#home'
@@ -27,18 +26,17 @@ Rails.application.routes.draw do
 	resources :events do
 		collection do
 			get :check
-			get	:check_race
-			get :check_test
 		end
 	end
 
-	devise_for :users
-	resources :contacts, only: [:new, :create]
 	resources :tracks do
 		collection do
 			get :search
 		end
 	end
+
+	devise_for :users
+	resources :contacts, only: [:new, :create]
 	resources :championships
 	resource :calendars, only: [:show]
 	resources :follows, only: [:create, :destroy]
@@ -50,5 +48,4 @@ Rails.application.routes.draw do
 	if Rails.env.development? || Rails.env.test?
 		mount Railsui::Engine, at: "/railsui"
 	end
-
 end
