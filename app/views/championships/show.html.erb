@@ -33,7 +33,7 @@
           </div>
         <% else %>
           <div class="flex justify-center">
-            <%= link_to 'Add to My Championships', new_user_session_path, class: "btn btn-primary btn-md" %>
+            <%= link_to 'Add to My Championships', new_user_session_path, class: "btn btn-primary btn-md", data: { turbo_frame: "_top" } %>
           </div>
         <% end %>
         <div class="text-gray-200 mb-1 mt-5">

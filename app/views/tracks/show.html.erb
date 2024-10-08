@@ -43,7 +43,7 @@
           <% if current_user %> 
             <%= render "shared/follow_button", followable: @track %>
           <% else %>
-            <%= link_to 'Add to My Tracks', new_user_session_path, class: "btn btn-primary btn-md" %>
+            <%= link_to 'Add to My Tracks', new_user_session_path, class: "btn btn-primary btn-md", data: { turbo_frame: "_top" } %>
           <% end %>
       </div>
     </div>
