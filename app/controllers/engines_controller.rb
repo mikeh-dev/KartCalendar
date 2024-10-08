@@ -32,6 +32,7 @@ class EnginesController < ApplicationController
 
   def update
     if @engine.update(engine_params.except(:engine_photos, :existing_photos))
+      # Update the enging photos to upload with a background job
       redirect_to @engine, notice: 'Engine was successfully updated.'
     else
       render :edit

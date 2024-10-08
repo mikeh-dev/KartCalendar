@@ -1,7 +1,6 @@
 class Engine < ApplicationRecord
   belongs_to :user
   has_many :service_records, dependent: :nullify
-
   has_many_attached :engine_images
   has_one_attached :logbook_cover
 

@@ -1,16 +1,10 @@
 class DashboardController < ApplicationController
   before_action :authenticate_user!
-
   before_action :set_followed_events, only: %i[index check]
   before_action :set_followed_championships, only: %i[index check]
   before_action :set_championship_events, only: %i[index check]
 
-  def new_dash
-    
-  end
-
   def index
-    
     @followed_tracks = current_user.followed_tracks.includes(:events)
     @display_month = params[:month] ? Date.parse(params[:month]) : Date.today
     @timeline_events = Event.where(championship: @followed_championships)
