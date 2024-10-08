@@ -39,19 +39,13 @@
       <p class="font-bold mt-6 mb-6 text-lg leading-8 text-gray-300 sm:text-3xl"><%= @track.short_desc %></p>  
     </div>
     <div class="mx-auto max-w-2xl lg:mx-0">
-
-    <div class="flex">
-        <% if current_user %> 
-        <% button_text = @followable.is_a?(Championship) ? ['Follow', 'Unfollow'] : ['Add to my Tracks', 'Remove from my Tracks'] %>
-          <%= turbo_frame_tag dom_id(@track, "follow_#{dom_class(@track)}"), class: "w-auto" do %>
-            <% if current_user.following?(@track) %>
-              <%= link_to button_text[1], follow_path(id: current_user.follows.find_by(followable: @track).id), method: :delete, class: "btn bg-rose-600", data: { turbo_method: :delete } %>
-            <% else %>
-              <%= link_to button_text[0], follows_path(followable_type: @track.class.name, followable_id: @track.id), method: :post, class: "btn btn-primary", data: { turbo_method: :post } %>
-            <% end %>
+      <div class="flex">
+          <% if current_user %> 
+            <%= render "shared/follow_button", followable: @track %>
+          <% else %>
+            <%= link_to 'Add to My Tracks', new_user_session_path, class: "btn btn-primary btn-md" %>
           <% end %>
-        <% end %>
-        </div>
+      </div>
     </div>
     
     <div class="mx-auto mt-10 mb-10 max-w-2xl lg:mx-0 lg:max-w-none border-b-2 border-slate-700">

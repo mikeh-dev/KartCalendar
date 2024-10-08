@@ -28,17 +28,14 @@
     <div class="container mx-auto py-8 max-w-full xl:max-w-2xl 2xl:max-w-3xl object-cover rounded-3xl relative z-20 p-6">
         <h1 class="text-3xl font-semibold text-white mb-4 text-center"><%= @championship.long_name %></h1>
         <% if current_user %>
-        <div class="flex justify-center">
-          <% button_text = @followable.is_a?(Championship) ? ['Follow', 'Unfollow'] : ['Add to my Tracks', 'Remove from my Tracks'] %>
-          <%= turbo_frame_tag dom_id(@championship, "follow_#{dom_class(@championship)}"), class: "w-auto" do %>
-            <% if current_user.following?(@championship) %>
-              <%= link_to 'Remove from My Championships', follow_path(id: current_user.follows.find_by(followable: @championship).id), method: :delete, class: "btn bg-rose-600 btn-md", data: { turbo_method: :delete } %>
-            <% else %>
-              <%= link_to 'Add to My Championships', follows_path(followable_type: @championship.class.name, followable_id: @championship.id), method: :post, class: "btn btn-primary", data: { turbo_method: :post } %>
-            <% end %>
-          <% end %>
-        </div>
-      <% end %>
+          <div class="flex justify-center">
+            <%= render "shared/follow_button", followable: @championship %>
+          </div>
+        <% else %>
+          <div class="flex justify-center">
+            <%= link_to 'Add to My Championships', new_user_session_path, class: "btn btn-primary btn-md" %>
+          </div>
+        <% end %>
         <div class="text-gray-200 mb-1 mt-5">
           <p class="mb-2">
             <strong>Website - </strong> 

@@ -24,15 +24,10 @@
             </p>
             <p class="mb-10 text-xl"><strong>Date - </strong> <%= @event.start_date == @event.end_date ? @event.start_date.strftime('%d/%m/%Y') : "#{@event.start_date.strftime('%d')} - #{@event.end_date.strftime('%d/%m/%Y')}" %></p>
             <% if current_user %> 
-              <% button_text = @followable.is_a?(Event) ? ['Follow', 'Unfollow'] : ['Add to my Events', 'Remove from my Events'] %>
-                <%= turbo_frame_tag dom_id(@event, "follow_#{dom_class(@event)}"), class: "w-auto" do %>
-                  <% if current_user.following?(@event) %>
-                    <%= link_to button_text[1], follow_path(id: current_user.follows.find_by(followable: @event).id), method: :delete, class: "btn bg-rose-600", data: { turbo_method: :delete } %>
-                  <% else %>
-                    <%= link_to button_text[0], follows_path(followable_type: @event.class.name, followable_id: @event.id), method: :post, class: "btn btn-primary", data: { turbo_method: :post } %>
-                  <% end %>
-                <% end %>
-              <% end %>
+              <%= render "shared/follow_button", followable: @event %>
+            <% else %>
+              <%= link_to 'Add to My Calendar', new_user_session_path, class: "btn btn-primary btn-md" %>
+            <% end %>
           </div>
 
           <div class="w-full max-w-xl xl:px-8 xl:w-5/12">

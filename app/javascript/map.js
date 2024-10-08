@@ -9,16 +9,14 @@ document.addEventListener('turbo:load', () => {
     const map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [-3.5, 54.5],  // Center on the UK
+      center: [-3.5, 54.5],
       zoom: 5,
       resize: true,
     });
 
-    // Store the map instance on the element for later access
     mapElement._map = map;
 
-    // Fetch track data from server
-    fetch('/tracks.json')  // Ensure the URL matches your routes configuration
+    fetch('/tracks.json')
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');

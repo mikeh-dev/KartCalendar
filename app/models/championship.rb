@@ -15,5 +15,4 @@ class Championship < ApplicationRecord
   def next_champ_event
     events.where('start_date > ?', Date.current).order(start_date: :asc).first
   end
-  
 end

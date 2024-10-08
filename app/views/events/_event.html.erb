@@ -53,17 +53,10 @@
               <span class="font-sans">View Event</span>
             <% end %>
             <% if current_user %>
-              <% button_text = ['Add to my Calendar', 'Remove from my Calendar'] %>
-              <%= turbo_frame_tag dom_id(event, "follow_#{dom_class(event)}"), class: "inline-block" do %>
-                <% if current_user.following?(event) %>
-                  <%= link_to button_text[1], follow_path(id: current_user.follows.find_by(followable: event).id), method: :delete, class: "btn bg-rose-600 whitespace-nowrap", data: { turbo_method: :delete } %>
-                <% else %>
-                  <%= link_to button_text[0], follows_path(followable_type: event.class.name, followable_id: event.id), method: :post, class: "btn btn-primary whitespace-nowrap", data: { turbo_method: :post } %>
-                <% end %>
-              <% end %>
+              <%= render "shared/follow_button", followable: event %>
             <% else %>
-              <%= link_to "Add to my Calendar", new_user_session_path, class: "btn btn-primary whitespace-nowrap" %>
+              <%= link_to 'Add to My Calendar', new_user_session_path, class: "btn btn-primary btn-md" %>
             <% end %>
-    </div>
-  </div>
-</div>
+          </div>
+        </div>
+      </div>

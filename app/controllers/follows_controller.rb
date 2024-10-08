@@ -5,8 +5,6 @@ class FollowsController < ApplicationController
   def create
     follow = current_user.follows.new(followable: @followable)
     if follow.save
-      FollowChampionshipEventsService.new(user: current_user, championship: @followable).call if @followable.is_a?(Championship)
-
       respond_to do |format|
         format.html { redirect_back(fallback_location: root_path) }
         format.turbo_stream
@@ -35,24 +33,23 @@ class FollowsController < ApplicationController
 
   private
 
-  ALLOWED_FOLLOWABLE_TYPES = ['Track', 'Event', 'Championship'].freeze
+    ALLOWED_FOLLOWABLE_TYPES = ['Track', 'Event', 'Championship'].freeze
 
-  def set_followable
-    followable_type = params[:followable_type].classify
-    if ALLOWED_FOLLOWABLE_TYPES.include?(followable_type)
-      klass = followable_type.constantize
-      @followable = klass.find(params[:followable_id])
-    else
+    def set_followable
+      followable_type = params[:followable_type].classify
+      if ALLOWED_FOLLOWABLE_TYPES.include?(followable_type)
+        klass = followable_type.constantize
+        @followable = klass.find(params[:followable_id])
+      else
+        redirect_to root_path, alert: 'Invalid or not found followable.'
+      end
+    rescue ActiveRecord::RecordNotFound
       redirect_to root_path, alert: 'Invalid or not found followable.'
     end
-  rescue ActiveRecord::RecordNotFound
-    redirect_to root_path, alert: 'Invalid or not found followable.'
-  end
 
-  def unfollow_championship_events(championship)
-    championship.events.each do |event|
-      current_user.follows.where(followable: event).destroy_all
+    def unfollow_championship_events(championship)
+      championship.events.each do |event|
+        current_user.follows.where(followable: event).destroy_all
+      end
     end
-  end
-  
 end

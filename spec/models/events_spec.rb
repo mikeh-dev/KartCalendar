@@ -19,12 +19,4 @@ RSpec.describe Event, type: :model do
     it { should validate_presence_of(:event_type) }
     it { should validate_presence_of(:track_id) }
   end
-
-  describe "methods" do
-    describe "#random_image_url" do
-      it "returns a random image URL" do
-        expect(event.random_image_url).to be_a(String)
-      end
-    end
-  end
 end

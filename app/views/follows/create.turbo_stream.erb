@@ -1,15 +1,3 @@
-<% if @followable.is_a?(Event) %>
-  <% button_text = ['Add to My Calendar', 'Remove from My Calendar'] %>
-  <% button_class = [ "btn bg-rose-600", "btn btn-primary" ] %>
-<% elsif @followable.is_a?(Championship) %>
-  <% button_text = ['Add to My Championships', 'Remove from My Championships'] %>
-  <% button_class = [ "btn bg-rose-600 btn-md", "btn btn-primary btn-md" ]  %>
-<% else %>
-  <% button_text = ['Add to my Tracks', 'Remove from my Tracks'] %>
-  <% button_class = [ "btn bg-rose-600 ", "btn btn-primary" ]  %>
-<% end %>
-
 <%= turbo_stream.update dom_id(@followable, "follow_#{dom_class(@followable)}"), class: "w-auto" do %>
-  <%= link_to button_text[1], follow_path(id: current_user.follows.find_by(followable: @followable).id), method: :delete, class: 
-  button_class[0], data: { turbo_method: :delete } %>
+  <%= render "shared/follow_button", followable: @followable %>
 <% end %>

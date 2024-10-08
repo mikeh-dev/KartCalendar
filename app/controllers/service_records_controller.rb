@@ -58,23 +58,22 @@ class ServiceRecordsController < ApplicationController
     end
   end
 
-
   private
 
-  def set_engine
-    if current_user.admin?
-      @engine = Engine.find(params[:engine_id]) # Admin can access any engine
-    else
-      @engine = current_user.engines.find(params[:engine_id]) # Regular users only access their own engines
+    def set_engine
+      if current_user.admin?
+        @engine = Engine.find(params[:engine_id]) # Admin can access any engine
+      else
+        @engine = current_user.engines.find(params[:engine_id]) # Regular users only access their own engines
+      end
     end
-  end
 
-  def set_service_record
-    @service_record = @engine.service_records.find(params[:id])
-  end
+    def set_service_record
+      @service_record = @engine.service_records.find(params[:id])
+    end
 
-  def service_record_params
-    params.require(:service_record).permit(:date, :description, :invoice, :engine_builder, :notes, :old_seal_number, :new_seal_number, :engine_id, dyno_sheets: [])
-  end
+    def service_record_params
+      params.require(:service_record).permit(:date, :description, :invoice, :engine_builder, :notes, :old_seal_number, :new_seal_number, :engine_id, dyno_sheets: [])
+    end
 
 end

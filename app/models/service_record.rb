@@ -16,5 +16,4 @@ class ServiceRecord < ApplicationRecord
       engine.update(seal_number: new_seal_number)
     end
   end
-
 end

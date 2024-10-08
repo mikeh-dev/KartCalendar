@@ -1,0 +1,7 @@
+<%= turbo_frame_tag dom_id(followable, "follow_#{dom_class(followable)}"), class: "w-auto" do %>
+  <% if current_user.following?(followable) %>
+    <%= link_to "Remove from My #{followable.class.name.pluralize}", follow_path(id: current_user.follows.find_by(followable: followable).id), method: :delete, class: "btn btn-primary bg-rose-600 hover:bg-rose-700", data: { turbo_method: :delete } %>
+  <% else %>
+    <%= link_to "Add to My #{followable.class.name.pluralize}", follows_path(followable_type: followable.class.name, followable_id: followable.id), method: :post, class: "btn btn-primary", data: { turbo_method: :post } %>
+  <% end %>
+<% end %>

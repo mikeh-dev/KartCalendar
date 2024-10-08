@@ -68,12 +68,12 @@ class TracksController < ApplicationController
 
   private
 
-  def set_track
-    @track = Track.find(params[:id])
-  end
+    def set_track
+      @track = Track.find(params[:id])
+    end
 
-  def track_params
-    params.require(:track).permit(:name, :address, :contact_number, :main_image, :length, :email, :race_image, :description, :location, :logo, :short_desc, :test_image, :champ_image, :tagline, :website, :mobile, :contact_image, :static_map_url, :facebook, :instagram, :latitude, :longitude, facilities: [], category_ids: [])
-  end
+    def track_params
+      params.require(:track).permit(:name, :address, :contact_number, :main_image, :length, :email, :race_image, :description, :location, :logo, :short_desc, :test_image, :champ_image, :tagline, :website, :mobile, :contact_image, :static_map_url, :facebook, :instagram, :latitude, :longitude, facilities: [], category_ids: [])
+    end
   
 end

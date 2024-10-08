@@ -24,10 +24,6 @@ class Event < ApplicationRecord
     where(id: followed_event_ids)
   end
 
-  def random_image_url
-    Faker::LoremFlickr.image(size: "300x200", search_terms: ["event"])
-  end
-
   private
 
   def end_date_after_start_date
