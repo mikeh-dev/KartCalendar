@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_09_03_103049) do
+ActiveRecord::Schema[7.0].define(version: 2024_10_10_120642) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -157,6 +157,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_03_103049) do
     t.string "live_timing_link"
     t.index ["championship_id"], name: "index_events_on_championship_id"
     t.index ["end_date"], name: "index_events_on_end_date"
+    t.index ["event_type"], name: "index_events_on_event_type"
     t.index ["start_date"], name: "index_events_on_start_date"
     t.index ["track_id"], name: "index_events_on_track_id"
   end
@@ -212,6 +213,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_03_103049) do
     t.string "track_surface"
     t.string "paddock_email"
     t.bigint "user_id"
+    t.index ["name"], name: "index_tracks_on_name"
     t.index ["user_id"], name: "index_tracks_on_user_id"
   end
 
