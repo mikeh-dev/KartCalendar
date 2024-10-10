@@ -23,3 +23,13 @@ Learnt alot about the correct use db queries, eager loading and caching in an at
 Cleaned up the services too and removed some of that code from the controllers.
 
 The Championships Model and controller still needs some work but happy with September 2024.
+
+
+
+
+
+10/10/2024 - Clean up and Improved the UX.a
+
+Worked on refactoring the code in all areas, removing more redundant methods, adding a few more partials here and there, removing more SVG from show views, added some DB indexed columns to aid the search queries.
+
+Also improved the US on the Tracks Index and Event Index page, added tabbed view for the map and search on the track index and a filtering tab for the events index.
