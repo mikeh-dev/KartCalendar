@@ -225,9 +225,9 @@
   </div>
 </section>
 
-<%= js_map [{lat: @track.latitude , lon: @track.longitude }], zoom: 11 %>
-
-<%= render "shared/hotel_fuel_section", track: @track %>
+  <%= js_map [{lat: @track.latitude , lon: @track.longitude }], zoom: 11 %>
+  
+  <%= render "shared/hotel_fuel_section", track: @track %>
 
 <div class="container mx-auto mt-8 px-4" id="track-calendar">
   <div class="w-full text-center mb-6">

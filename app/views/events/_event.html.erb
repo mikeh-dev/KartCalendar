@@ -2,7 +2,7 @@
         <div class="relative w-full md:w-2/5 h-auto">
           <%= image_tag random_default_image, alt: "Event Image", class: "object-cover w-full h-full" %>
           <div class="absolute top-0 left-0 m-4 flex-wrap xs:flex-col">
-            <%= render 'events/event_badges', event: event %>
+            <%= render 'shared/event_badges', event: event %>
           </div>
           <div class="absolute bottom-0 left-0 w-full h-1/3 bg-white bg-opacity-75 flex items-center justify-center">
             <div class="text-center text-gray-800">
