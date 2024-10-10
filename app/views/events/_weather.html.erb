@@ -1,0 +1,42 @@
+<div class="w-full max-w-xl xl:px-8 xl:w-5/12">
+  <div class="bg-white rounded shadow-2xl p-7 sm:p-10">
+    <h2 class="text-2xl font-semibold text-center text-gray-800"><%= @event.track.location %></h2>
+    <div class="max-w-md p-8 mx-auto rounded-lg dark:white dark:text-gray-800">
+      <div class="flex justify-around space-x-4">
+        <% if @event.start_date > Date.today + 7.days %>
+          <p>Check back closer to the event date for weather updates</p>
+        <% else %>
+          <% if @weather_forecast.present? %>
+            <% today_forecast = @weather_forecast[Date.today]&.first %>
+            <% if today_forecast %>
+              <div class="flex flex-col items-center">
+                <%= image_tag "http://openweathermap.org/img/wn/#{today_forecast['weather'][0]['icon'].gsub('n', 'd')}.png", class: "w-16 h-16 fill-current" %>
+                <h2 class="text-sm font-semibold text-center mt-5"><%= today_forecast['weather'][0]['description'].titleize %></h3>
+              </div>
+              <span class="inline-flex items-center">
+              <span class="font-bold text-7xl leading-none"><%= today_forecast['main']['temp'].round %></span>
+              <span class="font-bold text-3xl leading-none align-top">°C</span>
+            </span>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="flex justify-between mt-8 space-x-4 dark:text-gray-600">
+        <% if @weather_forecast.present? %>
+          <% @weather_forecast.keys.sort[1..5].each_with_index do |date, i| %>
+            <div class="flex flex-col items-center space-y-1">
+              <span class="uppercase"><%= date.strftime('%a') %></span>
+            <% daily_forecast = @weather_forecast[date]&.first %>
+            <% if daily_forecast %>
+              <%= image_tag "http://openweathermap.org/img/wn/#{daily_forecast['weather'][0]['icon'].gsub('n', 'd')}.png", class: "w-8 h-8 fill-current" %>
+              <span><%= daily_forecast['main']['temp'].round %>°C</span>
+            <% else %>
+              <span>No Data</span>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <% end %>
+        <% end  %>
+    </div>
+  </div>
+</div>
