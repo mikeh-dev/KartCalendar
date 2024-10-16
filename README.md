@@ -28,8 +28,23 @@ The Championships Model and controller still needs some work but happy with Sept
 
 
 
-10/10/2024 - Clean up and Improved the UX.a
+10/10/2024 - Clean up and Improved the UX
 
 Worked on refactoring the code in all areas, removing more redundant methods, adding a few more partials here and there, removing more SVG from show views, added some DB indexed columns to aid the search queries.
 
 Also improved the US on the Tracks Index and Event Index page, added tabbed view for the map and search on the track index and a filtering tab for the events index.
+
+
+
+
+
+
+16/10/2024 - Added API Key Authentication to the API - Simple and works.
+
+Playing around with an idea for another small project related to Karting but not quite ready to share, I wanted to use some of the data inside Kartstream for it just to play around with some ideas. I may even add the feature for the new project into Kartstream itself instead of creating a whole new app.
+
+Anyway, Step 1 was a little feature to open up the Event data so could call it using an API request, I've not done much with API's before so it was a case of learning as I go.
+
+I've added a simple API Key system to the project so can be used in the future for something like a mobile app.
+
+Added a little security, not great but the accessible data is limted anyway.
