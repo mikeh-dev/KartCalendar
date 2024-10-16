@@ -2,15 +2,14 @@ class Api::V1::EventsController < ApplicationController
   before_action :authenticate_with_api_key
 
   def index
-    @events = Event.all
-    render json: @events.to_json(only: [:id, :name, :start_date, :end_date])
+    @events = Event.select(:id, :title, :start_date).all
+    render json: @events.to_json(only: [:id, :title, :start_date])
   end
 
   def show
     @event = Event.find(params[:id])
-    render json: @event.to_json(only: [:id, :name, :start_date, :end_date])
+    render json: @event.to_json(only: [:id, :title, :start_date, :end_date])
   end
-
 
   private
 
