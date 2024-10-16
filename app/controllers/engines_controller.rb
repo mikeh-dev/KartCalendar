@@ -44,6 +44,7 @@ class EnginesController < ApplicationController
     redirect_to engines_path, notice: 'Engine deleted successfully'
   end
 
+  # This needs to be tested and improved to see if removing images live from the form has a better option
   def remove_image
     @image = ActiveStorage::Attachment.find(params[:id])
     @image.purge_later

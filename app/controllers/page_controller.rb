@@ -1,5 +1,4 @@
 class PageController < ApplicationController
-
 	def home
 		@tracks_count = Rails.cache.fetch('tracks_count', expires_in: 1.month) do
 			Track.count
