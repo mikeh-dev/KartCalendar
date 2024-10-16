@@ -29,6 +29,12 @@ Rails.application.routes.draw do
 		end
 	end
 
+	namespace :api do
+    namespace :v1 do
+      resources :events, only: [:index, :show]
+    end
+  end
+
 	resources :tracks do
 		collection do
 			get :search
