@@ -14,98 +14,98 @@
     <% end %>
 
     <div class="mb-4">
-      <%= form.label :name, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.label :name, class: "form-label" %>
       <%= form.text_field :name, class: "form-input" %>
     </div>
 
     <div class="mb-4">
-      <%= form.label :address, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.label :address, class: "form-label" %>
       <%= form.text_field :address, class: "form-input" %>
     </div>
 
      <div class="mb-4">
-      <%= form.label :latitude, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.label :latitude, class: "form-label" %>
       <%= form.text_field :latitude, class: "form-input" %>
     </div>
 
     <div class="mb-4">
-      <%= form.label :longitude, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.label :longitude, class: "form-label" %>
       <%= form.text_field :longitude, class: "form-input" %>
     </div>
 
 
     <div class="mb-4">
-      <%= form.label :contact_number, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.label :contact_number, class: "form-label" %>
       <%= form.text_field :contact_number, class: "form-input" %>
     </div>
 
     <div class="mb-4">
-      <%= form.label :mobile, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.label :mobile, class: "form-label" %>
       <%= form.text_field :mobile, class: "form-input" %>
     </div>
 
     <div class="mb-4">
-      <%= form.label :main_image, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.label :main_image, class: "form-label" %>
       <%= form.file_field :main_image, class: "form-input" %>
     </div>
 
      <div class="mb-4">
-      <%= form.label :logo, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.label :logo, class: "form-label" %>
       <%= form.file_field :logo, class: "form-input" %>
     </div>
 
      <div class="mb-4">
-      <%= form.label :race_image, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.label :race_image, class: "form-label" %>
       <%= form.file_field :race_image, class: "form-input" %>
     </div>
 
      <div class="mb-4">
-      <%= form.label :test_image, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.label :test_image, class: "form-label" %>
       <%= form.file_field :test_image, class: "form-input" %>
     </div>
 
      <div class="mb-4">
-      <%= form.label :champ_image, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.label :champ_image, class: "form-label" %>
       <%= form.file_field :champ_image, class: "form-input" %>
     </div>
 
      <div class="mb-4">
-      <%= form.label :contact_image, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.label :contact_image, class: "form-label" %>
       <%= form.file_field :contact_image, class: "form-input" %>
     </div>
 
     <div class="mb-4">
-      <%= form.label :length, 'Length (metres)', class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.label :length, 'Length (metres)', class: "form-label" %>
       <%= form.number_field :length, class: "form-input" %>
     </div>
 
     <div class="mb-4">
-      <%= form.label :description, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.label :description, class: "form-label" %>
       <%= form.text_area :description, class: "form-input" %>
     </div>
 
     <div class="mb-4">
-      <%= form.label :short_desc, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.label :short_desc, class: "form-label" %>
       <%= form.text_field :short_desc, class: "form-input" %>
     </div>
 
     <div class="mb-4">
-      <%= form.label :tagline, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.label :tagline, class: "form-label" %>
       <%= form.text_field :tagline, class: "form-input" %>
     </div>
 
     <div class="mb-4">
-      <%= form.label :location, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.label :location, class: "form-label" %>
       <%= form.text_field :location, class: "form-input" %>
     </div>
 
     <div class="mb-4">
-      <%= form.label :email, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.label :email, class: "form-label" %>
       <%= form.email_field :email, class: "form-input" %>
     </div>
 
     <div class="mb-4">
-      <%= form.label :website, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.label :website, class: "form-label" %>
       <%= form.text_field :website, class: "form-input" %>
     </div>
 
@@ -117,7 +117,7 @@
     </div>
 
     <div class="mb-4">
-      <%= form.label :facilities, "Select Facilities", class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.label :facilities, "Select Facilities", class: "form-label" %>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         <% Track::FACILITIES.each do |facility| %>
           <div>
@@ -130,7 +130,7 @@
 
 
     <div class="mb-4">
-      <%= form.label :categories, "Select Categories", class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.label :categories, "Select Categories", class: "form-label" %>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         <% Category.all.each do |category| %>
           <div>
@@ -142,7 +142,7 @@
     </div>
 
     <div class="mb-4">
-      <%= form.label :google_static_map_url, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.label :google_static_map_url, class: "form-label" %>
       <%= form.text_field :static_map_url, class: "form-input" %>
     </div>
 
