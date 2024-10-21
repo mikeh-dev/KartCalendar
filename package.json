@@ -11,8 +11,9 @@
     "@tailwindcss/forms": "^0.5.6",
     "@tailwindcss/line-clamp": "^0.4.4",
     "@tailwindcss/typography": "^0.5.10",
+    "arg": "^5.0.2",
     "autoprefixer": "^10.4.15",
-    "esbuild": "^0.19.2",
+    "esbuild": "^0.24.0",
     "mapbox-gl": "^3.3.0",
     "mapkick": "^0.2.6",
     "postcss": "^8.4.29",
@@ -20,9 +21,9 @@
     "postcss-nesting": "^12.0.1",
     "stimulus-use": "^0.52.0",
     "tailwind-scrollbar": "^3.0.5",
-    "tailwindcss": "^3.3.3",
+    "tailwindcss": "^3.4.14",
     "tippy.js": "^6.3.7",
     "trix": "^2.0.5"
   },
-  "packageManager": "yarn@1.2.2+sha512.c44e283c54e02de9d1da8687025b030078c1b9648d2895a65aab8e64225bfb7becba87e1809fc0b4b6778bbd47a1e2ab6ac647de4c5e383a53a7c17db6c3ff4b"
+  "packageManager": "yarn@1.22.22"
 }
