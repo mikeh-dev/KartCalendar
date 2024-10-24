@@ -12,6 +12,7 @@ class Event < ApplicationRecord
   validate :end_date_after_start_date
 
   scope :future_events, -> { where('start_date >= ?', Date.today).order(:start_date) }
+  scope :past_events, -> { where('end_date < ?', Date.today).order(start_date: :desc) }
   scope :future_race_events, -> { future_events.where(event_type: 'Race') }
   scope :future_test_events, -> { future_events.where(event_type: 'Test') }
   scope :this_weekends_events, -> { future_events.where('end_date >= ? AND end_date <= ?', Date.today, Date.today + 7.days).includes(:track) }

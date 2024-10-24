@@ -18,12 +18,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  def following?(followable)
-    follows.exists?(followable: followable)
-  end
-  
   def manager?
     role == 'manager'
+  end
+  
+  def following?(followable)
+    follows.exists?(followable: followable)
   end
 
   def managed_tracks

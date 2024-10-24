@@ -115,16 +115,14 @@
       <%= form.file_field :logo, class: "form-input" %>
     </div>
 
-    <%= form.fields_for :social_media do |sm| %>
-      <div class="mb-4">
-        <%= sm.label :facebook, "Facebook URL:", class:"block text-gray-700 text-sm font-bold mb-2" %>
-        <%= sm.text_field :facebook, value: @championship.social_media[:facebook] || '', class:'form-input' %>
-      </div>
-      <div class="mb-4">
-        <%= sm.label :instagram, "Instagram URL:", class: "block text-gray-700 text-sm font-bold mb-2" %>
-        <%= sm.text_field :instagram, value: @championship.social_media[:instagram] || '', class: "form-input" %>
-      </div>
-    <% end %>
+    <div class="mb-4">
+      <%= form.label :facebook, "Facebook URL:", class:"block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_field :facebook, value: @championship.facebook || '', class:'form-input' %>
+    </div>
+    <div class="mb-4">
+      <%= form.label :instagram, "Instagram URL:", class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_field :instagram, value: @championship.instagram || '', class: "form-input" %>
+    </div>
 
     <div class="flex items-center justify-between">
       <%= form.submit "Save", class: "btn btn-primary" %>
