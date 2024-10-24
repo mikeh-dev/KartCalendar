@@ -44,7 +44,7 @@ jobs:
         uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
         with:
           bundler-cache: true
-          - name: Set up database schema
+      - name: Set up database schema
         run: bin/rails db:schema:load
       - name: Install system dependencies
         run: |
@@ -58,7 +58,6 @@ jobs:
         run: |
           cat tmp/capybara/*.html
           ls -l tmp/capybara/*.png
-
       - name: Security audit dependencies
         run: bundle exec bundler-audit --update
       - name: Security audit application code
