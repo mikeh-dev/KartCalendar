@@ -86,7 +86,11 @@ GEM
       public_suffix (>= 2.0.2, < 7.0)
     ast (2.4.2)
     aws-eventstream (1.3.0)
+<<<<<<< HEAD
     aws-partitions (1.994.0)
+=======
+    aws-partitions (1.995.0)
+>>>>>>> chrisoliver-review-updates
     aws-sdk-core (3.211.0)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
@@ -244,7 +248,7 @@ GEM
     parser (3.3.5.0)
       ast (~> 2.4.1)
       racc
-    pg (1.5.8)
+    pg (1.5.9)
     psych (5.1.2)
       stringio
     public_suffix (6.0.1)
