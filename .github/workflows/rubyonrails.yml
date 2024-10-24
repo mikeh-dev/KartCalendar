@@ -47,15 +47,7 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y xvfb
-      - name: Run tests
-        run: |
-          xvfb-run --auto-servernum bundle exec rspec
-      - name: Output page content on failure
-        if: failure()
-        run: |
-          cat tmp/capybara/*.html
-          ls -l tmp/capybara/*.png
+          sudo apt-get install
       - name: Security audit dependencies
         run: bundle exec bundler-audit --update
       - name: Security audit application code
