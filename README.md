@@ -78,3 +78,16 @@ Anyway, Step 1 was a little feature to open up the Event data so could call it u
 I've added a simple API Key system to the project so can be used in the future for something like a mobile app.
 
 Added a little security, not great but the accessible data is limted anyway.
+
+
+### - 24/10/2024 - Plenty more refactoring done...
+
+By no means complete but had some great help and feedback from @chrisoliver on the code and refactoring. Worked through most of his advice and cleaned up a lot of the code in models and controllers mainly.
+
+Looks like I'm going to have to do a lot more work on the Championships model and controller to get it ready for the future. That's the neglected feature that needs the most work out of the core 3 features of Events, Tracks and Championships.
+
+Still no further along with dashboard, engines or service records.
+
+Finally got rid of the rspec failure on deployment for the profile button so happy about that. (Only took me 2 hours to figure out what was wrong!)
+
+Till next time...
