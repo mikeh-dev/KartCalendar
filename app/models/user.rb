@@ -1,11 +1,13 @@
 class User < ApplicationRecord
   has_person_name
   has_one_attached :avatar
-  has_and_belongs_to_many :events, join_table: 'event_users'
+
   has_many :follows, dependent: :destroy
   has_many :engines
   has_many :service_records
-  has_many :tracks
+  has_many :followed_tracks, through: :follows, source: :followable, source_type: 'Track'
+  has_many :followed_championships, through: :follows, source: :followable, source_type: 'Championship'
+  has_many :followed_events, through: :follows, source: :followable, source_type: 'Event'
   has_many :api_keys, dependent: :destroy
 
   validates :email, presence: true, format: { with: Devise.email_regexp }
@@ -19,19 +21,7 @@ class User < ApplicationRecord
   def following?(followable)
     follows.exists?(followable: followable)
   end
-
-  def followed_championships
-    Championship.joins(:follows).where(follows: { user_id: id })
-  end
-      
-  def followed_tracks
-    Track.joins(:follows).where(follows: { user_id: id })
-  end
-
-  def followed_events
-    Event.joins(:follows).where(follows: { user_id: id })
-  end
-
+  
   def manager?
     role == 'manager'
   end
@@ -43,5 +33,4 @@ class User < ApplicationRecord
   def managed_championships
     Championship.where(user_id: self)
   end
-
 end

@@ -3,8 +3,9 @@ class Event < ApplicationRecord
   belongs_to :track
 
   has_and_belongs_to_many :categories
-  has_and_belongs_to_many :users, join_table: 'event_users'
+
   has_many :follows, as: :followable, dependent: :destroy
+  has_many :followers, through: :follows, source: :user
   has_one_attached :image
 
   validates :start_date, :end_date, :title, :description, :event_type, :track_id, presence: true

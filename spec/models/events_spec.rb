@@ -4,7 +4,7 @@ RSpec.describe Event, type: :model do
   let(:event) { FactoryBot.create(:event) }
 
   describe "associations" do
-    it { should have_and_belong_to_many(:users).join_table('event_users') }
+    it { should have_many(:followers).through(:follows) }
     it { should belong_to(:championship).optional }
     it { should belong_to(:track) }
     it { should have_many(:follows).dependent(:destroy) }

@@ -26,10 +26,10 @@
         <div class="flex-1">
           <span class="text-indigo-500 dark:text-indigo-400/90 text-sm font-medium">Events this Month</span>
           <div class="flex items-center space-x-2 mt-1 mb-2">
-            <h3 class="h2 tracking-tight"><%= @followed_events.where(start_date: Date.today.beginning_of_month..Date.today.end_of_month).count %></h3>
+            <h3 class="h2 tracking-tight"><%= current_user.followed_events.where(start_date: Date.today.beginning_of_month..Date.today.end_of_month).count %></h3>
           </div>
           <p class="text-sm text-slate-400">vs last month: <strong
-              class="text-slate-600 dark:text-slate-400"><%= @followed_events.where(start_date: Date.today.prev_month.beginning_of_month..Date.today.prev_month.end_of_month).count %></strong></p>
+              class="text-slate-600 dark:text-slate-400"><%= current_user.followed_events.where(start_date: Date.today.prev_month.beginning_of_month..Date.today.prev_month.end_of_month).count %></strong></p>
           </p>
         </div>
       </div>
@@ -43,12 +43,12 @@
         <div class="flex-1">
           <span class="text-yellow-100 dark:text-yellow-100 text-sm font-medium">Last Event</span>
           <div class="flex items-center space-x-2 mt-1 mb-1">
-            <% if @followed_events.where('end_date < ?', Date.today).order(end_date: :desc).first.present? %>
-              <h3 class="h2 tracking-tight"><%= @followed_events.where('end_date < ?', Date.today).order(end_date: :desc).first&.track&.name %></h3>
+            <% if current_user.followed_events.where('end_date < ?', Date.today).order(end_date: :desc).first.present? %>
+              <h3 class="h2 tracking-tight"><%= current_user.followed_events.where('end_date < ?', Date.today).order(end_date: :desc).first&.track&.name %></h3>
               <p> - </p>
-              <h3 class="h2 tracking-tight"><%= @followed_events.where('end_date < ?', Date.today).order(end_date: :desc).first&.title %></h3>
+              <h3 class="h2 tracking-tight"><%= current_user.followed_events.where('end_date < ?', Date.today).order(end_date: :desc).first&.title %></h3>
               <p> - </p>
-              <p class="text-green-600"><%= @followed_events.where('end_date < ?', Date.today).order(end_date: :desc).first&.start_date.strftime('%d %B  %Y') %></p>
+              <p class="text-green-600"><%= current_user.followed_events.where('end_date < ?', Date.today).order(end_date: :desc).first&.start_date.strftime('%d %B  %Y') %></p>
             <% else %>
               <h3 class="h2 tracking-tight">No Events</h3>
             <% end %>
@@ -69,12 +69,12 @@
         <div class="flex-1">
           <span class="text-red-400 dark:text-red-400/90 text-sm font-medium">Next Event</span>
           <div class="flex items-center space-x-2 mt-1 mb-1">
-            <% if @followed_events.where(start_date: Date.today..Date.today.end_of_month).order(:start_date).first.present? %>
-              <h3 class="h2 tracking-tight"><%= @followed_events.where(start_date: Date.today..Date.today.end_of_month).order(:start_date).first&.track.name %></h3>
+            <% if current_user.followed_events.where(start_date: Date.today..Date.today.end_of_month).order(:start_date).first.present? %>
+              <h3 class="h2 tracking-tight"><%= current_user.followed_events.where(start_date: Date.today..Date.today.end_of_month).order(:start_date).first&.track.name %></h3>
               <p> - </p>
-              <h3 class="h2 tracking-tight"><%= @followed_events.where(start_date: Date.today..Date.today.end_of_month).order(:start_date).first&.title %></h3>
+              <h3 class="h2 tracking-tight"><%= current_user.followed_events.where(start_date: Date.today..Date.today.end_of_month).order(:start_date).first&.title %></h3>
               <p> - </p>
-              <p class="text-green-600"><%= @followed_events.where(start_date: Date.today..Date.today.end_of_month).order(:start_date).first&.start_date&.strftime("%b %d, %Y") %></p>
+              <p class="text-green-600"><%= current_user.followed_events.where(start_date: Date.today..Date.today.end_of_month).order(:start_date).first&.start_date&.strftime("%b %d, %Y") %></p>
             <% else %>
               <h3 class="h2 tracking-tight">No Events</h3>
             <% end %>
