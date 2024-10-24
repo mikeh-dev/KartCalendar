@@ -3,7 +3,7 @@ class ChampionshipsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
 
   def index
-    @championships = Championship.all.order(name: :asc).includes(:image_attachment, :logo_attachment, :events)
+    @championships = Championship.includes(:image_attachment, :logo_attachment, :events).order(name: :asc)
   end
 
   def new
@@ -13,8 +13,6 @@ class ChampionshipsController < ApplicationController
 
   def show
     @champ_events = @championship.events
-    @future_champ_events = @champ_events.where("start_date >= ?", Date.tomorrow).order(start_date: :asc)
-    @past_champ_events = @champ_events.where("end_date < ?", Date.today).order(start_date: :desc)
   end
 
   def create
