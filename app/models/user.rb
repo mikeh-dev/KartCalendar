@@ -8,8 +8,7 @@ class User < ApplicationRecord
   has_many :tracks
   has_many :api_keys, dependent: :destroy
 
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
+  validates :email, presence: true, format: { with: Devise.email_regexp }
   validates :first_name, :last_name, presence: true, length: { minimum: 2, maximum: 50 }
   
   # Include default devise modules. Others available are:
