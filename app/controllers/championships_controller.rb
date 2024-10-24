@@ -1,6 +1,7 @@
 class ChampionshipsController < ApplicationController
   before_action :set_championship, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: %i[index show]
+  before_action :champ_events, only: [:show]
 
   def index
     @championships = Championship.includes(:image_attachment, :logo_attachment, :events).order(name: :asc)
@@ -17,7 +18,6 @@ class ChampionshipsController < ApplicationController
 
   def create
     @championship = Championship.new(championship_params)
-    @championship.image = params[:championship][:image]
     authorize @championship
 
     if @championship.save
@@ -52,6 +52,10 @@ class ChampionshipsController < ApplicationController
   end
 
   private
+
+  def champ_events
+    @champ_events = @championship.events
+  end
 
   def set_championship
     @championship = Championship.find(params[:id])
