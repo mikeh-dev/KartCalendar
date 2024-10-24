@@ -133,15 +133,21 @@
       </div>
       <div>
         <p class="text-slate-400 ">Tracks</p>
-        <h4 class="font-extrabold text-3xl lg:text-5xl"><%= @tracks_count %></h4>
+        <% cache('tracks_count', expires_in: 1.hour) do %>
+          <h4 class="font-extrabold text-3xl lg:text-5xl"><%= Track.count %></h4>
+        <% end %>
       </div>
       <div>
         <p class="text-slate-400 ">Events</p>
-        <h4 class="font-extrabold text-3xl lg:text-5xl"><%= @events_count %></h4>
+        <% cache('events_count', expires_in: 1.hour) do %>
+          <h4 class="font-extrabold text-3xl lg:text-5xl"><%= Event.count %></h4>
+        <% end %>
       </div>
       <div>
         <p class="text-slate-400 ">Championships</p>
-        <h4 class="font-extrabold text-3xl lg:text-5xl"><%= @championships_count %></h4>
+        <% cache('championships_count', expires_in: 1.hour) do %>
+          <h4 class="font-extrabold text-3xl lg:text-5xl"><%= Championship.count %></h4>
+        <% end %>
       </div>
     </div>
   </div>

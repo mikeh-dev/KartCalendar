@@ -1,6 +1,7 @@
 class FollowsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_followable, only: [:create]
+  before_action :set_followable_type, only: [:create]
 
   def create
     follow = current_user.follows.new(followable: @followable)
