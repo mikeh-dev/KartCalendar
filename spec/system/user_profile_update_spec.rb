@@ -10,6 +10,9 @@ RSpec.describe 'User Profile Update', type: :system do
   context 'when user is signed in' do
     it 'allows user to update profile' do
       visit root_path
+      if page.has_css?('#dropdowns-nav-toggle', visible: true)
+        find('#dropdowns-nav-toggle').click
+      end
       find("#profile-button").click
       click_link 'Edit account'
       fill_in 'Email', with: 'test@email.com'
@@ -22,6 +25,9 @@ RSpec.describe 'User Profile Update', type: :system do
 
     it 'does not allow user to update profile with invalid email' do
       visit root_path
+      if page.has_css?('#dropdowns-nav-toggle', visible: true)
+        find('#dropdowns-nav-toggle').click
+      end
       find("#profile-button").click
       click_link 'Edit account'
       fill_in 'Email', with: 'test@email.com'
@@ -32,6 +38,9 @@ RSpec.describe 'User Profile Update', type: :system do
 
     it 'does not allow user to update with an invalid email' do
       visit root_path
+      if page.has_css?('#dropdowns-nav-toggle', visible: true)
+        find('#dropdowns-nav-toggle').click
+      end
       find("#profile-button").click
       click_link 'Edit account'
       fill_in 'Email', with: 'test'

@@ -10,6 +10,9 @@ RSpec.describe 'User Sign Out', type: :system do
   context 'when user is signed in' do
     it 'allows user to sign out' do
       visit root_path
+      if page.has_css?('#dropdowns-nav-toggle', visible: true)
+        find('#dropdowns-nav-toggle').click
+      end
       find("#profile-button").click
       click_button 'Sign out'
       expect(page).to have_content('Signed out successfully.')
