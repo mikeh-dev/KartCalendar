@@ -13,6 +13,6 @@ class Championship < ApplicationRecord
   store :social_media, accessors: [ :facebook, :instagram ]
 
   def next_champ_event
-    events.where('start_date > ?', Date.current).order(start_date: :asc).first
+    events.future_events.order(start_date: :asc).first
   end
 end
