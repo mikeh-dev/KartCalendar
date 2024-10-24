@@ -33,11 +33,6 @@ class ChampionshipsController < ApplicationController
 
   def update
     authorize @championship, :update?
-    social_media_params = params[:championship][:social_media] || {}
-    @championship.social_media = {} unless @championship.social_media.is_a?(Hash)
-    @championship.social_media[:facebook] = social_media_params[:facebook]
-    @championship.social_media[:instagram] = social_media_params[:instagram]
-
     if @championship.update(championship_params)
       redirect_to @championship, notice: 'Championship was successfully updated.'
     else
@@ -62,7 +57,7 @@ class ChampionshipsController < ApplicationController
   end
 
   def championship_params
-    params.require(:championship).permit(:name, :description, :image, :logo, :price, :champ_type, :short_name, :licence,:long_name, :website, :email, :contact_number, :race_fee, :test_fee, :champ_fee, :tagline, :mobile, :home_track_id, :non_member_race_fee,:social_media => {})
+    params.require(:championship).permit(:name, :description, :image, :logo, :price, :champ_type, :short_name, :licence,:long_name, :website, :email, :contact_number, :race_fee, :test_fee, :champ_fee, :tagline, :mobile, :home_track_id, :non_member_race_fee, :facebook, :instagram)
   end
 
 end

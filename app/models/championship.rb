@@ -10,8 +10,6 @@ class Championship < ApplicationRecord
   validates :name, :description, :short_name, :long_name, presence: true
   validates :home_track_id, presence: true, if: -> { champ_type == 'Club' }
 
-  store :social_media, accessors: [ :facebook, :instagram ]
-
   def next_champ_event
     events.future_events.order(start_date: :asc).first
   end
